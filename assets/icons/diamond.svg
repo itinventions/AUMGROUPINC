@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 32" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Diamond Outline & Facets -->
+  <polygon points="10,2 30,2 38,12 20,30 2,12" />
+  <line x1="2" y1="12" x2="38" y2="12" />
+  <line x1="10" y1="2" x2="15" y2="12" />
+  <line x1="30" y1="2" x2="25" y2="12" />
+  <line x1="15" y1="12" x2="20" y2="30" />
+  <line x1="25" y1="12" x2="20" y2="30" />
+  <line x1="20" y1="2" x2="15" y2="12" />
+  <line x1="20" y1="2" x2="25" y2="12" />
+</svg>

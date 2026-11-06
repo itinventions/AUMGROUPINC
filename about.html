@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | AUM GROUP INC Fine Jewellery &amp; Gems</title>
+  <meta name="description"
+    content="Aum Group Inc. - Established in 2005 in Mumbai (India). Over two decades of trust, excellence, and consistency serving the global diamond industry with world-class diamonds.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23dfc7a7' stroke-width='1.5'><polygon points='6,3 18,3 22,9 12,22 2,9'/></svg>">
+
+  <!-- Google Fonts Preconnect & Luxury Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+
+  <!-- Core Stylesheet & Animations -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="animations.css">
+</head>
+
+<body class="luxury-dark-body">
+
+  <!-- =========================================================================
+       FIXED LUXURY HEADER NAVIGATION
+       ========================================================================= -->
+  <header class="navbar" id="site-header" role="banner">
+
+    <!-- Left: Brand Logo (Aum Group Inc Fine Jewellery & Gems) -->
+    <a href="index.html" class="brand-logo-container group" aria-label="AUM GROUP INC Fine Jewellery &amp; Gems Homepage">
+      <!-- Diamond Facet Icon -->
+      <svg class="brand-diamond-icon" viewBox="0 0 40 32" fill="none" stroke="currentColor" stroke-width="1.3"
+        stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="10,2 30,2 38,12 20,30 2,12" />
+        <line x1="2" y1="12" x2="38" y2="12" />
+        <line x1="10" y1="2" x2="15" y2="12" />
+        <line x1="30" y1="2" x2="25" y2="12" />
+        <line x1="15" y1="12" x2="20" y2="30" />
+        <line x1="25" y1="12" x2="20" y2="30" />
+        <line x1="20" y1="2" x2="15" y2="12" />
+        <line x1="20" y1="2" x2="25" y2="12" />
+      </svg>
+      <!-- Brand Name & Tagline -->
+      <span class="brand-title">AUM GROUP INC</span>
+      <span class="brand-subtitle">FINE JEWELLERY &amp; GEMS</span>
+    </a>
+
+    <!-- Center: Navigation Menu Links -->
+    <nav role="navigation" aria-label="Main Navigation">
+      <ul class="nav-links" id="main-nav-links">
+        <li class="mobile-close-item">
+          <button type="button" class="mobile-close-btn" id="mobile-menu-close" aria-label="Close Navigation Menu">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </li>
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="index.html#our-gems" class="nav-link">Shop</a></li>
+        <li><a href="index.html#our-gems" class="nav-link">Our Gems</a></li>
+        <li><a href="about.html" class="nav-link active">About Us</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Right: Utility Action Icons (Search, Profile, Cart) -->
+    <div class="nav-actions">
+      <!-- Search Icon Button -->
+      <button type="button" class="nav-icon-btn search-btn" aria-label="Search Collection" title="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+          stroke-linejoin="round">
+          <circle cx="10.5" cy="10.5" r="7" />
+          <line x1="15.8" y1="15.8" x2="21.5" y2="21.5" />
+        </svg>
+      </button>
+
+      <!-- User Profile Icon Button -->
+      <button type="button" class="nav-icon-btn user-btn" aria-label="User Account" title="Account">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+          <circle cx="12" cy="7" r="4" />
+        </svg>
+      </button>
+
+      <!-- Cart Icon Button with Badge "0" -->
+      <button type="button" class="nav-icon-btn cart-btn" aria-label="Shopping Cart with 0 items" title="Shopping Bag">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <path d="M16 10a4 4 0 0 1-8 0" />
+        </svg>
+        <span class="cart-badge">0</span>
+      </button>
+
+      <!-- Mobile Hamburger Toggle Button -->
+      <button type="button" class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Toggle Navigation Menu"
+        aria-expanded="false" aria-controls="main-nav-links">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+    </div>
+
+  </header>
+
+  <!-- =========================================================================
+       ABOUT US HERO SECTION (Diamonds for a Brighter Tomorrow)
+       ========================================================================= -->
+  <main class="about-hero-section" id="about-hero">
+
+    <!-- Background Image: 05_AboutUs_Page_Image.png -->
+    <div class="about-hero-bg" aria-hidden="true"></div>
+
+    <!-- Cinematic Vignette Gradient Overlay for Depth & Text Readability -->
+    <div class="about-hero-vignette" aria-hidden="true"></div>
+
+    <!-- Ambient Caustic Light Bloom Behind Diamond -->
+    <div class="about-diamond-halo" aria-hidden="true"></div>
+
+    <!-- Content Container -->
+    <div class="about-hero-container">
+
+      <!-- Left Narrative Column -->
+      <div class="about-hero-left reveal-fade-left">
+        <p class="about-hero-eyebrow reveal-on-scroll">ABOUT US</p>
+
+        <h1 class="about-hero-heading reveal-on-scroll delay-1">
+          Diamonds for<br>
+          a <span class="about-serif-italic">Brighter Tomorrow</span>
+        </h1>
+
+        <p class="about-hero-description reveal-on-scroll delay-2">
+          Aum Group Inc. &ndash; Established in 2005 in Mumbai (India). serving the global diamond industry with
+          quality, consistency and trust.
+        </p>
+
+        <div class="about-hero-cta reveal-on-scroll delay-3">
+          <a href="#our-story" class="about-story-btn" id="our-story-btn">
+            <span>Our Story</span>
+            <svg class="about-btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <polyline points="19 12 12 19 5 12"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Quote Column -->
+      <div class="about-hero-right">
+        <div class="about-hero-quote-wrap reveal-fade-right delay-2">
+          <blockquote class="about-hero-quote">
+            Diamonds are a<br>
+            symbol of Romance,<br>
+            Love, Affection,<br>
+            Beauty and Power.
+          </blockquote>
+          <div class="about-quote-divider" aria-hidden="true"></div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- =========================================================================
+       OUR STORY SECTION (Over Two Decades of Trust and Excellence)
+       ========================================================================= -->
+  <section class="about-story-section" id="our-story">
+    <div class="about-story-container">
+
+      <!-- Left Column: Story Narrative -->
+      <div class="about-story-left reveal-fade-left">
+        <p class="about-story-eyebrow reveal-on-scroll">OUR STORY</p>
+
+        <h2 class="about-story-heading reveal-on-scroll delay-1">
+          Over Two Decades<br>
+          of Trust and Excellence
+        </h2>
+
+        <p class="about-story-body reveal-on-scroll delay-2">
+          Aum Group Inc. is established in 2005 in Mumbai (India) . It is been 21 years serving Diamond Industry and we
+          have established a stable and repeated customer base locally as well as Globally by providing World Class
+          Quality Diamonds consistently and as per the clients requirement. Our main clients globally are located in
+          USA, Canada, European Countries, Bangkok, Thailand, Indonesia etc.
+        </p>
+      </div>
+
+      <!-- Vertical Separator Divider -->
+      <div class="about-story-divider reveal-on-scroll delay-1" aria-hidden="true"></div>
+
+      <!-- Right Column: 3 Metric Rows -->
+      <div class="about-story-metrics reveal-fade-right">
+
+        <!-- Metric 1: 2005 Established -->
+        <div class="about-metric-row reveal-on-scroll delay-1">
+          <div class="metric-icon-wrap" aria-hidden="true">
+            <svg class="metric-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+              <circle cx="8" cy="14" r="0.9" fill="currentColor"></circle>
+              <circle cx="12" cy="14" r="0.9" fill="currentColor"></circle>
+              <circle cx="16" cy="14" r="0.9" fill="currentColor"></circle>
+              <circle cx="8" cy="18" r="0.9" fill="currentColor"></circle>
+              <circle cx="12" cy="18" r="0.9" fill="currentColor"></circle>
+              <circle cx="16" cy="18" r="0.9" fill="currentColor"></circle>
+            </svg>
+          </div>
+          <div class="metric-text-wrap">
+            <span class="metric-number">2005</span>
+            <span class="metric-label">ESTABLISHED</span>
+            <span class="metric-subtitle">Mumbai, India</span>
+          </div>
+        </div>
+
+        <!-- Metric 2: 21+ Years of Experience -->
+        <div class="about-metric-row reveal-on-scroll delay-2">
+          <div class="metric-icon-wrap" aria-hidden="true">
+            <svg class="metric-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <div class="metric-text-wrap">
+            <span class="metric-number">21+</span>
+            <span class="metric-label">YEARS OF EXPERIENCE</span>
+            <span class="metric-subtitle">In Diamond Industry</span>
+          </div>
+        </div>
+
+        <!-- Metric 3: Global Clients -->
+        <div class="about-metric-row reveal-on-scroll delay-3">
+          <div class="metric-icon-wrap" aria-hidden="true">
+            <svg class="metric-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+              </path>
+            </svg>
+          </div>
+          <div class="metric-text-wrap">
+            <span class="metric-number metric-title-serif">Global Clients</span>
+            <span class="metric-subtitle">USA, Canada, Europe,<br>Thailand, Indonesia and more</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       OUR MANUFACTURING SECTION (World Class Infrastructure in Mumbai)
+       ========================================================================= -->
+  <section class="about-mfg-section" id="our-manufacturing">
+
+    <!-- Background Image: 06_AboutUs_Page_Image.png -->
+    <div class="about-mfg-bg" aria-hidden="true"></div>
+
+    <!-- Cinematic Vignette for Text Contrast -->
+    <div class="about-mfg-vignette" aria-hidden="true"></div>
+
+    <!-- Content Container -->
+    <div class="about-mfg-container">
+      <div class="about-mfg-content reveal-on-scroll">
+        <p class="about-mfg-eyebrow reveal-on-scroll">OUR MANUFACTURING</p>
+
+        <h2 class="about-mfg-heading reveal-on-scroll delay-1">
+          World Class Infrastructure<br>
+          in Mumbai
+        </h2>
+
+        <p class="about-mfg-description reveal-on-scroll delay-2">
+          Our Mumbai Diamond Manufacturing company have world class infrastructure and are located strategically where
+          diamond manufacturing overheads are very low. Our special attention to provide excellent polishing and grading
+          techniques for diamonds, which keeps ourselves different from other suppliers and exporters.
+        </p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- =========================================================================
+       OUR APPROACH SECTION (Direct Supply for a Stronger Industry)
+       ========================================================================= -->
+  <section class="about-approach-section" id="our-approach">
+    <div class="about-approach-container">
+
+      <!-- Left Column: Approach Narrative -->
+      <div class="about-approach-left reveal-fade-left">
+        <p class="about-approach-eyebrow reveal-on-scroll">OUR APPROACH</p>
+
+        <h2 class="about-approach-heading reveal-on-scroll delay-1">
+          Direct Supply for<br>
+          a Stronger Industry
+        </h2>
+
+        <p class="about-approach-body reveal-on-scroll delay-2">
+          Our aim is to examine the minutest aspect of our business and perform each activity optimally to achieve
+          excellence. We are trying to supply diamonds directly to companies who are manufacturing jewelry removing the
+          brokers, readers and commission agents to reduce cost of diamonds to manufactures and in turn to the end
+          consumers.
+        </p>
+      </div>
+
+      <!-- Vertical Separator Divider -->
+      <div class="about-approach-divider reveal-on-scroll delay-1" aria-hidden="true"></div>
+
+      <!-- Right Column: 3 Feature Rows with Circular Badges -->
+      <div class="about-approach-features reveal-fade-right">
+
+        <!-- Feature 1: Reduced Intermediaries (Rupee Symbol) -->
+        <div class="approach-feature-row reveal-on-scroll delay-1">
+          <div class="approach-badge" aria-hidden="true">
+            <span class="approach-currency-symbol">&#8377;</span>
+          </div>
+          <div class="approach-feature-text">
+            <span class="approach-feature-title">Reduced Intermediaries</span>
+            <span class="approach-feature-subtitle">Direct supply to manufacturers</span>
+          </div>
+        </div>
+
+        <!-- Feature 2: Optimized Operations (Gear Icon) -->
+        <div class="approach-feature-row reveal-on-scroll delay-2">
+          <div class="approach-badge" aria-hidden="true">
+            <svg class="approach-badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path
+                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+              </path>
+            </svg>
+          </div>
+          <div class="approach-feature-text">
+            <span class="approach-feature-title">Optimized Operations</span>
+            <span class="approach-feature-subtitle">Focused on efficiency and excellence</span>
+          </div>
+        </div>
+
+        <!-- Feature 3: Better Value (Handshake Icon) -->
+        <div class="approach-feature-row reveal-on-scroll delay-3">
+          <div class="approach-badge" aria-hidden="true">
+            <svg class="approach-badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 17l-5-5a2.5 2.5 0 0 1 0-3.5 2.5 2.5 0 0 1 3.5 0l1.5 1.5"></path>
+              <path d="M18 10l-4-4a2.5 2.5 0 0 0-3.5 0L9 7.5"></path>
+              <path d="M7 13l3 3a2.5 2.5 0 0 0 3.5 0l4.5-4.5a2.5 2.5 0 0 0 0-3.5l-1-1"></path>
+              <path d="M2 14l4 4"></path>
+              <path d="M22 10l-4-4"></path>
+            </svg>
+          </div>
+          <div class="approach-feature-text">
+            <span class="approach-feature-title">Better Value</span>
+            <span class="approach-feature-subtitle">Supporting manufacturers and end consumers</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 5: OUR DIAMOND RANGE
+       ========================================================================= -->
+  <section class="about-range-section" id="our-diamond-range" aria-label="Our Diamond Range">
+    <div class="about-range-canvas">
+
+      <!-- Provided Diamond Range Image: 07_AboutUs_Page_Image.png -->
+      <img src="assets/images/Background Images/07_AboutUs_Page_Image.png" alt="A Wide Range of Diamonds"
+        class="about-range-bg-img" loading="lazy">
+
+      <!-- Top Text Overlay -->
+      <div class="about-range-header reveal-on-scroll">
+        <span class="about-range-eyebrow reveal-on-scroll">OUR DIAMOND RANGE</span>
+        <h2 class="about-range-heading reveal-on-scroll delay-1">A Wide Range of Diamonds</h2>
+        <p class="about-range-description reveal-on-scroll delay-2">
+          We are Manufacturing wide range of diamonds like Round Brilliant cut (Full Cut), Single cut , Princess cut,
+          Baguette cut , Marquise cut and many Fancy shapes in all size, clarity and colors (White, Next to White, TTLB,
+          TTLC and NATTS) in wide range of price. We even manufacture black diamonds in all sizes and shapes. Timely
+          Delivery with consistent quality is our Specialty.
+        </p>
+      </div>
+
+      <!-- 6 Diamond Cut Labels Positioned Above Each Diamond -->
+      <div class="about-range-labels-grid reveal-scale-up delay-2">
+        <div class="diamond-label-pos d-pos-1">
+          <span class="diamond-cut-label">ROUND BRILLIANT<br>(FULL CUT)</span>
+        </div>
+        <div class="diamond-label-pos d-pos-2">
+          <span class="diamond-cut-label">PRINCESS CUT</span>
+        </div>
+        <div class="diamond-label-pos d-pos-3">
+          <span class="diamond-cut-label">BAGUETTE CUT</span>
+        </div>
+        <div class="diamond-label-pos d-pos-4">
+          <span class="diamond-cut-label">MARQUISE CUT</span>
+        </div>
+        <div class="diamond-label-pos d-pos-5">
+          <span class="diamond-cut-label">SINGLE CUT</span>
+        </div>
+        <div class="diamond-label-pos d-pos-6">
+          <span class="diamond-cut-label">FANCY SHAPES<br>(INCLUDING<br>BLACK DIAMONDS)</span>
+        </div>
+      </div>
+
+      <!-- Bottom Features & Divider Overlay -->
+      <div class="about-range-bottom-wrap">
+        <div class="about-range-divider reveal-on-scroll delay-2" role="separator"></div>
+        <div class="about-range-features reveal-on-scroll delay-3">
+          <div class="range-feature-col reveal-on-scroll delay-1">
+            <span class="range-feature-headline">All Sizes</span>
+            <span class="range-feature-sub">Available</span>
+          </div>
+          <div class="range-feature-col reveal-on-scroll delay-2">
+            <span class="range-feature-headline">All Clarity</span>
+            <span class="range-feature-sub">Grades</span>
+          </div>
+          <div class="range-feature-col reveal-on-scroll delay-3">
+            <span class="range-feature-headline">Wide Range of Colors</span>
+            <span class="range-feature-sub">White, Next to White, TTLB, TTLC and NATTS</span>
+          </div>
+          <div class="range-feature-col reveal-on-scroll delay-4">
+            <span class="range-feature-headline">Timely Delivery</span>
+            <span class="range-feature-sub">Consistent Quality Our Specialty</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 6: OUR GLOBAL PRESENCE
+       ========================================================================= -->
+  <section class="about-presence-section" id="our-global-presence" aria-label="Our Global Presence">
+    <!-- World Flight Routes Sky Overlay -->
+    <div class="about-presence-map-bg" role="presentation"></div>
+
+    <div class="about-presence-container">
+
+      <!-- Top Text Section -->
+      <div class="about-presence-header reveal-on-scroll">
+        <span class="about-presence-eyebrow reveal-on-scroll">OUR GLOBAL PRESENCE</span>
+        <h2 class="about-presence-heading reveal-on-scroll delay-1">Serving Clients Worldwide</h2>
+        <p class="about-presence-description reveal-on-scroll delay-2">
+          We have established a stable and repeated customer base locally as well as globally. Our main clients globally
+          are located in USA, Canada, European Countries, Bangkok, Thailand, Indonesia etc.
+        </p>
+      </div>
+
+      <!-- 5 Landmark Country Photo Cards Section -->
+      <div class="about-presence-cards-grid">
+        <!-- Card 1: USA -->
+        <div class="presence-card reveal-scale-up delay-1">
+          <div class="presence-card-img-wrap">
+            <img src="assets/images/presence/usa.jpg" alt="USA - Statue of Liberty" class="presence-card-img"
+              loading="lazy">
+          </div>
+          <span class="presence-country-label">USA</span>
+        </div>
+
+        <!-- Card 2: Canada -->
+        <div class="presence-card reveal-scale-up delay-2">
+          <div class="presence-card-img-wrap">
+            <img src="assets/images/presence/canada.jpg" alt="Canada - Toronto CN Tower" class="presence-card-img"
+              loading="lazy">
+          </div>
+          <span class="presence-country-label">Canada</span>
+        </div>
+
+        <!-- Card 3: European Countries -->
+        <div class="presence-card reveal-scale-up delay-3">
+          <div class="presence-card-img-wrap">
+            <img src="assets/images/presence/europe.jpg" alt="European Countries Architecture" class="presence-card-img"
+              loading="lazy">
+          </div>
+          <span class="presence-country-label">European Countries</span>
+        </div>
+
+        <!-- Card 4: Bangkok, Thailand -->
+        <div class="presence-card reveal-scale-up delay-4">
+          <div class="presence-card-img-wrap">
+            <img src="assets/images/presence/thailand.jpg" alt="Bangkok, Thailand - Wat Arun" class="presence-card-img"
+              loading="lazy">
+          </div>
+          <span class="presence-country-label">Bangkok, Thailand</span>
+        </div>
+
+        <!-- Card 5: Indonesia -->
+        <div class="presence-card reveal-scale-up delay-5">
+          <div class="presence-card-img-wrap">
+            <img src="assets/images/presence/indonesia.jpg" alt="Indonesia - Ulun Danu Temple" class="presence-card-img"
+              loading="lazy">
+          </div>
+          <span class="presence-country-label">Indonesia</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+
+  <!-- =========================================================================
+       SITE FOOTER (Luxury obsidian bar with brand, nav, socials & newsletter)
+       ========================================================================= -->
+  <footer class="site-footer relative z-10 w-full" id="contact" role="contentinfo">
+
+    <!-- Top Footer Row: Logo, Navigation, Socials, Newsletter -->
+    <div class="footer-main-row">
+
+      <!-- 1. Brand Logo -->
+      <a href="index.html" class="footer-brand group reveal-on-scroll" aria-label="AUM GROUP INC Homepage">
+        <svg class="footer-diamond-icon" viewBox="0 0 40 32" fill="none" stroke="currentColor" stroke-width="1.3"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="10,2 30,2 38,12 20,30 2,12" />
+          <line x1="2" y1="12" x2="38" y2="12" />
+          <line x1="10" y1="2" x2="15" y2="12" />
+          <line x1="30" y1="2" x2="25" y2="12" />
+          <line x1="15" y1="12" x2="20" y2="30" />
+          <line x1="25" y1="12" x2="20" y2="30" />
+          <line x1="20" y1="2" x2="15" y2="12" />
+          <line x1="20" y1="2" x2="25" y2="12" />
+        </svg>
+        <span class="footer-brand-title">AUM GROUP INC</span>
+        <span class="footer-brand-subtitle">FINE JEWELLERY &amp; GEMS</span>
+      </a>
+
+      <!-- 2. Navigation Links -->
+      <nav class="footer-nav reveal-on-scroll delay-1" aria-label="Footer Navigation">
+        <ul class="footer-nav-links">
+          <li><a href="index.html" class="footer-link">Home</a></li>
+          <li><a href="index.html#our-gems" class="footer-link">Shop</a></li>
+          <li><a href="index.html#our-gems" class="footer-link">Our Gems</a></li>
+          <li><a href="about.html" class="footer-link">About Us</a></li>
+          <li><a href="#contact" class="footer-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- 3. Social Media Channels -->
+      <div class="footer-socials reveal-on-scroll delay-2" aria-label="Social media channels">
+        <!-- Instagram -->
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-icon-link"
+          aria-label="Instagram" title="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+            stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+        </a>
+        <!-- Facebook -->
+        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-icon-link"
+          aria-label="Facebook" title="Facebook">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+          </svg>
+        </a>
+        <!-- Pinterest -->
+        <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" class="social-icon-link"
+          aria-label="Pinterest" title="Pinterest">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.69 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z" />
+          </svg>
+        </a>
+        <!-- YouTube -->
+        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-icon-link"
+          aria-label="YouTube" title="YouTube">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path
+              d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z">
+            </path>
+            <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor"></polygon>
+          </svg>
+        </a>
+      </div>
+
+      <!-- 4. Newsletter Signup -->
+      <div class="footer-newsletter reveal-on-scroll delay-3">
+        <span class="newsletter-title">Join Our Newsletter</span>
+        <form class="newsletter-form" id="newsletter-form">
+          <input type="email" placeholder="Your email address" class="newsletter-input" required
+            aria-label="Your email address">
+          <button type="submit" class="newsletter-btn" aria-label="Subscribe to newsletter">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- Bottom Footer Sub-Bar: Copyright & Legal Policies -->
+    <div class="footer-bottom-bar reveal-on-scroll delay-4">
+      <p class="footer-copyright">&copy; 2026 AUM GROUP INC. All rights reserved.</p>
+      <div class="footer-legal-links">
+        <a href="#privacy" class="footer-legal-link">Privacy Policy</a>
+        <a href="#terms" class="footer-legal-link">Terms &amp; Conditions</a>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module" src="about.js"></script>
+</body>
+
+</html>
