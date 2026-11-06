@@ -4,30 +4,94 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Montserrat:wght@200;300;400;500;600;700&family=Inter:wght@300;400;500&display=swap');
 
-:root {
-  /* Brand Luxury Palette */
-  --color-gold-primary: #dfc7a7;
-  --color-gold-button: #dfc59e;
-  --color-gold-hover: #ecd5b7;
-  --color-gold-deep: #b89360;
-  --color-gold-accent: #dfcfbe;
-  --color-dark-bg: #090807;
-  --color-dark-surface: #12100e;
-  --color-text-white: #fcfbfa;
-  --color-text-muted: #cfc7be;
-  --color-text-dark: #12100e;
-  --color-sapphire-glow: rgba(26, 68, 142, 0.45);
-  --color-gold-glow: rgba(223, 199, 167, 0.35);
+/* --------------------------------------------------------------------------
+   Custom Luxury Typography Imports (@font-face)
+   -------------------------------------------------------------------------- */
+/* 1. Brannboll Connect PERSONAL USE by Måns Grebäck (mawns) */
+@font-face {
+  font-family: 'Brannboll Connect';
+  src: url('assets/fonts/BrannbollConnect_PERSONAL_USE.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
-  /* Typography */
+/* 2. Derathea by Hyperactype */
+@font-face {
+  font-family: 'Derathea';
+  src: url('assets/fonts/Derathea.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 3. Senjalara Demo by CalligraphyFonts.net */
+@font-face {
+  font-family: 'Senjalara Demo';
+  src: url('assets/fonts/Senjalara.ttf') format('truetype'),
+       url('assets/fonts/SenjalaraDemoRegular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 4. Romantyc Harmony by Damarletter Studio */
+@font-face {
+  font-family: 'Romantyc Harmony';
+  src: url('assets/fonts/Romantyc_Harmony.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* ========================================================================
+     NEW LUXURY BRAND PALETTE (Escéli / Aum Group Inc Version 2.0)
+     ======================================================================== */
+  --color-emerald-deep: #002821;        /* Darkest Surface / Nav Background */
+  --color-emerald-primary: #004438;     /* Core Brand Emerald / Card Base */
+  --color-emerald-light: #005f4e;       /* Hover / Emerald Tint */
+  --color-burgundy-deep: #2c1212;       /* Deep Wine / Dark Contrast */
+  --color-burgundy-primary: #402020;    /* Royal Burgundy / Badges / Buttons */
+  --color-burgundy-hover: #5a2c2c;      /* Burgundy Hover / Active */
+  --color-alabaster: #d6d1c4;           /* Primary Luxury Text / Accents / Cream */
+  --color-slate-grey: #8c8c8c;          /* Secondary Muted Meta / Borders */
+
+  /* Legacy / Compatible Aliases mapped to new luxury palette */
+  --color-gold-primary: #d6d1c4;
+  --color-gold-button: #d6d1c4;
+  --color-gold-hover: #f4f2ec;
+  --color-gold-deep: #004438;
+  --color-gold-accent: #d6d1c4;
+  --color-dark-bg: #001f19;
+  --color-dark-surface: #002821;
+  --color-text-white: #fcfbfa;
+  --color-text-muted: #8c8c8c;
+  --color-text-dark: #001f19;
+  --color-sapphire-glow: rgba(0, 68, 56, 0.55);
+  --color-gold-glow: rgba(214, 209, 196, 0.4);
+
+  /* Primary Typography */
   --font-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
   --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Custom Luxury Script & Display Fonts */
+  --font-brannboll: 'Brannboll Connect', cursive, sans-serif;
+  --font-derathea: 'Derathea', cursive, sans-serif;
+  --font-senjalara: 'Senjalara Demo', cursive, serif;
+  --font-romantyc: 'Romantyc Harmony', cursive, serif;
 
   /* Transitions */
   --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-fast: all 0.2s ease-out;
 }
+
+/* Typography Utility Classes */
+.font-brannboll { font-family: var(--font-brannboll); }
+.font-derathea { font-family: var(--font-derathea); }
+.font-senjalara { font-family: var(--font-senjalara); }
+.font-romantyc { font-family: var(--font-romantyc); }
 
 /* Base Resets & Global Text Selection Lock */
 *,
@@ -204,138 +268,237 @@ textarea {
 }
 
 /* --------------------------------------------------------------------------
-   Navigation Bar (Fixed Luxury Header)
+   Navigation Bar (Fixed 2-Tier Luxury Header - Escéli / New Palette v2.0)
    -------------------------------------------------------------------------- */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 85px;
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  background: linear-gradient(180deg, rgba(0, 36, 29, 0.98) 0%, rgba(0, 48, 39, 0.96) 100%);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border-bottom: 1px solid rgba(214, 209, 196, 0.16);
+  box-shadow: 0 6px 35px rgba(0, 20, 16, 0.75);
+  /* Smooth slide up/down on scroll */
+  transform: translateY(0);
+  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.35s ease,
+              border-color 0.35s ease,
+              box-shadow 0.35s ease;
+}
+
+/* Class added by JS when scrolling DOWN — slides navbar off screen */
+.navbar.nav-hidden {
+  transform: translateY(-100%);
+}
+
+/* 1. Upper Tier: Shipping Notice | Center Large Logo | Utility Icons */
+.navbar-top {
+  position: relative;
+  height: 86px; /* Extra height to showcase large logo */
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 4.5rem;
-  z-index: 50;
-  background: rgba(0, 0, 0, 0.22);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  padding: 0 4rem;
 }
 
-/* Brand Logo */
-.brand-logo-container {
-  display: inline-flex;
+/* Top Left: Free Worldwide Shipping Notice with Faceted Gem Globe Icon */
+.navbar-shipping {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--color-slate-grey); /* #8c8c8c */
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.shipping-icon {
+  width: 19px;
+  height: 19px;
+  stroke: var(--color-alabaster); /* #d6d1c4 */
+  color: var(--color-alabaster);
+  filter: drop-shadow(0 0 6px rgba(214, 209, 196, 0.4));
+  flex-shrink: 0;
+}
+
+/* Top Center: Prominent Large Company Brand Logo */
+.navbar-brand-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  z-index: 5;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.navbar-brand-center:hover {
+  transform: translateX(-50%) scale(1.04);
+}
+
+/* Increased Logo Size in Navbar */
+.navbar-logo-img {
+  height: 72px; /* Large prominent logo */
+  width: auto;
+  max-width: 320px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 0 16px rgba(214, 209, 196, 0.32));
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.navbar-logo-img:hover {
+  filter: drop-shadow(0 0 18px rgba(214, 209, 196, 0.55));
+}
+
+/* Fallback Text Branding */
+.brand-gemore-container {
+  display: flex;
   flex-direction: column;
   align-items: center;
   text-decoration: none;
-  color: var(--color-text-white);
-  transition: opacity 0.3s ease;
-  user-select: none;
+  line-height: 1.1;
 }
 
-.brand-logo-container:hover {
-  opacity: 0.92;
+.brand-gemore-emblem {
+  width: 24px;
+  height: 20px;
+  stroke: var(--color-alabaster);
+  margin-bottom: 2px;
+  filter: drop-shadow(0 0 8px rgba(214, 209, 196, 0.6));
 }
 
-.brand-diamond-icon {
-  width: 22px;
-  height: 18px;
-  margin-bottom: 5px;
-  stroke: var(--color-text-white);
-  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.3));
-}
-
-.brand-title {
+.brand-gemore-title {
   font-family: var(--font-serif);
-  font-size: 1.32rem;
+  font-size: 1.4rem;
   font-weight: 500;
-  letter-spacing: 0.24em;
-  line-height: 1;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
+  color: var(--color-alabaster);
+  text-shadow: 0 0 12px rgba(214, 209, 196, 0.45);
 }
 
-.brand-subtitle {
+.brand-gemore-sub {
   font-family: var(--font-sans);
-  font-size: 0.48rem;
+  font-size: 0.5rem;
   font-weight: 400;
-  letter-spacing: 0.3em;
-  color: rgba(251, 249, 246, 0.85);
-  margin-top: 3px;
+  letter-spacing: 0.32em;
   text-transform: uppercase;
+  color: var(--color-slate-grey);
+  margin-top: 3px;
 }
 
-/* Center Nav Links */
-.nav-links {
+/* Top Right: Currency Dropdown & Action Icons */
+.navbar-top-right {
   display: flex;
   align-items: center;
-  gap: 2.85rem;
-  list-style: none;
+  gap: 1.65rem;
 }
 
-.nav-link {
+/* Currency Selector */
+.currency-selector {
   position: relative;
+}
+
+.currency-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: transparent;
+  border: none;
+  color: var(--color-alabaster); /* #d6d1c4 */
   font-family: var(--font-sans);
-  font-size: 0.875rem;
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  color: rgba(251, 249, 246, 0.88);
-  text-decoration: none;
-  padding: 0.4rem 0.1rem;
-  transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1), text-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  padding: 0.35rem 0.6rem;
+  border-radius: 4px;
+  transition: color 0.25s ease, background 0.25s ease;
 }
 
-/* Animated underline below link on hover */
-.nav-link::after {
-  content: '';
+.currency-btn:hover {
+  color: #ffffff;
+  background: rgba(214, 209, 196, 0.08);
+}
+
+.chevron-down-icon {
+  width: 13px;
+  height: 13px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.currency-selector.open .chevron-down-icon {
+  transform: rotate(180deg);
+}
+
+.currency-menu {
   position: absolute;
-  bottom: -5px;
-  left: 50%;
-  width: 0;
-  height: 1.5px;
-  background-color: var(--color-gold-button);
-  box-shadow: 0 0 8px rgba(223, 197, 158, 0.85);
-  border-radius: 1px;
-  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1), left 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 135px;
+  background: rgba(0, 36, 29, 0.98);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(214, 209, 196, 0.22);
+  border-radius: 6px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.85);
+  list-style: none;
+  padding: 0.4rem 0;
+  margin: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px) scale(0.96);
   pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+  z-index: 100;
 }
 
-/* Hover: text turns gold, glows softly, and underline expands below */
-.nav-link:hover {
-  color: var(--color-gold-button);
-  text-shadow: 0 0 8px rgba(223, 197, 158, 0.75), 0 0 16px rgba(223, 197, 158, 0.4);
+.currency-selector.open .currency-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
 }
 
-.nav-link:hover::after {
-  width: 100%;
-  left: 0;
+.currency-option {
+  padding: 0.5rem 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--color-alabaster);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
-/* Active Link state */
-.nav-link.active {
+.currency-option:hover {
+  background: var(--color-burgundy-primary); /* Royal Burgundy #402020 */
   color: #ffffff;
 }
 
-.nav-link.active:hover {
-  color: var(--color-gold-button);
-  text-shadow: 0 0 8px rgba(223, 197, 158, 0.75), 0 0 16px rgba(223, 197, 158, 0.4);
+.currency-option.active {
+  color: #ffffff;
+  font-weight: 600;
+  background: rgba(64, 32, 32, 0.85);
 }
 
-.nav-link.active:hover::after {
-  width: 100%;
-  left: 0;
-}
-
-/* Right Action Icons */
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 1.85rem;
-}
-
+/* Action Icon Buttons */
 .nav-icon-btn {
   background: none;
   border: none;
-  color: rgba(251, 249, 246, 0.9);
+  color: var(--color-alabaster); /* #d6d1c4 */
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -343,12 +506,13 @@ textarea {
   padding: 0.35rem;
   transition: transform 0.25s ease, color 0.25s ease, filter 0.25s ease;
   position: relative;
+  text-decoration: none;
 }
 
 .nav-icon-btn:hover {
   color: #ffffff;
-  transform: scale(1.1);
-  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.4));
+  transform: scale(1.12);
+  filter: drop-shadow(0 0 8px rgba(214, 209, 196, 0.7));
 }
 
 .nav-icon-btn svg {
@@ -357,19 +521,17 @@ textarea {
   display: block;
 }
 
-/* Cart Bag & Notification Badge */
-.cart-btn {
-  position: relative;
-}
-
+/* Badges for Wishlist and Cart - Royal Burgundy (#402020) Accent */
+.wishlist-badge,
 .cart-badge {
   position: absolute;
-  top: -2px;
-  right: -5px;
-  width: 15px;
-  height: 15px;
-  background-color: var(--color-gold-button);
-  color: var(--color-text-dark);
+  top: -3px;
+  right: -6px;
+  width: 16px;
+  height: 16px;
+  background-color: var(--color-burgundy-primary); /* Royal Burgundy #402020 */
+  color: var(--color-alabaster);                  /* Alabaster Cream #d6d1c4 */
+  border: 1px solid rgba(214, 209, 196, 0.35);
   font-family: var(--font-sans);
   font-size: 0.62rem;
   font-weight: 700;
@@ -378,14 +540,261 @@ textarea {
   align-items: center;
   justify-content: center;
   line-height: 1;
-  box-shadow: 0 0 6px rgba(223, 199, 167, 0.5);
+  box-shadow: 0 0 8px rgba(64, 32, 32, 0.85);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* Mobile Hamburger Button */
-.mobile-menu-toggle {
-  display: none;
+/* 2. Middle Divider Line */
+.navbar-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(140, 140, 140, 0.22); /* Silver slate subtle border */
+}
+
+/* 3. Lower Tier: Hamburger absolutely left | All Links Centered in the Middle */
+.navbar-bottom {
+  position: relative;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Links centered by default */
+  padding: 0 4rem;
+  background: rgba(0, 32, 26, 0.94);
+}
+
+/* Hamburger button absolutely on the left — does NOT affect link centering */
+.hamburger-btn {
+  position: absolute;
+  left: 1.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: none;
   border: none;
+  color: var(--color-alabaster);
+  cursor: pointer;
+  padding: 0.4rem;
+  transition: color 0.25s ease, transform 0.25s ease;
+  z-index: 2;
+}
+
+.hamburger-btn:hover {
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.hamburger-icon {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+/* Center Container for Navigation Links */
+.navbar-nav-centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+/* The 5 Navigation Links (Home, Shooping, About Us, Contact Us, Best Sellers) */
+.nav-tier-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3.2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Clean Base State: NO underline or glow by default */
+.nav-tier-link {
+  position: relative;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-alabaster); /* #d6d1c4 */
+  opacity: 0.88;
+  text-decoration: none;
+  padding: 0.4rem 0.15rem;
+  white-space: nowrap;
+  transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+              opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              text-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Underline is completely hidden by default */
+.nav-tier-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-alabaster);
+  box-shadow: 0 0 10px rgba(214, 209, 196, 0.9), 0 0 18px rgba(214, 209, 196, 0.45);
+  border-radius: 1px;
+  opacity: 0;
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              left 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.35s ease;
+  pointer-events: none;
+}
+
+/* EFFECTS DISPLAY ONLY WHEN HOVERED */
+.nav-tier-link:hover {
+  color: #ffffff;
+  opacity: 1;
+  text-shadow: 0 0 10px rgba(214, 209, 196, 0.75), 0 0 20px rgba(214, 209, 196, 0.4);
+  transform: translateY(-1px);
+}
+
+.nav-tier-link:hover::after {
+  width: 100%;
+  left: 0;
+  opacity: 1;
+}
+
+/* Active Link State: Clean without persistent underline/glow to honor constraint */
+.nav-tier-link.active {
+  color: var(--color-alabaster);
+  opacity: 1;
+}
+
+.nav-tier-link.active:hover {
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(214, 209, 196, 0.75), 0 0 20px rgba(214, 209, 196, 0.4);
+  transform: translateY(-1px);
+}
+
+.nav-tier-link.active:hover::after {
+  width: 100%;
+  left: 0;
+  opacity: 1;
+}
+
+/* Right placeholder for visual symmetry */
+.navbar-bottom-right {
+  display: flex;
+  align-items: center;
+}
+
+/* 4. Slide-Out Luxury Drawer for Mobile & Side Menu */
+.navbar-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 16, 13, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1050;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.navbar-drawer-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.navbar-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 340px;
+  max-width: 85vw;
+  height: 100%;
+  background: #002821; /* Deep Emerald Canvas */
+  border-right: 1px solid rgba(214, 209, 196, 0.2);
+  box-shadow: 10px 0 45px rgba(0, 0, 0, 0.9);
+  z-index: 1060;
+  display: flex;
+  flex-direction: column;
+  padding: 2.2rem 2rem;
+  transform: translateX(-100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.navbar-drawer.open {
+  transform: translateX(0);
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(214, 209, 196, 0.15);
+  margin-bottom: 2rem;
+}
+
+.drawer-close-btn {
+  background: none;
+  border: none;
+  color: var(--color-alabaster);
+  cursor: pointer;
+  padding: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.drawer-close-btn:hover {
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.drawer-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.drawer-nav-link {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-alabaster);
+  text-decoration: none;
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  transition: color 0.25s ease, transform 0.25s ease, background 0.25s ease;
+  display: block;
+}
+
+.drawer-nav-link:hover,
+.drawer-nav-link.active:hover {
+  background: var(--color-burgundy-primary); /* #402020 */
+  color: #ffffff;
+  transform: translateX(6px);
+}
+
+.drawer-footer {
+  margin-top: auto;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(214, 209, 196, 0.15);
+}
+
+.drawer-shipping {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.82rem;
+  color: var(--color-slate-grey);
+  margin-bottom: 1.2rem;
+}
   color: #fff;
   cursor: pointer;
   padding: 0.5rem;
@@ -1716,6 +2125,227 @@ textarea {
   color: var(--color-gold-button);
 }
 
+/* ==========================================================================
+   NEW REPLICATED FOOTER — Escéli / Gemoré / Aum Group Inc v2.0
+   4-column grid: Brand+Socials | CUSTOMER CARE | INFORMATION | GET IN TOUCH
+   ========================================================================== */
+
+.site-footer {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  /* Rich emerald green footer — matches brand palette */
+  background: linear-gradient(180deg, #002820 0%, #001a14 100%);
+  border-top: 1px solid rgba(0, 68, 56, 0.55);
+  flex-shrink: 0;
+}
+
+.footer-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 3.5rem 4rem 0;
+}
+
+/* 4-Column responsive grid */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 2.4rem 3rem;
+  padding-bottom: 2.8rem;
+  border-bottom: 1px solid rgba(214, 209, 196, 0.12);
+}
+
+/* Brand column */
+.footer-col-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.footer-brand-link {
+  display: inline-block;
+  text-decoration: none;
+  transition: opacity 0.25s ease;
+}
+
+.footer-brand-link:hover {
+  opacity: 0.85;
+}
+
+.footer-brand-img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  /* Keep white on emerald background */
+  filter: brightness(0) invert(1) opacity(0.92);
+}
+
+.footer-brand-desc {
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: rgba(214, 209, 196, 0.72); /* slightly warm on emerald */
+  max-width: 220px;
+  margin: 0;
+}
+
+/* Social icons row */
+.footer-social-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.3rem;
+}
+
+.footer-social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  color: rgba(214, 209, 196, 0.6);
+  text-decoration: none;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.footer-social-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.footer-social-icon:hover {
+  color: #ffffff;
+  transform: translateY(-3px);
+}
+
+/* Column headings */
+.footer-heading {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #ffffff; /* crisp white heading on emerald */
+  margin: 0 0 1.25rem 0;
+}
+
+/* Links list */
+.footer-links-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.footer-nav-item {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;       /* Increased from 0.84rem */
+  font-weight: 400;
+  color: rgba(214, 209, 196, 0.72); /* warm alabaster on emerald */
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: color 0.22s ease, padding-left 0.22s ease;
+}
+
+.footer-nav-item:hover {
+  color: #ffffff;
+  padding-left: 5px;
+}
+
+/* Contact list */
+.footer-contact-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.footer-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+}
+
+.footer-contact-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: rgba(214, 209, 196, 0.8);
+  opacity: 1;
+}
+
+.footer-contact-link {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;       /* Increased */
+  color: rgba(214, 209, 196, 0.72);
+  text-decoration: none;
+  transition: color 0.22s ease;
+}
+
+.footer-contact-link:hover {
+  color: #ffffff;
+}
+
+.footer-contact-text {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;       /* Increased */
+  color: rgba(214, 209, 196, 0.72);
+}
+
+/* Footer bottom bar: copyright + payment badges */
+.footer-bottom-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.3rem 0 1.8rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border-top: 1px solid rgba(214, 209, 196, 0.1);
+  margin-top: 0.4rem;
+}
+
+.footer-copyright {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: rgba(214, 209, 196, 0.45);
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+/* Payment badges */
+.footer-payment-methods {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.payment-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  overflow: hidden;
+  opacity: 0.75;
+  transition: opacity 0.2s ease;
+}
+
+.payment-badge:hover {
+  opacity: 1;
+}
+
+.payment-svg {
+  width: 42px;
+  height: 26px;
+  display: block;
+}
+
 /* --------------------------------------------------------------------------
    Mobile Navigation Drawer & Multi-Device Responsive System
    -------------------------------------------------------------------------- */
@@ -1778,6 +2408,14 @@ textarea {
   .site-footer {
     padding: 2.5rem 5.5rem 1.8rem;
   }
+
+  .footer-container {
+    padding: 3.5rem 5.5rem 0;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  }
 }
 
 /* 2. Standard Laptops & Desktops (1025px to 1439px) */
@@ -1839,21 +2477,45 @@ textarea {
   .site-footer {
     padding: 2.2rem 3.5rem 1.6rem;
   }
+
+  .footer-container {
+    padding: 2.5rem 3.5rem 0;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 2rem 2rem;
+  }
 }
 
 /* 3. Tablets in Landscape & Portrait (769px to 1024px) */
 @media (max-width: 1024px) and (min-width: 769px) {
-  .navbar {
+  .navbar-top {
     padding: 0 2rem;
-    height: 78px;
+    height: 70px;
   }
 
-  .nav-links {
-    gap: 1.6rem;
+  .navbar-logo-img {
+    height: 56px;
+    max-width: 240px;
   }
 
-  .nav-link {
-    font-size: 0.82rem;
+  .navbar-bottom {
+    padding: 0 2rem;
+    height: 46px;
+  }
+
+  .hamburger-btn {
+    left: 1rem;
+  }
+
+  .nav-tier-links {
+    gap: 1.8rem;
+  }
+
+  .nav-tier-link {
+    font-size: 0.76rem;
+    letter-spacing: 0.12em;
   }
 
   .hero-body {
@@ -1902,7 +2564,7 @@ textarea {
   }
 
   .story-section {
-    padding: calc(var(--nav-h, 78px) + 1rem) 2rem 2rem;
+    padding: calc(var(--nav-h, 94px) + 1rem) 2rem 2rem;
   }
 
   .story-content-container {
@@ -1927,7 +2589,7 @@ textarea {
   }
 
   .clients-content-container {
-    padding: calc(var(--nav-h, 78px) + 1.5rem) 2.5rem 2rem;
+    padding: calc(var(--nav-h, 94px) + 1.5rem) 2.5rem 2rem;
   }
 
   .testimonial-card {
@@ -1942,6 +2604,15 @@ textarea {
     padding: 2rem 2rem 1.5rem;
   }
 
+  .footer-container {
+    padding: 2.2rem 2rem 0;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem 2.5rem;
+  }
+
   .footer-main-row {
     flex-wrap: wrap;
     gap: 1.8rem;
@@ -1954,31 +2625,26 @@ textarea {
 
 /* 4. Mobile Devices & Small Tablets (768px and below) */
 @media (max-width: 768px) {
-  .navbar {
+  .navbar-top {
     padding: 0 1.25rem;
-    height: 68px;
-    background: rgba(0, 0, 0, 0.35);
+    height: 60px;
   }
 
-  /* Compact Brand Logo */
-  .brand-diamond-icon {
-    width: 18px;
-    height: 15px;
-    margin-bottom: 3px;
+  .navbar-shipping span {
+    display: none;
   }
 
-  .brand-title {
-    font-size: 1.08rem;
-    letter-spacing: 0.2em;
+  .navbar-shipping {
+    gap: 0;
   }
 
-  .brand-subtitle {
-    font-size: 0.4rem;
-    letter-spacing: 0.22em;
+  .navbar-logo-img {
+    height: 50px;
+    max-width: 200px;
   }
 
-  .nav-actions {
-    gap: 1.1rem;
+  .navbar-top-right {
+    gap: 1rem;
   }
 
   .nav-icon-btn {
@@ -1990,48 +2656,26 @@ textarea {
     height: 18px;
   }
 
-  /* Hamburger Toggle */
-  .mobile-menu-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
+  .navbar-bottom {
+    padding: 0 1.25rem;
+    height: 44px;
   }
 
-  /* Slide-Out Drawer Navigation */
-  .nav-links {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 290px;
-    max-width: 82vw;
-    height: 100vh;
-    height: 100dvh;
-    background: rgba(10, 8, 7, 0.97);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 1.4rem;
-    padding: 2rem 1.8rem 3rem 2rem;
-    transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 50;
-    border-left: 1px solid rgba(223, 197, 158, 0.2);
-    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.7);
+  .hamburger-btn {
+    left: 0.75rem;
   }
 
-  .nav-links.mobile-open {
-    right: 0;
+  .nav-tier-links {
+    display: none;
   }
 
-  /* Mobile Close Button */
-  .mobile-close-item {
-    display: flex;
-    width: 100%;
-    justify-content: flex-end;
-    margin-bottom: 1.2rem;
+  .mobile-active-indicator {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.76rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-gold-button);
   }
 
   .mobile-close-btn {
@@ -2235,6 +2879,29 @@ textarea {
     padding: 2.2rem 1.25rem 1.8rem;
   }
 
+  .footer-container {
+    padding: 2rem 1.25rem 0;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem 0;
+  }
+
+  .footer-brand-desc {
+    max-width: 100%;
+  }
+
+  .footer-bottom-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .footer-payment-methods {
+    gap: 0.4rem;
+  }
+
   .footer-main-row {
     flex-direction: column;
     align-items: flex-start;
@@ -2262,13 +2929,6 @@ textarea {
   .newsletter-input {
     width: 100%;
   }
-
-  .footer-bottom-bar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.9rem;
-  }
-}
 
 /* 5. Small Mobile Screens (380px and below) */
 @media (max-width: 380px) {
