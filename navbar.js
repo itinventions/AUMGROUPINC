@@ -197,8 +197,8 @@ export class Navbar {
   }
 
   bindScrollSpy() {
-    const isAboutPage = window.location.pathname.includes('about.html');
-    if (isAboutPage) return;
+    const isStandalonePage = window.location.pathname.includes('about.html') || window.location.pathname.includes('contact.html');
+    if (isStandalonePage) return;
 
     const sectionIds = ['home', 'shop', 'our-gems', 'about-us', 'contact'];
     const sections = sectionIds
