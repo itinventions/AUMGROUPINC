@@ -45,8 +45,8 @@
     rel="stylesheet">
 
   <!-- Core Stylesheet & Animations (with cache-buster) -->
-  <link rel="stylesheet" href="style.css?v=2.2">
-  <link rel="stylesheet" href="animations.css?v=2.2">
+  <link rel="stylesheet" href="style.css?v=2.3">
+  <link rel="stylesheet" href="animations.css?v=2.3">
 </head>
 
 <body class="bg-dark-bg text-text-white selection:bg-gold-champagne selection:text-dark-bg luxury-dark-body">
@@ -236,16 +236,15 @@
         </div>
       </div>
 
-      <!-- Right Quote Column -->
+      <!-- Right Quote Column (Protected within Luxury Frosted Glass Card) -->
       <div class="about-hero-right">
         <div class="about-hero-quote-wrap reveal-fade-right delay-2">
+          <div class="about-quote-mark" aria-hidden="true">&ldquo;</div>
           <blockquote class="about-hero-quote">
-            Diamonds are a<br>
-            symbol of Romance,<br>
-            Love, Affection,<br>
-            Beauty and Power.
+            Diamonds are a symbol of Romance, Love, Affection, Beauty and Power.
           </blockquote>
           <div class="about-quote-divider" aria-hidden="true"></div>
+          <span class="about-quote-author">AUM GROUP INC.</span>
         </div>
       </div>
 
@@ -754,6 +753,9 @@
        ========================================================================= -->
   <section class="about-presence-section" id="our-global-presence" aria-label="Our Global Presence">
 
+    <!-- World Map Watermark Overlay Background -->
+    <div class="about-presence-map-bg" role="presentation"></div>
+
     <div class="about-presence-container">
 
       <!-- Top Text Section -->
@@ -764,13 +766,6 @@
           We have established a stable and repeated customer base locally as well as globally. Our main clients globally
           are located in <strong>USA, Canada, European Countries, Bangkok (Thailand), Indonesia</strong>, and beyond.
         </p>
-      </div>
-
-      <!-- Panoramic Global Skyline Banner: 08_AboutUs_Page_Image.png -->
-      <div class="about-presence-panorama-wrap reveal-scale-up delay-1">
-        <img src="assets/images/Background Images/08_AboutUs_Page_Image.png"
-          alt="AUM GROUP INC Global Presence Across USA, Canada, Europe, Bangkok Thailand, and Indonesia"
-          class="about-presence-panorama-img" loading="lazy">
       </div>
 
       <!-- 5 Landmark Country Photo Cards Section -->
