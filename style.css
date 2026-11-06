@@ -3021,7 +3021,7 @@ textarea {
   height: 100%;
   background-image: url('assets/images/Background%20Images/05_AboutUs_Page_Image.png');
   background-size: cover;
-  background-position: 52% center;
+  background-position: 64% center;
   background-repeat: no-repeat;
   z-index: 1;
 }
@@ -3035,29 +3035,26 @@ textarea {
   background:
     linear-gradient(90deg,
       rgba(9, 8, 7, 0.94) 0%,
-      rgba(9, 8, 7, 0.78) 28%,
-      rgba(9, 8, 7, 0.15) 44%,
-      transparent 50%,
-      transparent 62%,
-      rgba(9, 8, 7, 0.45) 74%,
-      rgba(9, 8, 7, 0.86) 88%,
-      rgba(9, 8, 7, 0.96) 100%),
+      rgba(9, 8, 7, 0.78) 32%,
+      rgba(9, 8, 7, 0.22) 48%,
+      transparent 60%,
+      transparent 100%),
     linear-gradient(180deg,
-      rgba(9, 8, 7, 0.65) 0%,
-      transparent 18%,
-      transparent 68%,
-      rgba(9, 8, 7, 0.9) 100%);
+      rgba(9, 8, 7, 0.55) 0%,
+      transparent 20%,
+      transparent 75%,
+      rgba(9, 8, 7, 0.85) 100%);
 }
 
 /* Diamond Caustic Glow Pulse */
 .about-diamond-halo {
   position: absolute;
   top: 50%;
-  left: 54%;
-  width: 480px;
-  height: 480px;
+  left: 64%;
+  width: 520px;
+  height: 520px;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(255, 235, 205, 0.16) 0%, rgba(223, 197, 158, 0.06) 40%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 235, 205, 0.18) 0%, rgba(223, 197, 158, 0.08) 40%, transparent 70%);
   filter: blur(40px);
   pointer-events: none;
   z-index: 3;
@@ -3085,8 +3082,7 @@ textarea {
   padding: 3rem 5.5rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 3rem;
+  justify-content: flex-start;
 }
 
 /* Left Hero Narrative */
@@ -3177,66 +3173,43 @@ textarea {
   transform: translateY(3px);
 }
 
-/* Right Quote Area (Luxury Frosted Obsidian Card) */
-.about-hero-right {
-  max-width: 400px;
+/* Opening Brand Philosophy Quote in Our Story Section */
+.about-story-philosophy {
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto 4rem;
+  padding: 0 2rem;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  position: relative;
-  z-index: 6;
+  align-items: center;
 }
 
-.about-hero-quote-wrap {
-  position: relative;
-  background: rgba(9, 8, 7, 0.86);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(223, 197, 158, 0.35);
-  border-radius: 12px;
-  padding: 2.2rem 2.2rem 2rem;
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.8), 0 0 24px rgba(223, 197, 158, 0.08);
-}
-
-.about-quote-mark {
+.about-philosophy-mark {
   font-family: var(--font-serif);
-  font-size: 2.8rem;
+  font-size: 3.5rem;
   line-height: 0.8;
-  color: var(--color-gold-accent);
+  color: #A37F52;
   opacity: 0.85;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.75rem;
 }
 
-.about-hero-quote {
+.about-philosophy-quote {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: clamp(1.2rem, 1.55vw, 1.45rem);
+  font-size: clamp(1.4rem, 2.3vw, 2.05rem);
   font-weight: 400;
-  line-height: 1.45;
-  color: #fcfbfa;
+  line-height: 1.42;
+  color: #181512;
   letter-spacing: 0.015em;
   margin: 0;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
 }
 
-.about-quote-divider {
-  width: 44px;
-  height: 2px;
-  background: var(--color-gold-accent);
-  margin-top: 1.25rem;
-  margin-bottom: 0.85rem;
+.about-philosophy-divider {
+  width: 60px;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, #A37F52, transparent);
+  margin-top: 1.5rem;
   border-radius: 2px;
-}
-
-.about-quote-author {
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--color-gold-accent);
-  display: block;
 }
 
 /* 2. "Our Story" Section (Warm Ivory / Cream Luxury Paper) */
