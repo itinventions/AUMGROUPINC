@@ -45,38 +45,50 @@ export class Navbar {
   }
 
   /**
-   * Hide navbar when scrolling DOWN, reveal when scrolling UP.
+   * Hide navbar when scrolling DOWN past a threshold, reveal when scrolling UP past a threshold.
+   * - Does NOT hide on tiny micro-scrolls; requires sustained downward scroll (> 70px) past hero header.
+   * - Smoothly glides back into view on upward scroll (> 45px).
    * - Never hides when the drawer (mobile menu) is open.
-   * - Adds a small dead-zone (5px) so micro-vibrations don't trigger it.
+   * - Always visible when in the top area of the page (<= 60px).
    */
   bindHideOnScroll() {
     let lastScrollY = window.scrollY;
-    let ticking = false;
+    let accumulatedDown = 0;
+    let accumulatedUp = 0;
+    const hideThreshold = 70; // Needs 70px downward scroll to hide
+    const showThreshold = 45; // Needs 45px upward scroll to reveal
 
     window.addEventListener('scroll', () => {
-      if (ticking) return;
-      ticking = true;
+      const currentScrollY = window.scrollY;
+      const delta = currentScrollY - lastScrollY;
 
-      requestAnimationFrame(() => {
-        const currentScrollY = window.scrollY;
-        const delta = currentScrollY - lastScrollY;
+      // Don't hide if mobile drawer is open
+      const drawerOpen = this.drawer && this.drawer.classList.contains('open');
 
-        // Don't hide if mobile drawer is open
-        const drawerOpen = this.drawer && this.drawer.classList.contains('open');
-
-        if (!drawerOpen) {
-          if (delta > 5 && currentScrollY > 80) {
-            // Scrolling DOWN — hide
+      if (!drawerOpen) {
+        if (currentScrollY <= 60) {
+          // At or near top, always show navbar
+          this.navElement.classList.remove('nav-hidden');
+          accumulatedDown = 0;
+          accumulatedUp = 0;
+        } else if (delta > 0) {
+          // Scrolling down
+          accumulatedUp = 0;
+          accumulatedDown += delta;
+          if (accumulatedDown >= hideThreshold && currentScrollY > 160) {
             this.navElement.classList.add('nav-hidden');
-          } else if (delta < -5) {
-            // Scrolling UP — show
+          }
+        } else if (delta < 0) {
+          // Scrolling up
+          accumulatedDown = 0;
+          accumulatedUp += Math.abs(delta);
+          if (accumulatedUp >= showThreshold) {
             this.navElement.classList.remove('nav-hidden');
           }
         }
+      }
 
-        lastScrollY = currentScrollY;
-        ticking = false;
-      });
+      lastScrollY = Math.max(0, currentScrollY);
     }, { passive: true });
   }
 
