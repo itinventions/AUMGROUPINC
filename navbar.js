@@ -45,51 +45,32 @@ export class Navbar {
   }
 
   /**
-   * Hide navbar when scrolling DOWN past a threshold, reveal when scrolling UP past a threshold.
-   * - Does NOT hide on tiny micro-scrolls; requires sustained downward scroll (> 70px) past hero header.
-   * - Smoothly glides back into view on upward scroll (> 45px).
-   * - Never hides when the drawer (mobile menu) is open.
-   * - Always visible when in the top area of the page (<= 60px).
+   * Only visible when at the very top of the page (scrollY <= 20).
+   * As soon as user scrolls down, the navbar slides out of view and stays hidden.
+   * It will never appear during scrolling until user scrolls all the way back to the top.
    */
   bindHideOnScroll() {
-    let lastScrollY = window.scrollY;
-    let accumulatedDown = 0;
-    let accumulatedUp = 0;
-    const hideThreshold = 70; // Needs 70px downward scroll to hide
-    const showThreshold = 45; // Needs 45px upward scroll to reveal
+    if (!this.navElement) return;
 
-    window.addEventListener('scroll', () => {
+    const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      const delta = currentScrollY - lastScrollY;
-
-      // Don't hide if mobile drawer is open
       const drawerOpen = this.drawer && this.drawer.classList.contains('open');
 
-      if (!drawerOpen) {
-        if (currentScrollY <= 60) {
-          // At or near top, always show navbar
-          this.navElement.classList.remove('nav-hidden');
-          accumulatedDown = 0;
-          accumulatedUp = 0;
-        } else if (delta > 0) {
-          // Scrolling down
-          accumulatedUp = 0;
-          accumulatedDown += delta;
-          if (accumulatedDown >= hideThreshold && currentScrollY > 160) {
-            this.navElement.classList.add('nav-hidden');
-          }
-        } else if (delta < 0) {
-          // Scrolling up
-          accumulatedDown = 0;
-          accumulatedUp += Math.abs(delta);
-          if (accumulatedUp >= showThreshold) {
-            this.navElement.classList.remove('nav-hidden');
-          }
-        }
+      if (drawerOpen) {
+        this.navElement.classList.remove('nav-hidden');
+        return;
       }
 
-      lastScrollY = Math.max(0, currentScrollY);
-    }, { passive: true });
+      if (currentScrollY <= 20) {
+        this.navElement.classList.remove('nav-hidden');
+      } else {
+        this.navElement.classList.add('nav-hidden');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Check initial position on page load
+    handleScroll();
   }
 
   bindWishlist() {
@@ -188,6 +169,9 @@ export class Navbar {
       if (this.drawerOverlay) this.drawerOverlay.classList.remove('active');
       document.body.style.overflow = '';
       if (this.mobileToggle) this.mobileToggle.setAttribute('aria-expanded', 'false');
+      if (this.navElement && window.scrollY > 20) {
+        this.navElement.classList.add('nav-hidden');
+      }
     }
   }
 

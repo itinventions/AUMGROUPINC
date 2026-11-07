@@ -31,7 +31,7 @@ export class ScrollAnimations {
    * - Applies ONLY to: #gold-collection, #studded-gold, #diamond-collection.
    */
   setupShowcaseScrollTransitions() {
-    const sectionIds = ['gold-collection', 'studded-gold', 'diamond-collection'];
+    const sectionIds = ['gold-collection', 'studded-gold', 'gems-collection', 'silver-collection'];
     const sections = sectionIds
       .map((id) => document.getElementById(id))
       .filter(Boolean);
@@ -41,15 +41,37 @@ export class ScrollAnimations {
     let isTicking = false;
 
     const onScrollUpdate = () => {
+      // On mobile viewports (<= 768px), keep showcase sections 100% visible without translate shift
+      if (window.innerWidth <= 768) {
+        sections.forEach((sec) => {
+          const content = sec.querySelector(
+            '.gold-banner-container, .studded-banner-container, .gems-banner-container, .silver-banner-container, .diamond-banner-container'
+          );
+          const backdrop = sec.querySelector(
+            '.gold-showcase-backdrop, .studded-showcase-backdrop, .gems-showcase-backdrop, .silver-showcase-backdrop, .diamond-showcase-backdrop'
+          );
+          if (content) {
+            content.style.opacity = '';
+            content.style.transform = '';
+          }
+          if (backdrop) {
+            backdrop.style.opacity = '';
+            backdrop.style.transform = '';
+          }
+        });
+        isTicking = false;
+        return;
+      }
+
       const vh = window.innerHeight;
 
       sections.forEach((sec) => {
         const rect = sec.getBoundingClientRect();
         const content = sec.querySelector(
-          '.gold-banner-container, .studded-banner-container, .diamond-banner-container'
+          '.gold-banner-container, .studded-banner-container, .gems-banner-container, .silver-banner-container, .diamond-banner-container'
         );
         const backdrop = sec.querySelector(
-          '.gold-showcase-backdrop, .studded-showcase-backdrop, .diamond-showcase-backdrop'
+          '.gold-showcase-backdrop, .studded-showcase-backdrop, .gems-showcase-backdrop, .silver-showcase-backdrop, .diamond-showcase-backdrop'
         );
 
         if (!content) return;
@@ -94,6 +116,15 @@ export class ScrollAnimations {
           bgOpacity = 0.3;
         }
 
+        if (
+          sec.id === 'gold-collection' ||
+          sec.id === 'studded-gold' ||
+          sec.id === 'gems-collection' ||
+          sec.id === 'silver-collection'
+        ) {
+          bgTranslateY = 0;
+        }
+
         content.style.opacity = contentOpacity.toFixed(3);
         content.style.transform = `translate3d(0, ${contentTranslateY.toFixed(1)}px, 0)`;
 
@@ -132,16 +163,14 @@ export class ScrollAnimations {
 
     const observerOptions = {
       root: null,
-      rootMargin: '0px 0px -50px 0px',
-      threshold: [0, 0.08]
+      rootMargin: '0px 0px 50px 0px', // Trigger slightly before it hits viewport so no blank screen is seen
+      threshold: 0.01
     };
 
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-revealed');
-        } else {
-          entry.target.classList.remove('is-revealed');
         }
       });
     }, observerOptions);
@@ -152,14 +181,12 @@ export class ScrollAnimations {
   }
 
   revealInitialElements() {
-    // Gracefully stagger elements that are visible on initial viewport load
+    // Reveal all elements in initial viewport immediately
     const vh = window.innerHeight;
     this.revealElements.forEach((el, index) => {
       const rect = el.getBoundingClientRect();
-      if (rect.top < vh * 0.9 && rect.bottom > 0) {
-        setTimeout(() => {
-          el.classList.add('is-revealed');
-        }, index * 80);
+      if (rect.top < vh * 1.1) {
+        el.classList.add('is-revealed');
       }
     });
   }

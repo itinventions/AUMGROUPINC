@@ -56,27 +56,26 @@
        ========================================================================= -->
   <header class="navbar" role="banner">
 
-    <!-- 1. Upper Tier: Free Shipping | Company Logo | Currency & Actions -->
+    <!-- 1. Upper Tier: Hamburger (Mobile/Tablet) | Company Logo | Utility Icons (Account, Wishlist, Cart) -->
     <div class="navbar-top">
 
-      <!-- Left: Free Worldwide Shipping Notice with Faceted Gem Globe Icon -->
-      <div class="navbar-shipping">
-        <svg class="shipping-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
-          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="9.5" />
-          <path d="M12 2.5L16.5 7.5L12 12L7.5 7.5Z" />
-          <path d="M12 12L16.5 16.5L12 21.5L7.5 16.5Z" />
-          <line x1="2.5" y1="12" x2="21.5" y2="12" />
+      <!-- Hamburger Menu Button (Three lines) — visible on mobile & tablet, hidden on desktop -->
+      <button type="button" class="hamburger-btn" id="mobile-menu-toggle" aria-label="Open Navigation Menu"
+        aria-expanded="false" aria-controls="navbar-drawer">
+        <svg class="hamburger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
         </svg>
-        <span>Free Worldwide Shipping</span>
-      </div>
+      </button>
 
       <!-- Center: Company Brand Logo from assets folder -->
       <a href="index.html#home" class="navbar-brand-center" aria-label="AUM GROUP INC Fine Jewellery &amp; Gems Homepage">
         <img src="assets/company_logo.png" alt="AUM GROUP INC Fine Jewellery &amp; Gems" class="navbar-logo-img">
       </a>
 
-      <!-- Right: Currency Dropdown & Utility Icons (Account, Wishlist, Cart) -->
+      <!-- Right: Utility Icons (Account, Wishlist, Cart) -->
       <div class="navbar-top-right">
 
         <!-- User Profile Account Button -->
@@ -117,25 +116,14 @@
     <!-- 2. Middle Divider Line -->
     <div class="navbar-divider" aria-hidden="true"></div>
 
-    <!-- 3. Lower Tier: Hamburger (absolute left) | Centered Links -->
+    <!-- 3. Lower Tier: Centered Links -->
     <div class="navbar-bottom">
 
-      <!-- Hamburger Menu Button — absolutely positioned on the left -->
-      <button type="button" class="hamburger-btn" id="mobile-menu-toggle" aria-label="Open Navigation Menu"
-        aria-expanded="false" aria-controls="navbar-drawer">
-        <svg class="hamburger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-          stroke-linecap="round" stroke-linejoin="round">
-          <line x1="3" y1="6" x2="21" y2="6" />
-          <line x1="3" y1="12" x2="21" y2="12" />
-          <line x1="3" y1="18" x2="21" y2="18" />
-        </svg>
-      </button>
-
-      <!-- Navigation Links: perfectly centred regardless of hamburger -->
+      <!-- Navigation Links: perfectly centred -->
       <nav role="navigation" aria-label="Main Navigation" class="navbar-nav-centered">
         <ul class="nav-tier-links" id="main-nav-links">
           <li><a href="index.html#home" class="nav-tier-link">Home</a></li>
-          <li><a href="index.html#shop" class="nav-tier-link">Shooping</a></li>
+          <li><a href="index.html#shop" class="nav-tier-link">Shopping</a></li>
           <li><a href="about.html" class="nav-tier-link active">About Us</a></li>
           <li><a href="contact.html" class="nav-tier-link">Contact Us</a></li>
           <li><a href="index.html#bestsellers" class="nav-tier-link">Best Sellers</a></li>
@@ -165,23 +153,14 @@
     <!-- The 5 Links inside Mobile Drawer -->
     <ul class="drawer-nav-list">
       <li><a href="index.html#home" class="drawer-nav-link">Home</a></li>
-      <li><a href="index.html#shop" class="drawer-nav-link">Shooping</a></li>
+      <li><a href="index.html#shop" class="drawer-nav-link">Shopping</a></li>
       <li><a href="about.html" class="drawer-nav-link active">About Us</a></li>
       <li><a href="contact.html" class="drawer-nav-link">Contact Us</a></li>
       <li><a href="index.html#bestsellers" class="drawer-nav-link">Best Sellers</a></li>
     </ul>
 
     <div class="drawer-footer">
-      <div class="drawer-shipping">
-        <svg class="shipping-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
-          stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="9.5" />
-          <path d="M12 2.5L16.5 7.5L12 12L7.5 7.5Z" />
-          <path d="M12 12L16.5 16.5L12 21.5L7.5 16.5Z" />
-          <line x1="2.5" y1="12" x2="21.5" y2="12" />
-        </svg>
-        <span>Free Worldwide Shipping</span>
-      </div>
+
       <p style="font-size: 0.75rem; color: rgba(255,255,255,0.45); font-family: var(--font-sans);">&copy; 2026 AUM GROUP INC.</p>
     </div>
   </aside>
