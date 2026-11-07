@@ -221,7 +221,7 @@ class EsceliShopApp {
                 <circle cx="11" cy="11" r="8"></circle>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
               </svg>
-              Quick View
+              <span class="btn-text-full">Quick View</span><span class="btn-text-short">View</span>
             </button>
             <button type="button" class="btn-card-addbag" data-action="add-to-bag" data-id="${product.id}">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -229,7 +229,7 @@ class EsceliShopApp {
                 <line x1="3" y1="6" x2="21" y2="6"></line>
                 <path d="M16 10a4 4 0 0 1-8 0"></path>
               </svg>
-              Add to Bag
+              <span class="btn-text-full">Add to Bag</span><span class="btn-text-short">+ Bag</span>
             </button>
           </div>
         </div>
@@ -1168,6 +1168,11 @@ class EsceliShopApp {
       this.dom.drawerBackdrop.addEventListener('click', () => {
         this.closeCartDrawer();
         this.closeWishlistDrawer();
+        if (this.dom.filterSidebar) {
+          this.dom.filterSidebar.classList.remove('mobile-open');
+        }
+        this.dom.drawerBackdrop.classList.remove('active');
+        document.body.style.overflow = '';
       });
     }
 
@@ -1465,12 +1470,20 @@ class EsceliShopApp {
     // Mobile filter toggle
     if (this.dom.mobileFilterToggle && this.dom.filterSidebar) {
       this.dom.mobileFilterToggle.addEventListener('click', () => {
-        this.dom.filterSidebar.classList.toggle('mobile-open');
+        const isOpen = this.dom.filterSidebar.classList.toggle('mobile-open');
+        if (this.dom.drawerBackdrop) {
+          this.dom.drawerBackdrop.classList.toggle('active', isOpen);
+        }
+        document.body.style.overflow = isOpen ? 'hidden' : '';
       });
     }
     if (this.dom.mobileFilterClose && this.dom.filterSidebar) {
       this.dom.mobileFilterClose.addEventListener('click', () => {
         this.dom.filterSidebar.classList.remove('mobile-open');
+        if (this.dom.drawerBackdrop) {
+          this.dom.drawerBackdrop.classList.remove('active');
+        }
+        document.body.style.overflow = '';
       });
     }
   }
@@ -1510,33 +1523,32 @@ class EsceliShopApp {
   bindHideOnScroll() {
     const nav = document.querySelector('.navbar');
     if (!nav) return;
-    let lastScrollY = window.scrollY;
-    let ticking = false;
 
-    window.addEventListener(
-      'scroll',
-      () => {
-        if (ticking) return;
-        ticking = true;
+    const updateNavHeight = () => {
+      const height = nav.offsetHeight || 136;
+      document.documentElement.style.setProperty('--nav-h', `${height}px`);
+    };
+    updateNavHeight();
+    window.addEventListener('resize', updateNavHeight, { passive: true });
 
-        requestAnimationFrame(() => {
-          const currentScrollY = window.scrollY;
-          const delta = currentScrollY - lastScrollY;
-          const drawerOpen = this.dom.mobileDrawer && this.dom.mobileDrawer.classList.contains('open');
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const drawerOpen = this.dom.mobileDrawer && this.dom.mobileDrawer.classList.contains('open');
 
-          if (!drawerOpen) {
-            if (delta > 6 && currentScrollY > 100) {
-              nav.classList.add('nav-hidden');
-            } else if (delta < -6) {
-              nav.classList.remove('nav-hidden');
-            }
-          }
-          lastScrollY = currentScrollY;
-          ticking = false;
-        });
-      },
-      { passive: true }
-    );
+      if (drawerOpen) {
+        nav.classList.remove('nav-hidden');
+        return;
+      }
+
+      if (currentScrollY <= 20) {
+        nav.classList.remove('nav-hidden');
+      } else {
+        nav.classList.add('nav-hidden');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
   }
 
   initScrollReveals() {
