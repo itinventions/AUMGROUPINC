@@ -378,3 +378,16 @@
     opacity: 1 !important;
   }
 }
+
+/* Mobile & Tablet Reliability: Guarantee immediate visibility and zero blank flickering */
+@media (max-width: 768px) {
+  .reveal-on-scroll,
+  .reveal-fade-left,
+  .reveal-fade-right,
+  .reveal-scale-up {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: opacity 0.3s ease !important;
+  }
+}

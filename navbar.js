@@ -45,39 +45,32 @@ export class Navbar {
   }
 
   /**
-   * Hide navbar when scrolling DOWN, reveal when scrolling UP.
-   * - Never hides when the drawer (mobile menu) is open.
-   * - Adds a small dead-zone (5px) so micro-vibrations don't trigger it.
+   * Only visible when at the very top of the page (scrollY <= 20).
+   * As soon as user scrolls down, the navbar slides out of view and stays hidden.
+   * It will never appear during scrolling until user scrolls all the way back to the top.
    */
   bindHideOnScroll() {
-    let lastScrollY = window.scrollY;
-    let ticking = false;
+    if (!this.navElement) return;
 
-    window.addEventListener('scroll', () => {
-      if (ticking) return;
-      ticking = true;
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const drawerOpen = this.drawer && this.drawer.classList.contains('open');
 
-      requestAnimationFrame(() => {
-        const currentScrollY = window.scrollY;
-        const delta = currentScrollY - lastScrollY;
+      if (drawerOpen) {
+        this.navElement.classList.remove('nav-hidden');
+        return;
+      }
 
-        // Don't hide if mobile drawer is open
-        const drawerOpen = this.drawer && this.drawer.classList.contains('open');
+      if (currentScrollY <= 20) {
+        this.navElement.classList.remove('nav-hidden');
+      } else {
+        this.navElement.classList.add('nav-hidden');
+      }
+    };
 
-        if (!drawerOpen) {
-          if (delta > 5 && currentScrollY > 80) {
-            // Scrolling DOWN — hide
-            this.navElement.classList.add('nav-hidden');
-          } else if (delta < -5) {
-            // Scrolling UP — show
-            this.navElement.classList.remove('nav-hidden');
-          }
-        }
-
-        lastScrollY = currentScrollY;
-        ticking = false;
-      });
-    }, { passive: true });
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Check initial position on page load
+    handleScroll();
   }
 
   bindWishlist() {
@@ -176,6 +169,9 @@ export class Navbar {
       if (this.drawerOverlay) this.drawerOverlay.classList.remove('active');
       document.body.style.overflow = '';
       if (this.mobileToggle) this.mobileToggle.setAttribute('aria-expanded', 'false');
+      if (this.navElement && window.scrollY > 20) {
+        this.navElement.classList.add('nav-hidden');
+      }
     }
   }
 
@@ -197,8 +193,8 @@ export class Navbar {
   }
 
   bindScrollSpy() {
-    const isAboutPage = window.location.pathname.includes('about.html');
-    if (isAboutPage) return;
+    const isStandalonePage = window.location.pathname.includes('about.html') || window.location.pathname.includes('contact.html');
+    if (isStandalonePage) return;
 
     const sectionIds = ['home', 'shop', 'our-gems', 'about-us', 'contact'];
     const sections = sectionIds

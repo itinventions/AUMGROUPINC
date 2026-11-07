@@ -32,6 +32,32 @@ class AboutPage {
       });
     }
 
+    // Smooth Scroll for "GIA & IGI Certified" CTA
+    const certBtn = document.getElementById('certifications-btn');
+    if (certBtn) {
+      certBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.getElementById('certifications');
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    }
+
+    // Generic Smooth Scroll for internal hash links on about page
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener('click', (e) => {
+        const hash = anchor.getAttribute('href');
+        if (hash && hash.length > 1) {
+          const target = document.querySelector(hash);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      });
+    });
+
     // 3. Footer Newsletter Handler
     const newsletterForm = document.getElementById('newsletter-form');
     if (newsletterForm) {
