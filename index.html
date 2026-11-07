@@ -19,18 +19,21 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://aumgroupinc.com/">
   <meta property="og:title" content="AUM GROUP INC | Fine Jewellery &amp; Gems">
-  <meta property="og:description" content="Discover a world of rare and exquisite gemstones, crafted into timeless jewellery that tells your story.">
+  <meta property="og:description"
+    content="Discover a world of rare and exquisite gemstones, crafted into timeless jewellery that tells your story.">
   <meta property="og:site_name" content="AUM GROUP INC Fine Jewellery &amp; Gems">
   <meta property="og:locale" content="en_US">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="AUM GROUP INC | Fine Jewellery &amp; Gems">
-  <meta name="twitter:description" content="Discover a world of rare and exquisite gemstones, crafted into timeless jewellery that tells your story.">
+  <meta name="twitter:description"
+    content="Discover a world of rare and exquisite gemstones, crafted into timeless jewellery that tells your story.">
 
   <!-- Additional SEO -->
   <meta name="author" content="Aum Group Inc.">
-  <meta name="keywords" content="fine jewellery, gems, diamonds, luxury jewellery, Aum Group Inc, aumgroupinc, gemstones, engagement rings, gold jewellery">
+  <meta name="keywords"
+    content="fine jewellery, gems, diamonds, luxury jewellery, Aum Group Inc, aumgroupinc, gemstones, engagement rings, gold jewellery">
   <meta name="theme-color" content="#090807">
 
   <!-- Tailwind CSS CDN -->
@@ -66,7 +69,7 @@
     rel="stylesheet">
 
   <!-- External Stylesheets (Modular Folder Structure) -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=3.5">
   <link rel="stylesheet" href="animations.css">
 
   <!-- Three.js CDN -->
@@ -76,22 +79,62 @@
 <body class="bg-dark-bg text-text-white selection:bg-gold-champagne selection:text-dark-bg">
 
   <!-- Top Fixed Navigation Bar -->
-    <!-- Replicated 2-Tier Luxury Navigation Bar -->
+  <!-- Replicated 2-Tier Luxury Navigation Bar -->
   <header class="navbar" role="banner">
 
     <!-- 1. Upper Tier: Free Shipping | Company Logo | Currency & Actions -->
     <div class="navbar-top">
 
-      <!-- Left: Free Worldwide Shipping Notice with Faceted Gem Globe Icon -->
-      <div class="navbar-shipping">
-        <svg class="shipping-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
-          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="9.5" />
-          <path d="M12 2.5L16.5 7.5L12 12L7.5 7.5Z" />
-          <path d="M12 12L16.5 16.5L12 21.5L7.5 16.5Z" />
-          <line x1="2.5" y1="12" x2="21.5" y2="12" />
-        </svg>
-        <span>Free Worldwide Shipping</span>
+      <!-- Center: Navigation Menu Links -->
+      <nav role="navigation" aria-label="Main Navigation">
+        <ul class="nav-links" id="main-nav-links">
+          <li class="mobile-close-item">
+            <button type="button" class="mobile-close-btn" id="mobile-menu-close" aria-label="Close Navigation Menu">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          </li>
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li class="nav-item-dropdown">
+            <a href="shop.html" class="nav-link">Shooping <svg width="9" height="9" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5"
+                style="display:inline-block; vertical-align:middle; margin-left:3px;">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg></a>
+            <ul class="nav-dropdown-menu">
+              <li><a href="shop.html" class="nav-dropdown-link">All Departments (Hub) <span
+                    class="dropdown-badge">26</span></a></li>
+              <li class="nav-dropdown-divider"></li>
+              <li><a href="shop-silver.html" class="nav-dropdown-link"><span style="color:#CFC9BD;">✦</span> 01 Silver
+                  Atelier <span class="dropdown-badge">6</span></a></li>
+              <li><a href="shop-gold.html" class="nav-dropdown-link"><span style="color:#dfc7a7;">✦</span> 02 Gold
+                  Atelier <span class="dropdown-badge">7</span></a></li>
+              <li><a href="shop-diamond.html" class="nav-dropdown-link"><span style="color:#e0f2fe;">✦</span> 03 Diamond
+                  Collection <span class="dropdown-badge">7</span></a></li>
+              <li><a href="shop-gems.html" class="nav-dropdown-link"><span style="color:#f87171;">✦</span> 04 Gemstone
+                  Archive <span class="dropdown-badge">6</span></a></li>
+            </ul>
+          </li>
+          <li><a href="#our-gems" class="nav-link">Our Gems</a></li>
+          <li><a href="#expertise" class="nav-link">Expertise</a></li>
+          <li><a href="about.html" class="nav-link">About Us</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Right: Utility Action Icons (Search, Profile, Cart) -->
+      <div class="nav-actions">
+        <!-- Search Icon Button -->
+        <button type="button" class="nav-icon-btn search-btn" aria-label="Search Collection" title="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+            stroke-linejoin="round">
+            <circle cx="10.5" cy="10.5" r="7" />
+            <line x1="15.8" y1="15.8" x2="21.5" y2="21.5" />
+          </svg>
+          <span>Free Worldwide Shipping</span>
       </div>
 
       <!-- Center: Company Brand Logo from assets folder -->
@@ -103,7 +146,7 @@
       <div class="navbar-top-right">
 
         <!-- Currency Selector Dropdown (USD $) -->
-        
+
 
         <!-- User Profile Account Button -->
         <a href="#account" class="nav-icon-btn user-btn" aria-label="User Account" title="Account">
@@ -115,7 +158,8 @@
         </a>
 
         <!-- Wishlist / Favorites Heart Button with Dynamic Counter Badge -->
-        <button type="button" class="nav-icon-btn wishlist-btn" id="wishlist-btn" aria-label="Wishlist" title="Wishlist">
+        <button type="button" class="nav-icon-btn wishlist-btn" id="wishlist-btn" aria-label="Wishlist"
+          title="Wishlist">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
             stroke-linejoin="round">
             <path
@@ -208,7 +252,57 @@
         </svg>
         <span>Free Worldwide Shipping</span>
       </div>
-      <p style="font-size: 0.75rem; color: rgba(255,255,255,0.45); font-family: var(--font-sans);">&copy; 2026 AUM GROUP INC.</p>
+      <p style="font-size: 0.75rem; color: rgba(255,255,255,0.45); font-family: var(--font-sans);">&copy; 2026 AUM GROUP
+        INC.</p>
+    </div>
+  </aside>
+
+  <!-- Slide-Out Luxury Navigation Drawer (Mobile & Side Access) -->
+  <div class="navbar-drawer-overlay" id="navbar-drawer-overlay" aria-hidden="true"></div>
+  <aside class="navbar-drawer" id="navbar-drawer" aria-label="Mobile Navigation Menu">
+    <div class="drawer-header">
+      <a href="#home" class="drawer-brand" aria-label="Homepage">
+        <img src="assets/company_logo.png" alt="AUM GROUP INC" style="height: 32px; width: auto;">
+      </a>
+      <button type="button" class="drawer-close-btn" id="drawer-close-btn" aria-label="Close Navigation Menu">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="18" x2="18" y2="18" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- The Links inside Mobile Drawer -->
+    <ul class="drawer-nav-list">
+      <li><a href="#home" class="drawer-nav-link active">Home</a></li>
+      <li><a href="shop.html" class="drawer-nav-link">Shopping Mart (All)</a></li>
+      <li style="padding-left: 1.25rem;"><a href="shop-silver.html" class="drawer-nav-link"
+          style="font-size: 0.92rem; opacity: 0.85;">✦ Silver Atelier</a></li>
+      <li style="padding-left: 1.25rem;"><a href="shop-gold.html" class="drawer-nav-link"
+          style="font-size: 0.92rem; opacity: 0.85;">✦ Gold Atelier</a></li>
+      <li style="padding-left: 1.25rem;"><a href="shop-diamond.html" class="drawer-nav-link"
+          style="font-size: 0.92rem; opacity: 0.85;">✦ Diamond Vault</a></li>
+      <li style="padding-left: 1.25rem;"><a href="shop-gems.html" class="drawer-nav-link"
+          style="font-size: 0.92rem; opacity: 0.85;">✦ Gemstone Archive</a></li>
+      <li><a href="about.html" class="drawer-nav-link">About Us</a></li>
+      <li><a href="#contact" class="drawer-nav-link">Contact Us</a></li>
+      <li><a href="#bestsellers" class="drawer-nav-link">Best Sellers</a></li>
+    </ul>
+
+    <div class="drawer-footer">
+      <div class="drawer-shipping">
+        <svg class="shipping-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9.5" />
+          <path d="M12 2.5L16.5 7.5L12 12L7.5 7.5Z" />
+          <path d="M12 12L16.5 16.5L12 21.5L7.5 16.5Z" />
+          <line x1="2.5" y1="12" x2="21.5" y2="12" />
+        </svg>
+        <span>Free Worldwide Shipping</span>
+      </div>
+      <p style="font-size: 0.75rem; color: rgba(255,255,255,0.45); font-family: var(--font-sans);">&copy; 2026 AUM GROUP
+        INC.</p>
     </div>
   </aside>
 
@@ -300,7 +394,8 @@
     <!-- =========================================================================
          PHASE 2: GEMS COLLECTION SECTION (Find Your Perfect Gem)
          ========================================================================= -->
-    <div id="shop" style="position:relative;top:-100px;visibility:hidden;"></div><div id="bestsellers" style="position:relative;top:-100px;visibility:hidden;"></div>
+    <div id="shop" style="position:relative;top:-100px;visibility:hidden;"></div>
+    <div id="bestsellers" style="position:relative;top:-100px;visibility:hidden;"></div>
     <section class="gems-section" id="our-gems">
 
       <!-- Feathered background group: dissolves into the hero instead of a hard edge -->
@@ -324,7 +419,7 @@
             <h2 class="gems-heading reveal-on-scroll delay-1">Find Your Perfect Gem</h2>
           </div>
           <div>
-            <a href="#shop" class="gems-view-all-link group reveal-on-scroll delay-2"
+            <a href="shop.html" class="gems-view-all-link group reveal-on-scroll delay-2"
               aria-label="View all gems in collection">
               <span>View All</span>
               <svg class="view-all-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
@@ -454,7 +549,7 @@
         <div class="expertise-caustic-glow"></div>
         <div class="expertise-feather-top"></div>
         <div class="expertise-feather-bottom"></div>
-        
+
         <!-- Twinkling gem glints in loop -->
         <div class="gem-glint expertise-glint-1"></div>
         <div class="gem-glint expertise-glint-2"></div>
@@ -465,14 +560,18 @@
 
         <!-- Top Header: Eyebrow + Main Heading + Animated Divider + Exact Sentence -->
         <div class="expertise-header text-center max-w-3xl mx-auto mb-14">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[rgba(223,199,167,0.3)] bg-[rgba(223,199,167,0.05)] mb-4 reveal-on-scroll">
-            <svg class="w-3.5 h-3.5 text-gold-champagne" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <polygon points="6,3 18,3 22,9 12,22 2,9"/>
+          <div
+            class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[rgba(223,199,167,0.3)] bg-[rgba(223,199,167,0.05)] mb-4 reveal-on-scroll">
+            <svg class="w-3.5 h-3.5 text-gold-champagne" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.8">
+              <polygon points="6,3 18,3 22,9 12,22 2,9" />
             </svg>
-            <span class="text-xs uppercase tracking-[0.25em] text-gold-champagne font-sans font-medium">Global Certification &amp; Standards</span>
+            <span class="text-xs uppercase tracking-[0.25em] text-gold-champagne font-sans font-medium">Global
+              Certification &amp; Standards</span>
           </div>
 
-          <h2 class="expertise-title font-serif text-3xl sm:text-5xl lg:text-6xl text-text-white tracking-wide leading-tight mb-4 reveal-on-scroll delay-1">
+          <h2
+            class="expertise-title font-serif text-3xl sm:text-5xl lg:text-6xl text-text-white tracking-wide leading-tight mb-4 reveal-on-scroll delay-1">
             Expertise In <span class="font-serif italic text-gold-champagne font-normal">Loose Diamonds</span>
           </h2>
 
@@ -481,17 +580,21 @@
           </div>
 
           <!-- User's exact sentence prominently showcased with animated reveal -->
-          <p class="expertise-quote text-base sm:text-lg lg:text-xl text-[#d4cbbf] font-sans font-light leading-relaxed mt-6 reveal-on-scroll delay-3">
-            We are Pioneers in wide range of <strong class="text-gold-champagne font-normal">Loose Diamonds</strong> like 
-            <span class="text-white font-medium">Round Brilliant Cut</span>, <span class="text-white font-medium">Single Cut</span>, 
-            <span class="text-white font-medium">Princess Cut</span>, <span class="text-white font-medium">Fancy Shapes</span> in all sizes and all colors 
+          <p
+            class="expertise-quote text-base sm:text-lg lg:text-xl text-[#d4cbbf] font-sans font-light leading-relaxed mt-6 reveal-on-scroll delay-3">
+            We are Pioneers in wide range of <strong class="text-gold-champagne font-normal">Loose Diamonds</strong>
+            like
+            <span class="text-white font-medium">Round Brilliant Cut</span>, <span class="text-white font-medium">Single
+              Cut</span>,
+            <span class="text-white font-medium">Princess Cut</span>, <span class="text-white font-medium">Fancy
+              Shapes</span> in all sizes and all colors
             (<span class="text-gold-champagne">White, next to White, TTLB, TLC and NATTS</span>) in wide range of price.
           </p>
         </div>
 
         <!-- 2 Main Columns: Certification Authority Cards (IGI & GIA) + Loose Diamonds Range -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          
+
           <!-- Column 1: Certification Authority Cards (IGI & GIA) -->
           <div class="lg:col-span-6 flex flex-col justify-between gap-6">
 
@@ -501,25 +604,29 @@
               <div class="cert-card-inner">
                 <div class="cert-badge-logo-wrap">
                   <div class="cert-logo-canvas">
-                    <img src="assets/icons/Certificate1.webp" alt="International Gemological Institute (IGI) Certification" class="cert-img" loading="lazy">
+                    <img src="assets/icons/Certificate1.webp"
+                      alt="International Gemological Institute (IGI) Certification" class="cert-img" loading="lazy">
                   </div>
                   <div class="cert-seal-pill">
                     <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                      <path
+                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                     </svg>
                     <span>100% Authenticated</span>
                   </div>
                 </div>
 
                 <div class="cert-card-info">
-                  <h3 class="cert-name font-serif text-2xl text-text-white group-hover:text-gold-champagne transition-colors">
+                  <h3
+                    class="cert-name font-serif text-2xl text-text-white group-hover:text-gold-champagne transition-colors">
                     IGI Certified Diamonds
                   </h3>
                   <p class="cert-sub font-sans text-xs uppercase tracking-[0.18em] text-[#a89f91] mt-1">
                     International Gemological Institute
                   </p>
                   <p class="cert-desc text-sm text-[#cfc7be] mt-3 leading-relaxed">
-                    Internationally recognized grading for cut precision, exact optical symmetry, and color authenticity across all diamond dimensions.
+                    Internationally recognized grading for cut precision, exact optical symmetry, and color authenticity
+                    across all diamond dimensions.
                   </p>
                   <div class="cert-specs-row mt-4">
                     <span class="cert-spec-tag">Cut Grading</span>
@@ -536,25 +643,29 @@
               <div class="cert-card-inner">
                 <div class="cert-badge-logo-wrap">
                   <div class="cert-logo-canvas">
-                    <img src="assets/icons/Certificate2.webp" alt="Gemological Institute of America (GIA) Certification" class="cert-img" loading="lazy">
+                    <img src="assets/icons/Certificate2.webp" alt="Gemological Institute of America (GIA) Certification"
+                      class="cert-img" loading="lazy">
                   </div>
                   <div class="cert-seal-pill">
                     <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                      <path
+                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                     </svg>
                     <span>Global Benchmark</span>
                   </div>
                 </div>
 
                 <div class="cert-card-info">
-                  <h3 class="cert-name font-serif text-2xl text-text-white group-hover:text-gold-champagne transition-colors">
+                  <h3
+                    class="cert-name font-serif text-2xl text-text-white group-hover:text-gold-champagne transition-colors">
                     GIA Certified Diamonds
                   </h3>
                   <p class="cert-sub font-sans text-xs uppercase tracking-[0.18em] text-[#a89f91] mt-1">
                     Gemological Institute of America
                   </p>
                   <p class="cert-desc text-sm text-[#cfc7be] mt-3 leading-relaxed">
-                    The creator of the 4Cs and the world's most trusted benchmark in natural gemstone analysis, laser inscription, and origin certification.
+                    The creator of the 4Cs and the world's most trusted benchmark in natural gemstone analysis, laser
+                    inscription, and origin certification.
                   </p>
                   <div class="cert-specs-row mt-4">
                     <span class="cert-spec-tag">4Cs Standard</span>
@@ -585,7 +696,8 @@
                 </div>
                 <div>
                   <h3 class="font-serif text-2xl text-text-white">Pioneering Diamond Inventory</h3>
-                  <p class="font-sans text-xs uppercase tracking-[0.2em] text-gold-champagne mt-0.5">Sourced &amp; Graded Direct From Manufacturers</p>
+                  <p class="font-sans text-xs uppercase tracking-[0.2em] text-gold-champagne mt-0.5">Sourced &amp;
+                    Graded Direct From Manufacturers</p>
                 </div>
               </div>
 
@@ -643,18 +755,22 @@
               </div>
 
               <!-- Value Proposition / Key Stats -->
-              <div class="specs-footer mt-8 pt-6 border-t border-[rgba(223,199,167,0.15)] grid grid-cols-3 gap-4 text-center">
+              <div
+                class="specs-footer mt-8 pt-6 border-t border-[rgba(223,199,167,0.15)] grid grid-cols-3 gap-4 text-center">
                 <div class="stat-item">
                   <span class="stat-number font-serif text-2xl lg:text-3xl text-gold-champagne">All Sizes</span>
-                  <span class="stat-sub text-xs text-[#a89f91] uppercase tracking-wider block mt-1">From Melee to Solitaire</span>
+                  <span class="stat-sub text-xs text-[#a89f91] uppercase tracking-wider block mt-1">From Melee to
+                    Solitaire</span>
                 </div>
                 <div class="stat-item border-x border-[rgba(223,199,167,0.12)]">
                   <span class="stat-number font-serif text-2xl lg:text-3xl text-gold-champagne">Direct Price</span>
-                  <span class="stat-sub text-xs text-[#a89f91] uppercase tracking-wider block mt-1">Wide Range of Price</span>
+                  <span class="stat-sub text-xs text-[#a89f91] uppercase tracking-wider block mt-1">Wide Range of
+                    Price</span>
                 </div>
                 <div class="stat-item">
                   <span class="stat-number font-serif text-2xl lg:text-3xl text-gold-champagne">100%</span>
-                  <span class="stat-sub text-xs text-[#a89f91] uppercase tracking-wider block mt-1">Ethical &amp; Certified</span>
+                  <span class="stat-sub text-xs text-[#a89f91] uppercase tracking-wider block mt-1">Ethical &amp;
+                    Certified</span>
                 </div>
               </div>
 
@@ -712,7 +828,8 @@
 
           <!-- Body Description -->
           <p class="story-description reveal-on-scroll delay-3">
-            At Aum Group Inc, we believe that every gem has a story &mdash; formed by nature, perfected by time, and brought
+            At Aum Group Inc, we believe that every gem has a story &mdash; formed by nature, perfected by time, and
+            brought
             to life through the hands of skilled artisans. Our passion is to bring you not just jewellery, but a piece
             of the Earth's most extraordinary treasures.
           </p>
@@ -767,7 +884,7 @@
       <!-- =========================================================================
            SITE FOOTER (Luxury obsidian bar with brand, nav, socials & newsletter)
            ========================================================================= -->
-            <!-- =========================================================================
+      <!-- =========================================================================
            REPLICATED LUXURY FOOTER (Escéli / Gemoré / Aum Group Inc v2.0)
            ========================================================================= -->
       <footer class="site-footer" id="contact" role="contentinfo">
@@ -779,36 +896,47 @@
             <!-- 1. Brand Identity & Social Channels -->
             <div class="footer-col footer-col-brand">
               <a href="#home" class="footer-brand-link" aria-label="AUM GROUP INC Homepage">
-                <img src="assets/company_logo.png" alt="AUM GROUP INC Fine Jewellery &amp; Gems" class="footer-brand-img">
+                <img src="assets/company_logo.png" alt="AUM GROUP INC Fine Jewellery &amp; Gems"
+                  class="footer-brand-img">
               </a>
               <p class="footer-brand-desc">
                 Connecting you with the world's most extraordinary gemstones and fine jewelry.
               </p>
               <div class="footer-social-row" aria-label="Social media channels">
                 <!-- Instagram -->
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="Instagram">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-social-icon"
+                  aria-label="Instagram">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                    stroke-linejoin="round">
                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                     <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                   </svg>
                 </a>
                 <!-- Facebook -->
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="Facebook">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="footer-social-icon"
+                  aria-label="Facebook">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                    stroke-linejoin="round">
                     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                   </svg>
                 </a>
                 <!-- Pinterest -->
-                <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="Pinterest">
+                <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" class="footer-social-icon"
+                  aria-label="Pinterest">
                   <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.69 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z" />
+                    <path
+                      d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.69 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z" />
                   </svg>
                 </a>
                 <!-- YouTube -->
-                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="YouTube">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="footer-social-icon"
+                  aria-label="YouTube">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path
+                      d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z">
+                    </path>
                     <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor"></polygon>
                   </svg>
                 </a>
@@ -844,20 +972,25 @@
               <h4 class="footer-heading">GET IN TOUCH</h4>
               <ul class="footer-contact-list">
                 <li class="footer-contact-item">
-                  <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                     <polyline points="22,6 12,13 2,6"></polyline>
                   </svg>
                   <a href="mailto:hello@gemore.com" class="footer-contact-link">hello@gemore.com</a>
                 </li>
                 <li class="footer-contact-item">
-                  <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                    </path>
                   </svg>
                   <a href="tel:+12125557890" class="footer-contact-link">+1 (212) 555-7890</a>
                 </li>
                 <li class="footer-contact-item">
-                  <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                     <circle cx="12" cy="10" r="3"></circle>
                   </svg>
@@ -875,44 +1008,51 @@
               <!-- Visa -->
               <span class="payment-badge" title="Visa">
                 <svg viewBox="0 0 38 24" fill="none" class="payment-svg">
-                  <rect width="38" height="24" rx="3" fill="#141414"/>
-                  <path d="M15.2 16.5L17.2 7.5H19.7L17.7 16.5H15.2ZM24.6 7.7C24.1 7.5 23.3 7.3 22.3 7.3C19.9 7.3 18.2 8.6 18.2 10.4C18.2 11.8 19.4 12.5 20.4 13C21.4 13.5 21.7 13.8 21.7 14.3C21.7 15 20.9 15.4 20.1 15.4C19.1 15.4 18.5 15.2 17.7 14.8L17.3 14.6L16.9 16.6C17.6 16.9 18.8 17.2 20 17.2C22.6 17.2 24.3 15.9 24.3 14C24.3 12.3 23.2 11.5 21.9 10.9C21.1 10.5 20.6 10.2 20.6 9.7C20.6 9.2 21.2 8.8 22.1 8.8C22.9 8.8 23.6 9 24.2 9.3L24.6 7.7ZM29.2 7.5H27.3C26.7 7.5 26.2 7.7 26 8.2L22.2 16.5H24.8L25.3 15.1H28.5L28.8 16.5H31.1L29.2 7.5ZM26 13.3L27.3 9.7L28.1 13.3H26ZM13.8 7.5L11.4 13.8L11.1 12.4C10.7 10.9 9.2 9.3 7.6 8.5L9.8 16.5H12.4L16.4 7.5H13.8Z" fill="#d6d1c4"/>
+                  <rect width="38" height="24" rx="3" fill="#141414" />
+                  <path
+                    d="M15.2 16.5L17.2 7.5H19.7L17.7 16.5H15.2ZM24.6 7.7C24.1 7.5 23.3 7.3 22.3 7.3C19.9 7.3 18.2 8.6 18.2 10.4C18.2 11.8 19.4 12.5 20.4 13C21.4 13.5 21.7 13.8 21.7 14.3C21.7 15 20.9 15.4 20.1 15.4C19.1 15.4 18.5 15.2 17.7 14.8L17.3 14.6L16.9 16.6C17.6 16.9 18.8 17.2 20 17.2C22.6 17.2 24.3 15.9 24.3 14C24.3 12.3 23.2 11.5 21.9 10.9C21.1 10.5 20.6 10.2 20.6 9.7C20.6 9.2 21.2 8.8 22.1 8.8C22.9 8.8 23.6 9 24.2 9.3L24.6 7.7ZM29.2 7.5H27.3C26.7 7.5 26.2 7.7 26 8.2L22.2 16.5H24.8L25.3 15.1H28.5L28.8 16.5H31.1L29.2 7.5ZM26 13.3L27.3 9.7L28.1 13.3H26ZM13.8 7.5L11.4 13.8L11.1 12.4C10.7 10.9 9.2 9.3 7.6 8.5L9.8 16.5H12.4L16.4 7.5H13.8Z"
+                    fill="#d6d1c4" />
                 </svg>
               </span>
               <!-- Visa Electron -->
               <span class="payment-badge" title="Visa Electron">
                 <svg viewBox="0 0 38 24" fill="none" class="payment-svg">
-                  <rect width="38" height="24" rx="3" fill="#141414"/>
-                  <text x="19" y="15" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="8" fill="#d6d1c4" letter-spacing="1">ELECTRON</text>
+                  <rect width="38" height="24" rx="3" fill="#141414" />
+                  <text x="19" y="15" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700"
+                    font-size="8" fill="#d6d1c4" letter-spacing="1">ELECTRON</text>
                 </svg>
               </span>
               <!-- Mastercard -->
               <span class="payment-badge" title="Mastercard">
                 <svg viewBox="0 0 38 24" fill="none" class="payment-svg">
-                  <rect width="38" height="24" rx="3" fill="#141414"/>
-                  <circle cx="15" cy="12" r="6" fill="#402020" fill-opacity="0.85"/>
-                  <circle cx="23" cy="12" r="6" fill="#d6d1c4" fill-opacity="0.75"/>
+                  <rect width="38" height="24" rx="3" fill="#141414" />
+                  <circle cx="15" cy="12" r="6" fill="#402020" fill-opacity="0.85" />
+                  <circle cx="23" cy="12" r="6" fill="#d6d1c4" fill-opacity="0.75" />
                 </svg>
               </span>
               <!-- Amex -->
               <span class="payment-badge" title="American Express">
                 <svg viewBox="0 0 38 24" fill="none" class="payment-svg">
-                  <rect width="38" height="24" rx="3" fill="#141414"/>
-                  <text x="19" y="15" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="8" fill="#d6d1c4" letter-spacing="1">AMEX</text>
+                  <rect width="38" height="24" rx="3" fill="#141414" />
+                  <text x="19" y="15" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700"
+                    font-size="8" fill="#d6d1c4" letter-spacing="1">AMEX</text>
                 </svg>
               </span>
               <!-- Apple Pay -->
               <span class="payment-badge" title="Apple Pay">
                 <svg viewBox="0 0 38 24" fill="none" class="payment-svg">
-                  <rect width="38" height="24" rx="3" fill="#141414"/>
-                  <path d="M12.8 11.2c-.3.4-.8.7-1.3.7-.1-.6.2-1.1.5-1.4.3-.3.8-.6 1.3-.6.1.5-.2 1-.5 1.3zm.5 1.6c-.3 0-.6-.1-.9-.1-.3 0-.6.1-.9.1-.6 0-1-.3-1.3-.8-.7-1.2-.2-3.1 1-3.1.5 0 .8.3 1.1.3.3 0 .7-.3 1.2-.3.4 0 .9.2 1.2.6-.4.2-.6.6-.6 1.1 0 .7.5 1.2 1.2 1.4-.3.9-.9 1.9-1.9 1.9zm4.2-.2v-3.7h1.4c.9 0 1.5.6 1.5 1.4s-.6 1.4-1.5 1.4h-.6v.9h-.8zm.8-1.5h.5c.5 0 .8-.3.8-.7s-.3-.7-.8-.7h-.5v1.4zm4.8 1.5h-.7l-.3-.7c-.4.5-.9.8-1.5.8-.8 0-1.4-.5-1.4-1.2 0-.8.6-1.2 1.8-1.3l.6-.1v-.2c0-.4-.3-.6-.8-.6-.4 0-.7.2-.8.5l-.6-.3c.2-.5.8-.8 1.5-.8 1 0 1.5.5 1.5 1.4v2.5zm-.7-1.6l-.5.1c-.7.1-1.1.3-1.1.7 0 .4.3.6.7.6.5 0 .9-.4.9-.9v-.5zm4.8 1.6l-1-2.6-1 2.6h-.9l1.4-3.5-.1-.4c-.1-.3-.3-.4-.6-.4h-.3l.1-.6c.2 0 .5-.1.7-.1.5 0 .9.2 1.1.8l1.6 4.2h-1z" fill="#d6d1c4"/>
+                  <rect width="38" height="24" rx="3" fill="#141414" />
+                  <path
+                    d="M12.8 11.2c-.3.4-.8.7-1.3.7-.1-.6.2-1.1.5-1.4.3-.3.8-.6 1.3-.6.1.5-.2 1-.5 1.3zm.5 1.6c-.3 0-.6-.1-.9-.1-.3 0-.6.1-.9.1-.6 0-1-.3-1.3-.8-.7-1.2-.2-3.1 1-3.1.5 0 .8.3 1.1.3.3 0 .7-.3 1.2-.3.4 0 .9.2 1.2.6-.4.2-.6.6-.6 1.1 0 .7.5 1.2 1.2 1.4-.3.9-.9 1.9-1.9 1.9zm4.2-.2v-3.7h1.4c.9 0 1.5.6 1.5 1.4s-.6 1.4-1.5 1.4h-.6v.9h-.8zm.8-1.5h.5c.5 0 .8-.3.8-.7s-.3-.7-.8-.7h-.5v1.4zm4.8 1.5h-.7l-.3-.7c-.4.5-.9.8-1.5.8-.8 0-1.4-.5-1.4-1.2 0-.8.6-1.2 1.8-1.3l.6-.1v-.2c0-.4-.3-.6-.8-.6-.4 0-.7.2-.8.5l-.6-.3c.2-.5.8-.8 1.5-.8 1 0 1.5.5 1.5 1.4v2.5zm-.7-1.6l-.5.1c-.7.1-1.1.3-1.1.7 0 .4.3.6.7.6.5 0 .9-.4.9-.9v-.5zm4.8 1.6l-1-2.6-1 2.6h-.9l1.4-3.5-.1-.4c-.1-.3-.3-.4-.6-.4h-.3l.1-.6c.2 0 .5-.1.7-.1.5 0 .9.2 1.1.8l1.6 4.2h-1z"
+                    fill="#d6d1c4" />
                 </svg>
               </span>
               <!-- Google Pay -->
               <span class="payment-badge" title="Google Pay">
                 <svg viewBox="0 0 38 24" fill="none" class="payment-svg">
-                  <rect width="38" height="24" rx="3" fill="#141414"/>
-                  <text x="19" y="15" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="8" fill="#d6d1c4" letter-spacing="0.5">GPay</text>
+                  <rect width="38" height="24" rx="3" fill="#141414" />
+                  <text x="19" y="15" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700"
+                    font-size="8" fill="#d6d1c4" letter-spacing="0.5">GPay</text>
                 </svg>
               </span>
             </div>
