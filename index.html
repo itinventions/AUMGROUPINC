@@ -66,7 +66,7 @@
     rel="stylesheet">
 
   <!-- External Stylesheets (Modular Folder Structure) -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=3.5">
   <link rel="stylesheet" href="animations.css">
 
   <!-- Three.js CDN -->
@@ -110,7 +110,17 @@
           </button>
         </li>
         <li><a href="#home" class="nav-link active">Home</a></li>
-        <li><a href="#shop" class="nav-link">Shop</a></li>
+        <li class="nav-item-dropdown">
+          <a href="shop.html" class="nav-link">Shooping <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline-block; vertical-align:middle; margin-left:3px;"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
+          <ul class="nav-dropdown-menu">
+            <li><a href="shop.html" class="nav-dropdown-link">All Departments (Hub) <span class="dropdown-badge">26</span></a></li>
+            <li class="nav-dropdown-divider"></li>
+            <li><a href="shop-silver.html" class="nav-dropdown-link"><span style="color:#CFC9BD;">✦</span> 01 Silver Atelier <span class="dropdown-badge">6</span></a></li>
+            <li><a href="shop-gold.html" class="nav-dropdown-link"><span style="color:#dfc7a7;">✦</span> 02 Gold Atelier <span class="dropdown-badge">7</span></a></li>
+            <li><a href="shop-diamond.html" class="nav-dropdown-link"><span style="color:#e0f2fe;">✦</span> 03 Diamond Collection <span class="dropdown-badge">7</span></a></li>
+            <li><a href="shop-gems.html" class="nav-dropdown-link"><span style="color:#f87171;">✦</span> 04 Gemstone Archive <span class="dropdown-badge">6</span></a></li>
+          </ul>
+        </li>
         <li><a href="#our-gems" class="nav-link">Our Gems</a></li>
         <li><a href="#expertise" class="nav-link">Expertise</a></li>
         <li><a href="about.html" class="nav-link">About Us</a></li>
@@ -158,6 +168,50 @@
     </div>
 
   </header>
+
+  <!-- Slide-Out Luxury Navigation Drawer (Mobile & Side Access) -->
+  <div class="navbar-drawer-overlay" id="navbar-drawer-overlay" aria-hidden="true"></div>
+  <aside class="navbar-drawer" id="navbar-drawer" aria-label="Mobile Navigation Menu">
+    <div class="drawer-header">
+      <a href="#home" class="drawer-brand" aria-label="Homepage">
+        <img src="assets/company_logo.png" alt="AUM GROUP INC" style="height: 32px; width: auto;">
+      </a>
+      <button type="button" class="drawer-close-btn" id="drawer-close-btn" aria-label="Close Navigation Menu">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="18" x2="18" y2="18" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- The Links inside Mobile Drawer -->
+    <ul class="drawer-nav-list">
+      <li><a href="#home" class="drawer-nav-link active">Home</a></li>
+      <li><a href="shop.html" class="drawer-nav-link">Shopping Mart (All)</a></li>
+      <li style="padding-left: 1.25rem;"><a href="shop-silver.html" class="drawer-nav-link" style="font-size: 0.92rem; opacity: 0.85;">✦ Silver Atelier</a></li>
+      <li style="padding-left: 1.25rem;"><a href="shop-gold.html" class="drawer-nav-link" style="font-size: 0.92rem; opacity: 0.85;">✦ Gold Atelier</a></li>
+      <li style="padding-left: 1.25rem;"><a href="shop-diamond.html" class="drawer-nav-link" style="font-size: 0.92rem; opacity: 0.85;">✦ Diamond Vault</a></li>
+      <li style="padding-left: 1.25rem;"><a href="shop-gems.html" class="drawer-nav-link" style="font-size: 0.92rem; opacity: 0.85;">✦ Gemstone Archive</a></li>
+      <li><a href="about.html" class="drawer-nav-link">About Us</a></li>
+      <li><a href="#contact" class="drawer-nav-link">Contact Us</a></li>
+      <li><a href="#bestsellers" class="drawer-nav-link">Best Sellers</a></li>
+    </ul>
+
+    <div class="drawer-footer">
+      <div class="drawer-shipping">
+        <svg class="shipping-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9.5" />
+          <path d="M12 2.5L16.5 7.5L12 12L7.5 7.5Z" />
+          <path d="M12 12L16.5 16.5L12 21.5L7.5 16.5Z" />
+          <line x1="2.5" y1="12" x2="21.5" y2="12" />
+        </svg>
+        <span>Free Worldwide Shipping</span>
+      </div>
+      <p style="font-size: 0.75rem; color: rgba(255,255,255,0.45); font-family: var(--font-sans);">&copy; 2026 AUM GROUP INC.</p>
+    </div>
+  </aside>
 
   <!-- =========================================================================
        SCROLL STAGE: Phase 1 (pinned hero) + Phase 2 (gems layer sliding over it)
@@ -270,7 +324,7 @@
             <h2 class="gems-heading reveal-on-scroll delay-1">Find Your Perfect Gem</h2>
           </div>
           <div>
-            <a href="#shop" class="gems-view-all-link group reveal-on-scroll delay-2"
+            <a href="shop.html" class="gems-view-all-link group reveal-on-scroll delay-2"
               aria-label="View all gems in collection">
               <span>View All</span>
               <svg class="view-all-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"

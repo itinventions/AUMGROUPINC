@@ -20,7 +20,7 @@
     rel="stylesheet">
 
   <!-- Core Stylesheet & Animations -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=3.5">
   <link rel="stylesheet" href="animations.css">
 </head>
 
@@ -111,9 +111,75 @@
           <line x1="3" y1="18" x2="21" y2="18" />
         </svg>
       </button>
+
+      <!-- Navigation Links: perfectly centred regardless of hamburger -->
+      <nav role="navigation" aria-label="Main Navigation" class="navbar-nav-centered">
+        <ul class="nav-tier-links" id="main-nav-links">
+          <li><a href="index.html#home" class="nav-tier-link">Home</a></li>
+          <li class="nav-item-dropdown">
+            <a href="shop.html" class="nav-tier-link">Shooping <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline-block; vertical-align:middle; margin-left:3px;"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
+            <ul class="nav-dropdown-menu">
+              <li><a href="shop.html" class="nav-dropdown-link">All Departments (Hub) <span class="dropdown-badge">26</span></a></li>
+              <li class="nav-dropdown-divider"></li>
+              <li><a href="shop-silver.html" class="nav-dropdown-link"><span style="color:#CFC9BD;">✦</span> Silver Atelier <span class="dropdown-badge">6</span></a></li>
+              <li><a href="shop-gold.html" class="nav-dropdown-link"><span style="color:#dfc7a7;">✦</span> Gold Atelier <span class="dropdown-badge">7</span></a></li>
+              <li><a href="shop-diamond.html" class="nav-dropdown-link"><span style="color:#e0f2fe;">✦</span> Diamond Vault <span class="dropdown-badge">7</span></a></li>
+              <li><a href="shop-gems.html" class="nav-dropdown-link"><span style="color:#f87171;">✦</span> Gemstone Archive <span class="dropdown-badge">6</span></a></li>
+            </ul>
+          </li>
+          <li><a href="about.html" class="nav-tier-link active">About Us</a></li>
+          <li><a href="index.html#contact" class="nav-tier-link">Contact Us</a></li>
+          <li><a href="index.html#bestsellers" class="nav-tier-link">Best Sellers</a></li>
+        </ul>
+      </nav>
+
     </div>
 
   </header>
+
+  <!-- Slide-Out Luxury Navigation Drawer (Mobile & Side Access) -->
+  <div class="navbar-drawer-overlay" id="navbar-drawer-overlay" aria-hidden="true"></div>
+  <aside class="navbar-drawer" id="navbar-drawer" aria-label="Mobile Navigation Menu">
+    <div class="drawer-header">
+      <a href="index.html#home" class="drawer-brand" aria-label="Homepage">
+        <img src="assets/company_logo.png" alt="AUM GROUP INC" style="height: 32px; width: auto;">
+      </a>
+      <button type="button" class="drawer-close-btn" id="drawer-close-btn" aria-label="Close Navigation Menu">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="18" x2="18" y2="18" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- The Links inside Mobile Drawer -->
+    <ul class="drawer-nav-list">
+      <li><a href="index.html#home" class="drawer-nav-link">Home</a></li>
+      <li><a href="shop.html" class="drawer-nav-link">Shopping Mart (All)</a></li>
+      <li style="padding-left: 1.25rem;"><a href="shop-silver.html" class="drawer-nav-link" style="font-size: 0.92rem; opacity: 0.85;">✦ Silver Atelier</a></li>
+      <li style="padding-left: 1.25rem;"><a href="shop-gold.html" class="drawer-nav-link" style="font-size: 0.92rem; opacity: 0.85;">✦ Gold Atelier</a></li>
+      <li style="padding-left: 1.25rem;"><a href="shop-diamond.html" class="drawer-nav-link" style="font-size: 0.92rem; opacity: 0.85;">✦ Diamond Vault</a></li>
+      <li style="padding-left: 1.25rem;"><a href="shop-gems.html" class="drawer-nav-link" style="font-size: 0.92rem; opacity: 0.85;">✦ Gemstone Archive</a></li>
+      <li><a href="about.html" class="drawer-nav-link active">About Us</a></li>
+      <li><a href="index.html#contact" class="drawer-nav-link">Contact Us</a></li>
+      <li><a href="index.html#bestsellers" class="drawer-nav-link">Best Sellers</a></li>
+    </ul>
+
+    <div class="drawer-footer">
+      <div class="drawer-shipping">
+        <svg class="shipping-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9.5" />
+          <path d="M12 2.5L16.5 7.5L12 12L7.5 7.5Z" />
+          <path d="M12 12L16.5 16.5L12 21.5L7.5 16.5Z" />
+          <line x1="2.5" y1="12" x2="21.5" y2="12" />
+        </svg>
+        <span>Free Worldwide Shipping</span>
+      </div>
+      <p style="font-size: 0.75rem; color: rgba(255,255,255,0.45); font-family: var(--font-sans);">&copy; 2026 AUM GROUP INC.</p>
+    </div>
+  </aside>
 
   <!-- =========================================================================
        ABOUT US HERO SECTION (Diamonds for a Brighter Tomorrow)
