@@ -1,0 +1,19 @@
+# ============================================================================
+# AUM GROUP INC FINE JEWELLERY & GEMS — Robots.txt
+# Domain: https://aumgroupinc.com
+# ============================================================================
+
+User-agent: *
+Allow: /
+
+# Block crawling of asset internals (not needed in search results)
+Disallow: /assets/models/
+Disallow: /assets/textures/
+Disallow: /assets/fonts/
+
+# Block error pages
+Disallow: /404.html
+Disallow: /500.html
+
+# Sitemap location
+Sitemap: https://aumgroupinc.com/sitemap.xml

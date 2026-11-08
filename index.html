@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Automatic deployment test -->
+
+  <title> Test AUM GROUP INC | Fine Jewellery &amp; Gems</title>
+  <meta name="description"
+    content="Discover a world of rare and exquisite gemstones, crafted into timeless jewellery that tells your story.">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://aumgroupinc.com/">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23dfc7a7' stroke-width='1.5'><polygon points='6,3 18,3 22,9 12,22 2,9'/></svg>">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aumgroupinc.com/">
+  <meta property="og:title" content="AUM GROUP INC | Fine Jewellery &amp; Gems">
+  <meta property="og:description"
+    content="Discover a world of rare and exquisite gemstones, crafted into timeless jewellery that tells your story.">
+  <meta property="og:site_name" content="AUM GROUP INC Fine Jewellery &amp; Gems">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AUM GROUP INC | Fine Jewellery &amp; Gems">
+  <meta name="twitter:description"
+    content="Discover a world of rare and exquisite gemstones, crafted into timeless jewellery that tells your story.">
+
+  <!-- Additional SEO -->
+  <meta name="author" content="Aum Group Inc.">
+  <meta name="keywords"
+    content="fine jewellery, gems, diamonds, luxury jewellery, Aum Group Inc, aumgroupinc, gemstones, engagement rings, gold jewellery">
+  <meta name="theme-color" content="#090807">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'gold-champagne': '#dfc7a7',
+            'gold-btn': '#e2c9a8',
+            'gold-hover': '#ebd5ba',
+            'gold-accent': '#c5a880',
+            'dark-bg': '#090807',
+            'text-white': '#fbf9f6',
+            'text-muted': '#cfc7be',
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Didot', 'serif'],
+            sans: ['"Montserrat"', '"Inter"', 'sans-serif'],
+            body: ['"Inter"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts: Cormorant Garamond, Montserrat, Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Montserrat:wght@200;300;400;500;600;700&family=Inter:wght@300;400;500&display=swap"
+    rel="stylesheet">
+
+  <!-- External Stylesheets (Modular Folder Structure) -->
+  <link rel="stylesheet" href="style.css?v=2.4">
+  <link rel="stylesheet" href="animations.css?v=2.4">
+
+  <!-- Three.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+
+<body class="bg-dark-bg text-text-white selection:bg-gold-champagne selection:text-dark-bg">
+
+  <!-- Top Fixed Navigation Bar -->
+  <!-- Replicated 2-Tier Luxury Navigation Bar -->
+  <header class="navbar" role="banner">
+
+    <!-- 1. Upper Tier: Hamburger (Mobile/Tablet) | Company Logo | Utility Icons (Account, Wishlist, Cart) -->
+    <div class="navbar-top">
+
+      <!-- Hamburger Menu Button (Three lines) — visible on mobile & tablet, hidden on desktop -->
+      <button type="button" class="hamburger-btn" id="mobile-menu-toggle" aria-label="Open Navigation Menu"
+        aria-expanded="false" aria-controls="navbar-drawer">
+        <svg class="hamburger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+
+      <!-- Center: Company Brand Logo from assets folder -->
+      <a href="#home" class="navbar-brand-center" aria-label="AUM GROUP INC Fine Jewellery &amp; Gems Homepage">
+        <img src="assets/company_logo.png" alt="AUM GROUP INC Fine Jewellery &amp; Gems" class="navbar-logo-img">
+      </a>
+
+      <!-- Right: Utility Icons (Account, Wishlist, Cart) -->
+      <div class="navbar-top-right">
+
+        <!-- User Profile Account Button -->
+        <a href="#account" class="nav-icon-btn user-btn" aria-label="User Account" title="Account">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+        </a>
+
+        <!-- Wishlist / Favorites Heart Button with Dynamic Counter Badge -->
+        <button type="button" class="nav-icon-btn wishlist-btn" id="wishlist-btn" aria-label="Wishlist"
+          title="Wishlist">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+          </svg>
+          <span class="wishlist-badge" id="wishlist-counter">0</span>
+        </button>
+
+        <!-- Shopping Bag / Cart Button with Dynamic Badge Counter -->
+        <button type="button" class="nav-icon-btn cart-btn" id="cart-btn" aria-label="Shopping Cart with 0 items"
+          title="Shopping Bag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <path d="M16 10a4 4 0 0 1-8 0" />
+          </svg>
+          <span class="cart-badge" id="cart-counter">0</span>
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- 2. Middle Divider Line -->
+    <div class="navbar-divider" aria-hidden="true"></div>
+
+    <!-- 3. Lower Tier: Centered Links -->
+    <div class="navbar-bottom">
+
+      <!-- Navigation Links: perfectly centred -->
+      <nav role="navigation" aria-label="Main Navigation" class="navbar-nav-centered">
+        <ul class="nav-tier-links" id="main-nav-links">
+          <li><a href="#home" class="nav-tier-link active">Home</a></li>
+          <li><a href="shop.html" class="nav-tier-link">Shopping</a></li>
+          <li><a href="about.html" class="nav-tier-link">About Us</a></li>
+          <li><a href="contact.html" class="nav-tier-link">Contact Us</a></li>
+          <li><a href="#bestsellers" class="nav-tier-link">Best Sellers</a></li>
+        </ul>
+      </nav>
+
+    </div>
+
+  </header>
+
+  <!-- Slide-Out Luxury Navigation Drawer (Mobile & Side Access) -->
+  <div class="navbar-drawer-overlay" id="navbar-drawer-overlay" aria-hidden="true"></div>
+  <aside class="navbar-drawer" id="navbar-drawer" aria-label="Mobile Navigation Menu">
+    <div class="drawer-header">
+      <a href="#home" class="drawer-brand" aria-label="Homepage">
+        <img src="assets/company_logo.png" alt="AUM GROUP INC" style="height: 90px; width: auto;">
+      </a>
+      <button type="button" class="drawer-close-btn" id="drawer-close-btn" aria-label="Close Navigation Menu">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="18" x2="18" y2="18" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- The 5 Links inside Mobile Drawer -->
+    <ul class="drawer-nav-list">
+      <li><a href="#home" class="drawer-nav-link active">Home</a></li>
+      <li><a href="shop.html" class="drawer-nav-link">Shopping</a></li>
+      <li><a href="about.html" class="drawer-nav-link">About Us</a></li>
+      <li><a href="contact.html" class="drawer-nav-link">Contact Us</a></li>
+      <li><a href="#bestsellers" class="drawer-nav-link">Best Sellers</a></li>
+    </ul>
+
+    <div class="drawer-footer">
+      <p style="font-size: 0.75rem; color: rgba(255,255,255,0.45); font-family: var(--font-sans);">&copy; 2026 AUM GROUP
+        INC.</p>
+    </div>
+  </aside>
+
+  <!-- =========================================================================
+       SCROLL STAGE: Phase 1 (pinned hero) + Phase 2 (gems layer sliding over it)
+       ========================================================================= -->
+  <div class="scroll-stage">
+    <main class="hero-wrapper" id="home">
+
+      <!-- 1. Background Image Layer using assets/images/Background Images/01_Hompage_Background_Image.png -->
+      <div class="hero-backdrop" aria-hidden="true"></div>
+
+      <!-- 2. Cinematic Vignette Gradient Overlay for Text Readability & Image Depth -->
+      <div class="hero-vignette" aria-hidden="true"></div>
+
+      <!-- 4. Interactive Hero Content Wrapper -->
+      <div class="hero-content-container relative z-10 flex flex-col justify-center">
+
+        <!-- Hero Main Body Section -->
+        <div class="hero-body flex-1 flex items-center">
+
+          <div class="hero-text-block">
+
+            <!-- Three.js WebGL Particle Canvas (constrained strictly around text only) -->
+            <canvas id="webgl-canvas" aria-hidden="true"></canvas>
+
+            <!-- Text Background Loop Animation Halo Layer -->
+            <div class="text-ambient-halo" aria-hidden="true">
+              <!-- 1. Ambient Warm Caustics Glow Loop -->
+              <div class="ambient-glow-loop"></div>
+              <!-- 2. Sapphire Gemstone Refraction Accent Loop -->
+              <div class="sapphire-accent-loop"></div>
+              <!-- 3. Twinkling Gem Glints in Loop -->
+              <div class="gem-glint gem-glint-1"></div>
+              <div class="gem-glint gem-glint-2"></div>
+              <div class="gem-glint gem-glint-3"></div>
+              <div class="gem-glint gem-glint-4"></div>
+            </div>
+
+            <!-- Eyebrow Subtitle -->
+            <p class="hero-eyebrow reveal-on-scroll">
+              AUM GROUP INC.
+            </p>
+
+            <!-- Main Serif Headline -->
+            <h1 class="hero-heading reveal-on-scroll delay-1">
+              <span class="heading-line-1">Precious Creations in</span>
+              <span class="heading-line-2">Diamond, Gemstone,</span>
+              <span class="heading-line-3">Gold &amp; Silver</span>
+            </h1>
+
+            <!-- Golden Accent Divider Line -->
+            <div class="hero-accent-divider reveal-on-scroll delay-2" aria-hidden="true"></div>
+
+            <!-- Body Description -->
+            <p class="hero-description reveal-on-scroll delay-2">
+              Certified quality, timeless craftsmanship<br class="hidden sm:inline"> and enduring value since 2011.
+            </p>
+
+            <!-- CTA Explore Collection Button -->
+            <div class="reveal-on-scroll delay-3">
+              <a href="#our-gems" class="hero-cta-btn group" id="explore-btn">
+                <span>Explore Collection</span>
+                <svg class="cta-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="4" y1="12" x2="20" y2="12" />
+                  <polyline points="14 6 20 12 14 18" />
+                </svg>
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Scroll Cue -->
+      <div class="scroll-cue reveal-on-scroll delay-4" aria-hidden="true">
+        <span>Scroll</span>
+        <span class="scroll-cue-chevrons">
+          <svg viewBox="0 0 16 10">
+            <polyline points="2 2 8 8 14 2" />
+          </svg>
+          <svg viewBox="0 0 16 10">
+            <polyline points="2 2 8 8 14 2" />
+          </svg>
+        </span>
+      </div>
+
+    </main>
+
+    <!-- =========================================================================
+         PHASE 2: OUR COLLECTIONS (Categories Showcase)
+         ========================================================================= -->
+    <div id="shop" style="position:relative;top:-100px;visibility:hidden;"></div>
+    <div id="bestsellers" style="position:relative;top:-100px;visibility:hidden;"></div>
+    <section class="collections-section" id="our-gems">
+
+      <!-- Section Background using assets/images/Background Images/02_Hompage_Background_Image.png -->
+      <div class="collections-bg" aria-hidden="true">
+        <div class="collections-backdrop"></div>
+        <div class="collections-vignette"></div>
+        <canvas id="collections-webgl-canvas" class="collections-webgl-canvas" aria-hidden="true"></canvas>
+      </div>
+
+      <!-- Section Content Container -->
+      <div class="collections-content-container relative z-10 w-full flex flex-col justify-center">
+
+        <!-- Section Header: Centered Eyebrow, Editorial Heading & Description -->
+        <div class="collections-header reveal-on-scroll">
+          <div class="collections-eyebrow-wrap">
+            <span class="eyebrow-line" aria-hidden="true"></span>
+            <span class="collections-eyebrow">EXPLORE OUR</span>
+            <span class="eyebrow-line" aria-hidden="true"></span>
+          </div>
+
+          <h2 class="collections-heading">
+            <span class="heading-our">Our</span> <span class="heading-collections">Collections</span>
+          </h2>
+
+          <p class="collections-subtitle">
+            A curated range of timeless jewellery, crafted in Gold, Diamond, Gems, Silver and Studded Gold.
+          </p>
+        </div>
+
+        <!-- 5-Card Luxury Responsive Grid -->
+        <div class="collections-grid-wrapper reveal-on-scroll delay-2">
+          <div class="collections-grid" id="collections-grid">
+
+            <!-- Card 1: Gold -->
+            <article class="collection-card group" tabindex="0" data-category="gold">
+              <div class="collection-card-img-wrap">
+                <img src="assets/images/products/Simple Gold.png"
+                  alt="Gold Jewellery - Classic purity with enduring value" class="collection-card-img" loading="lazy"
+                  decoding="async">
+              </div>
+
+              <!-- Bottom Glassmorphic Card Badge (slides up from bottom on hover) -->
+              <div class="collection-card-badge">
+                <div class="badge-main-info">
+                  <div class="badge-text-col">
+                    <h3 class="category-name font-serif-italic">Gold</h3>
+                    <p class="category-desc">Classic purity with enduring value.</p>
+                  </div>
+
+                  <div class="badge-action-col">
+                    <div class="card-circle-btn" aria-label="Explore Gold Collection">
+                      <svg class="card-arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                        <polyline points="12 5 19 12 12 19" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 2: Diamond -->
+            <article class="collection-card group" tabindex="0" data-category="diamond">
+              <div class="collection-card-img-wrap">
+                <img src="assets/images/products/Diamond Image.png"
+                  alt="Diamond Jewellery - Exceptional brilliance for special moments" class="collection-card-img"
+                  loading="lazy" decoding="async">
+              </div>
+
+              <div class="collection-card-badge">
+                <div class="badge-main-info">
+                  <div class="badge-text-col">
+                    <h3 class="category-name font-serif-italic">Diamond</h3>
+                    <p class="category-desc">Exceptional brilliance for special moments.</p>
+                  </div>
+
+                  <div class="badge-action-col">
+                    <div class="card-circle-btn" aria-label="Explore Diamond Collection">
+                      <svg class="card-arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                        <polyline points="12 5 19 12 12 19" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 3: Gems -->
+            <article class="collection-card group" tabindex="0" data-category="gems">
+              <div class="collection-card-img-wrap">
+                <img src="assets/images/products/Gemstone.png"
+                  alt="Precious Gems - Rare natural gemstones of radiant beauty" class="collection-card-img"
+                  loading="lazy" decoding="async">
+              </div>
+
+              <div class="collection-card-badge">
+                <div class="badge-main-info">
+                  <div class="badge-text-col">
+                    <h3 class="category-name font-serif-italic">Gems</h3>
+                    <p class="category-desc">Rare natural gemstones of radiant beauty.</p>
+                  </div>
+
+                  <div class="badge-action-col">
+                    <div class="card-circle-btn" aria-label="Explore Gems Collection">
+                      <svg class="card-arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                        <polyline points="12 5 19 12 12 19" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 4: Silver -->
+            <article class="collection-card group" tabindex="0" data-category="silver">
+              <div class="collection-card-img-wrap">
+                <img src="assets/images/products/Silver.png"
+                  alt="Silver Jewellery - Elegant designs for everyday sophistication" class="collection-card-img"
+                  loading="lazy" decoding="async">
+              </div>
+
+              <div class="collection-card-badge">
+                <div class="badge-main-info">
+                  <div class="badge-text-col">
+                    <h3 class="category-name font-serif-italic">Silver</h3>
+                    <p class="category-desc">Elegant designs for everyday sophistication.</p>
+                  </div>
+
+                  <div class="badge-action-col">
+                    <div class="card-circle-btn" aria-label="Explore Silver Collection">
+                      <svg class="card-arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                        <polyline points="12 5 19 12 12 19" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 5: Studded Gold -->
+            <article class="collection-card group" tabindex="0" data-category="studded-gold">
+              <div class="collection-card-img-wrap">
+                <img src="assets/images/products/Studded Gold.png"
+                  alt="Studded Gold Jewellery - The richness of gold with radiant stones" class="collection-card-img"
+                  loading="lazy" decoding="async">
+              </div>
+
+              <div class="collection-card-badge">
+                <div class="badge-main-info">
+                  <div class="badge-text-col">
+                    <h3 class="category-name font-serif-italic">Studded Gold</h3>
+                    <p class="category-desc">The richness of gold with radiant stones.</p>
+                  </div>
+
+                  <div class="badge-action-col">
+                    <div class="card-circle-btn" aria-label="Explore Studded Gold Collection">
+                      <svg class="card-arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                        <polyline points="12 5 19 12 12 19" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =========================================================================
+         PHASE 2.5: CINEMATIC FILM SHOWCASE (100% Full-Width Atelier Video)
+         ========================================================================= -->
+    <div id="expertise" style="position:relative;top:-100px;visibility:hidden;"></div>
+    <section class="cinematic-video-section" id="cinematic-showcase" aria-label="Atelier Craftsmanship Film">
+
+      <!-- Top Golden Horizon Border Line -->
+      <div class="video-horizon-line video-horizon-top" aria-hidden="true"></div>
+
+      <!-- Full-Bleed Video Viewport (100% Screen Width) -->
+      <div class="video-viewport">
+        <video id="atelier-video" class="cinematic-video-player" autoplay muted loop playsinline preload="auto"
+          poster="assets/images/Background%20Images/02_Hompage_Background_Image.png">
+          <source src="assets/Video%20For%20Home%20Page.mp4" type="video/mp4">
+          <source src="assets/Video For Home Page.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+
+        <!-- Atmospheric Vignette Overlays: Pure Dark Obsidian Theatre Atmosphere -->
+        <div class="video-overlay-vignette" aria-hidden="true"></div>
+
+        <!-- Floating Ambient Luxury Sparkle Glints -->
+        <div class="video-glint video-glint-1" aria-hidden="true"></div>
+        <div class="video-glint video-glint-2" aria-hidden="true"></div>
+
+        <!-- Floating Editorial Typography Overlay -->
+        <div class="video-content-overlay">
+          <div class="video-editorial-card reveal-on-scroll">
+
+            <div class="video-eyebrow-wrap">
+              <span class="video-eyebrow-line" aria-hidden="true"></span>
+              <span class="video-eyebrow">
+                <svg class="video-gem-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <polygon points="6,3 18,3 22,9 12,22 2,9" />
+                </svg>
+                THE ATELIER &bull; MASTER CRAFTSMANSHIP
+              </span>
+              <span class="video-eyebrow-line" aria-hidden="true"></span>
+            </div>
+
+            <h2 class="video-heading">
+              Where <span class="heading-artistry font-serif-italic">Artistry</span> Meets <span
+                class="video-heading-gold">Eternity</span>
+            </h2>
+
+            <p class="video-subtitle">
+              Every facet cut with reverence, every heirloom crafted to endure across generations.
+            </p>
+
+          </div>
+        </div>
+
+        <!-- Discreet Glassmorphic Sound Controller (Starts 100% Muted, Click to Toggle) -->
+        <button id="video-sound-toggle" class="video-sound-pill" type="button" aria-label="Toggle video sound">
+          <span class="sound-icon-wrap" aria-hidden="true">
+            <!-- Muted Speaker Icon (Default Active) -->
+            <svg class="sound-icon sound-icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <line x1="23" y1="9" x2="17" y2="15"></line>
+              <line x1="17" y1="9" x2="23" y2="15"></line>
+            </svg>
+            <!-- Unmuted Soundwave Icon -->
+            <svg class="sound-icon sound-icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+            </svg>
+          </span>
+          <span class="sound-label" id="sound-label-text">Unmute</span>
+        </button>
+
+      </div>
+
+      <!-- Bottom Golden Horizon Border Line -->
+      <div class="video-horizon-line video-horizon-bottom" aria-hidden="true"></div>
+
+    </section>
+
+    <!-- =========================================================================
+         PHASE 3: GOLD COLLECTION BANNER
+         ========================================================================= -->
+    <div id="about-us" style="position:relative;top:-100px;visibility:hidden;"></div>
+    <section class="gold-showcase-section" id="gold-collection" aria-label="Gold Collection Showcase">
+
+      <!-- Dynamic Full-Bleed Background Layer -->
+      <div class="gold-showcase-bg" aria-hidden="true">
+        <div class="gold-showcase-backdrop"></div>
+      </div>
+
+      <!-- Main Section Container: Title, Description & Explore Now Button -->
+      <div class="gold-banner-container">
+
+        <div class="gold-banner-content-box reveal-on-scroll">
+          <div class="gold-banner-header">
+            <h2 class="gold-banner-title font-serif-italic">Gold Collection</h2>
+            <p class="gold-banner-desc">
+              A timeless expression of purity, prestige, and bespoke elegance. Our gold creations feature masterfully
+              sculpted designs crafted with certified, 100% hallmarked gold to cherish across generations.
+            </p>
+          </div>
+
+          <!-- Explore Now Button -->
+          <div class="gold-banner-btn-wrap">
+            <a href="shop-gold.html" class="gold-emerald-btn group" aria-label="Explore Gold Collection">
+              <span>Explore Now</span>
+              <svg class="gold-emerald-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =========================================================================
+         PHASE 4: STUDDED GOLD COLLECTION SHOWCASE
+         ========================================================================= -->
+    <section class="studded-showcase-section" id="studded-gold" aria-label="Studded Gold Collection">
+
+      <!-- Full-Bleed Background Layer -->
+      <div class="studded-showcase-bg" aria-hidden="true">
+        <div class="studded-showcase-backdrop"></div>
+      </div>
+
+      <!-- Main Section Container: Title, Description & Explore Now Button on the Right -->
+      <div class="studded-banner-container">
+
+        <div class="studded-banner-content-box reveal-on-scroll">
+          <div class="studded-banner-header">
+            <h2 class="studded-banner-title font-serif-italic">Studded Gold Collection</h2>
+            <p class="studded-banner-desc">
+              The sublime richness of hallmarked gold harmoniously adorned with hand-selected precious stones.
+              Each bespoke creation celebrates heritage craftsmanship fused with modern grandeur, crafted to
+              reflect brilliance from every facet.
+            </p>
+          </div>
+
+          <!-- Explore Now Button -->
+          <div class="studded-banner-btn-wrap">
+            <a href="shop-gold.html" class="studded-emerald-btn group" aria-label="Explore Studded Gold Collection">
+              <span>Explore Now</span>
+              <svg class="studded-emerald-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =========================================================================
+         PHASE 4.25: GEMSTONE COLLECTION SHOWCASE
+         ========================================================================= -->
+    <section class="gems-showcase-section" id="gems-collection" aria-label="Gemstone Collection Showcase">
+
+      <!-- Dynamic Full-Bleed Background Layer -->
+      <div class="gems-showcase-bg" aria-hidden="true">
+        <div class="gems-showcase-backdrop"></div>
+      </div>
+
+      <!-- Main Section Container: Title, Description & Explore Now Button on the Left -->
+      <div class="gems-banner-container">
+
+        <div class="gems-banner-content-box reveal-on-scroll">
+          <div class="gems-banner-header">
+            <h2 class="gems-banner-title font-serif-italic">Gemstone Collection</h2>
+            <p class="gems-banner-desc">
+              Discover the vibrant allure of certified natural gemstones. From royal blue sapphires and fiery rubies
+              to luminous emeralds, each precious stone is ethically sourced and masterfully cut to celebrate
+              extraordinary color, rarity, and brilliance.
+            </p>
+          </div>
+
+          <!-- Explore Now Button -->
+          <div class="gems-banner-btn-wrap">
+            <a href="shop-gems.html" class="gems-emerald-btn group" aria-label="Explore Gemstone Collection">
+              <span>Explore Now</span>
+              <svg class="gems-emerald-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =========================================================================
+         PHASE 4.5: SILVER COLLECTION SHOWCASE
+         ========================================================================= -->
+    <section class="silver-showcase-section" id="silver-collection" aria-label="Silver Collection Showcase">
+
+      <!-- Dynamic Full-Bleed Background Layer -->
+      <div class="silver-showcase-bg" aria-hidden="true">
+        <div class="silver-showcase-backdrop"></div>
+      </div>
+
+      <!-- Main Section Container: Title, Description & Explore Now Button on the Right -->
+      <div class="silver-banner-container">
+
+        <div class="silver-banner-content-box reveal-on-scroll">
+          <div class="silver-banner-header">
+            <h2 class="silver-banner-title font-serif-italic">Silver Collection</h2>
+            <p class="silver-banner-desc">
+              Masterfully fashioned in premium 925 sterling silver, embodying everyday sophistication and luminous
+              refinement. Discover contemporary silhouettes and timeless heirlooms designed to shine with quiet
+              brilliance.
+            </p>
+          </div>
+
+          <!-- Explore Now Button -->
+          <div class="silver-banner-btn-wrap">
+            <a href="shop-silver.html" class="silver-emerald-btn group" aria-label="Explore Silver Collection">
+              <span>Explore Now</span>
+              <svg class="silver-emerald-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =========================================================================
+         PHASE 5: DIAMOND COLLECTION SHOWCASE (NATURAL & LAB GROWN)
+         ========================================================================= -->
+    <section class="diamond-showcase-section" id="diamond-collection" aria-label="Diamond Collection">
+
+      <!-- Full-Bleed Background Layer -->
+      <div class="diamond-showcase-bg" aria-hidden="true">
+        <div class="diamond-showcase-backdrop"></div>
+      </div>
+
+      <!-- Main Section Container -->
+      <div class="diamond-banner-container">
+
+        <div class="diamond-banner-card reveal-on-scroll">
+
+          <!-- Subtitle / Eyebrow -->
+          <span class="diamond-banner-eyebrow">NATURAL &amp; LAB-GROWN DIAMONDS</span>
+
+          <!-- Main Title -->
+          <h2 class="diamond-banner-title font-serif-italic">Diamond Collection</h2>
+
+          <!-- Description about natural and lab grown diamonds -->
+          <p class="diamond-banner-desc">
+            We provide the finest certified <strong>Natural Diamonds</strong> and ethically crafted <strong>Lab-Grown
+              Diamonds</strong>. Discover unparalleled brilliance, certified purity, and exceptional craftsmanship
+            tailored for life’s most cherished celebrations.
+          </p>
+
+          <!-- Feature Pills -->
+          <div class="diamond-feature-pills">
+            <span class="diamond-pill">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 2L2 9l10 13 10-13-10-7zm0 3.2L18.4 9H5.6L12 5.2zM4.4 10.5h4.1l2.5 7.6-6.6-7.6zm6.1 0h3l-1.5 8-1.5-8zm4.9 0h4.1l-6.6 7.6 2.5-7.6z" />
+              </svg>
+              Certified Natural Diamonds
+            </span>
+            <span class="diamond-pill">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 2L2 9l10 13 10-13-10-7zm0 3.2L18.4 9H5.6L12 5.2zM4.4 10.5h4.1l2.5 7.6-6.6-7.6zm6.1 0h3l-1.5 8-1.5-8zm4.9 0h4.1l-6.6 7.6 2.5-7.6z" />
+              </svg>
+              Ethical Lab-Grown Diamonds
+            </span>
+          </div>
+
+          <!-- Explore Now Button -->
+          <div class="diamond-banner-btn-wrap">
+            <a href="shop-diamond.html" class="diamond-emerald-btn group" aria-label="Explore Diamond Collection">
+              <span>Explore Now</span>
+              <svg class="diamond-emerald-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =========================================================================
+         SITE FOOTER
+         ========================================================================= -->
+    <footer class="site-footer" id="contact" role="contentinfo">
+      <div class="footer-container">
+
+        <!-- 4-Column Footer Grid (SHOP column excluded per instruction) -->
+        <div class="footer-grid">
+
+          <!-- 1. Brand Identity & Social Channels -->
+          <div class="footer-col footer-col-brand">
+            <a href="#home" class="footer-brand-link" aria-label="AUM GROUP INC Homepage">
+              <img src="assets/company_logo.png" alt="AUM GROUP INC Fine Jewellery &amp; Gems" class="footer-brand-img">
+            </a>
+            <p class="footer-brand-desc">
+              Connecting you with the world's most extraordinary gemstones and fine jewelry.
+            </p>
+            <div class="footer-social-row" aria-label="Social media channels">
+              <!-- Instagram -->
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-social-icon"
+                aria-label="Instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </a>
+              <!-- Facebook -->
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="footer-social-icon"
+                aria-label="Facebook">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                </svg>
+              </a>
+              <!-- Pinterest -->
+              <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" class="footer-social-icon"
+                aria-label="Pinterest">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.69 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z" />
+                </svg>
+              </a>
+              <!-- YouTube -->
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="footer-social-icon"
+                aria-label="YouTube">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path
+                    d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z">
+                  </path>
+                  <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor"></polygon>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- 2. CUSTOMER CARE Column -->
+          <div class="footer-col">
+            <h4 class="footer-heading">CUSTOMER CARE</h4>
+            <ul class="footer-links-list">
+              <li><a href="about.html" class="footer-nav-item">About Us</a></li>
+              <li><a href="#shipping" class="footer-nav-item">Shipping &amp; Delivery</a></li>
+              <li><a href="#returns" class="footer-nav-item">Returns &amp; Exchanges</a></li>
+              <li><a href="#faq" class="footer-nav-item">FAQ</a></li>
+              <li><a href="contact.html" class="footer-nav-item">Contact Us</a></li>
+            </ul>
+          </div>
+
+          <!-- 3. INFORMATION Column -->
+          <div class="footer-col">
+            <h4 class="footer-heading">INFORMATION</h4>
+            <ul class="footer-links-list">
+              <li><a href="#expertise" class="footer-nav-item">Gemstone Education</a></li>
+              <li><a href="#care" class="footer-nav-item">Care Guide</a></li>
+              <li><a href="#sourcing" class="footer-nav-item">Our Sourcing</a></li>
+              <li><a href="#sell" class="footer-nav-item">Sell With Us</a></li>
+              <li><a href="#terms" class="footer-nav-item">Terms &amp; Conditions</a></li>
+            </ul>
+          </div>
+
+          <!-- 4. GET IN TOUCH Column -->
+          <div class="footer-col">
+            <h4 class="footer-heading">GET IN TOUCH</h4>
+            <ul class="footer-contact-list">
+              <li class="footer-contact-item">
+                <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                <a href="mailto:info@aumgroupinc.com" class="footer-contact-link">info@aumgroupinc.com</a>
+              </li>
+              <li class="footer-contact-item">
+                <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                  </path>
+                </svg>
+                <a href="tel:+918108070022" class="footer-contact-link">+91 810 807 0022</a>
+              </li>
+              <li class="footer-contact-item">
+                <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span class="footer-contact-text">Mumbai, Maharashtra, India</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Footer Bottom Bar: Copyright & Payment Badges -->
+        <div class="footer-bottom-bar">
+          <p class="footer-copyright">&copy; 2026 AUM GROUP INC / Gemor&eacute; Marketplace. All Rights Reserved.</p>
+          <div class="footer-payment-methods" aria-label="Accepted payment methods">
+            <!-- Visa -->
+            <span class="payment-badge" title="Visa">
+              <svg viewBox="0 0 38 24" fill="none" class="payment-svg">
+                <rect width="38" height="24" rx="3" fill="#141414" />
+                <path
+                  d="M15.2 16.5L17.2 7.5H19.7L17.7 16.5H15.2ZM24.6 7.7C24.1 7.5 23.3 7.3 22.3 7.3C19.9 7.3 18.2 8.6 18.2 10.4C18.2 11.8 19.4 12.5 20.4 13C21.4 13.5 21.7 13.8 21.7 14.3C21.7 15 20.9 15.4 20.1 15.4C19.1 15.4 18.5 15.2 17.7 14.8L17.3 14.6L16.9 16.6C17.6 16.9 18.8 17.2 20 17.2C22.6 17.2 24.3 15.9 24.3 14C24.3 12.3 23.2 11.5 21.9 10.9C21.1 10.5 20.6 10.2 20.6 9.7C20.6 9.2 21.2 8.8 22.1 8.8C22.9 8.8 23.6 9 24.2 9.3L24.6 7.7ZM29.2 7.5H27.3C26.7 7.5 26.2 7.7 26 8.2L22.2 16.5H24.8L25.3 15.1H28.5L28.8 16.5H31.1L29.2 7.5ZM26 13.3L27.3 9.7L28.1 13.3H26ZM13.8 7.5L11.4 13.8L11.1 12.4C10.7 10.9 9.2 9.3 7.6 8.5L9.8 16.5H12.4L16.4 7.5H13.8Z"
+                  fill="#d6d1c4" />
+              </svg>
+            </span>
+            <!-- Visa Electron -->
+            <span class="payment-badge" title="Visa Electron">
+              <svg viewBox="0 0 38 24" fill="none" class="payment-svg">
+                <rect width="38" height="24" rx="3" fill="#141414" />
+                <text x="19" y="15" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700"
+                  font-size="8" fill="#d6d1c4" letter-spacing="1">ELECTRON</text>
+              </svg>
+            </span>
+            <!-- Mastercard -->
+            <span class="payment-badge" title="Mastercard">
+              <svg viewBox="0 0 38 24" fill="none" class="payment-svg">
+                <rect width="38" height="24" rx="3" fill="#141414" />
+                <circle cx="15" cy="12" r="6" fill="#402020" fill-opacity="0.85" />
+                <circle cx="23" cy="12" r="6" fill="#d6d1c4" fill-opacity="0.75" />
+              </svg>
+            </span>
+            <!-- Amex -->
+            <span class="payment-badge" title="American Express">
+              <svg viewBox="0 0 38 24" fill="none" class="payment-svg">
+                <rect width="38" height="24" rx="3" fill="#141414" />
+                <text x="19" y="15" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700"
+                  font-size="8" fill="#d6d1c4" letter-spacing="1">AMEX</text>
+              </svg>
+            </span>
+            <!-- Apple Pay -->
+            <span class="payment-badge" title="Apple Pay">
+              <svg viewBox="0 0 38 24" fill="none" class="payment-svg">
+                <rect width="38" height="24" rx="3" fill="#141414" />
+                <path
+                  d="M12.8 11.2c-.3.4-.8.7-1.3.7-.1-.6.2-1.1.5-1.4.3-.3.8-.6 1.3-.6.1.5-.2 1-.5 1.3zm.5 1.6c-.3 0-.6-.1-.9-.1-.3 0-.6.1-.9.1-.6 0-1-.3-1.3-.8-.7-1.2-.2-3.1 1-3.1.5 0 .8.3 1.1.3.3 0 .7-.3 1.2-.3.4 0 .9.2 1.2.6-.4.2-.6.6-.6 1.1 0 .7.5 1.2 1.2 1.4-.3.9-.9 1.9-1.9 1.9zm4.2-.2v-3.7h1.4c.9 0 1.5.6 1.5 1.4s-.6 1.4-1.5 1.4h-.6v.9h-.8zm.8-1.5h.5c.5 0 .8-.3.8-.7s-.3-.7-.8-.7h-.5v1.4zm4.8 1.5h-.7l-.3-.7c-.4.5-.9.8-1.5.8-.8 0-1.4-.5-1.4-1.2 0-.8.6-1.2 1.8-1.3l.6-.1v-.2c0-.4-.3-.6-.8-.6-.4 0-.7.2-.8.5l-.6-.3c.2-.5.8-.8 1.5-.8 1 0 1.5.5 1.5 1.4v2.5zm-.7-1.6l-.5.1c-.7.1-1.1.3-1.1.7 0 .4.3.6.7.6.5 0 .9-.4.9-.9v-.5zm4.8 1.6l-1-2.6-1 2.6h-.9l1.4-3.5-.1-.4c-.1-.3-.3-.4-.6-.4h-.3l.1-.6c.2 0 .5-.1.7-.1.5 0 .9.2 1.1.8l1.6 4.2h-1z"
+                  fill="#d6d1c4" />
+              </svg>
+            </span>
+            <!-- Google Pay -->
+            <span class="payment-badge" title="Google Pay">
+              <svg viewBox="0 0 38 24" fill="none" class="payment-svg">
+                <rect width="38" height="24" rx="3" fill="#141414" />
+                <text x="19" y="15" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700"
+                  font-size="8" fill="#d6d1c4" letter-spacing="0.5">GPay</text>
+              </svg>
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Modular Application Entry Point -->
+  <script type="module" src="main.js"></script>
+</body>
+
+</html>

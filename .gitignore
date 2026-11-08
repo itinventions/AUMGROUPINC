@@ -1,0 +1,40 @@
+# ============================================================================
+# AURÉLIA — Hostinger Deployment .gitignore
+# ============================================================================
+
+# Environment variables
+*.env
+.env.*
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+
+# Editor/IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temporary files & archives
+*.tmp
+*.bak
+*.backup
+*.tar.gz
+*.tgz
+*.zip
+
+# Node (if ever used locally)
+node_modules/
+
+# Gemini AI
+.gemini/
+.agents/

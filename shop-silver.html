@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Silver Atelier — ESCÉLI Haute Joaillerie | Argentium 925 &amp; Fine Silver</title>
+  <meta name="description"
+    content="Explore the ESCÉLI Silver Atelier. Sculptural fine jewellery forged in hypoallergenic Argentium 925 and rhodium-plated sterling silver. Solitaires, bangles, and tennis bracelets.">
+
+  <!-- Favicon -->
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23004438' stroke-width='1.5'><polygon points='6,3 18,3 22,9 12,22 2,9'/></svg>">
+
+  <!-- Core Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,600&family=Montserrat:wght@200;300;400;500;600&display=swap"
+    rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Site Stylesheets -->
+  <link rel="stylesheet" href="style.css?v=3.5">
+  <link rel="stylesheet" href="animations.css">
+  <link rel="stylesheet" href="shop.css?v=3.5">
+</head>
+
+<body class="shop-page theme-silver" data-department="silver">
+
+  <!-- =========================================================================
+       LUXURY NAVIGATION BAR (PRESERVED GLOBAL IDENTITY & SHOPPING DROPDOWN)
+       ========================================================================= -->
+  <!-- =========================================================================
+       REPLICATED 2-TIER LUXURY NAVIGATION BAR (MATCHING HOME PAGE)
+       ========================================================================= -->
+  <header class="navbar" role="banner">
+
+    <!-- 1. Upper Tier: Hamburger (Mobile/Tablet) | Company Logo | Utility Icons (Account, Wishlist, Cart) -->
+    <div class="navbar-top">
+
+      <!-- Hamburger Menu Button (Three lines) — visible on mobile & tablet, hidden on desktop -->
+      <button type="button" class="hamburger-btn" id="mobile-menu-toggle" aria-label="Open Navigation Menu"
+        aria-expanded="false" aria-controls="navbar-drawer">
+        <svg class="hamburger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+
+      <!-- Center: Company Brand Logo from assets folder -->
+      <a href="index.html#home" class="navbar-brand-center" aria-label="AUM GROUP INC Fine Jewellery &amp; Gems Homepage">
+        <img src="assets/company_logo.png" alt="AUM GROUP INC Fine Jewellery &amp; Gems" class="navbar-logo-img">
+      </a>
+
+      <!-- Right: Utility Icons (Account, Wishlist, Cart) -->
+      <div class="navbar-top-right">
+
+        <!-- User Profile Account Button -->
+        <a href="#account" class="nav-icon-btn user-btn" aria-label="User Account" title="Account">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+        </a>
+
+        <!-- Wishlist / Favorites Heart Button with Dynamic Counter Badge -->
+        <button type="button" class="nav-icon-btn wishlist-btn" id="wishlist-btn" aria-label="Wishlist"
+          title="Wishlist">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+          </svg>
+          <span class="wishlist-badge" id="wishlist-counter">0</span>
+        </button>
+
+        <!-- Shopping Bag / Cart Button with Dynamic Badge Counter -->
+        <button type="button" class="nav-icon-btn cart-btn" id="cart-btn" aria-label="Shopping Cart with 0 items"
+          title="Shopping Bag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <path d="M16 10a4 4 0 0 1-8 0" />
+          </svg>
+          <span class="cart-badge" id="cart-counter">0</span>
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- 2. Middle Divider Line -->
+    <div class="navbar-divider" aria-hidden="true"></div>
+
+    <!-- 3. Lower Tier: Centered Links -->
+    <div class="navbar-bottom">
+
+      <!-- Navigation Links: perfectly centred -->
+      <nav role="navigation" aria-label="Main Navigation" class="navbar-nav-centered">
+        <ul class="nav-tier-links" id="main-nav-links">
+          <li><a href="index.html#home" class="nav-tier-link">Home</a></li>
+          <li><a href="shop.html" class="nav-tier-link active">Shopping</a></li>
+          <li><a href="about.html" class="nav-tier-link">About Us</a></li>
+          <li><a href="contact.html" class="nav-tier-link">Contact Us</a></li>
+          <li><a href="index.html#bestsellers" class="nav-tier-link">Best Sellers</a></li>
+        </ul>
+      </nav>
+
+    </div>
+
+  </header>
+
+  <!-- Slide-Out Luxury Navigation Drawer (Mobile & Side Access) -->
+  <div class="navbar-drawer-overlay" id="navbar-drawer-overlay" aria-hidden="true"></div>
+  <aside class="navbar-drawer" id="navbar-drawer" aria-label="Mobile Navigation Menu">
+    <div class="drawer-header">
+      <a href="index.html#home" class="drawer-brand" aria-label="Homepage">
+        <img src="assets/company_logo.png" alt="AUM GROUP INC" style="height: 90px; width: auto;">
+      </a>
+      <button type="button" class="drawer-close-btn" id="drawer-close-btn" aria-label="Close Navigation Menu">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- The 5 Links inside Mobile Drawer -->
+    <ul class="drawer-nav-list">
+      <li><a href="index.html#home" class="drawer-nav-link">Home</a></li>
+      <li><a href="shop.html" class="drawer-nav-link active">Shopping</a></li>
+      <li><a href="about.html" class="drawer-nav-link">About Us</a></li>
+      <li><a href="contact.html" class="drawer-nav-link">Contact Us</a></li>
+      <li><a href="index.html#bestsellers" class="drawer-nav-link">Best Sellers</a></li>
+    </ul>
+
+    <div class="drawer-footer">
+      <p style="font-size: 0.75rem; color: rgba(255,255,255,0.45); font-family: var(--font-sans);">&copy; 2026 AUM GROUP
+        INC.</p>
+    </div>
+  </aside>
+
+  <!-- =========================================================================
+       DEPARTMENT SUB-NAVIGATION TIER: SILVER | GOLD | DIAMOND | GEMS
+       ========================================================================= -->
+  <nav class="department-subnav-bar" aria-label="Haute Departments">
+    <div class="department-subnav-container">
+      <a href="shop.html" class="dept-nav-pill">
+        <span>Departments Overview</span>
+        <span class="dept-pill-count">4</span>
+      </a>
+      <a href="shop-silver.html" class="dept-nav-pill active">
+        <span>Silver Atelier</span>
+        <span class="dept-pill-count">6</span>
+      </a>
+      <a href="shop-gold.html" class="dept-nav-pill">
+        <span>Gold Atelier</span>
+        <span class="dept-pill-count">7</span>
+      </a>
+      <a href="shop-diamond.html" class="dept-nav-pill">
+        <span>Diamond Collection</span>
+        <span class="dept-pill-count">7</span>
+      </a>
+      <a href="shop-gems.html" class="dept-nav-pill">
+        <span>Gemstone Archive</span>
+        <span class="dept-pill-count">6</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- =========================================================================
+       BREADCRUMB NAVIGATION
+       ========================================================================= -->
+  <div class="shop-breadcrumbs-bar">
+    <div class="shop-breadcrumbs-container">
+      <a href="index.html" class="breadcrumb-link">Home</a>
+      <span class="breadcrumb-sep">/</span>
+      <a href="shop.html" class="breadcrumb-link">Shopping</a>
+      <span class="breadcrumb-sep">/</span>
+      <span class="breadcrumb-current">01 Silver Atelier</span>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       DEDICATED SILVER HERO (LUNAR MOONLIGHT & ARGENTIUM 925 PURITY)
+       ========================================================================= -->
+  <section class="category-video-hero theme-silver" id="hero">
+    <div class="video-hero-bg">
+      <video class="video-hero-media" autoplay loop muted playsinline poster="assets/images/shop/cat-luxury.jpg">
+        <source src="assets/videos/silver-atelier.mp4" type="video/mp4">
+      </video>
+      <div class="video-hero-tint"></div>
+    </div>
+    <div class="shop-hero-trellis-layer pattern-ivory-trellis opacity-25"></div>
+
+    <div class="video-hero-content">
+      <!-- Ambient Sparkle Stars -->
+      <svg class="gem-sparkle-star" style="top: 15%; right: 12%; width: 28px; height: 28px; color: #FFFFFF;" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5Z"/>
+      </svg>
+      <svg class="gem-sparkle-star" style="bottom: 20%; left: 8%; width: 22px; height: 22px; color: #D6D1C4; animation-delay: 1.8s;" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5Z"/>
+      </svg>
+
+      <div class="shop-hero-content reveal-on-scroll">
+        <span class="font-senjalara text-2xl" style="color: var(--color-beige); display: block; margin-bottom: 0.65rem;">The Art of Sterling Silver</span>
+        <div class="shop-hero-brand-tag">
+          <svg class="w-3.5 h-3.5 text-esceli-beige" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+          </svg>
+          <span class="font-sans">ESCÉLI • DEPARTMENT 01</span>
+        </div>
+
+        <h1 class="shop-hero-title">
+          Silver, Refined to <span class="serif-italic">Perfection</span>
+        </h1>
+
+        <p class="font-derathea text-2xl" style="color: var(--color-beige); margin-top: 0.5rem; letter-spacing: 0.04em;">
+          "Pure lunar fire shaped through elegance, detail and exceptional craftsmanship"
+        </p>
+
+        <p class="shop-hero-desc">
+          Discover timeless sterling silver creations shaped through elegance, detail and exceptional craftsmanship. Forged from patented hypoallergenic Argentium 925 and finished with triple rhodium micro-plating for enduring tarnish immunity.
+        </p>
+
+        <div class="shop-hero-cta-group">
+          <a href="#shop-catalog" class="shop-btn-emerald">
+            <span>Explore Silver Catalog (6)</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+          <a href="#silver-craft" class="shop-btn-burgundy-outline">
+            <span>Metallurgy &amp; Purity</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       METALLURGY & PURITY SPOTLIGHT (ARGENTIUM 925 VS TRADITIONAL STERLING)
+       ========================================================================= -->
+  <section class="shop-atelier-story-section pattern-ivory-trellis" id="silver-craft">
+    <div class="atelier-grid">
+      <div class="atelier-narrative-block reveal-on-scroll">
+        <span class="atelier-tag">METALLURGICAL EXCELLENCE</span>
+        <h2 class="atelier-title">The Purity of Argentium.<br>The Fire of <span class="font-serif italic text-esceli-beige">Master Polish.</span></h2>
+        <p class="atelier-p">
+          Traditional sterling silver oxidizes and tarnishes when exposed to air. ESCÉLI's Silver Atelier exclusively employs Argentium 925—a patented alloy containing germanium that forms a protective, self-healing oxide barrier.
+        </p>
+        <p class="atelier-p">
+          Every piece is finished with a triple-pass bath of molten white rhodium and platinum, delivering an unmistakable icy luster that rivals 950 platinum at an accessible investment level.
+        </p>
+
+        <div class="atelier-pillars">
+          <div class="pillar-item">
+            <div class="pillar-header">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--color-beige);"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <h4>Natural Tarnish Immunity</h4>
+            </div>
+            <p>Germanium alloy formulation eliminates firescale and provides lifelong resistance to atmospheric oxidation.</p>
+          </div>
+          <div class="pillar-item">
+            <div class="pillar-header">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--color-beige);"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              <h4>100% Hypoallergenic</h4>
+            </div>
+            <p>Certified nickel-free and biocompatible. Silken smooth against sensitive skin with mirror interior contours.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="atelier-media-frame reveal-on-scroll">
+        <img src="assets/images/shop/brand-craft.jpg" alt="ESCÉLI Master Silversmith at Work" loading="lazy">
+        <div class="atelier-quote-card">
+          <p class="atelier-quote-text">
+            &ldquo;Silver captures cold celestial light like no other metal. When sculpted with volume and balance, it becomes pure modern sculpture.&rdquo;
+          </p>
+          <span class="atelier-quote-author">— ESCÉLI Head of Silversmithing</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       CURATED SILVER BESTSELLERS
+       ========================================================================= -->
+  <section class="shop-bestsellers-section" id="bestsellers">
+    <div class="shop-section-header reveal-on-scroll">
+      <span class="shop-eyebrow">ICONS OF THE SILVER ATELIER</span>
+      <h2 class="shop-heading">Silver <span class="serif-italic">Bestsellers</span></h2>
+      <p class="shop-subheading">
+        Celebrated worldwide for their architectural balance, tactile comfort, and everlasting silver luster.
+      </p>
+    </div>
+
+    <div class="shop-products-grid" id="bestsellers-grid"></div>
+  </section>
+
+  <!-- =========================================================================
+       DEDICATED SILVER CATALOGUE WITH LEFT SIDEBAR FILTER
+       ========================================================================= -->
+  <section class="shop-catalog-section" id="shop-catalog">
+    <div class="catalog-container">
+      <div class="shop-section-header mb-8">
+        <span class="shop-eyebrow">THE SILVER COLLECTION</span>
+        <h2 class="shop-heading">Browse All <span class="serif-italic">Silver Pieces</span></h2>
+        <p class="shop-subheading">
+          Explore all 6 master silver creations—from Argentium solitaires to heavy torque bangles and articulated tennis lines. Use the left filter to refine by category, silver alloy, and price range.
+        </p>
+      </div>
+
+      <div class="shop-catalog-layout">
+        <!-- LEFT SIDEBAR FILTER -->
+        <aside class="shop-filter-sidebar" id="shop-filter-sidebar" aria-label="Product Filters">
+          <div class="filter-sidebar-header">
+            <h3 class="filter-sidebar-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="4" y1="21" x2="4" y2="14"></line>
+                <line x1="4" y1="10" x2="4" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12" y2="3"></line>
+                <line x1="20" y1="21" x2="20" y2="16"></line>
+                <line x1="20" y1="12" x2="20" y2="3"></line>
+                <line x1="1" y1="14" x2="7" y2="14"></line>
+                <line x1="9" y1="8" x2="15" y2="8"></line>
+                <line x1="17" y1="16" x2="23" y2="16"></line>
+              </svg>
+              <span>Refine Creations</span>
+            </h3>
+            <button type="button" class="filter-reset-btn" id="filter-sidebar-reset">Reset All</button>
+            <button type="button" class="filter-sidebar-close-btn hidden" id="filter-sidebar-close-btn" aria-label="Close Filter">✕</button>
+          </div>
+
+          <!-- Section 1: Categories -->
+          <div class="filter-widget">
+            <h4 class="filter-widget-title">
+              <span>Categories</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </h4>
+            <ul class="filter-category-list">
+              <li class="filter-option-item active" data-sidebar-cat="all">
+                <label class="filter-option-label">
+                  <input type="radio" name="sidebar-category" value="all" checked>
+                  <span>All Silver</span>
+                </label>
+                <span class="filter-count-badge" id="count-cat-all">6</span>
+              </li>
+              <li class="filter-option-item" data-sidebar-cat="Rings">
+                <label class="filter-option-label">
+                  <input type="radio" name="sidebar-category" value="Rings">
+                  <span>Silver Rings</span>
+                </label>
+                <span class="filter-count-badge" id="count-cat-rings">2</span>
+              </li>
+              <li class="filter-option-item" data-sidebar-cat="Necklaces">
+                <label class="filter-option-label">
+                  <input type="radio" name="sidebar-category" value="Necklaces">
+                  <span>Silver Necklaces</span>
+                </label>
+                <span class="filter-count-badge" id="count-cat-necklaces">1</span>
+              </li>
+              <li class="filter-option-item" data-sidebar-cat="Earrings">
+                <label class="filter-option-label">
+                  <input type="radio" name="sidebar-category" value="Earrings">
+                  <span>Silver Earrings</span>
+                </label>
+                <span class="filter-count-badge" id="count-cat-earrings">1</span>
+              </li>
+              <li class="filter-option-item" data-sidebar-cat="Bracelets">
+                <label class="filter-option-label">
+                  <input type="radio" name="sidebar-category" value="Bracelets">
+                  <span>Silver Bracelets</span>
+                </label>
+                <span class="filter-count-badge" id="count-cat-bracelets">2</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Section 2: Scrollable Price Range Slider ("From" — "To") -->
+          <div class="filter-widget">
+            <h4 class="filter-widget-title">
+              <span>Price Range</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </h4>
+            <div class="price-slider-wrapper">
+              <div class="price-range-display-row">
+                <span>Selected Range:</span>
+                <span class="price-display-val" id="price-range-display">$0 — $50,000</span>
+              </div>
+              <div class="dual-range-track-container">
+                <div class="dual-range-track"></div>
+                <div class="dual-range-fill" id="price-slider-fill"></div>
+                <input type="range" id="price-min" min="0" max="50000" step="500" value="0" class="range-slider-input" aria-label="Price range minimum">
+                <input type="range" id="price-max" min="0" max="50000" step="500" value="50000" class="range-slider-input" aria-label="Price range maximum">
+              </div>
+              <div class="price-boxes-row">
+                <div class="price-box">
+                  <span>$</span>
+                  <input type="number" id="price-input-min" value="0" min="0" max="50000" step="500" class="price-number-input" aria-label="Minimum price in dollars">
+                </div>
+                <span class="price-box-separator">to</span>
+                <div class="price-box">
+                  <span>$</span>
+                  <input type="number" id="price-input-max" value="50000" min="0" max="50000" step="500" class="price-number-input" aria-label="Maximum price in dollars">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 3: Silver Metallurgy -->
+          <div class="filter-widget">
+            <h4 class="filter-widget-title">
+              <span>Silver Metallurgy</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </h4>
+            <ul class="filter-options-list">
+              <li class="filter-option-item active" data-sidebar-metal="all">
+                <label class="filter-option-label">
+                  <input type="radio" name="sidebar-metal" value="all" checked>
+                  <span>All Silver</span>
+                </label>
+              </li>
+              <li class="filter-option-item" data-sidebar-metal="Argentium">
+                <label class="filter-option-label">
+                  <input type="radio" name="sidebar-metal" value="Argentium">
+                  <span>Argentium 925 Silver</span>
+                </label>
+              </li>
+              <li class="filter-option-item" data-sidebar-metal="Sterling">
+                <label class="filter-option-label">
+                  <input type="radio" name="sidebar-metal" value="Sterling">
+                  <span>Sterling Silver 925</span>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </aside>
+
+        <!-- RIGHT CATALOG MAIN -->
+        <div class="shop-catalog-main">
+          <!-- Top Toolbar -->
+          <div class="catalog-top-toolbar">
+            <button type="button" class="btn-mobile-filter-toggle" id="btn-mobile-filter-toggle">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="4" y1="21" x2="4" y2="14"></line>
+                <line x1="4" y1="10" x2="4" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12" y2="3"></line>
+                <line x1="20" y1="21" x2="20" y2="16"></line>
+                <line x1="20" y1="12" x2="20" y2="3"></line>
+              </svg>
+              <span>Filter &amp; Refine</span>
+            </button>
+
+            <div class="catalog-meta-info">
+              <span class="catalog-results-counter" id="catalog-count">Showing <strong>6</strong> creations</span>
+            </div>
+
+            <div class="catalog-active-filters-row" id="catalog-active-chips"></div>
+
+            <div class="catalog-toolbar-actions">
+              <!-- Search Input -->
+              <div class="catalog-search-wrap">
+                <input type="text" id="catalog-search" class="catalog-search-input" placeholder="Search silver pieces..." aria-label="Search silver pieces">
+                <svg class="search-icon-svg catalog-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </div>
+
+              <!-- Sorting Select -->
+              <select id="sort-products" class="filter-select" aria-label="Sort Creations">
+                <option value="featured">Featured Pieces</option>
+                <option value="newest">New Arrivals</option>
+                <option value="bestseller">Bestselling Pieces</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Empty State -->
+          <div class="catalog-empty-state" id="catalog-empty-state" style="display: none;">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="8" y1="12" x2="16" y2="12"></line>
+            </svg>
+            <h3>No Silver Creations Match Your Selection</h3>
+            <p>Try resetting your filters or adjusting your price slider to discover our handcrafted silver pieces.</p>
+            <button type="button" class="shop-btn-emerald mt-4" onclick="window.shopApp?.resetFilters?.();">Reset All Filters</button>
+          </div>
+
+          <!-- Product Grid -->
+          <div class="shop-products-grid" id="catalog-products-grid"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       CROSS-DEPARTMENT DISCOVERY (VISIT GOLD, DIAMOND & GEMS)
+       ========================================================================= -->
+  <section class="departments-showcase-section" style="background: #FAF8F5; border-top: 1px solid rgba(214, 209, 196, 0.4);">
+    <div class="shop-section-header reveal-on-scroll">
+      <span class="shop-eyebrow">EXPLORE OTHER ATELIERS</span>
+      <h2 class="shop-heading">Continue Your <span class="serif-italic">Journey</span></h2>
+      <p class="shop-subheading">
+        Discover our companion departments—from solid 18K gold to GIA certified diamonds and rare untreated gemstones.
+      </p>
+    </div>
+
+    <div class="dept-pavilions-grid" style="grid-template-columns: repeat(3, 1fr);">
+      <a href="shop-gold.html" class="dept-pavilion-card reveal-on-scroll">
+        <div class="dept-card-media">
+          <span class="dept-card-badge">18K Solid Gold</span>
+          <img src="assets/images/shop/collection-gold.jpg" alt="Gold Atelier" class="dept-card-img" loading="lazy">
+          <div class="dept-card-overlay"></div>
+        </div>
+        <div class="dept-card-content">
+          <span class="dept-card-subtitle">ATELIER N° 02</span>
+          <h3 class="dept-card-title">Gold Atelier</h3>
+          <p class="dept-card-desc">Solid 18K yellow, rose, and white gold sculpted by French goldsmiths.</p>
+          <div class="dept-card-footer">
+            <span class="dept-card-count">7 Masterpieces</span>
+            <span class="dept-card-cta">Enter Gold Atelier &rarr;</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="shop-diamond.html" class="dept-pavilion-card reveal-on-scroll">
+        <div class="dept-card-media">
+          <span class="dept-card-badge">GIA Triple Ex</span>
+          <img src="assets/images/shop/hero-campaign.jpg" alt="Diamond Vault" class="dept-card-img" loading="lazy">
+          <div class="dept-card-overlay"></div>
+        </div>
+        <div class="dept-card-content">
+          <span class="dept-card-subtitle">VAULT N° 03</span>
+          <h3 class="dept-card-title">Diamond Vault</h3>
+          <p class="dept-card-desc">Untamed brilliance. Only the top 0.01% of natural diamonds graded by GIA.</p>
+          <div class="dept-card-footer">
+            <span class="dept-card-count">7 Masterpieces</span>
+            <span class="dept-card-cta">Enter Diamond Vault &rarr;</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="shop-gems.html" class="dept-pavilion-card reveal-on-scroll">
+        <div class="dept-card-media">
+          <span class="dept-card-badge">Rare Specimens</span>
+          <img src="assets/images/shop/collection-emerald.jpg" alt="Gemstone Archive" class="dept-card-img" loading="lazy">
+          <div class="dept-card-overlay"></div>
+        </div>
+        <div class="dept-card-content">
+          <span class="dept-card-subtitle">ARCHIVE N° 04</span>
+          <h3 class="dept-card-title">Gemstone Archive</h3>
+          <p class="dept-card-desc">Untreated Muzo emeralds, Ceylon sapphires, and Burmese rubies.</p>
+          <div class="dept-card-footer">
+            <span class="dept-card-count">6 Masterpieces</span>
+            <span class="dept-card-cta">Enter Gemstone Archive &rarr;</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+
+
+  <!-- =========================================================================
+       REPLICATED 4-COLUMN FOOTER
+       ========================================================================= -->
+  <footer class="site-footer" id="site-footer" role="contentinfo">
+    <div class="footer-container">
+
+      <!-- 4-Column Footer Grid (SHOP column excluded per instruction) -->
+      <div class="footer-grid">
+
+        <!-- 1. Brand Identity & Social Channels -->
+        <div class="footer-col footer-col-brand">
+          <a href="index.html#home" class="footer-brand-link" aria-label="AUM GROUP INC Homepage">
+            <img src="assets/company_logo.png" alt="AUM GROUP INC Fine Jewellery &amp; Gems" class="footer-brand-img">
+          </a>
+          <p class="footer-brand-desc">
+            Connecting you with the world's most extraordinary gemstones and fine jewelry.
+          </p>
+          <div class="footer-social-row" aria-label="Social media channels">
+            <!-- Instagram -->
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-social-icon"
+              aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <!-- Facebook -->
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="footer-social-icon"
+              aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+              </svg>
+            </a>
+            <!-- Pinterest -->
+            <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" class="footer-social-icon"
+              aria-label="Pinterest">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.69 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z" />
+              </svg>
+            </a>
+            <!-- YouTube -->
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="footer-social-icon"
+              aria-label="YouTube">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path
+                  d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z">
+                </path>
+                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor"></polygon>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 2. CUSTOMER CARE Column -->
+        <div class="footer-col">
+          <h4 class="footer-heading">CUSTOMER CARE</h4>
+          <ul class="footer-links-list">
+            <li><a href="about.html" class="footer-nav-item">About Us</a></li>
+            <li><a href="#shipping" class="footer-nav-item">Shipping &amp; Delivery</a></li>
+            <li><a href="#returns" class="footer-nav-item">Returns &amp; Exchanges</a></li>
+            <li><a href="#faq" class="footer-nav-item">FAQ</a></li>
+            <li><a href="contact.html" class="footer-nav-item">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- 3. INFORMATION Column -->
+        <div class="footer-col">
+          <h4 class="footer-heading">INFORMATION</h4>
+          <ul class="footer-links-list">
+            <li><a href="#expertise" class="footer-nav-item">Gemstone Education</a></li>
+            <li><a href="#care" class="footer-nav-item">Care Guide</a></li>
+            <li><a href="#sourcing" class="footer-nav-item">Our Sourcing</a></li>
+            <li><a href="#sell" class="footer-nav-item">Sell With Us</a></li>
+            <li><a href="#terms" class="footer-nav-item">Terms &amp; Conditions</a></li>
+          </ul>
+        </div>
+
+        <!-- 4. GET IN TOUCH Column -->
+        <div class="footer-col">
+          <h4 class="footer-heading">GET IN TOUCH</h4>
+          <ul class="footer-contact-list">
+            <li class="footer-contact-item">
+              <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              <a href="mailto:info@aumgroupinc.com" class="footer-contact-link">info@aumgroupinc.com</a>
+            </li>
+            <li class="footer-contact-item">
+              <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                </path>
+              </svg>
+              <a href="tel:+918108070022" class="footer-contact-link">+91 810 807 0022</a>
+            </li>
+            <li class="footer-contact-item">
+              <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span class="footer-contact-text">Mumbai, Maharashtra, India</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom Bar: Copyright & Payment Badges -->
+      <div class="footer-bottom-bar">
+        <p class="footer-copyright">&copy; 2026 AUM GROUP INC / Gemor&eacute; Marketplace. All Rights Reserved.</p>
+        <div class="footer-payment-methods" aria-label="Accepted payment methods">
+          <!-- Visa -->
+          <span class="payment-badge" title="Visa">
+            <svg viewBox="0 0 38 24" fill="none" class="payment-svg">
+              <rect width="38" height="24" rx="3" fill="#141414" />
+              <path
+                d="M15.2 16.5L17.2 7.5H19.7L17.7 16.5H15.2ZM24.6 7.7C24.1 7.5 23.3 7.3 22.3 7.3C19.9 7.3 18.2 8.6 18.2 10.4C18.2 11.8 19.4 12.5 20.4 13C21.4 13.5 21.7 13.8 21.7 14.3C21.7 15 20.9 15.4 20.1 15.4C19.1 15.4 18.5 15.2 17.7 14.8L17.3 14.6L16.9 16.6C17.6 16.9 18.8 17.2 20 17.2C22.6 17.2 24.3 15.9 24.3 14C24.3 12.3 23.2 11.5 21.9 10.9C21.1 10.5 20.6 10.2 20.6 9.7C20.6 9.2 21.2 8.8 22.1 8.8C22.9 8.8 23.6 9 24.2 9.3L24.6 7.7ZM29.2 7.5H27.3C26.7 7.5 26.2 7.7 26 8.2L22.2 16.5H24.8L25.3 15.1H28.5L28.8 16.5H31.1L29.2 7.5ZM26 13.3L27.3 9.7L28.1 13.3H26ZM13.8 7.5L11.4 13.8L11.1 12.4C10.7 10.9 9.2 9.3 7.6 8.5L9.8 16.5H12.4L16.4 7.5H13.8Z"
+                fill="#d6d1c4" />
+            </svg>
+          </span>
+          <!-- Visa Electron -->
+          <span class="payment-badge" title="Visa Electron">
+            <svg viewBox="0 0 38 24" fill="none" class="payment-svg">
+              <rect width="38" height="24" rx="3" fill="#141414" />
+              <text x="19" y="15" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700"
+                font-size="8" fill="#d6d1c4" letter-spacing="1">ELECTRON</text>
+            </svg>
+          </span>
+          <!-- Mastercard -->
+          <span class="payment-badge" title="Mastercard">
+            <svg viewBox="0 0 38 24" fill="none" class="payment-svg">
+              <rect width="38" height="24" rx="3" fill="#141414" />
+              <circle cx="15" cy="12" r="6" fill="#402020" fill-opacity="0.85" />
+              <circle cx="23" cy="12" r="6" fill="#d6d1c4" fill-opacity="0.75" />
+            </svg>
+          </span>
+          <!-- Amex -->
+          <span class="payment-badge" title="American Express">
+            <svg viewBox="0 0 38 24" fill="none" class="payment-svg">
+              <rect width="38" height="24" rx="3" fill="#141414" />
+              <text x="19" y="15" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700"
+                font-size="8" fill="#d6d1c4" letter-spacing="1">AMEX</text>
+            </svg>
+          </span>
+          <!-- Apple Pay -->
+          <span class="payment-badge" title="Apple Pay">
+            <svg viewBox="0 0 38 24" fill="none" class="payment-svg">
+              <rect width="38" height="24" rx="3" fill="#141414" />
+              <path
+                d="M12.8 11.2c-.3.4-.8.7-1.3.7-.1-.6.2-1.1.5-1.4.3-.3.8-.6 1.3-.6.1.5-.2 1-.5 1.3zm.5 1.6c-.3 0-.6-.1-.9-.1-.3 0-.6.1-.9.1-.6 0-1-.3-1.3-.8-.7-1.2-.2-3.1 1-3.1.5 0 .8.3 1.1.3.3 0 .7-.3 1.2-.3.4 0 .9.2 1.2.6-.4.2-.6.6-.6 1.1 0 .7.5 1.2 1.2 1.4-.3.9-.9 1.9-1.9 1.9zm4.2-.2v-3.7h1.4c.9 0 1.5.6 1.5 1.4s-.6 1.4-1.5 1.4h-.6v.9h-.8zm.8-1.5h.5c.5 0 .8-.3.8-.7s-.3-.7-.8-.7h-.5v1.4zm4.8 1.5h-.7l-.3-.7c-.4.5-.9.8-1.5.8-.8 0-1.4-.5-1.4-1.2 0-.8.6-1.2 1.8-1.3l.6-.1v-.2c0-.4-.3-.6-.8-.6-.4 0-.7.2-.8.5l-.6-.3c.2-.5.8-.8 1.5-.8 1 0 1.5.5 1.5 1.4v2.5zm-.7-1.6l-.5.1c-.7.1-1.1.3-1.1.7 0 .4.3.6.7.6.5 0 .9-.4.9-.9v-.5zm4.8 1.6l-1-2.6-1 2.6h-.9l1.4-3.5-.1-.4c-.1-.3-.3-.4-.6-.4h-.3l.1-.6c.2 0 .5-.1.7-.1.5 0 .9.2 1.1.8l1.6 4.2h-1z"
+                fill="#d6d1c4" />
+            </svg>
+          </span>
+          <!-- Google Pay -->
+          <span class="payment-badge" title="Google Pay">
+            <svg viewBox="0 0 38 24" fill="none" class="payment-svg">
+              <rect width="38" height="24" rx="3" fill="#141414" />
+              <text x="19" y="15" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700"
+                font-size="8" fill="#d6d1c4" letter-spacing="0.5">GPay</text>
+            </svg>
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Slide-out Cart Drawer -->
+  <div class="shop-cart-backdrop" id="cart-drawer-backdrop" aria-hidden="true"></div>
+  <aside class="shop-cart-drawer" id="cart-drawer" role="dialog" aria-label="Shopping Cart">
+    <div class="cart-drawer-header">
+      <div class="flex items-center gap-2">
+        <h3 class="cart-drawer-title">Your Shopping Bag</h3>
+        <span class="cart-drawer-count" id="cart-header-count">(0)</span>
+      </div>
+      <button type="button" class="cart-close-btn" id="cart-drawer-close" aria-label="Close Bag">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <div class="cart-drawer-shipping" id="cart-shipping-tracker">
+      <div class="flex items-center justify-between text-xs mb-1.5">
+        <span class="font-sans font-medium text-esceli-emerald" id="cart-shipping-box">Complimentary Armored Courier</span>
+        <span class="font-mono text-esceli-grey" id="cart-shipping-percent">0%</span>
+      </div>
+      <div class="cart-shipping-track">
+        <div class="cart-shipping-fill" id="cart-shipping-fill" style="width: 0%;"></div>
+      </div>
+    </div>
+    <div class="cart-drawer-body" id="cart-items-container">
+      <div class="cart-empty-state">
+        <p>Your shopping bag is empty.</p>
+        <a href="#shop-catalog" class="shop-btn-emerald mt-4" onclick="document.getElementById('cart-drawer-close')?.click();">Explore Silver Pieces</a>
+      </div>
+    </div>
+    <div class="cart-drawer-footer">
+      <div class="cart-subtotal-row">
+        <span>Subtotal</span>
+        <span class="cart-subtotal-val" id="cart-subtotal-val">$0</span>
+      </div>
+      <button type="button" class="cart-checkout-btn" id="cart-checkout-btn">Proceed to Armored Delivery</button>
+    </div>
+  </aside>
+
+  <!-- Slide-Out Wishlist Drawer -->
+  <aside class="shop-cart-drawer" id="wishlist-drawer" aria-label="Curated Wishlist">
+    <div class="drawer-header" style="display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 1.5rem; border-bottom: 1px solid rgba(214, 209, 196, 0.3);">
+      <h3 class="drawer-title" style="display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-serif); font-size: 1.25rem; color: #FAF8F5;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        <span>Curated Wishlist</span>
+      </h3>
+      <button type="button" class="drawer-close-btn" id="wishlist-close-btn" aria-label="Close Wishlist">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <div class="drawer-items-list" id="wishlist-items-list" style="padding: 1.5rem; overflow-y: auto; max-height: calc(100vh - 200px);"></div>
+    <div class="drawer-footer" style="padding: 1.5rem; border-top: 1px solid rgba(214, 209, 196, 0.3);">
+      <a href="#shop-catalog" class="shop-btn-emerald text-center block w-full" onclick="window.shopApp?.closeWishlistDrawer?.();">
+        Explore Silver Pieces
+      </a>
+    </div>
+  </aside>
+
+  <!-- Floating Atelier Concierge Bar (Instant Call, Location, Insta, Email, YouTube Access) -->
+  <aside class="floating-concierge-dock" aria-label="Atelier Quick Access Concierge">
+    <span class="dock-label">Concierge</span>
+    <div class="dock-divider"></div>
+    <a href="tel:+12125557890" class="dock-item" data-tooltip="Call Atelier (+1 212 555-7890)" aria-label="Call Atelier">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+      </svg>
+    </a>
+    <a href="#site-footer" class="dock-item" data-tooltip="Boutique Location: New York Atelier" aria-label="Atelier Location">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+        <circle cx="12" cy="10" r="3"></circle>
+      </svg>
+    </a>
+    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="dock-item" data-tooltip="Instagram: @esceli.official" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+      </svg>
+    </a>
+    <a href="mailto:hello@gemore.com" class="dock-item" data-tooltip="Email: hello@gemore.com" aria-label="Email Concierge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+        <polyline points="22,6 12,13 2,6"></polyline>
+      </svg>
+    </a>
+    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="dock-item" data-tooltip="YouTube: Haute Joaillerie Films" aria-label="YouTube Channel">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+        <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor"></polygon>
+      </svg>
+    </a>
+  </aside>
+
+  <!-- Quick View Modal (Luxury Standardized Drawer) -->
+  <div class="shop-modal-backdrop" id="quickview-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="qv-title">
+    <div class="quickview-modal-content">
+      <button type="button" class="modal-close-btn" id="quickview-close-btn" aria-label="Close modal">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+
+      <div class="modal-gallery-column">
+        <div class="modal-main-img-wrap">
+          <img src="" alt="" id="qv-main-img" class="modal-main-img">
+        </div>
+        <div class="modal-thumbnails-row" id="qv-thumbs"></div>
+      </div>
+
+      <div class="modal-info-column">
+        <span class="modal-collection-tag" id="qv-tag">COLLECTION</span>
+        <h3 class="modal-title" id="qv-title">Product Name</h3>
+
+        <div class="modal-price-cert-row">
+          <span class="modal-price" id="qv-price">$0</span>
+          <span class="modal-cert-badge" id="qv-cert">ARGENTIUM SILVER</span>
+        </div>
+
+        <p class="modal-desc" id="qv-desc"></p>
+
+        <div class="modal-option-group">
+          <div class="modal-option-label">
+            <span>Select Dimensions / Size</span>
+            <span class="text-xs text-[#004438] underline cursor-pointer">Size Guide</span>
+          </div>
+          <div class="modal-sizes-grid" id="qv-sizes"></div>
+        </div>
+
+        <div class="modal-qty-add-row">
+          <div class="qty-stepper">
+            <button type="button" class="qty-btn" id="qv-qty-minus">-</button>
+            <span class="qty-val" id="qv-qty-val">1</span>
+            <button type="button" class="qty-btn" id="qv-qty-plus">+</button>
+          </div>
+          <button type="button" class="btn-modal-add" id="qv-add-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <span>Add To Shopping Bag</span>
+          </button>
+        </div>
+
+        <div class="modal-accordion">
+          <div class="accordion-item open">
+            <div class="accordion-header">
+              <span>Silver &amp; Alloy Specifications</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+            <div class="accordion-body">
+              <ul class="list-disc pl-5 space-y-1" id="qv-specs-details"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="shop-toast" id="shop-toast" role="status" aria-live="polite">
+    <div class="toast-content">
+      <svg class="toast-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      <span class="toast-message" id="toast-message">Added to your bag</span>
+    </div>
+  </div>
+
+  <!-- Shop JavaScript Orchestrator -->
+  <script type="module" src="shop.js?v=3.5"></script>
+</body>
+</html>
+

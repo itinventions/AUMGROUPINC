@@ -1,0 +1,393 @@
+/* ==========================================================================
+   AURÉLIA FINE JEWELLERY & GEMS - Loop Animations
+   ========================================================================== */
+
+/* 1. Ambient Caustics & Glow Loop behind Hero Text */
+.ambient-glow-loop {
+  position: absolute;
+  inset: -20% -30%;
+  background: radial-gradient(
+    ellipse 60% 55% at 45% 48%,
+    rgba(223, 199, 167, 0.14) 0%,
+    rgba(200, 150, 80, 0.08) 32%,
+    rgba(26, 68, 142, 0.12) 60%,
+    transparent 78%
+  );
+  filter: blur(48px);
+  pointer-events: none;
+  z-index: -1;
+  animation: ambientAuraPulse 9s ease-in-out infinite alternate;
+  transform-origin: center center;
+}
+
+/* Secondary sapphire gemstone caustics accent */
+.sapphire-accent-loop {
+  position: absolute;
+  top: 15%;
+  left: 20%;
+  width: 320px;
+  height: 280px;
+  background: radial-gradient(
+    circle at center,
+    rgba(38, 88, 182, 0.18) 0%,
+    rgba(18, 48, 110, 0.08) 45%,
+    transparent 70%
+  );
+  filter: blur(55px);
+  pointer-events: none;
+  z-index: -1;
+  animation: sapphireDrift 14s ease-in-out infinite alternate;
+}
+
+/* 2. Micro Star Twinkle / Gem Glints in Text Background */
+.gem-glint {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 1;
+}
+
+.gem-glint::before, .gem-glint::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: #ffffff;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.9), 0 0 18px rgba(223, 199, 167, 0.8);
+}
+
+.gem-glint::before {
+  width: 100%;
+  height: 1.5px;
+}
+
+.gem-glint::after {
+  width: 1.5px;
+  height: 100%;
+}
+
+.gem-glint-1 {
+  top: 18%;
+  left: 46%;
+  animation: glintTwinkle 5.2s ease-in-out 0.8s infinite;
+}
+
+.gem-glint-2 {
+  top: 48%;
+  left: 78%;
+  animation: glintTwinkle 6.8s ease-in-out 2.4s infinite;
+}
+
+.gem-glint-3 {
+  top: 72%;
+  left: 12%;
+  animation: glintTwinkle 5.8s ease-in-out 3.7s infinite;
+}
+
+.gem-glint-4 {
+  top: 32%;
+  left: -4%;
+  animation: glintTwinkle 7.4s ease-in-out 1.5s infinite;
+}
+
+/* 3. Text Subtle Shimmer Pass */
+.text-shimmer-highlight {
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(
+    115deg,
+    #ffffff 0%,
+    #f8f2ea 35%,
+    #ffeecb 50%,
+    #ffffff 65%,
+    #f8f2ea 100%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textShimmerCycle 10s ease-in-out infinite;
+}
+
+/* 4. Button Luxury Gloss Pass Loop */
+.hero-cta-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 80%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.45) 50%,
+    transparent 100%
+  );
+  transform: skewX(-25deg);
+  pointer-events: none;
+  animation: buttonGlossPass 6s ease-in-out infinite;
+}
+
+/* 5. Keyframes */
+
+@keyframes ambientAuraPulse {
+  0% {
+    transform: scale(0.92) translate(0, 0);
+    opacity: 0.65;
+  }
+  50% {
+    transform: scale(1.08) translate(15px, -10px);
+    opacity: 0.95;
+  }
+  100% {
+    transform: scale(0.98) translate(-10px, 8px);
+    opacity: 0.72;
+  }
+}
+
+@keyframes sapphireDrift {
+  0% {
+    transform: translate(0, 0) scale(0.9);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(40px, 25px) scale(1.15);
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate(-25px, -15px) scale(1.0);
+    opacity: 0.6;
+  }
+}
+
+@keyframes glintTwinkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.3) rotate(0deg);
+  }
+  45% {
+    opacity: 0;
+    transform: scale(0.4) rotate(15deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.25) rotate(45deg);
+  }
+  55% {
+    opacity: 0;
+    transform: scale(0.3) rotate(90deg);
+  }
+}
+
+@keyframes textShimmerCycle {
+  0%, 65% {
+    background-position: 100% 50%;
+  }
+  85%, 100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes buttonGlossPass {
+  0%, 70% {
+    left: -120%;
+  }
+  85%, 100% {
+    left: 160%;
+  }
+}
+
+/* Cart badge breathing animation */
+@keyframes badgeBreath {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 6px rgba(223, 199, 167, 0.4);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 10px rgba(223, 199, 167, 0.75);
+  }
+}
+
+.cart-badge {
+  animation: badgeBreath 3.5s ease-in-out infinite;
+}
+
+@keyframes dividerGleamPass {
+  0%, 65% {
+    left: -100%;
+  }
+  85%, 100% {
+    left: 140%;
+  }
+}
+
+/* ==========================================================================
+   6. SCROLL-TRIGGERED REVEAL ANIMATIONS (Luxury Gold Aesthetic)
+   ========================================================================== */
+
+/* Base Scroll Reveal element: starts with soft downward offset, opacity 0 and subtle lens blur */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(32px);
+  filter: blur(8px);
+  transition:
+    opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: 0s !important;
+  will-change: opacity, transform, filter;
+}
+
+.reveal-on-scroll.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+  transition:
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Fade from Left variant */
+.reveal-fade-left {
+  opacity: 0;
+  transform: translateX(-38px);
+  filter: blur(8px);
+  transition:
+    opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: 0s !important;
+  will-change: opacity, transform, filter;
+}
+
+.reveal-fade-left.is-revealed {
+  opacity: 1;
+  transform: translateX(0);
+  filter: blur(0);
+  transition:
+    opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.95s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Fade from Right variant */
+.reveal-fade-right {
+  opacity: 0;
+  transform: translateX(38px);
+  filter: blur(8px);
+  transition:
+    opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: 0s !important;
+  will-change: opacity, transform, filter;
+}
+
+.reveal-fade-right.is-revealed {
+  opacity: 1;
+  transform: translateX(0);
+  filter: blur(0);
+  transition:
+    opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.95s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Scale-Up & Elevation variant (ideal for cards & marquee containers) */
+.reveal-scale-up {
+  opacity: 0;
+  transform: translateY(28px) scale(0.96);
+  filter: blur(10px);
+  transition:
+    opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: 0s !important;
+  will-change: opacity, transform, filter;
+}
+
+.reveal-scale-up.is-revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+  transition:
+    opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Story & Expertise gold divider expand reveal (Horizontal) */
+.story-divider.reveal-on-scroll,
+.about-range-divider.reveal-on-scroll,
+.expertise-divider.reveal-on-scroll {
+  transform: scaleX(0);
+  transform-origin: center center;
+  transition:
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.4s ease;
+  transition-delay: 0s !important;
+}
+
+.story-divider.reveal-on-scroll.is-revealed,
+.about-range-divider.reveal-on-scroll.is-revealed,
+.expertise-divider.reveal-on-scroll.is-revealed {
+  transform: scaleX(1);
+  opacity: 1;
+  transition:
+    transform 1.1s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.8s ease;
+}
+
+@keyframes dividerGleam {
+  0% {
+    left: -100%;
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  60% {
+    left: 140%;
+    opacity: 0;
+  }
+  100% {
+    left: 140%;
+    opacity: 0;
+  }
+}
+
+/* Accessibility: Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll,
+  .reveal-fade-left,
+  .reveal-fade-right,
+  .reveal-scale-up {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+  .story-divider.reveal-on-scroll,
+  .expertise-divider.reveal-on-scroll {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* Mobile & Tablet Reliability: Guarantee immediate visibility and zero blank flickering */
+@media (max-width: 768px) {
+  .reveal-on-scroll,
+  .reveal-fade-left,
+  .reveal-fade-right,
+  .reveal-scale-up {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: opacity 0.3s ease !important;
+  }
+}
