@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us &amp; Concierge Services | AUM GROUP INC Fine Jewellery &amp; Gems</title>
+  <meta name="description"
+    content="Connect with Aum Group Inc. diamond specialists in Mumbai. Inquire regarding GIA/IGI loose diamond parcels, custom diamond manufacturing, or visit our Navi Mumbai corporate headquarters.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23dfc7a7' stroke-width='1.5'><polygon points='6,3 18,3 22,9 12,22 2,9'/></svg>">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'gold-champagne': '#dfc7a7',
+            'gold-btn': '#e2c9a8',
+            'gold-hover': '#ebd5ba',
+            'gold-accent': '#c5a880',
+            'dark-bg': '#090807',
+            'text-white': '#fbf9f6',
+            'text-muted': '#cfc7be',
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Didot', 'serif'],
+            sans: ['"Montserrat"', '"Inter"', 'sans-serif'],
+            body: ['"Inter"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts Preconnect & Luxury Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Montserrat:wght@200;300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+
+  <!-- Core Stylesheet & Animations (with cache-buster) -->
+  <link rel="stylesheet" href="style.css?v=2.4">
+  <link rel="stylesheet" href="animations.css?v=2.4">
+</head>
+
+<body class="bg-dark-bg text-text-white selection:bg-gold-champagne selection:text-dark-bg luxury-dark-body">
+
+  <!-- =========================================================================
+       FIXED LUXURY HEADER NAVIGATION (Exact Replicated 2-Tier Navigation Bar)
+       ========================================================================= -->
+  <header class="navbar" role="banner">
+
+    <!-- 1. Upper Tier: Hamburger (Mobile/Tablet) | Company Logo | Utility Icons (Account, Wishlist, Cart) -->
+    <div class="navbar-top">
+
+      <!-- Hamburger Menu Button (Three lines) — visible on mobile & tablet, hidden on desktop -->
+      <button type="button" class="hamburger-btn" id="mobile-menu-toggle" aria-label="Open Navigation Menu"
+        aria-expanded="false" aria-controls="navbar-drawer">
+        <svg class="hamburger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+
+      <!-- Center: Company Brand Logo from assets folder -->
+      <a href="index.html#home" class="navbar-brand-center" aria-label="AUM GROUP INC Fine Jewellery &amp; Gems Homepage">
+        <img src="assets/company_logo.png" alt="AUM GROUP INC Fine Jewellery &amp; Gems" class="navbar-logo-img">
+      </a>
+
+      <!-- Right: Utility Icons (Account, Wishlist, Cart) -->
+      <div class="navbar-top-right">
+
+        <!-- User Profile Account Button -->
+        <a href="#account" class="nav-icon-btn user-btn" aria-label="User Account" title="Account">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+        </a>
+
+        <!-- Wishlist / Favorites Heart Button with Dynamic Counter Badge -->
+        <button type="button" class="nav-icon-btn wishlist-btn" id="wishlist-btn" aria-label="Wishlist" title="Wishlist">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+          </svg>
+          <span class="wishlist-badge" id="wishlist-counter">0</span>
+        </button>
+
+        <!-- Shopping Bag / Cart Button with Dynamic Badge Counter -->
+        <button type="button" class="nav-icon-btn cart-btn" id="cart-btn" aria-label="Shopping Cart with 0 items"
+          title="Shopping Bag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <path d="M16 10a4 4 0 0 1-8 0" />
+          </svg>
+          <span class="cart-badge" id="cart-counter">0</span>
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- 2. Middle Divider Line -->
+    <div class="navbar-divider" aria-hidden="true"></div>
+
+    <!-- 3. Lower Tier: Centered Links -->
+    <div class="navbar-bottom">
+
+      <!-- Navigation Links: perfectly centred -->
+      <nav role="navigation" aria-label="Main Navigation" class="navbar-nav-centered">
+        <ul class="nav-tier-links" id="main-nav-links">
+          <li><a href="index.html#home" class="nav-tier-link">Home</a></li>
+          <li><a href="index.html#shop" class="nav-tier-link">Shopping</a></li>
+          <li><a href="about.html" class="nav-tier-link">About Us</a></li>
+          <li><a href="contact.html" class="nav-tier-link active">Contact Us</a></li>
+          <li><a href="index.html#bestsellers" class="nav-tier-link">Best Sellers</a></li>
+        </ul>
+      </nav>
+
+    </div>
+
+  </header>
+
+  <!-- Slide-Out Luxury Navigation Drawer (Mobile & Side Access) -->
+  <div class="navbar-drawer-overlay" id="navbar-drawer-overlay" aria-hidden="true"></div>
+  <aside class="navbar-drawer" id="navbar-drawer" aria-label="Mobile Navigation Menu">
+    <div class="drawer-header">
+      <a href="index.html#home" class="drawer-brand" aria-label="Homepage">
+        <img src="assets/company_logo.png" alt="AUM GROUP INC" style="height: 32px; width: auto;">
+      </a>
+      <button type="button" class="drawer-close-btn" id="drawer-close-btn" aria-label="Close Navigation Menu">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="18" x2="18" y2="18" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- The 5 Links inside Mobile Drawer -->
+    <ul class="drawer-nav-list">
+      <li><a href="index.html#home" class="drawer-nav-link">Home</a></li>
+      <li><a href="shop.html" class="drawer-nav-link">Shopping</a></li>
+      <li><a href="about.html" class="drawer-nav-link">About Us</a></li>
+      <li><a href="contact.html" class="drawer-nav-link active">Contact Us</a></li>
+      <li><a href="index.html#bestsellers" class="drawer-nav-link">Best Sellers</a></li>
+    </ul>
+
+    <div class="drawer-footer">
+      <p style="font-size: 0.75rem; color: rgba(255,255,255,0.45); font-family: var(--font-sans);">&copy; 2026 AUM GROUP INC.</p>
+    </div>
+  </aside>
+
+  <!-- =========================================================================
+       SECTION 1: CONTACT HERO SECTION
+       ========================================================================= -->
+  <section class="contact-hero-section" id="contact-hero">
+
+    <!-- Background Image: 02_Hompage_Background_Image.png -->
+    <div class="contact-hero-bg" aria-hidden="true"></div>
+
+    <!-- Cinematic Vignette Gradient Overlay -->
+    <div class="contact-hero-vignette" aria-hidden="true"></div>
+
+    <!-- Ambient Golden Glow Bloom -->
+    <div class="contact-hero-glow" aria-hidden="true"></div>
+
+    <div class="contact-hero-container">
+
+      <!-- Breadcrumbs -->
+      <nav class="contact-hero-breadcrumb reveal-on-scroll" aria-label="Breadcrumb">
+        <a href="index.html#home">Home</a>
+        <span class="bc-sep">/</span>
+        <span>Contact Us</span>
+      </nav>
+
+      <!-- Eyebrow Badge -->
+      <div class="contact-hero-badge reveal-on-scroll delay-1">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <polygon points="6,3 18,3 22,9 12,22 2,9" />
+        </svg>
+        <span>DIAMOND CONCIERGE &amp; B2B TRADE DESK</span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="contact-hero-heading reveal-on-scroll delay-2">
+        Connect with Our <span class="contact-serif-italic">Diamond Specialists</span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="contact-hero-sub reveal-on-scroll delay-3">
+        Over two decades supplying certified loose diamonds, calibrated parcels, and bespoke high jewelry to international designers, master jewelers, and luxury ateliers. Speak directly with our Mumbai trading specialists.
+      </p>
+
+      <!-- 4 Quick Action Chips -->
+      <div class="contact-hero-chips reveal-on-scroll delay-4">
+
+        <!-- Chip 1: Corporate HQ -->
+        <a href="#headquarters-map" class="contact-hero-chip">
+          <div class="contact-chip-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          </div>
+          <div class="contact-chip-meta">
+            <span class="contact-chip-label">Headquarters</span>
+            <span class="contact-chip-val">Vashi, Navi Mumbai</span>
+          </div>
+        </a>
+
+        <!-- Chip 2: Trade Desk Phone -->
+        <a href="tel:+918108070022" class="contact-hero-chip">
+          <div class="contact-chip-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+              </path>
+            </svg>
+          </div>
+          <div class="contact-chip-meta">
+            <span class="contact-chip-label">Trade Desk</span>
+            <span class="contact-chip-val">+91 810 807 0022</span>
+          </div>
+        </a>
+
+        <!-- Chip 3: WhatsApp Concierge -->
+        <a href="https://wa.me/918655527429" target="_blank" rel="noopener noreferrer" class="contact-hero-chip">
+          <div class="contact-chip-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path
+                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+              </path>
+            </svg>
+          </div>
+          <div class="contact-chip-meta">
+            <span class="contact-chip-label">WhatsApp Direct</span>
+            <span class="contact-chip-val">+91 86555 27429</span>
+          </div>
+        </a>
+
+        <!-- Chip 4: Official Email -->
+        <a href="mailto:info@aumgroupinc.com" class="contact-hero-chip">
+          <div class="contact-chip-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </div>
+          <div class="contact-chip-meta">
+            <span class="contact-chip-label">Direct Correspondence</span>
+            <span class="contact-chip-val">info@aumgroupinc.com</span>
+          </div>
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- =========================================================================
+       SECTION 2: MAIN INQUIRY FORM & DIRECT HEADQUARTERS INFORMATION
+       ========================================================================= -->
+  <section class="contact-main-section" id="inquiry-form">
+    <div class="contact-main-container">
+
+      <div class="contact-main-grid">
+
+        <!-- LEFT COLUMN: Wholesale & Bespoke Inquiry Form -->
+        <div class="contact-form-panel reveal-on-scroll">
+
+          <span class="contact-section-eyebrow">BESPOKE &amp; BULK ORDER DESK</span>
+          <h2 class="contact-section-title">Submit Your Diamond Requirement</h2>
+          <p class="contact-section-desc">
+            Direct manufacturer quotations for calibrated loose diamond parcels, custom cuts, and fine jewelry manufacturing. Our valuation desk responds within 4 business hours.
+          </p>
+
+          <form id="contact-inquiry-form" class="contact-form" novalidate>
+
+            <!-- Row 1: Name & Designation + Company / Brand -->
+            <div class="contact-form-grid-2">
+              <div class="contact-field-group">
+                <label for="contact-name" class="contact-label">
+                  <span>Full Name &amp; Title</span>
+                  <span class="contact-label-req">*</span>
+                </label>
+                <input type="text" id="contact-name" class="contact-input" placeholder="e.g. Michael Vance, Master Jeweler"
+                  required>
+              </div>
+
+              <div class="contact-field-group">
+                <label for="contact-company" class="contact-label">
+                  <span>Company / Brand Name</span>
+                </label>
+                <input type="text" id="contact-company" class="contact-input" placeholder="e.g. Vance &amp; Co. Fine Ateliers">
+              </div>
+            </div>
+
+            <!-- Row 2: Business Email + Phone / WhatsApp -->
+            <div class="contact-form-grid-2">
+              <div class="contact-field-group">
+                <label for="contact-email" class="contact-label">
+                  <span>Business Email</span>
+                  <span class="contact-label-req">*</span>
+                </label>
+                <input type="email" id="contact-email" class="contact-input" placeholder="name@company.com" required>
+              </div>
+
+              <div class="contact-field-group">
+                <label for="contact-phone" class="contact-label">
+                  <span>Phone / WhatsApp</span>
+                  <span class="contact-label-req">*</span>
+                </label>
+                <input type="tel" id="contact-phone" class="contact-input" placeholder="+1 (555) 000-0000" required>
+              </div>
+            </div>
+
+            <!-- Row 3: Inquiring As Dropdown -->
+            <div class="contact-field-group">
+              <label for="contact-buyer-type" class="contact-label">
+                <span>Inquiring As</span>
+                <span class="contact-label-req">*</span>
+              </label>
+              <select id="contact-buyer-type" class="contact-select">
+                <option value="retail-jeweler">Retail Fine Jeweler / Independent Boutique</option>
+                <option value="wholesale-merchant">Diamond Wholesaler / Gem Merchant</option>
+                <option value="jewelry-manufacturer">Jewelry Manufacturer &amp; Production Atelier</option>
+                <option value="watchmaker-pave">Horology &amp; High Watchmaking Pavé Setter</option>
+                <option value="private-bespoke">Private Collector / Custom Bespoke Commission</option>
+              </select>
+            </div>
+
+            <!-- Row 4: Diamond Cut / Shape Preference (Interactive Pills) -->
+            <div class="contact-shape-tags-wrap">
+              <label class="contact-label">
+                <span>Diamond Cuts / Shapes of Interest</span>
+                <span style="font-size: 0.7rem; color: #dfc7a7;">(Select all that apply)</span>
+              </label>
+              <div class="contact-shape-pills" role="group" aria-label="Diamond Cut Preferences">
+                <button type="button" class="contact-shape-pill" data-shape="Round Brilliant">Round Brilliant</button>
+                <button type="button" class="contact-shape-pill" data-shape="Princess Cut">Princess Cut</button>
+                <button type="button" class="contact-shape-pill" data-shape="Baguette &amp; Taper">Baguette &amp; Taper</button>
+                <button type="button" class="contact-shape-pill" data-shape="Marquise &amp; Pear">Marquise &amp; Pear</button>
+                <button type="button" class="contact-shape-pill" data-shape="Single Cut 8/8">Single Cut (8/8)</button>
+                <button type="button" class="contact-shape-pill" data-shape="Fancy Shapes">Fancy Shapes (Oval, Emerald)</button>
+                <button type="button" class="contact-shape-pill" data-shape="Natural Black Diamonds">Natural Black Diamonds</button>
+              </div>
+              <input type="hidden" id="selected-shapes" name="selected-shapes" value="">
+            </div>
+
+            <!-- Row 5: Carat Range & Quantity + Certification Preference -->
+            <div class="contact-form-grid-2">
+              <div class="contact-field-group">
+                <label for="contact-carat" class="contact-label">
+                  <span>Carat / Quantity Requirement</span>
+                </label>
+                <input type="text" id="contact-carat" class="contact-input"
+                  placeholder="e.g. 50 carats calibrated melee / 2.5ct GIA">
+              </div>
+
+              <div class="contact-field-group">
+                <label class="contact-label">
+                  <span>Certification</span>
+                </label>
+                <div class="contact-cert-options">
+                  <label class="contact-cert-label active">
+                    <input type="radio" name="cert-pref" value="gia" checked>
+                    <span>GIA</span>
+                  </label>
+                  <label class="contact-cert-label">
+                    <input type="radio" name="cert-pref" value="igi">
+                    <span>IGI</span>
+                  </label>
+                  <label class="contact-cert-label">
+                    <input type="radio" name="cert-pref" value="both-commercial">
+                    <span>Both / Any</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 6: Detailed Specifications / Message -->
+            <div class="contact-field-group">
+              <label for="contact-message" class="contact-label">
+                <span>Detailed Specifications &amp; Instructions</span>
+                <span class="contact-label-req">*</span>
+              </label>
+              <textarea id="contact-message" class="contact-textarea" rows="4"
+                placeholder="Please describe color/clarity range (e.g. D-F VVS, G-H VS), calibrated millimeter sizes, desired delivery timeline, and delivery country."
+                required></textarea>
+            </div>
+
+            <!-- Row 7: NDA Checkbox -->
+            <div class="contact-checkbox-group">
+              <input type="checkbox" id="contact-nda" checked>
+              <label for="contact-nda" class="contact-checkbox-text">
+                Request mutual Non-Disclosure Agreement (NDA) for proprietary designs &amp; confidential brand specifications.
+              </label>
+            </div>
+
+            <!-- Submit CTA -->
+            <button type="submit" class="contact-submit-btn" id="contact-submit-btn">
+              <span>Request Diamond Quotation</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+
+            <!-- Status Box -->
+            <div class="contact-form-status" id="contact-form-status" role="alert" aria-live="polite"></div>
+
+            <p class="contact-trust-note">
+              256-Bit Encrypted Transmission &bull; B2B Non-Disclosure Guaranteed &bull; Direct Factory Pricing
+            </p>
+
+          </form>
+
+        </div>
+
+        <!-- RIGHT COLUMN: Direct Headquarters & Diamond Exchange Contacts -->
+        <div class="contact-info-panel reveal-on-scroll delay-2">
+
+          <!-- Card 1: Corporate Headquarters -->
+          <div class="contact-info-card">
+            <div class="contact-info-card-header">
+              <div class="contact-info-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path d="M3 21h18"></path>
+                  <path d="M5 21V7l8-4v18"></path>
+                  <path d="M19 21V11l-6-3"></path>
+                  <path d="M9 9h1"></path>
+                  <path d="M9 13h1"></path>
+                  <path d="M9 17h1"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="contact-info-card-title">Corporate Headquarters</h3>
+                <span class="contact-info-card-subtitle">Global Trading &amp; Manufacturing Vault</span>
+              </div>
+            </div>
+
+            <div class="contact-info-body">
+              <address class="contact-info-address">
+                Unit No. 63, 1st Floor, Haware Fantasia Business Park,<br>
+                Sector 30A, Beside Inorbit Mall, Vashi,<br>
+                Navi Mumbai &ndash; 400703, Maharashtra, India.
+              </address>
+
+              <div class="contact-info-landmark">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+                <span>Adjacent to Inorbit Mall Vashi (5 mins from Vashi Station)</span>
+              </div>
+
+              <div class="contact-info-link-row">
+                <a href="#headquarters-map" class="contact-direct-link">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
+                    <line x1="8" y1="2" x2="8" y2="18"></line>
+                    <line x1="16" y1="6" x2="16" y2="22"></line>
+                  </svg>
+                  <div class="contact-direct-link-meta">
+                    <span class="contact-direct-link-label">Map Navigation</span>
+                    <span class="contact-direct-link-val">View Location &amp; Directions &rarr;</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Direct Trading Desks -->
+          <div class="contact-info-card">
+            <div class="contact-info-card-header">
+              <div class="contact-info-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                  </path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="contact-info-card-title">Trading Desks</h3>
+                <span class="contact-info-card-subtitle">Direct Telephone &amp; Digital Channels</span>
+              </div>
+            </div>
+
+            <div class="contact-info-body">
+              <div class="contact-info-link-row">
+
+                <!-- Trade Desk Line 1 -->
+                <a href="tel:+918108070022" class="contact-direct-link">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                    </path>
+                  </svg>
+                  <div class="contact-direct-link-meta">
+                    <span class="contact-direct-link-label">Wholesale Diamond Desk</span>
+                    <span class="contact-direct-link-val">+91 810 807 0022</span>
+                  </div>
+                </a>
+
+                <!-- Trade Desk Line 2 / WhatsApp -->
+                <a href="https://wa.me/918655527429" target="_blank" rel="noopener noreferrer"
+                  class="contact-direct-link">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path
+                      d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+                    </path>
+                  </svg>
+                  <div class="contact-direct-link-meta">
+                    <span class="contact-direct-link-label">WhatsApp Concierge &amp; Bespoke</span>
+                    <span class="contact-direct-link-val">+91 86555 27429</span>
+                  </div>
+                </a>
+
+                <!-- Official Email -->
+                <a href="mailto:info@aumgroupinc.com" class="contact-direct-link">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
+                  <div class="contact-direct-link-meta">
+                    <span class="contact-direct-link-label">Official Inquiries &amp; RFQs</span>
+                    <span class="contact-direct-link-val">info@aumgroupinc.com</span>
+                  </div>
+                </a>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Operating Hours & Vault Access -->
+          <div class="contact-info-card">
+            <div class="contact-info-card-header">
+              <div class="contact-info-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <div>
+                <h3 class="contact-info-card-title">Trading Hours</h3>
+                <span class="contact-info-card-subtitle">Indian Standard Time (IST / GMT+5:30)</span>
+              </div>
+            </div>
+
+            <div class="contact-info-body">
+              <ul class="contact-hours-list">
+                <li class="contact-hours-item">
+                  <span class="contact-hours-day">Monday &ndash; Friday</span>
+                  <span class="contact-hours-time">10:00 AM &ndash; 7:30 PM</span>
+                </li>
+                <li class="contact-hours-item">
+                  <span class="contact-hours-day">Saturday</span>
+                  <span class="contact-hours-time">10:00 AM &ndash; 5:00 PM</span>
+                </li>
+                <li class="contact-hours-item">
+                  <span class="contact-hours-day">Sunday</span>
+                  <span class="contact-hours-time" style="color: rgba(207,199,190,0.65);">Closed (Appointments Only)</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 4: Private Vault Appointments Protocol -->
+          <div class="contact-info-card" style="background: rgba(0, 40, 33, 0.45); border-style: dashed;">
+            <div class="contact-info-card-header">
+              <div class="contact-info-card-icon" style="background: rgba(223, 199, 167, 0.2);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="contact-info-card-title">Private Vault Appointments</h3>
+                <span class="contact-info-card-subtitle">Secure Viewing Protocol</span>
+              </div>
+            </div>
+            <div class="contact-info-body">
+              <p style="margin: 0; font-size: 0.88rem; line-height: 1.55;">
+                In-person parcel viewing and physical stone inspections at our Mumbai facility are conducted strictly by appointment for verified industry trade partners. Please schedule at least 24 hours in advance.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 3: GLOBAL TRADE CORRIDORS (Warm Luxury Ivory Contrast #F7F3EC)
+       ========================================================================= -->
+  <section class="contact-corridors-section" id="global-corridors">
+    <div class="contact-corridors-container">
+
+      <!-- Section Header -->
+      <div class="contact-corridors-header reveal-on-scroll">
+        <span class="contact-corridors-eyebrow">WORLDWIDE LOGISTICS &amp; DIRECT CORRIDORS</span>
+        <h2 class="contact-corridors-title">
+          Connecting Mumbai to <span class="contact-serif-italic">Global Jewelry Hubs</span>
+        </h2>
+        <p class="contact-corridors-desc">
+          Over two decades of established diamond supply corridors connecting our Mumbai cutting centers with the world's most distinguished jewelry houses, diamond bourses, and fine manufacturing ateliers.
+        </p>
+      </div>
+
+      <!-- 5 Corridor Hub Cards -->
+      <div class="contact-corridors-grid">
+
+        <!-- Hub 1: United States -->
+        <div class="contact-corridor-card reveal-on-scroll delay-1">
+          <div class="contact-corridor-img-wrap">
+            <img src="assets/images/presence/usa.jpg" alt="United States Diamond Trade Corridor" class="contact-corridor-img"
+              loading="lazy">
+            <span class="contact-corridor-badge">AMERICAS</span>
+          </div>
+          <div class="contact-corridor-content">
+            <h3 class="contact-corridor-country">United States</h3>
+            <span class="contact-corridor-hubs">New York &amp; Los Angeles</span>
+            <p class="contact-corridor-desc">
+              Supplying 47th St Diamond District ateliers and West Coast jewelry houses with calibrated round &amp; fancy cut diamonds.
+            </p>
+          </div>
+        </div>
+
+        <!-- Hub 2: Canada -->
+        <div class="contact-corridor-card reveal-on-scroll delay-2">
+          <div class="contact-corridor-img-wrap">
+            <img src="assets/images/presence/canada.jpg" alt="Canada Diamond Trade Corridor" class="contact-corridor-img"
+              loading="lazy">
+            <span class="contact-corridor-badge">NORTH AMERICA</span>
+          </div>
+          <div class="contact-corridor-content">
+            <h3 class="contact-corridor-country">Canada</h3>
+            <span class="contact-corridor-hubs">Toronto &amp; Montreal</span>
+            <p class="contact-corridor-desc">
+              Direct factory partnerships with Canadian retail jewellers and custom engagement ring workshops requiring GIA certificates.
+            </p>
+          </div>
+        </div>
+
+        <!-- Hub 3: European Countries -->
+        <div class="contact-corridor-card reveal-on-scroll delay-3">
+          <div class="contact-corridor-img-wrap">
+            <img src="assets/images/presence/europe.jpg" alt="Europe Diamond Trade Corridor" class="contact-corridor-img"
+              loading="lazy">
+            <span class="contact-corridor-badge">EUROPE</span>
+          </div>
+          <div class="contact-corridor-content">
+            <h3 class="contact-corridor-country">Europe</h3>
+            <span class="contact-corridor-hubs">Antwerp, London &amp; Milan</span>
+            <p class="contact-corridor-desc">
+              Active trade presence across the Antwerp Diamond Bourse, Hatton Garden, and prestigious Italian gold ateliers.
+            </p>
+          </div>
+        </div>
+
+        <!-- Hub 4: Bangkok, Thailand -->
+        <div class="contact-corridor-card reveal-on-scroll delay-4">
+          <div class="contact-corridor-img-wrap">
+            <img src="assets/images/presence/thailand.jpg" alt="Bangkok Thailand Gemstone Corridor" class="contact-corridor-img"
+              loading="lazy">
+            <span class="contact-corridor-badge">SOUTHEAST ASIA</span>
+          </div>
+          <div class="contact-corridor-content">
+            <h3 class="contact-corridor-country">Bangkok</h3>
+            <span class="contact-corridor-hubs">Silom Gem District</span>
+            <p class="contact-corridor-desc">
+              Key gateway hub for coloured gemstone pairing, calibrated diamond settings, and export-grade casting manufacturers.
+            </p>
+          </div>
+        </div>
+
+        <!-- Hub 5: Indonesia -->
+        <div class="contact-corridor-card reveal-on-scroll delay-5">
+          <div class="contact-corridor-img-wrap">
+            <img src="assets/images/presence/indonesia.jpg" alt="Indonesia Luxury Retail Corridor" class="contact-corridor-img"
+              loading="lazy">
+            <span class="contact-corridor-badge">ASIA PACIFIC</span>
+          </div>
+          <div class="contact-corridor-content">
+            <h3 class="contact-corridor-country">Indonesia</h3>
+            <span class="contact-corridor-hubs">Jakarta &amp; Surabaya</span>
+            <p class="contact-corridor-desc">
+              Serving high-growth luxury retail chains and bespoke bespoke private jewelers with premium natural diamond stock.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Trust & Logistics Bar -->
+      <div class="contact-corridors-trust-bar reveal-on-scroll">
+
+        <!-- Pillar 1 -->
+        <div class="contact-corridors-trust-item">
+          <div class="contact-trust-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <rect x="1" y="3" width="15" height="13"></rect>
+              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+              <circle cx="5.5" cy="18.5" r="2.5"></circle>
+              <circle cx="18.5" cy="18.5" r="2.5"></circle>
+            </svg>
+          </div>
+          <div class="contact-trust-content">
+            <h4>100% Insured Armored Transit</h4>
+            <p>Every shipment is fully insured door-to-door via Brinks Global, Malca-Amit, or FedEx High-Value Security.</p>
+          </div>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="contact-corridors-trust-item">
+          <div class="contact-trust-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <div class="contact-trust-content">
+            <h4>Kimberley Process Compliant</h4>
+            <p>100% ethically sourced, natural diamonds accompanied by official Kimberley Process certification certificates.</p>
+          </div>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="contact-corridors-trust-item">
+          <div class="contact-trust-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+          </div>
+          <div class="contact-trust-content">
+            <h4>Streamlined Customs Documentation</h4>
+            <p>Complete commercial invoices, origin attestations, and GIA/IGI laboratory dossiers for frictionless clearance.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 4: WHOLESALE & CLIENT CONCIERGE FAQ
+       ========================================================================= -->
+  <section class="contact-faq-section" id="contact-faq">
+    <div class="contact-faq-container">
+
+      <!-- FAQ Header -->
+      <div class="contact-faq-header reveal-on-scroll">
+        <span class="contact-section-eyebrow">CLIENT CONCIERGE &amp; TRADE CLARIFICATIONS</span>
+        <h2 class="contact-section-title">
+          Frequently Asked <span class="contact-serif-italic">Questions</span>
+        </h2>
+        <p class="contact-section-desc">
+          Essential details for fine jewelers, diamond wholesalers, and international clients regarding orders, certifications, and insured logistics.
+        </p>
+      </div>
+
+      <!-- FAQ Accordion List -->
+      <div class="contact-faq-list">
+
+        <!-- FAQ Item 1 -->
+        <div class="contact-faq-item reveal-on-scroll delay-1">
+          <button type="button" class="contact-faq-trigger" aria-expanded="false">
+            <h3 class="contact-faq-question">What is your minimum order requirement for calibrated diamond parcels?</h3>
+            <div class="contact-faq-chevron" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </div>
+          </button>
+          <div class="contact-faq-answer">
+            <div class="contact-faq-answer-inner">
+              We accommodate both boutique production orders and large-scale wholesale consignments. For calibrated melee (Round Brilliant, Baguette, Princess cut), our parcel orders start from 5 to 10 carats per caliber. For certified solitaires (0.30 ct to 10.00+ ct), orders can be placed for individual single stones.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div class="contact-faq-item reveal-on-scroll delay-2">
+          <button type="button" class="contact-faq-trigger" aria-expanded="false">
+            <h3 class="contact-faq-question">Are all diamonds authenticated with GIA or IGI certificates?</h3>
+            <div class="contact-faq-chevron" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </div>
+          </button>
+          <div class="contact-faq-answer">
+            <div class="contact-faq-answer-inner">
+              Yes. All solitaires and layout centerstones can be supplied with original certificates from the Gemological Institute of America (GIA) or the International Gemological Institute (IGI). For melee and commercial parcel assortments, our Mumbai laboratory conducts 100% automated screening (HPHT / CVD synthetics detection) and microscopic grading.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div class="contact-faq-item reveal-on-scroll delay-3">
+          <button type="button" class="contact-faq-trigger" aria-expanded="false">
+            <h3 class="contact-faq-question">How does AUM GROUP INC handle international shipping and insurance?</h3>
+            <div class="contact-faq-chevron" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </div>
+          </button>
+          <div class="contact-faq-answer">
+            <div class="contact-faq-answer-inner">
+              Every shipment is 100% door-to-door insured through accredited high-value armored couriers including Brinks Global Services, Malca-Amit, and FedEx Secure Logistics. Full liability remains under our comprehensive cargo policy until your authorized signatory receives and confirms the parcel.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ Item 4 -->
+        <div class="contact-faq-item reveal-on-scroll delay-4">
+          <button type="button" class="contact-faq-trigger" aria-expanded="false">
+            <h3 class="contact-faq-question">Can you cut custom shapes or proprietary diamond layouts for high jewelry?</h3>
+            <div class="contact-faq-chevron" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </div>
+          </button>
+          <div class="contact-faq-answer">
+            <div class="contact-faq-answer-inner">
+              Yes. Our Mumbai manufacturing facility combines computerized 3D laser sawing with master artisanal faceting. We cut custom tapered baguettes for watch bezels, channel-set matching eternity bands, and proprietary shapes to strict tolerances within &plusmn;0.05 mm according to your CAD drawings.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ Item 5 -->
+        <div class="contact-faq-item reveal-on-scroll delay-5">
+          <button type="button" class="contact-faq-trigger" aria-expanded="false">
+            <h3 class="contact-faq-question">What payment methods and settlement currencies do you accept?</h3>
+            <div class="contact-faq-chevron" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </div>
+          </button>
+          <div class="contact-faq-answer">
+            <div class="contact-faq-answer-inner">
+              We accept international bank wire transfers (SWIFT / TT) in USD, EUR, GBP, and INR. For long-standing B2B clients, we offer structured trade credit, documentary letters of credit (L/C), and escrow services through recognized international bullion and diamond banks.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 5: INTERACTIVE HEADQUARTERS MAP & DIRECTIONS (VISIT OUR TRADING VAULT)
+       ========================================================================= -->
+  <section class="contact-map-section" id="headquarters-map">
+    <div class="contact-map-container">
+
+      <div class="contact-map-header reveal-on-scroll">
+        <span class="contact-section-eyebrow">VISIT OUR TRADING VAULT</span>
+        <h2 class="contact-section-title">
+          Located in the Commercial Core of <span class="contact-serif-italic">Navi Mumbai</span>
+        </h2>
+        <p class="contact-section-desc">
+          Situated at Haware Fantasia Business Park, adjacent to Inorbit Mall in Vashi, offering direct expressway access to Mumbai's international airport and diamond exchange.
+        </p>
+      </div>
+
+      <div class="contact-map-grid">
+
+        <!-- Left: Interactive Google Map Embed -->
+        <div class="contact-map-frame-wrap reveal-on-scroll">
+          <iframe class="contact-map-iframe"
+            title="AUM GROUP INC Corporate Headquarters Map Location"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.8359556272365!2d73.00318037599026!3d19.07095908213328!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c1397b914859%3A0x6b09315bc99a19d!2sHaware%20Fantasia%20Business%20Park!5e0!3m2!1sen!2sin!4v1714900000000!5m2!1sen!2sin"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+        <!-- Right: Transit & Landmark Cards -->
+        <div class="contact-map-card-stack reveal-on-scroll delay-2">
+
+          <!-- Transit Card 1: Airport -->
+          <div class="contact-map-card">
+            <div class="contact-map-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path
+                  d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3.5c-.5-.5-2.5 0-4 1.5L13.5 8.5 5.3 6.7c-.7-.1-1.3.1-1.8.6l-.7.7 5.5 3.5L5 15l-2.5-.5L1 16l3 2 2 3 1.5-1.5-.5-2.5 3.5-3.3 3.5 5.5.7-.7c.5-.5.7-1.1.6-1.8z">
+                </path>
+              </svg>
+            </div>
+            <div class="contact-map-card-content">
+              <h4>From International Airport (BOM)</h4>
+              <p>Approximately 40 minutes via Eastern Freeway &amp; Sion-Panvel Highway. Chhatrapati Shivaji Maharaj International Airport.</p>
+            </div>
+          </div>
+
+          <!-- Transit Card 2: BDB & BKC -->
+          <div class="contact-map-card">
+            <div class="contact-map-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="3" y1="9" x2="21" y2="9"></line>
+                <line x1="9" y1="21" x2="9" y2="9"></line>
+              </svg>
+            </div>
+            <div class="contact-map-card-content">
+              <h4>From Bharat Diamond Bourse (BDB)</h4>
+              <p>Direct 25-minute connection from Bandra-Kurla Complex (BKC) diamond trading hub via the Eastern Freeway corridor.</p>
+            </div>
+          </div>
+
+          <!-- Transit Card 3: Railway & Metro -->
+          <div class="contact-map-card">
+            <div class="contact-map-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <rect x="4" y="3" width="16" height="16" rx="2"></rect>
+                <path d="M4 11h16"></path>
+                <path d="M12 3v8"></path>
+                <path d="m8 19-2 3"></path>
+                <path d="m16 19 2 3"></path>
+                <circle cx="8" cy="15" r="1"></circle>
+                <circle cx="16" cy="15" r="1"></circle>
+              </svg>
+            </div>
+            <div class="contact-map-card-content">
+              <h4>Vashi Railway Station Quadrant</h4>
+              <p>A short 5-minute walk from Vashi Harbour Line railway station and adjacent to Inorbit Mall pedestrian concourse.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SITE FOOTER (Exact Replicated Luxury Obsidian Bar with Brand, Nav & Socials)
+       ========================================================================= -->
+  <footer class="site-footer" id="contact" role="contentinfo">
+    <div class="footer-container">
+
+      <!-- 4-Column Footer Grid (SHOP column excluded per instruction) -->
+      <div class="footer-grid">
+
+        <!-- 1. Brand Identity & Social Channels -->
+        <div class="footer-col footer-col-brand">
+          <a href="index.html#home" class="footer-brand-link" aria-label="AUM GROUP INC Homepage">
+            <img src="assets/company_logo.png" alt="AUM GROUP INC Fine Jewellery &amp; Gems" class="footer-brand-img">
+          </a>
+          <p class="footer-brand-desc">
+            Connecting you with the world's most extraordinary gemstones and fine jewelry.
+          </p>
+          <div class="footer-social-row" aria-label="Social media channels">
+            <!-- Instagram -->
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <!-- Facebook -->
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+              </svg>
+            </a>
+            <!-- Pinterest -->
+            <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="Pinterest">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.69 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z" />
+              </svg>
+            </a>
+            <!-- YouTube -->
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor"></polygon>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 2. CUSTOMER CARE Column -->
+        <div class="footer-col">
+          <h4 class="footer-heading">CUSTOMER CARE</h4>
+          <ul class="footer-links-list">
+            <li><a href="about.html" class="footer-nav-item">About Us</a></li>
+            <li><a href="#global-corridors" class="footer-nav-item">Shipping &amp; Delivery</a></li>
+            <li><a href="index.html#returns" class="footer-nav-item">Returns &amp; Exchanges</a></li>
+            <li><a href="#contact-faq" class="footer-nav-item">FAQ</a></li>
+            <li><a href="contact.html" class="footer-nav-item">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- 3. INFORMATION Column -->
+        <div class="footer-col">
+          <h4 class="footer-heading">INFORMATION</h4>
+          <ul class="footer-links-list">
+            <li><a href="about.html#our-diamond-range" class="footer-nav-item">Diamond Shapes &amp; Cuts</a></li>
+            <li><a href="about.html#certifications" class="footer-nav-item">GIA &amp; IGI Certification</a></li>
+            <li><a href="about.html#our-manufacturing" class="footer-nav-item">Mumbai Manufacturing</a></li>
+            <li><a href="about.html#our-approach" class="footer-nav-item">Direct Supply Advantage</a></li>
+            <li><a href="#headquarters-map" class="footer-nav-item">Corporate Headquarters</a></li>
+          </ul>
+        </div>
+
+        <!-- 4. GET IN TOUCH Column (Real verified contacts from aumgroupinc.com) -->
+        <div class="footer-col footer-col-contact">
+          <h4 class="footer-heading">GET IN TOUCH</h4>
+          <ul class="footer-contact-list">
+            <li class="footer-contact-item">
+              <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              <a href="mailto:info@aumgroupinc.com" class="footer-contact-link">info@aumgroupinc.com</a>
+            </li>
+            <li class="footer-contact-item">
+              <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+              <a href="tel:+918108070022" class="footer-contact-link">+91 810 807 0022</a>
+            </li>
+            <li class="footer-contact-item">
+              <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span class="footer-contact-text">Mumbai, Maharashtra, India</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom Bar: Copyright & Payment Badges -->
+      <div class="footer-bottom-bar">
+        <p class="footer-copyright">&copy; 2026 AUM GROUP INC. All Rights Reserved.</p>
+        <div class="footer-payment-methods" aria-label="Accepted payment methods">
+          <!-- Visa -->
+          <span class="payment-badge" title="Visa">
+            <svg viewBox="0 0 38 24" fill="none" class="payment-svg">
+              <rect width="38" height="24" rx="3" fill="#141414"/>
+              <path d="M15.2 16.5L17.2 7.5H19.7L17.7 16.5H15.2ZM24.6 7.7C24.1 7.5 23.3 7.3 22.3 7.3C19.9 7.3 18.2 8.6 18.2 10.4C18.2 11.8 19.4 12.5 20.4 13C21.4 13.5 21.7 13.8 21.7 14.3C21.7 15 20.9 15.4 20.1 15.4C19.1 15.4 18.5 15.2 17.7 14.8L17.3 14.6L16.9 16.6C17.6 16.9 18.8 17.2 20 17.2C22.6 17.2 24.3 15.9 24.3 14C24.3 12.3 23.2 11.5 21.9 10.9C21.1 10.5 20.6 10.2 20.6 9.7C20.6 9.2 21.2 8.8 22.1 8.8C22.9 8.8 23.6 9 24.2 9.3L24.6 7.7ZM29.2 7.5H27.3C26.7 7.5 26.2 7.7 26 8.2L22.2 16.5H24.8L25.3 15.1H28.5L28.8 16.5H31.1L29.2 7.5ZM26 13.3L27.3 9.7L28.1 13.3H26ZM13.8 7.5L11.4 13.8L11.1 12.4C10.7 10.9 9.2 9.3 7.6 8.5L9.8 16.5H12.4L16.4 7.5H13.8Z" fill="#d6d1c4"/>
+            </svg>
+          </span>
+          <!-- Visa Electron -->
+          <span class="payment-badge" title="Visa Electron">
+            <svg viewBox="0 0 38 24" fill="none" class="payment-svg">
+              <rect width="38" height="24" rx="3" fill="#141414"/>
+              <text x="19" y="15" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="8" fill="#d6d1c4" letter-spacing="1">ELECTRON</text>
+            </svg>
+          </span>
+          <!-- Mastercard -->
+          <span class="payment-badge" title="Mastercard">
+            <svg viewBox="0 0 38 24" fill="none" class="payment-svg">
+              <rect width="38" height="24" rx="3" fill="#141414"/>
+              <circle cx="15" cy="12" r="6" fill="#402020" fill-opacity="0.85"/>
+              <circle cx="23" cy="12" r="6" fill="#d6d1c4" fill-opacity="0.75"/>
+            </svg>
+          </span>
+          <!-- Amex -->
+          <span class="payment-badge" title="American Express">
+            <svg viewBox="0 0 38 24" fill="none" class="payment-svg">
+              <rect width="38" height="24" rx="3" fill="#141414"/>
+              <text x="19" y="15" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="8" fill="#d6d1c4" letter-spacing="1">AMEX</text>
+            </svg>
+          </span>
+          <!-- Apple Pay -->
+          <span class="payment-badge" title="Apple Pay">
+            <svg viewBox="0 0 38 24" fill="none" class="payment-svg">
+              <rect width="38" height="24" rx="3" fill="#141414"/>
+              <path d="M12.8 11.2c-.3.4-.8.7-1.3.7-.1-.6.2-1.1.5-1.4.3-.3.8-.6 1.3-.6.1.5-.2 1-.5 1.3zm.5 1.6c-.3 0-.6-.1-.9-.1-.3 0-.6.1-.9.1-.6 0-1-.3-1.3-.8-.7-1.2-.2-3.1 1-3.1.5 0 .8.3 1.1.3.3 0 .7-.3 1.2-.3.4 0 .9.2 1.2.6-.4.2-.6.6-.6 1.1 0 .7.5 1.2 1.2 1.4-.3.9-.9 1.9-1.9 1.9zm4.2-.2v-3.7h1.4c.9 0 1.5.6 1.5 1.4s-.6 1.4-1.5 1.4h-.6v.9h-.8zm.8-1.5h.5c.5 0 .8-.3.8-.7s-.3-.7-.8-.7h-.5v1.4zm4.8 1.5h-.7l-.3-.7c-.4.5-.9.8-1.5.8-.8 0-1.4-.5-1.4-1.2 0-.8.6-1.2 1.8-1.3l.6-.1v-.2c0-.4-.3-.6-.8-.6-.4 0-.7.2-.8.5l-.6-.3c.2-.5.8-.8 1.5-.8 1 0 1.5.5 1.5 1.4v2.5zm-.7-1.6l-.5.1c-.7.1-1.1.3-1.1.7 0 .4.3.6.7.6.5 0 .9-.4.9-.9v-.5zm4.8 1.6l-1-2.6-1 2.6h-.9l1.4-3.5-.1-.4c-.1-.3-.3-.4-.6-.4h-.3l.1-.6c.2 0 .5-.1.7-.1.5 0 .9.2 1.1.8l1.6 4.2h-1z" fill="#d6d1c4"/>
+            </svg>
+          </span>
+          <!-- Google Pay -->
+          <span class="payment-badge" title="Google Pay">
+            <svg viewBox="0 0 38 24" fill="none" class="payment-svg">
+              <rect width="38" height="24" rx="3" fill="#141414"/>
+              <text x="19" y="15" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="8" fill="#d6d1c4" letter-spacing="0.5">GPay</text>
+            </svg>
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module" src="contact.js"></script>
+</body>
+
+</html>
+
