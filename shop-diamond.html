@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Diamond Vault — ESCÉLI Haute Joaillerie | GIA Certified Solitaires &amp; High Jewellery</title>
+  <title>The Diamond Vault — AUM GROUP INC. | GIA Certified Solitaires &amp; High Jewellery</title>
   <meta name="description"
-    content="Explore the ESCÉLI Diamond Vault. The top 0.01% of natural earth diamonds. GIA certified solitaires, graduated rivières, and pavé eternity bands in 950 platinum and 18K white gold.">
+    content="Explore the AUM GROUP INC. Diamond Vault. The top 0.01% of natural earth diamonds. GIA certified solitaires, graduated rivières, and pavé eternity bands in 950 platinum and 18K white gold.">
 
   <!-- Favicon -->
   <!-- Favicon -->
@@ -61,6 +61,28 @@
       <!-- Right: Utility Icons (Account, Wishlist, Cart) -->
       <div class="navbar-top-right">
 
+        <!-- Export Countries Currency Selector -->
+        <div class="currency-selector" id="currency-selector">
+          <button type="button" class="currency-btn" id="currency-btn" aria-label="Select Currency" aria-expanded="false" aria-haspopup="true">
+            <span class="currency-flag" id="currency-flag">🇺🇸</span>
+            <span class="currency-code" id="currency-current">USD ($)</span>
+            <svg class="chevron-down-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <ul class="currency-menu" id="currency-menu" role="menu">
+            <li class="currency-option active" data-currency="USD" role="menuitem"><span>🇺🇸 USA</span> <strong>USD ($)</strong></li>
+            <li class="currency-option" data-currency="EUR" role="menuitem"><span>🇪🇺 Europe</span> <strong>EUR (€)</strong></li>
+            <li class="currency-option" data-currency="GBP" role="menuitem"><span>🇬🇧 UK</span> <strong>GBP (£)</strong></li>
+            <li class="currency-option" data-currency="CAD" role="menuitem"><span>🇨🇦 Canada</span> <strong>CAD (C$)</strong></li>
+            <li class="currency-option" data-currency="AED" role="menuitem"><span>🇦🇪 UAE</span> <strong>AED (د.إ)</strong></li>
+            <li class="currency-option" data-currency="CHF" role="menuitem"><span>🇨🇭 Switzerland</span> <strong>CHF (Fr)</strong></li>
+            <li class="currency-option" data-currency="THB" role="menuitem"><span>🇹🇭 Thailand</span> <strong>THB (฿)</strong></li>
+            <li class="currency-option" data-currency="IDR" role="menuitem"><span>🇮🇩 Indonesia</span> <strong>IDR (Rp)</strong></li>
+            <li class="currency-option" data-currency="INR" role="menuitem"><span>🇮🇳 India</span> <strong>INR (₹)</strong></li>
+          </ul>
+        </div>
+
         <!-- User Profile Account Button -->
         <a href="#account" class="nav-icon-btn user-btn" aria-label="User Account" title="Account">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
@@ -110,7 +132,7 @@
           <li><a href="shop.html" class="nav-tier-link active">Shopping</a></li>
           <li><a href="about.html" class="nav-tier-link">About Us</a></li>
           <li><a href="contact.html" class="nav-tier-link">Contact Us</a></li>
-          <li><a href="index.html#bestsellers" class="nav-tier-link">Best Sellers</a></li>
+          <li><a href="shop.html#bestsellers" class="nav-tier-link">Best Sellers</a></li>
         </ul>
       </nav>
 
@@ -140,7 +162,7 @@
       <li><a href="shop.html" class="drawer-nav-link active">Shopping</a></li>
       <li><a href="about.html" class="drawer-nav-link">About Us</a></li>
       <li><a href="contact.html" class="drawer-nav-link">Contact Us</a></li>
-      <li><a href="index.html#bestsellers" class="drawer-nav-link">Best Sellers</a></li>
+      <li><a href="shop.html#bestsellers" class="drawer-nav-link">Best Sellers</a></li>
     </ul>
 
     <div class="drawer-footer">
@@ -178,19 +200,6 @@
   </nav>
 
   <!-- =========================================================================
-       BREADCRUMB NAVIGATION
-       ========================================================================= -->
-  <div class="shop-breadcrumbs-bar">
-    <div class="shop-breadcrumbs-container">
-      <a href="index.html" class="breadcrumb-link">Home</a>
-      <span class="breadcrumb-sep">/</span>
-      <a href="shop.html" class="breadcrumb-link">Shopping</a>
-      <span class="breadcrumb-sep">/</span>
-      <span class="breadcrumb-current">03 Diamond Collection</span>
-    </div>
-  </div>
-
-  <!-- =========================================================================
        DEDICATED DIAMOND HERO (CINEMATIC LOOPING FACET VIDEO & OPTICAL FIRE)
        ========================================================================= -->
   <section class="category-video-hero theme-diamond" id="hero">
@@ -214,10 +223,10 @@
       <div class="shop-hero-content reveal-on-scroll">
         <span class="font-senjalara text-2xl" style="color: var(--color-beige); display: block; margin-bottom: 0.65rem;">The Brilliance of Forever</span>
         <div class="shop-hero-brand-tag">
-          <svg class="w-3.5 h-3.5 text-esceli-beige" viewBox="0 0 24 24" fill="currentColor">
+          <svg class="w-3.5 h-3.5 text-aum-beige" viewBox="0 0 24 24" fill="currentColor">
             <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
           </svg>
-          <span class="font-sans">ESCÉLI • DEPARTMENT 03</span>
+          <span class="font-sans">AUM GROUP INC. • DEPARTMENT 03</span>
         </div>
 
         <h1 class="shop-hero-title">
@@ -255,9 +264,9 @@
     <div class="atelier-grid">
       <div class="atelier-narrative-block reveal-on-scroll">
         <span class="atelier-tag">GEMOLOGICAL INTEGRITY</span>
-        <h2 class="atelier-title">Only the Top 0.01%.<br>Triple-Excellent <span class="font-serif italic text-esceli-beige">Light Physics.</span></h2>
+        <h2 class="atelier-title">Only the Top 0.01%.<br>Triple-Excellent <span class="font-serif italic text-aum-beige">Light Physics.</span></h2>
         <p class="atelier-p">
-          Most commercial diamonds sacrifice proportions to retain rough carat weight. At ESCÉLI, every round brilliant and fancy step-cut is engineered strictly for Triple Excellent cut, polish, and symmetry.
+          Most commercial diamonds sacrifice proportions to retain rough carat weight. At AUM GROUP INC., every round brilliant and fancy step-cut is engineered strictly for Triple Excellent cut, polish, and symmetry.
         </p>
         <p class="atelier-p">
           Light enters the crown table, refracts across internal facets with total internal reflection, and bursts through the table as dazzling white scintillation and rainbow spectral fire.
@@ -282,12 +291,12 @@
       </div>
 
       <div class="atelier-media-frame reveal-on-scroll">
-        <img src="assets/images/shop/hero-campaign.jpg" alt="ESCÉLI Diamond Solitaire" loading="lazy">
+        <img src="assets/images/shop/hero-campaign.jpg" alt="AUM GROUP INC. Diamond Solitaire" loading="lazy">
         <div class="atelier-quote-card">
           <p class="atelier-quote-text">
             &ldquo;A diamond is ancient star matter brought to light. When proportioned to perfection, it speaks in beams of pure fire.&rdquo;
           </p>
-          <span class="atelier-quote-author">— ESCÉLI Master Gemologist</span>
+          <span class="atelier-quote-author">— AUM GROUP INC. Master Gemologist</span>
         </div>
       </div>
     </div>
@@ -759,46 +768,58 @@
     </div>
   </footer>
 
-  <!-- Slide-out Cart Drawer -->
-  <div class="shop-cart-backdrop" id="cart-drawer-backdrop" aria-hidden="true"></div>
-  <aside class="shop-cart-drawer" id="cart-drawer" role="dialog" aria-label="Shopping Cart">
-    <div class="cart-drawer-header">
-      <div class="flex items-center gap-2">
-        <h3 class="cart-drawer-title">Your Shopping Bag</h3>
-        <span class="cart-drawer-count" id="cart-header-count">(0)</span>
-      </div>
-      <button type="button" class="cart-close-btn" id="cart-drawer-close" aria-label="Close Bag">
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+  <!-- =========================================================================
+       SLIDE-OUT SHOPPING BAG (CART DRAWER)
+       ========================================================================= -->
+  <div class="shop-drawer-backdrop" id="drawer-backdrop"></div>
+  <aside class="shop-cart-drawer" id="cart-drawer" aria-label="Shopping Bag">
+    <div class="drawer-header">
+      <h3 class="drawer-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span>Shopping Bag</span>
+      </h3>
+      <button type="button" class="drawer-close-btn" id="cart-close-btn" aria-label="Close Bag">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
       </button>
     </div>
-    <div class="cart-drawer-shipping" id="cart-shipping-tracker">
-      <div class="flex items-center justify-between text-xs mb-1.5">
-        <span class="font-sans font-medium text-esceli-emerald" id="cart-shipping-box">Complimentary Armored Courier</span>
-        <span class="font-mono text-esceli-grey" id="cart-shipping-percent">0%</span>
+
+    <div class="cart-progress-box" id="cart-shipping-box">
+      <div class="cart-progress-box-header">
+        <span class="font-brannboll text-base" id="cart-shipping-tracker">Complimentary Armored Courier on orders over $5,000</span>
+        <span class="text-xs font-bold text-aum-emerald" id="cart-shipping-percent">0%</span>
       </div>
-      <div class="cart-shipping-track">
-        <div class="cart-shipping-fill" id="cart-shipping-fill" style="width: 0%;"></div>
-      </div>
-    </div>
-    <div class="cart-drawer-body" id="cart-items-container">
-      <div class="cart-empty-state">
-        <p>Your shopping bag is empty.</p>
-        <a href="#shop-catalog" class="shop-btn-emerald mt-4" onclick="document.getElementById('cart-drawer-close')?.click();">Explore Diamond Pieces</a>
+      <div class="cart-progress-bar-track">
+        <div class="cart-progress-bar-fill" id="cart-shipping-fill"></div>
       </div>
     </div>
-    <div class="cart-drawer-footer">
-      <div class="cart-subtotal-row">
-        <span>Subtotal</span>
-        <span class="cart-subtotal-val" id="cart-subtotal-val">$0</span>
+
+    <div class="drawer-items-list" id="cart-items-list"></div>
+
+    <div class="drawer-footer">
+      <div class="drawer-subtotal-row">
+        <span class="drawer-subtotal-lbl">Estimated Total</span>
+        <span class="drawer-subtotal-val" id="cart-subtotal">$0</span>
       </div>
-      <button type="button" class="cart-checkout-btn" id="cart-checkout-btn">Proceed to Armored Delivery</button>
+      <p class="drawer-subtotal-note">Sales taxes &amp; armored insurance calculated at checkout.</p>
+      <button type="button" class="btn-drawer-checkout" id="cart-checkout-btn">
+        Proceed To Secure Checkout
+      </button>
+      <div class="drawer-trust-badges">
+        <span>GIA Verified</span>
+        <span>•</span>
+        <span>Armored Transit</span>
+        <span>•</span>
+        <span>30-Day Returns</span>
+      </div>
     </div>
   </aside>
 
-  <!-- Slide-Out Wishlist Drawer -->
+  <!-- =========================================================================
+       SLIDE-OUT WISHLIST DRAWER
+       ========================================================================= -->
   <aside class="shop-cart-drawer" id="wishlist-drawer" aria-label="Curated Wishlist">
-    <div class="drawer-header" style="display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 1.5rem; border-bottom: 1px solid rgba(214, 209, 196, 0.3);">
-      <h3 class="drawer-title" style="display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-serif); font-size: 1.25rem; color: #FAF8F5;">
+    <div class="drawer-header">
+      <h3 class="drawer-title">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
         <span>Curated Wishlist</span>
       </h3>
@@ -806,10 +827,12 @@
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
       </button>
     </div>
-    <div class="drawer-items-list" id="wishlist-items-list" style="padding: 1.5rem; overflow-y: auto; max-height: calc(100vh - 200px);"></div>
-    <div class="drawer-footer" style="padding: 1.5rem; border-top: 1px solid rgba(214, 209, 196, 0.3);">
-      <a href="#shop-catalog" class="shop-btn-emerald text-center block w-full" onclick="window.shopApp?.closeWishlistDrawer?.();">
-        Explore Diamond Pieces
+
+    <div class="drawer-items-list" id="wishlist-items-list"></div>
+
+    <div class="drawer-footer">
+      <a href="#departments" class="btn-drawer-checkout text-center block" onclick="window.shopApp?.closeWishlistDrawer?.();">
+        Discover Departments
       </a>
     </div>
   </aside>
@@ -829,7 +852,7 @@
         <circle cx="12" cy="10" r="3"></circle>
       </svg>
     </a>
-    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="dock-item" data-tooltip="Instagram: @esceli.official" aria-label="Instagram">
+    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="dock-item" data-tooltip="Instagram: @aumgroupinc.official" aria-label="Instagram">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
         <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>

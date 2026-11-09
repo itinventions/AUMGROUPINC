@@ -229,96 +229,110 @@
    6. SCROLL-TRIGGERED REVEAL ANIMATIONS (Luxury Gold Aesthetic)
    ========================================================================== */
 
-/* Base Scroll Reveal element: starts with soft downward offset, opacity 0 and subtle lens blur */
+/* Base Scroll Reveal element: starts with soft downward offset and opacity 0 */
 .reveal-on-scroll {
   opacity: 0;
-  transform: translateY(32px);
-  filter: blur(8px);
+  transform: translateY(28px);
   transition:
     opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
-    filter 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
   transition-delay: 0s !important;
-  will-change: opacity, transform, filter;
+  will-change: opacity, transform;
 }
 
 .reveal-on-scroll.is-revealed {
   opacity: 1;
   transform: translateY(0);
-  filter: blur(0);
   transition:
-    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-    filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Fade from Left variant */
 .reveal-fade-left {
   opacity: 0;
-  transform: translateX(-38px);
-  filter: blur(8px);
+  transform: translateX(-32px);
   transition:
     opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
-    filter 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
   transition-delay: 0s !important;
-  will-change: opacity, transform, filter;
+  will-change: opacity, transform;
 }
 
 .reveal-fade-left.is-revealed {
   opacity: 1;
   transform: translateX(0);
-  filter: blur(0);
   transition:
-    opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.95s cubic-bezier(0.16, 1, 0.3, 1),
-    filter 0.95s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Fade from Right variant */
 .reveal-fade-right {
   opacity: 0;
-  transform: translateX(38px);
-  filter: blur(8px);
+  transform: translateX(32px);
   transition:
     opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
-    filter 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
   transition-delay: 0s !important;
-  will-change: opacity, transform, filter;
+  will-change: opacity, transform;
 }
 
 .reveal-fade-right.is-revealed {
   opacity: 1;
   transform: translateX(0);
-  filter: blur(0);
   transition:
-    opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.95s cubic-bezier(0.16, 1, 0.3, 1),
-    filter 0.95s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Scale-Up & Elevation variant (ideal for cards & marquee containers) */
 .reveal-scale-up {
   opacity: 0;
-  transform: translateY(28px) scale(0.96);
-  filter: blur(10px);
+  transform: scale(0.95) translateY(20px);
+  transition:
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-scale-up.is-revealed {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* Side glide-in for grid cards: Odd cards emerge from left, Even cards emerge from right */
+.shelf-products-grid .product-card:nth-child(odd) {
+  opacity: 0;
+  transform: translateX(-24px);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.shelf-products-grid .product-card:nth-child(even) {
+  opacity: 0;
+  transform: translateX(24px);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.shelf-products-grid .product-card.is-revealed {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+}
+  opacity: 0;
+  transform: translateY(24px) scale(0.97);
   transition:
     opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
-    filter 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
   transition-delay: 0s !important;
-  will-change: opacity, transform, filter;
+  will-change: opacity, transform;
 }
 
 .reveal-scale-up.is-revealed {
   opacity: 1;
   transform: translateY(0) scale(1);
-  filter: blur(0);
   transition:
-    opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 1s cubic-bezier(0.16, 1, 0.3, 1),
-    filter 1s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Story & Expertise gold divider expand reveal (Horizontal) */
