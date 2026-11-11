@@ -1546,6 +1546,7 @@ class AumGroupShopApp {
     updateNavHeight();
     window.addEventListener('resize', updateNavHeight, { passive: true });
 
+    let lastScrollY = window.scrollY;
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       const drawerOpen = this.dom.mobileDrawer && this.dom.mobileDrawer.classList.contains('open');
@@ -1555,11 +1556,14 @@ class AumGroupShopApp {
         return;
       }
 
-      if (currentScrollY <= 20) {
+      if (currentScrollY <= 30) {
         nav.classList.remove('nav-hidden');
-      } else {
+      } else if (currentScrollY > lastScrollY + 8 && currentScrollY > 120) {
         nav.classList.add('nav-hidden');
+      } else if (currentScrollY < lastScrollY - 6) {
+        nav.classList.remove('nav-hidden');
       }
+      lastScrollY = currentScrollY;
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });

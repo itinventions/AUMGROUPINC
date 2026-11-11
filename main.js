@@ -10,7 +10,7 @@ import { CollectionsScene } from './collectionsScene.js';
 import { TextLoopAnimations } from './textAnimations.js';
 import { ScrollAnimations } from './scrollAnimations.js';
 import { GemsMarquee } from './gemsMarquee.js';
-import { Testimonials } from './testimonials.js';
+import { Testimonials } from './testimonials.js?v=6.4';
 
 /* Comprehensive Database for 5 Sections of New Arrivals */
 const NEW_ARRIVALS_DATA = {
@@ -447,6 +447,9 @@ class App {
     // 9. Initialize Currency Sync for New Arrivals
     this.initCurrencySync();
 
+    // 10. Initialize Mobile Auto-Rotator for Explore Our Creations Categories
+    this.initMobileCategoriesRotator();
+
     console.log('%c AUM GROUP INC %c Fine Jewellery & Gems Experience Loaded ', 
       'background: #dfc7a7; color: #12100e; font-weight: bold; padding: 4px 8px; border-radius: 2px;',
       'background: #141210; color: #dfc7a7; padding: 4px 8px;');
@@ -613,7 +616,7 @@ class App {
     const waLink = document.getElementById('na-modal-wa-link');
 
     if (imgEl) {
-      imgEl.src = product.image;
+      imgEl.src = product.image || 'assets/images/shop/products/prod-16-a.jpg';
       imgEl.alt = product.title || 'Gemological Creation';
       imgEl.onerror = () => {
         imgEl.src = 'assets/images/products/Gold Section Image1.png';
@@ -752,6 +755,95 @@ class App {
 
       observer.observe(video);
     }
+  }
+
+  /**
+   * Initializes automatic right-to-left scrolling / rotator for "Explore Our Creations" categories
+   * ONLY on mobile (<= 768px). Strictly NOT rotated on laptop & tablet.
+   */
+  initMobileCategoriesRotator() {
+    const wrapper = document.querySelector('.collections-grid-wrapper');
+    if (!wrapper) return;
+
+    let autoScrollTimer = null;
+    let isUserTouching = false;
+    let resumeTimeout = null;
+    let isVisible = false;
+
+    const getStepDistance = () => {
+      const firstCard = wrapper.querySelector('.collection-card');
+      if (!firstCard) return 240;
+      return firstCard.offsetWidth + 18;
+    };
+
+    const advanceStep = () => {
+      if (isUserTouching || !isVisible || window.innerWidth > 768) return;
+      const cards = wrapper.querySelectorAll('.collection-card');
+      if (cards.length <= 1) return;
+
+      const maxScroll = wrapper.scrollWidth - wrapper.clientWidth;
+      if (wrapper.scrollLeft >= maxScroll - 15) {
+        // Reached end: smoothly cycle back to beginning
+        wrapper.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        const step = getStepDistance();
+        wrapper.scrollBy({ left: step, behavior: 'smooth' });
+      }
+    };
+
+    const start = () => {
+      if (autoScrollTimer !== null) return;
+      if (window.innerWidth > 768) return; // MOBILE ONLY (not on laptop or tablet)
+      autoScrollTimer = setInterval(advanceStep, 3200);
+    };
+
+    const stop = () => {
+      if (autoScrollTimer !== null) {
+        clearInterval(autoScrollTimer);
+        autoScrollTimer = null;
+      }
+    };
+
+    // Pause on user touch interaction
+    wrapper.addEventListener('touchstart', () => {
+      isUserTouching = true;
+      clearTimeout(resumeTimeout);
+    }, { passive: true });
+
+    wrapper.addEventListener('touchend', () => {
+      clearTimeout(resumeTimeout);
+      resumeTimeout = setTimeout(() => {
+        isUserTouching = false;
+      }, 3500);
+    }, { passive: true });
+
+    // IntersectionObserver: only auto-scroll when section is visible
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          isVisible = entry.isIntersecting;
+          if (isVisible && window.innerWidth <= 768) {
+            start();
+          } else {
+            stop();
+          }
+        });
+      }, { threshold: 0.15 });
+      observer.observe(wrapper);
+    } else {
+      isVisible = true;
+      start();
+    }
+
+    // Responsive resize: immediately stop on laptop/tablet, start on mobile
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        stop();
+        wrapper.scrollTo({ left: 0, behavior: 'auto' });
+      } else if (isVisible) {
+        start();
+      }
+    });
   }
 }
 

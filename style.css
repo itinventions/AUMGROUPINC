@@ -1231,6 +1231,40 @@ textarea {
   align-items: stretch;
 }
 
+/* Laptop / Desktop (>= 1025px): Strictly NOT scrollable, balanced 5-card row */
+@media (min-width: 1025px) {
+  .collections-grid-wrapper {
+    position: relative !important;
+    overflow: visible !important;
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+    width: 100% !important;
+    max-width: 1540px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+  }
+
+  .collections-grid {
+    display: grid !important;
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+    gap: 1.4rem !important;
+    width: 100% !important;
+    max-width: 1540px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    overflow-x: visible !important;
+    align-items: stretch !important;
+  }
+
+  .collection-card {
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    flex: none !important;
+  }
+}
+
 /* --------------------------------------------------------------------------
    Category Card Component: Luxury Rounded Rectangles
    Aspect ratio calibrated to natural 1:1.14 proportions so zero image cropping occurs.
@@ -3564,8 +3598,9 @@ textarea {
   width: 100%;
   height: 100%;
   max-height: 520px;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
+  background: #ffffff;
 }
 
 .na-modal-cert-pill {
@@ -3635,9 +3670,9 @@ textarea {
 
 .na-modal-desc {
   font-family: var(--font-body);
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   line-height: 1.65;
-  color: #4a453f;
+  color: #2b2724 !important;
   margin-bottom: 1.5rem;
 }
 
@@ -3651,10 +3686,10 @@ textarea {
 .na-modal-specs-title {
   font-family: var(--font-sans);
   font-size: 0.74rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #004438;
+  color: #004438 !important;
   margin-bottom: 0.85rem;
 }
 
@@ -3680,13 +3715,13 @@ textarea {
 
 .na-spec-label {
   font-family: var(--font-sans);
-  color: #726c63;
+  color: #555047 !important;
   font-weight: 500;
 }
 
 .na-spec-val {
   font-family: var(--font-body);
-  color: #12100e;
+  color: #12100e !important;
   font-weight: 600;
   text-align: right;
 }
@@ -4157,27 +4192,148 @@ a.btn-luxury-primary:active {
   gap: 2.2rem;
 }
 
-@media (max-width: 960px) {
+/* Laptop and Tablet (width >= 769px):
+   - When <= 4 cards: Strictly NOT movable / NOT scrollable (static grid, overflow visible)
+   - When > 4 cards: Movable / scrollable with smooth scroll & luxury controls */
+@media (min-width: 769px) {
+  .testimonials-grid:not(.is-scrollable-desktop) {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 2.2rem !important;
+    width: 100% !important;
+    overflow: visible !important;
+    overflow-x: visible !important;
+  }
+
+  .testimonials-grid:not(.is-scrollable-desktop) .testimonial-card {
+    width: 100% !important;
+    max-width: none !important;
+    flex: none !important;
+  }
+
+  /* When MORE THAN 4 cards (5 or more): movable in laptop and tablet */
+  .testimonials-grid:has(> .testimonial-card:nth-child(5)),
+  .testimonials-grid.is-scrollable-desktop {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+    overscroll-behavior-x: contain !important;
+    gap: 2rem !important;
+    padding: 0.5rem 0.25rem 1.4rem !important;
+    scrollbar-width: thin !important;
+    scrollbar-color: rgba(0, 68, 56, 0.45) rgba(214, 209, 196, 0.25) !important;
+    cursor: grab;
+  }
+
+  .testimonials-grid:has(> .testimonial-card:nth-child(5)).is-dragging,
+  .testimonials-grid.is-scrollable-desktop.is-dragging {
+    cursor: grabbing;
+    scroll-behavior: auto !important;
+  }
+
+  .testimonials-grid:has(> .testimonial-card:nth-child(5))::-webkit-scrollbar,
+  .testimonials-grid.is-scrollable-desktop::-webkit-scrollbar {
+    height: 6px !important;
+  }
+
+  .testimonials-grid:has(> .testimonial-card:nth-child(5))::-webkit-scrollbar-track,
+  .testimonials-grid.is-scrollable-desktop::-webkit-scrollbar-track {
+    background: rgba(214, 209, 196, 0.25) !important;
+    border-radius: 999px !important;
+  }
+
+  .testimonials-grid:has(> .testimonial-card:nth-child(5))::-webkit-scrollbar-thumb,
+  .testimonials-grid.is-scrollable-desktop::-webkit-scrollbar-thumb {
+    background: rgba(0, 68, 56, 0.45) !important;
+    border-radius: 999px !important;
+  }
+
+  .testimonials-grid:has(> .testimonial-card:nth-child(5))::-webkit-scrollbar-thumb:hover,
+  .testimonials-grid.is-scrollable-desktop::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 68, 56, 0.75) !important;
+  }
+
+  .testimonials-grid:has(> .testimonial-card:nth-child(5)) .testimonial-card,
+  .testimonials-grid.is-scrollable-desktop .testimonial-card {
+    flex: 0 0 calc((100% - 4rem) / 3) !important;
+    min-width: 320px !important;
+    max-width: 480px !important;
+    scroll-snap-align: start !important;
+  }
+}
+
+/* Mobile Testimonials (<= 768px): ALWAYS right-to-left scrollable & auto-rotating */
+@media (max-width: 768px) {
   .testimonials-grid {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    gap: 1.25rem;
-    padding-bottom: 1rem;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    overscroll-behavior-x: contain !important;
+    -webkit-overflow-scrolling: touch !important;
+    gap: 1.25rem !important;
+    padding: 0.5rem 1rem 1.4rem !important;
+    margin: 0 -1rem !important;
+    width: calc(100% + 2rem) !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
   }
+
   .testimonials-grid::-webkit-scrollbar {
-    height: 4px;
+    display: none !important;
   }
-  .testimonials-grid::-webkit-scrollbar-thumb {
-    background: rgba(0, 68, 56, 0.25);
-    border-radius: 4px;
-  }
+
   .testimonial-card {
-    flex: 0 0 82%;
-    max-width: 400px;
-    scroll-snap-align: start;
+    flex: 0 0 85% !important;
+    min-width: 280px !important;
+    max-width: 380px !important;
+    scroll-snap-align: start !important;
   }
+}
+
+/* Desktop navigation arrows for Testimonials (> 4 items) */
+.testimonials-desktop-controls {
+  display: none;
+}
+
+@media (min-width: 769px) {
+  .testimonials-grid:has(> .testimonial-card:nth-child(5)) + .testimonials-desktop-controls,
+  .testimonials-grid.is-scrollable-desktop + .testimonials-desktop-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.2rem;
+    margin-top: 2rem;
+  }
+}
+
+.testimonials-arrow-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid rgba(0, 68, 56, 0.25);
+  color: var(--color-emerald-primary, #004438);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.testimonials-arrow-btn:hover {
+  background: var(--color-emerald-primary, #004438);
+  color: #ffffff;
+  border-color: var(--color-emerald-primary, #004438);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0, 68, 56, 0.2);
 }
 
 @media (max-width: 600px) {
@@ -5278,6 +5434,7 @@ a.btn-luxury-primary:active {
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
     padding: 0.5rem 1rem 1.6rem;
     margin: 0 -1rem;
     width: calc(100% + 2rem);
@@ -5293,28 +5450,28 @@ a.btn-luxury-primary:active {
     display: flex !important;
     flex-direction: row !important;
     flex-wrap: nowrap !important;
-    gap: 1rem !important;
+    gap: 1.1rem !important;
     width: max-content !important;
     max-width: none !important;
     margin: 0 !important;
-    padding: 0 0.5rem !important;
+    padding: 0 1rem !important;
   }
 
   .collection-card {
-    flex: 0 0 220px !important;
-    width: 220px !important;
-    max-width: 220px !important;
-    min-width: 220px !important;
-    scroll-snap-align: center;
+    flex: 0 0 230px !important;
+    width: 230px !important;
+    max-width: 230px !important;
+    min-width: 230px !important;
+    scroll-snap-align: start;
     border-radius: 0;
     aspect-ratio: 1 / 1.15;
   }
 
   .collection-card[data-category="studded-gold"] {
     grid-column: auto !important;
-    flex: 0 0 220px !important;
-    max-width: 220px !important;
-    width: 220px !important;
+    flex: 0 0 230px !important;
+    max-width: 230px !important;
+    width: 230px !important;
     margin: 0 !important;
   }
 
@@ -6576,4 +6733,355 @@ a.btn-luxury-primary:active {
   font-family: var(--font-sans) !important;
   font-size: 0.78rem !important;
   letter-spacing: 0.05em !important;
+}
+
+
+/* ==========================================================================
+   UNIFIED LUXURY NAVBAR RESPONSIVE SYSTEM (SYNCHRONIZED ACROSS ALL PAGES)
+   ========================================================================== */
+
+/* 1. Large Desktop (1025px+) — Enforce Drawer Hidden & Desktop 2-Tier Navbar */
+@media (min-width: 1025px) {
+  .navbar-drawer,
+  .navbar-drawer-overlay {
+    display: none !important;
+  }
+}
+
+/* 2. Tablets in Landscape & Portrait (769px to 1024px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+  :root {
+    --nav-h: 74px;
+  }
+
+  .scroll-stage,
+  .about-hero-section,
+  .contact-hero-section {
+    padding-top: var(--nav-h, 74px) !important;
+  }
+
+  .department-subnav-bar {
+    margin-top: var(--nav-h, 74px) !important;
+  }
+
+  .navbar-bottom,
+  .navbar-divider {
+    display: none !important;
+  }
+
+  .navbar {
+    height: auto !important;
+    min-height: 72px !important;
+    padding: 0 !important;
+  }
+
+  /* Three lines, Logo, and Icons in the same line centered */
+  .navbar-top {
+    height: 74px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 1.5rem !important;
+    padding: 0 1.5rem !important;
+    position: relative !important;
+  }
+
+  .hamburger-btn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: static !important;
+    transform: none !important;
+    padding: 0.4rem !important;
+    color: var(--color-alabaster) !important;
+    flex-shrink: 0 !important;
+    background: none !important;
+    border: none !important;
+    cursor: pointer !important;
+  }
+
+  .hamburger-btn::after {
+    display: none !important;
+  }
+
+  .hamburger-icon {
+    width: 24px !important;
+    height: 24px !important;
+    display: block !important;
+  }
+
+  .navbar-shipping span,
+  .navbar-shipping {
+    display: none !important;
+  }
+
+  .navbar-brand-center {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: static !important;
+    transform: none !important;
+    left: auto !important;
+    flex-shrink: 0 !important;
+  }
+
+  .navbar-logo-img {
+    height: 52px !important;
+    width: auto !important;
+    max-width: 210px !important;
+    display: block !important;
+  }
+
+  .navbar-top-right {
+    display: flex !important;
+    align-items: center !important;
+    gap: 1.15rem !important;
+    position: static !important;
+    margin-left: 0 !important;
+    flex-shrink: 0 !important;
+  }
+
+  .currency-btn {
+    padding: 0.25rem 0.45rem !important;
+    font-size: 0.74rem !important;
+  }
+
+  .nav-icon-btn {
+    padding: 0.4rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+  }
+
+  .nav-icon-btn svg {
+    width: 22px !important;
+    height: 22px !important;
+    display: block !important;
+  }
+
+  .wishlist-badge,
+  .cart-badge {
+    width: 16px !important;
+    height: 16px !important;
+    font-size: 0.65rem !important;
+    top: -3px !important;
+    right: -5px !important;
+  }
+}
+
+/* 3. Mobile & Small Tablet (max-width: 768px) */
+@media (max-width: 768px) {
+  :root {
+    --nav-h: 74px;
+  }
+
+  .scroll-stage,
+  .about-hero-section,
+  .contact-hero-section {
+    padding-top: var(--nav-h, 74px) !important;
+  }
+
+  .department-subnav-bar {
+    margin-top: var(--nav-h, 74px) !important;
+  }
+
+  .navbar-bottom,
+  .navbar-divider {
+    display: none !important;
+  }
+
+  .navbar {
+    height: auto !important;
+    min-height: 72px !important;
+    padding: 0 !important;
+  }
+
+  /* One-row top tier: Hamburger, Centered Logo, Icons */
+  .navbar-top {
+    height: 74px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 0.85rem !important;
+    padding: 0 0.85rem !important;
+    position: relative !important;
+  }
+
+  .hamburger-btn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: static !important;
+    transform: none !important;
+    padding: 0.35rem !important;
+    color: var(--color-alabaster) !important;
+    flex-shrink: 0 !important;
+    background: none !important;
+    border: none !important;
+    cursor: pointer !important;
+  }
+
+  .hamburger-btn::after {
+    display: none !important;
+  }
+
+  .hamburger-icon {
+    width: 24px !important;
+    height: 24px !important;
+    display: block !important;
+  }
+
+  .navbar-shipping span,
+  .navbar-shipping {
+    display: none !important;
+  }
+
+  .navbar-brand-center {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: static !important;
+    transform: none !important;
+    left: auto !important;
+    flex-shrink: 0 !important;
+  }
+
+  .navbar-logo-img {
+    height: 48px !important;
+    width: auto !important;
+    max-width: 175px !important;
+    display: block !important;
+  }
+
+  .navbar-top-right {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.85rem !important;
+    position: static !important;
+    margin-left: 0 !important;
+    flex-shrink: 0 !important;
+  }
+
+  .currency-btn {
+    padding: 0.25rem 0.4rem !important;
+    font-size: 0.72rem !important;
+  }
+
+  .nav-icon-btn {
+    padding: 0.35rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+  }
+
+  .nav-icon-btn svg {
+    width: 22px !important;
+    height: 22px !important;
+    display: block !important;
+  }
+
+  .wishlist-badge,
+  .cart-badge {
+    width: 16px !important;
+    height: 16px !important;
+    font-size: 0.65rem !important;
+    top: -3px !important;
+    right: -5px !important;
+  }
+}
+
+/* 4. Compact Mobile Screens (max-width: 480px) */
+@media (max-width: 480px) {
+  :root {
+    --nav-h: 70px;
+  }
+
+  .scroll-stage,
+  .about-hero-section,
+  .contact-hero-section {
+    padding-top: var(--nav-h, 70px) !important;
+  }
+
+  .department-subnav-bar {
+    margin-top: var(--nav-h, 70px) !important;
+  }
+
+  .navbar-top {
+    padding: 0 0.5rem !important;
+    height: 70px !important;
+    gap: 0.65rem !important;
+  }
+
+  .navbar-logo-img {
+    height: 44px !important;
+    max-width: 155px !important;
+  }
+
+  .navbar-top-right {
+    gap: 0.65rem !important;
+  }
+
+  .currency-btn {
+    padding: 0.2rem 0.35rem !important;
+    font-size: 0.7rem !important;
+  }
+
+  .nav-icon-btn svg {
+    width: 21px !important;
+    height: 21px !important;
+  }
+
+  .hamburger-icon {
+    width: 23px !important;
+    height: 23px !important;
+  }
+}
+
+/* 5. Extra-Small Mobile Screens (max-width: 360px) */
+@media (max-width: 360px) {
+  :root {
+    --nav-h: 66px;
+  }
+
+  .scroll-stage,
+  .about-hero-section,
+  .contact-hero-section {
+    padding-top: var(--nav-h, 66px) !important;
+  }
+
+  .department-subnav-bar {
+    margin-top: var(--nav-h, 66px) !important;
+  }
+
+  .navbar-top {
+    padding: 0 0.35rem !important;
+    height: 66px !important;
+    gap: 0.5rem !important;
+  }
+
+  .navbar-logo-img {
+    height: 40px !important;
+    max-width: 135px !important;
+  }
+
+  .navbar-top-right {
+    gap: 0.5rem !important;
+  }
+
+  .currency-btn {
+    padding: 0.18rem 0.28rem !important;
+    font-size: 0.66rem !important;
+  }
+
+  .nav-icon-btn svg {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  .hamburger-icon {
+    width: 21px !important;
+    height: 21px !important;
+  }
 }
