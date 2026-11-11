@@ -631,7 +631,7 @@ export class Navbar {
             <div class="flex items-center justify-between mt-2">
               <span class="drawer-item-price font-serif text-sm font-semibold text-[#004438]">${formatPrice(price)}</span>
               <button type="button" class="px-3 py-1 bg-[#004438] text-white text-[11px] font-medium tracking-wide hover:bg-[#065b4c] transition-colors" data-wishlist-action="add-to-cart" data-id="${item.id}">
-                Move To Bag
+                Add to Bag
               </button>
             </div>
           </div>

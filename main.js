@@ -505,14 +505,26 @@ class App {
       });
     });
 
-    // 2b. Add To Bag Button on Cards
+    // 2b. Add to Bag Button on Cards
     document.querySelectorAll('.na-add-bag-btn, [data-action="add-bag"]').forEach((btn) => {
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
         const pid = btn.getAttribute('data-id');
         const product = NEW_ARRIVALS_DATA[pid];
-        if (product && window.addToBag) {
-          window.addToBag(product);
+        if (product) {
+          const cartItem = {
+            id: product.id,
+            name: product.title || product.name,
+            price: product.usdPrice,
+            image: product.image,
+            category: product.category,
+            metal: product.eyebrow
+          };
+          if (this.navbar && typeof this.navbar.addToCart === 'function') {
+            this.navbar.addToCart(cartItem);
+          } else if (typeof window.addToBag === 'function') {
+            window.addToBag(cartItem);
+          }
         }
       });
     });
@@ -536,10 +548,20 @@ class App {
         e.stopPropagation();
         if (this.activeModalProductId && NEW_ARRIVALS_DATA[this.activeModalProductId]) {
           const product = NEW_ARRIVALS_DATA[this.activeModalProductId];
-          if (window.addToBag) {
-            window.addToBag(product);
-            this.closeProductModal();
+          const cartItem = {
+            id: product.id,
+            name: product.title || product.name,
+            price: product.usdPrice,
+            image: product.image,
+            category: product.category,
+            metal: product.eyebrow
+          };
+          if (this.navbar && typeof this.navbar.addToCart === 'function') {
+            this.navbar.addToCart(cartItem);
+          } else if (typeof window.addToBag === 'function') {
+            window.addToBag(cartItem);
           }
+          this.closeProductModal();
         }
       });
     }
@@ -590,7 +612,13 @@ class App {
     const inquireLink = document.getElementById('na-modal-inquire-link');
     const waLink = document.getElementById('na-modal-wa-link');
 
-    if (imgEl) imgEl.src = product.image;
+    if (imgEl) {
+      imgEl.src = product.image;
+      imgEl.alt = product.title || 'Gemological Creation';
+      imgEl.onerror = () => {
+        imgEl.src = 'assets/images/products/Gold Section Image1.png';
+      };
+    }
     if (eyebrowEl) eyebrowEl.textContent = product.eyebrow;
     if (titleEl) titleEl.textContent = product.title;
     if (priceEl) priceEl.textContent = formatPrice(product.usdPrice);
@@ -613,7 +641,7 @@ class App {
       inquireLink.href = `contact.html?inquiry=${encodeURIComponent(product.title)}&sku=${product.sku}`;
     }
     if (waLink) {
-      waLink.href = `https://wa.me/12125557890?text=${encodeURIComponent(`Hello AUM GROUP INC Atelier, I would like to inquire about ${product.title} (SKU: ${product.sku}).`)}`;
+      waLink.href = `https://wa.me/918108070022?text=${encodeURIComponent(`Hello AUM GROUP INC Atelier, I would like to inquire about ${product.title} (SKU: ${product.sku}).`)}`;
     }
 
     modal.classList.add('active');

@@ -86,6 +86,19 @@ class ContactPage {
 
     if (!form) return;
 
+    // Prefill from URL parameter (?inquiry=...)
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const inquiry = urlParams.get('inquiry') || urlParams.get('product');
+      if (inquiry) {
+        const msgField = document.getElementById('contact-message');
+        if (msgField) {
+          msgField.value = `I would like to inquire about specifications, wholesale pricing, and availability for: ${inquiry}.`;
+        }
+        form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    } catch (_) {}
+
     form.addEventListener('submit', (e) => {
       e.preventDefault();
 

@@ -210,9 +210,8 @@ class AumGroupShopApp {
             </button>
             <button type="button" class="btn-card-addbag" data-action="add-to-bag" data-id="${product.id}">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                <line x1="3" y1="6" x2="21" y2="6"></line>
-                <path d="M16 10a4 4 0 0 1-8 0"></path>
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
               </svg>
               <span class="btn-text-full">Add to Bag</span><span class="btn-text-short">+ Bag</span>
             </button>
@@ -468,44 +467,56 @@ class AumGroupShopApp {
     this.selectedSize = product.sizes ? product.sizes[0] : null;
     this.selectedQty = 1;
 
-    // Populate data
-    this.dom.modalTag.textContent = product.collection;
-    this.dom.modalTitle.textContent = product.name;
-    this.dom.modalPrice.textContent = formatPrice(product.price);
-    this.dom.modalCert.textContent = product.certification;
-    this.dom.modalDesc.textContent = product.description;
-    this.dom.modalMainImg.src = product.primaryImage;
-    this.dom.modalMainImg.alt = product.name;
-    this.dom.modalQtyVal.textContent = '1';
+    // Populate data safely
+    if (this.dom.modalTag) this.dom.modalTag.textContent = product.collection || product.category || 'Fine Jewelry';
+    if (this.dom.modalTitle) this.dom.modalTitle.textContent = product.name;
+    if (this.dom.modalPrice) this.dom.modalPrice.textContent = formatPrice(product.price);
+    if (this.dom.modalCert) this.dom.modalCert.textContent = product.certification || 'GIA Verified';
+    if (this.dom.modalDesc) this.dom.modalDesc.textContent = product.description || '';
+    if (this.dom.modalMainImg) {
+      this.dom.modalMainImg.src = product.primaryImage;
+      this.dom.modalMainImg.alt = product.name;
+      this.dom.modalMainImg.onerror = () => {
+        this.dom.modalMainImg.src = 'assets/images/products/Gold Section Image1.png';
+      };
+    }
+    if (this.dom.modalQtyVal) this.dom.modalQtyVal.textContent = '1';
 
     // Thumbnails
-    const gallery = product.gallery || [product.primaryImage, product.hoverImage];
-    this.dom.modalThumbs.innerHTML = gallery
-      .map(
-        (img, i) => `
-      <div class="modal-thumb ${i === 0 ? 'active' : ''}" data-img="${img}">
-        <img src="${img}" alt="${product.name} view ${i + 1}">
-      </div>
-    `
-      )
-      .join('');
-
-    // Sizes
-    if (product.sizes && product.sizes.length > 0) {
-      this.dom.modalSizes.innerHTML = product.sizes
+    if (this.dom.modalThumbs) {
+      const gallery = product.gallery || [product.primaryImage, product.hoverImage].filter(Boolean);
+      this.dom.modalThumbs.innerHTML = gallery
         .map(
-          (sz, i) => `
-        <button type="button" class="size-pill ${i === 0 ? 'active' : ''}" data-size="${sz}">${sz}</button>
+          (img, i) => `
+        <div class="modal-thumb ${i === 0 ? 'active' : ''}" data-img="${img}">
+          <img src="${img}" alt="${product.name} view ${i + 1}">
+        </div>
       `
         )
         .join('');
-    } else {
-      this.dom.modalSizes.innerHTML = '<span class="text-xs text-[#7A756D]">Standard Size</span>';
+    }
+
+    // Sizes
+    if (this.dom.modalSizes) {
+      if (product.sizes && product.sizes.length > 0) {
+        this.dom.modalSizes.innerHTML = product.sizes
+          .map(
+            (sz, i) => `
+          <button type="button" class="size-pill ${i === 0 ? 'active' : ''}" data-size="${sz}">${sz}</button>
+        `
+          )
+          .join('');
+      } else {
+        this.dom.modalSizes.innerHTML = '<span class="text-xs text-[#7A756D]">Standard Size</span>';
+      }
     }
 
     // Specifications
     if (this.dom.modalSpecDetails) {
-      this.dom.modalSpecDetails.innerHTML = product.details.map((d) => `<li>${d}</li>`).join('');
+      const details = Array.isArray(product.details) && product.details.length > 0
+        ? product.details
+        : ['18K Solid Gold Atelier Craftsmanship', 'Conflict-Free Ethical Origin', 'Certified Natural Gemstones'];
+      this.dom.modalSpecDetails.innerHTML = details.map((d) => `<li>${d}</li>`).join('');
     }
 
     // Show
@@ -690,7 +701,7 @@ class AumGroupShopApp {
           <span class="drawer-item-meta">${item.metal} • ${item.category}</span>
           <div class="drawer-item-bottom">
             <span class="drawer-item-price">${formatPrice(item.price)}</span>
-            <button type="button" class="btn-card-addbag text-[0.65rem] py-1 px-3 ml-2" data-action="add-to-bag" data-id="${item.id}">Move to Bag</button>
+            <button type="button" class="btn-card-addbag text-[0.65rem] py-1 px-3 ml-2" data-action="add-to-bag" data-id="${item.id}">Add to Bag</button>
             <button type="button" class="drawer-item-remove ml-auto" data-action="wishlist" data-id="${item.id}">Remove</button>
           </div>
         </div>
@@ -942,6 +953,13 @@ class AumGroupShopApp {
       } else if (action === 'add-to-bag') {
         e.preventDefault();
         this.addToCart(id);
+        this.openCartDrawer();
+      } else if (action === 'inquire') {
+        e.preventDefault();
+        const prod = this.products.find(p => p.id === id);
+        if (prod) {
+          window.location.href = `contact.html?inquiry=${encodeURIComponent(prod.name)}`;
+        }
       } else if (action === 'wishlist') {
         e.preventDefault();
         this.toggleWishlist(id);
@@ -1113,6 +1131,7 @@ class AumGroupShopApp {
         if (this.currentQuickViewProduct) {
           this.addToCart(this.currentQuickViewProduct.id, this.selectedSize, this.selectedQty);
           this.closeQuickView();
+          this.openCartDrawer();
         }
       });
     }

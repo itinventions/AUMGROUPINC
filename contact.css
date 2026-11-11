@@ -2169,14 +2169,79 @@ RESPONSIVE QUERIES FOR CONTACT US PAGE
   }
 }
 
+/* ==========================================================================
+   SITE FOOTER (UNIFIED LUXURY EMERALD PALETTE ACROSS ALL PAGES)
+   ========================================================================== */
+.site-footer {
+  position: relative;
+  z-index: 40;
+  width: 100%;
+  background: linear-gradient(180deg, #002820 0%, #001a14 100%) !important;
+  border-top: 1px solid rgba(0, 68, 56, 0.55);
+  color: #d6d1c4;
+  flex-shrink: 0;
+}
 
-/* 5-Column responsive grid */
+.footer-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 3.5rem 4rem 1.8rem;
+}
+
+/* 5-Column unified luxury grid in one row (Brand, Customer Care, Information, Certifications, Get In Touch) */
 .footer-grid {
-  display: grid;
-  grid-template-columns: 1.35fr 1fr 1fr 1fr 1fr;
-  gap: 2.2rem 2.2rem;
-  padding-bottom: 2.8rem;
-  border-bottom: 1px solid rgba(214, 209, 196, 0.12);
+  display: grid !important;
+  grid-template-columns: 1.35fr 1fr 1fr 1fr 1.15fr !important;
+  gap: 2rem 1.8rem !important;
+  padding-bottom: 2.5rem !important;
+  border-bottom: 1px solid rgba(214, 209, 196, 0.12) !important;
+}
+
+.footer-col {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.footer-col-certs {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.footer-cert-col-badges {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.85rem !important;
+  align-items: flex-start !important;
+  margin-top: 0.2rem !important;
+}
+
+.footer-cert-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0.5rem 1.15rem !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(214, 209, 196, 0.22) !important;
+  border-radius: 4px !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25) !important;
+}
+
+.footer-cert-badge:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(223, 199, 167, 0.55) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45) !important;
+}
+
+.footer-cert-img {
+  height: 36px !important;
+  width: auto !important;
+  max-width: 125px !important;
+  object-fit: contain !important;
+  display: block !important;
 }
 
 /* Brand column */
@@ -2200,16 +2265,15 @@ RESPONSIVE QUERIES FOR CONTACT US PAGE
   height: 40px;
   width: auto;
   object-fit: contain;
-  /* Keep white on emerald background */
   filter: brightness(0) invert(1) opacity(0.92);
 }
 
 .footer-brand-desc {
-  font-family: var(--font-sans);
+  font-family: var(--font-sans, 'Montserrat', sans-serif);
   font-size: 0.88rem;
   line-height: 1.7;
-  color: rgba(214, 209, 196, 0.72); /* slightly warm on emerald */
-  max-width: 220px;
+  color: rgba(214, 209, 196, 0.72);
+  max-width: 240px;
   margin: 0;
 }
 
@@ -2244,12 +2308,12 @@ RESPONSIVE QUERIES FOR CONTACT US PAGE
 
 /* Column headings */
 .footer-heading {
-  font-family: var(--font-sans);
+  font-family: var(--font-sans, 'Montserrat', sans-serif);
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #ffffff; /* crisp white heading on emerald */
+  color: #ffffff;
   margin: 0 0 1.25rem 0;
 }
 
@@ -2264,10 +2328,10 @@ RESPONSIVE QUERIES FOR CONTACT US PAGE
 }
 
 .footer-nav-item {
-  font-family: var(--font-sans);
-  font-size: 0.95rem;       /* Increased from 0.84rem */
+  font-family: var(--font-sans, 'Montserrat', sans-serif);
+  font-size: 0.92rem;
   font-weight: 400;
-  color: rgba(214, 209, 196, 0.72); /* warm alabaster on emerald */
+  color: rgba(214, 209, 196, 0.72);
   text-decoration: none;
   letter-spacing: 0.01em;
   transition: color 0.22s ease, padding-left 0.22s ease;
@@ -2300,12 +2364,11 @@ RESPONSIVE QUERIES FOR CONTACT US PAGE
   flex-shrink: 0;
   margin-top: 2px;
   color: rgba(214, 209, 196, 0.8);
-  opacity: 1;
 }
 
 .footer-contact-link {
-  font-family: var(--font-sans);
-  font-size: 0.95rem;       /* Increased */
+  font-family: var(--font-sans, 'Montserrat', sans-serif);
+  font-size: 0.92rem;
   color: rgba(214, 209, 196, 0.72);
   text-decoration: none;
   transition: color 0.22s ease;
@@ -2316,61 +2379,45 @@ RESPONSIVE QUERIES FOR CONTACT US PAGE
 }
 
 .footer-contact-text {
-  font-family: var(--font-sans);
-  font-size: 0.95rem;       /* Increased */
+  font-family: var(--font-sans, 'Montserrat', sans-serif);
+  font-size: 0.92rem;
   color: rgba(214, 209, 196, 0.72);
 }
 
-/* ==========================================================================
-   FOOTER CERTIFICATIONS COLUMN — OFFICIAL ACCREDITATIONS (IMAGES ONLY)
-   ========================================================================== */
-.footer-col-certs {
+/* Dedicated Centered Certification Badges (Image 1 & 2 Match) */
+.footer-cert-row {
   display: flex;
-  flex-direction: column;
-}
-
-.footer-cert-col-badges {
-  display: flex;
-  flex-direction: column;
-  gap: 0.85rem;
-  align-items: flex-start;
-  margin-top: 0.2rem;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem 0 1.5rem;
+  border-bottom: 1px solid rgba(214, 209, 196, 0.12);
 }
 
 .footer-cert-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem 1.15rem;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 30, 24, 0.65);
   border: 1px solid rgba(214, 209, 196, 0.22);
+  padding: 0.6rem 1.4rem;
   border-radius: 4px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
 }
 
 .footer-cert-badge:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(223, 199, 167, 0.55);
+  background: rgba(0, 42, 34, 0.9);
+  border-color: rgba(214, 209, 196, 0.5);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
 }
 
 .footer-cert-img {
-  height: 36px;
+  height: 38px;
   width: auto;
-  max-width: 125px;
+  max-width: 140px;
   object-fit: contain;
   display: block;
-  opacity: 0.92;
-  transition: opacity 0.3s ease;
-  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
-}
-
-.footer-cert-badge:hover .footer-cert-img {
-  opacity: 1;
+  filter: brightness(1.05);
 }
 
 /* Footer bottom bar: copyright + payment badges */
@@ -2378,18 +2425,16 @@ RESPONSIVE QUERIES FOR CONTACT US PAGE
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.3rem 0 1.8rem;
+  padding: 1.3rem 0 0.5rem;
   flex-wrap: wrap;
   gap: 1rem;
-  border-top: 1px solid rgba(214, 209, 196, 0.1);
-  margin-top: 0.4rem;
 }
 
 .footer-copyright {
-  font-family: var(--font-sans);
+  font-family: var(--font-sans, 'Montserrat', sans-serif);
   font-size: 0.78rem;
   font-weight: 400;
-  color: rgba(214, 209, 196, 0.45);
+  color: rgba(214, 209, 196, 0.55);
   letter-spacing: 0.02em;
   margin: 0;
 }
@@ -2406,9 +2451,9 @@ RESPONSIVE QUERIES FOR CONTACT US PAGE
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 0;
+  border-radius: 3px;
   overflow: hidden;
-  opacity: 0.75;
+  opacity: 0.85;
   transition: opacity 0.2s ease;
 }
 
@@ -2422,98 +2467,82 @@ RESPONSIVE QUERIES FOR CONTACT US PAGE
   display: block;
 }
 
+/* Constrained Chevron Arrow in Currency Selector (Never Expands) */
+.chevron-down-icon {
+  width: 13px !important;
+  height: 13px !important;
+  min-width: 13px !important;
+  min-height: 13px !important;
+  max-width: 13px !important;
+  max-height: 13px !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
 
+.currency-selector.open .chevron-down-icon {
+  transform: rotate(180deg) !important;
+}
 
-
-/* ==========================================================================
-   FOOTER RESPONSIVE MEDIA QUERIES
-   ========================================================================== */
-@media (max-width: 1439px) and (min-width: 1025px) {
-  .site-footer {
-    padding: 2.2rem 3.5rem 1.6rem;
-  }
-  .footer-container {
-    padding: 2.5rem 3.5rem 0;
-  }
+@media (max-width: 860px) {
   .footer-grid {
-    grid-template-columns: 1.35fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr) !important;
     gap: 2rem 1.8rem;
   }
 }
 
-@media (max-width: 1024px) and (min-width: 769px) {
-  .site-footer {
-    padding: 2.5rem 2.5rem 1.8rem;
-  }
+@media (max-width: 640px) {
   .footer-container {
-    padding: 0;
-  }
-  .footer-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2.2rem 2.2rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .site-footer {
     padding: 2.5rem 1.5rem 1.5rem;
   }
-  .footer-container {
-    padding: 0;
-  }
   .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem 0;
-    padding-bottom: 2rem;
-  }
-  .footer-col-brand {
-    align-items: flex-start;
-  }
-  .footer-brand-img {
-    height: 50px;
-  }
-  .footer-brand-desc {
-    max-width: 100%;
-    font-size: 0.85rem;
-    line-height: 1.6;
-  }
-  .footer-social-row {
-    gap: 0.75rem;
-  }
-  .footer-social-icon {
-    width: 38px;
-    height: 38px;
-  }
-  .footer-heading {
-    font-size: 0.74rem;
-    letter-spacing: 0.16em;
-    margin-bottom: 0.85rem;
-  }
-  .footer-links-list {
-    gap: 0.7rem;
-  }
-  .footer-nav-item,
-  .footer-contact-link,
-  .footer-contact-text {
-    font-size: 0.88rem;
-  }
-  .footer-cert-col-badges {
-    flex-direction: row;
-    gap: 0.85rem;
-    flex-wrap: wrap;
-  }
-  .footer-cert-badge {
-    padding: 0.45rem 1rem;
-  }
-  .footer-cert-img {
-    height: 30px;
+    grid-template-columns: 1fr !important;
+    gap: 1.8rem 0;
   }
   .footer-bottom-bar {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 1.2rem;
-    padding: 1.2rem 0 0.5rem;
   }
 }
 
+/* Luxury Toast Notification */
+.shop-toast {
+  position: fixed !important;
+  bottom: 2rem !important;
+  right: 2rem !important;
+  background: #181715 !important;
+  color: #FFFFFF !important;
+  border-left: 4px solid var(--color-emerald-primary, #004438) !important;
+  padding: 1rem 1.4rem !important;
+  border-radius: 4px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.85rem !important;
+  z-index: 999999 !important;
+  transform: translateY(100px) !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transition: transform 0.35s cubic-bezier(0.2, 1, 0.3, 1), opacity 0.35s ease, visibility 0.35s ease !important;
+  pointer-events: none !important;
+}
+
+.shop-toast.show,
+.shop-toast.active {
+  transform: translateY(0) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+.toast-icon {
+  color: #d6d1c4 !important;
+  display: flex !important;
+}
+
+.toast-message {
+  font-family: var(--font-sans) !important;
+  font-size: 0.78rem !important;
+  letter-spacing: 0.05em !important;
+}
