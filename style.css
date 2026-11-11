@@ -2675,7 +2675,7 @@ textarea {
    Brand System: Forest Green (#004438) | Burgundy (#402020) | Warm Neutral (#d6d1c4) | Grey (#8c8c8c)
    ========================================================================== */
 
-/* Hero Secondary CTA */
+/* Hero Secondary CTA — Discover Our Specialities */
 .hero-cta-group {
   display: flex;
   align-items: center;
@@ -2687,24 +2687,45 @@ textarea {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  background: transparent;
-  color: var(--color-alabaster, #d6d1c4);
-  border: 1px solid rgba(214, 209, 196, 0.45);
+  background: rgba(255, 255, 255, 0.88);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  color: #002821;
+  border: 1.5px solid #002821;
   font-family: var(--font-sans);
   font-size: 0.88rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.04em;
-  padding: 0.85rem 1.85rem;
   text-decoration: none;
+  padding: 0.85rem 1.85rem;
+  box-shadow: 0 4px 14px rgba(0, 40, 33, 0.08);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  cursor: pointer;
 }
 
 .hero-secondary-cta-btn:hover {
-  background: var(--color-burgundy-primary, #402020);
-  border-color: var(--color-burgundy-primary, #402020);
+  background: #002821;
+  border-color: #002821;
   color: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 4px 18px rgba(64, 32, 32, 0.45);
+  box-shadow: 0 8px 24px rgba(0, 40, 33, 0.32);
+}
+
+.hero-secondary-cta-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 40, 33, 0.2);
+}
+
+.hero-secondary-cta-btn .cta-arrow {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-secondary-cta-btn:hover .cta-arrow {
+  transform: translateX(4px);
 }
 
 /* --------------------------------------------------------------------------
@@ -4646,6 +4667,12 @@ a.btn-luxury-primary:active {
     max-width: 440px;
   }
 
+  .hero-cta-btn,
+  .hero-secondary-cta-btn {
+    padding: 0.8rem 1.6rem;
+    font-size: 0.85rem;
+  }
+
   .hero-backdrop {
     background-size: cover;
     background-position: 65% center;
@@ -5085,8 +5112,20 @@ a.btn-luxury-primary:active {
     font-weight: 500;
   }
 
-  .hero-cta-btn {
-    padding: 0.78rem 1.6rem;
+  .hero-cta-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .hero-cta-btn,
+  .hero-secondary-cta-btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: 0.78rem 1.4rem;
     font-size: 0.82rem;
     letter-spacing: 0.04em;
   }
