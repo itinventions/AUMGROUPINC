@@ -636,7 +636,7 @@ class App {
   initCurrencySync() {
     const updateAllPrices = () => {
       const activeCurr = getActiveCurrency();
-      document.querySelectorAll('.product-price-val[data-usd]').forEach((el) => {
+      document.querySelectorAll('.product-price-val[data-usd], [data-usd]').forEach((el) => {
         const usd = parseFloat(el.getAttribute('data-usd')) || 0;
         el.textContent = formatPrice(usd, activeCurr);
       });
@@ -647,6 +647,12 @@ class App {
           modalPrice.textContent = formatPrice(NEW_ARRIVALS_DATA[this.activeModalProductId].usdPrice, activeCurr);
         }
       }
+
+      if (this.navbar) {
+        this.navbar.updateCurrencyUI(activeCurr);
+        this.navbar.renderCartDrawer();
+        this.navbar.renderWishlistDrawer();
+      }
     };
 
     // Update on start
@@ -654,6 +660,11 @@ class App {
 
     // Update on currency change event
     window.addEventListener('currencyChanged', () => {
+      updateAllPrices();
+    });
+
+    // Update on background rate sync
+    window.addEventListener('currencyRatesUpdated', () => {
       updateAllPrices();
     });
   }

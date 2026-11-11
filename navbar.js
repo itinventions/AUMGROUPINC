@@ -5,14 +5,14 @@
 
 export const EXPORT_CURRENCIES = {
   USD: { symbol: '$', rate: 1.0, flag: '🇺🇸', label: 'USD ($)', country: 'USA' },
-  EUR: { symbol: '€', rate: 0.92, flag: '🇪🇺', label: 'EUR (€)', country: 'Europe' },
-  GBP: { symbol: '£', rate: 0.79, flag: '🇬🇧', label: 'GBP (£)', country: 'UK' },
-  CAD: { symbol: 'CA$', rate: 1.36, flag: '🇨🇦', label: 'CAD (C$)', country: 'Canada' },
+  EUR: { symbol: '€', rate: 0.90, flag: '🇪🇺', label: 'EUR (€)', country: 'Europe' },
+  GBP: { symbol: '£', rate: 0.75, flag: '🇬🇧', label: 'GBP (£)', country: 'UK' },
+  CAD: { symbol: 'CA$', rate: 1.42, flag: '🇨🇦', label: 'CAD (C$)', country: 'Canada' },
   AED: { symbol: 'AED ', rate: 3.67, flag: '🇦🇪', label: 'AED (د.إ)', country: 'UAE' },
-  CHF: { symbol: 'CHF ', rate: 0.90, flag: '🇨🇭', label: 'CHF (Fr)', country: 'Switzerland' },
-  THB: { symbol: '฿', rate: 36.5, flag: '🇹🇭', label: 'THB (฿)', country: 'Thailand' },
-  IDR: { symbol: 'Rp ', rate: 15800, flag: '🇮🇩', label: 'IDR (Rp)', country: 'Indonesia' },
-  INR: { symbol: '₹', rate: 83.5, flag: '🇮🇳', label: 'INR (₹)', country: 'India' }
+  CHF: { symbol: 'CHF ', rate: 0.82, flag: '🇨🇭', label: 'CHF (Fr)', country: 'Switzerland' },
+  THB: { symbol: '฿', rate: 33.6, flag: '🇹🇭', label: 'THB (฿)', country: 'Thailand' },
+  IDR: { symbol: 'Rp ', rate: 18100, flag: '🇮🇩', label: 'IDR (Rp)', country: 'Indonesia' },
+  INR: { symbol: '₹', rate: 93.9, flag: '🇮🇳', label: 'INR (₹)', country: 'India' }
 };
 
 export function getActiveCurrency() {
@@ -22,8 +22,117 @@ export function getActiveCurrency() {
 export function formatPrice(usdAmount, currencyCode = null) {
   const code = currencyCode || getActiveCurrency();
   const curr = EXPORT_CURRENCIES[code] || EXPORT_CURRENCIES.USD;
-  const converted = Math.round(usdAmount * curr.rate);
-  return curr.symbol + converted.toLocaleString();
+  const num = Number(usdAmount) || 0;
+  const converted = Math.round(num * curr.rate);
+
+  const localeMap = {
+    INR: 'en-IN',
+    EUR: 'de-DE',
+    GBP: 'en-GB',
+    CAD: 'en-CA',
+    USD: 'en-US',
+    AED: 'en-AE',
+    CHF: 'de-CH',
+    THB: 'th-TH',
+    IDR: 'id-ID'
+  };
+
+  let formattedNumber;
+  try {
+    formattedNumber = converted.toLocaleString(localeMap[code] || 'en-US');
+  } catch (e) {
+    formattedNumber = converted.toLocaleString();
+  }
+  return curr.symbol + formattedNumber;
+}
+
+export function updateAllDomPrices(currencyCode = null) {
+  const code = currencyCode || getActiveCurrency();
+  const curr = EXPORT_CURRENCIES[code] || EXPORT_CURRENCIES.USD;
+
+  // 1. Update all elements with data-usd
+  document.querySelectorAll('[data-usd]').forEach((el) => {
+    const usd = parseFloat(el.getAttribute('data-usd'));
+    if (!isNaN(usd)) {
+      el.textContent = formatPrice(usd, code);
+    }
+  });
+
+  // 2. Update all currency symbols in price inputs
+  document.querySelectorAll('.price-box span:not(.price-box-separator), .currency-symbol').forEach((el) => {
+    el.textContent = curr.symbol.trim();
+  });
+
+  // 3. Update cart shipping tracker if present
+  const trackerEl = document.getElementById('cart-shipping-tracker');
+  if (trackerEl) {
+    try {
+      const cart = JSON.parse(localStorage.getItem('aum_group_cart') || localStorage.getItem('esceli_cart') || '[]');
+      const subtotal = cart.reduce((sum, item) => sum + (item.price || item.usdPrice || 0) * (item.qty || 1), 0);
+      const threshold = 5000;
+      if (subtotal >= threshold) {
+        trackerEl.innerHTML = '✓ Qualified for <strong>Complimentary Armored Courier</strong>';
+      } else if (subtotal > 0) {
+        const remaining = threshold - subtotal;
+        trackerEl.innerHTML = `Add <strong>${formatPrice(remaining, code)}</strong> for Free Armored Courier`;
+      } else {
+        trackerEl.textContent = `Complimentary Armored Courier on orders over ${formatPrice(threshold, code)}`;
+      }
+    } catch (e) {}
+  }
+}
+
+function applyApiRates(apiRates) {
+  for (const code of Object.keys(EXPORT_CURRENCIES)) {
+    if (apiRates[code] && typeof apiRates[code] === 'number') {
+      EXPORT_CURRENCIES[code].rate = Number(apiRates[code].toFixed(3));
+    }
+  }
+}
+
+// Synchronously apply cached live rates if available
+try {
+  const cachedRates = localStorage.getItem('aum_live_exchange_rates');
+  if (cachedRates) {
+    const parsed = JSON.parse(cachedRates);
+    if (parsed && parsed.rates) {
+      applyApiRates(parsed.rates);
+    }
+  }
+} catch (e) {}
+
+// Background Live Rates Synchronization (open.er-api.com)
+export async function syncLiveExchangeRates() {
+  try {
+    const cached = localStorage.getItem('aum_live_exchange_rates');
+    if (cached) {
+      try {
+        const parsed = JSON.parse(cached);
+        if (parsed && parsed.rates && (Date.now() - parsed.timestamp < 1800000)) {
+          applyApiRates(parsed.rates);
+          return;
+        }
+      } catch (e) {}
+    }
+
+    const res = await fetch('https://open.er-api.com/v6/latest/USD');
+    if (!res.ok) return;
+    const data = await res.json();
+    if (data && data.rates) {
+      applyApiRates(data.rates);
+      localStorage.setItem('aum_live_exchange_rates', JSON.stringify({
+        rates: data.rates,
+        timestamp: Date.now()
+      }));
+      window.dispatchEvent(new CustomEvent('currencyRatesUpdated', { detail: { rates: data.rates } }));
+    }
+  } catch (err) {
+    // Offline / fallback to baseline rates
+  }
+}
+
+if (typeof window !== 'undefined') {
+  syncLiveExchangeRates();
 }
 
 export class Navbar {
@@ -66,6 +175,9 @@ export class Navbar {
     this.bindMobileMenu();
     this.bindLinkInteractions();
     this.bindScrollSpy();
+
+    // Initial DOM price synchronization
+    updateAllDomPrices();
   }
 
   updateNavHeight() {
@@ -141,6 +253,10 @@ export class Navbar {
           this.currencySelector.classList.remove('open');
           this.currencyBtn.setAttribute('aria-expanded', 'false');
 
+          updateAllDomPrices(code);
+          this.renderCartDrawer();
+          this.renderWishlistDrawer();
+
           // Dispatch event so any page or shopping mart updates live
           window.dispatchEvent(new CustomEvent('currencyChanged', { detail: { currency: code } }));
         }
@@ -185,8 +301,20 @@ export class Navbar {
   bindWishlist() {
     this.updateBadges();
 
-    // Global listener for currency updates to re-render drawer
-    window.addEventListener('currencyChanged', () => {
+    // Global listener for currency updates to re-render drawer and update DOM
+    window.addEventListener('currencyChanged', (e) => {
+      const code = e.detail?.currency || getActiveCurrency();
+      this.updateCurrencyUI(code);
+      updateAllDomPrices(code);
+      this.renderCartDrawer();
+      this.renderWishlistDrawer();
+    });
+
+    // Global listener for background real-time rate updates
+    window.addEventListener('currencyRatesUpdated', () => {
+      const code = getActiveCurrency();
+      this.updateCurrencyUI(code);
+      updateAllDomPrices(code);
       this.renderCartDrawer();
       this.renderWishlistDrawer();
     });
@@ -407,6 +535,10 @@ export class Navbar {
       if (subtotalEl) subtotalEl.textContent = formatPrice(0);
       if (fillEl) fillEl.style.width = '0%';
       if (pctEl) pctEl.textContent = '0%';
+      const trackerEl = document.getElementById('cart-shipping-tracker');
+      if (trackerEl) {
+        trackerEl.textContent = `Complimentary Armored Courier on orders over ${formatPrice(5000)}`;
+      }
       return;
     }
 
@@ -448,6 +580,16 @@ export class Navbar {
     const progress = Math.min(100, Math.round((subtotal / threshold) * 100));
     if (fillEl) fillEl.style.width = `${progress}%`;
     if (pctEl) pctEl.textContent = `${progress}%`;
+
+    const trackerEl = document.getElementById('cart-shipping-tracker');
+    if (trackerEl) {
+      if (subtotal >= threshold) {
+        trackerEl.innerHTML = '✓ Qualified for <strong>Complimentary Armored Courier</strong>';
+      } else {
+        const remaining = threshold - subtotal;
+        trackerEl.innerHTML = `Add <strong>${formatPrice(remaining)}</strong> for Free Armored Courier`;
+      }
+    }
   }
 
   renderWishlistDrawer() {

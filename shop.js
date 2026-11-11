@@ -4,7 +4,7 @@
  */
 
 import { AUM_GROUP_PRODUCTS, ESCELI_PRODUCTS, CATEGORIES_DATA } from './shop-data.js';
-import { formatPrice, getActiveCurrency, EXPORT_CURRENCIES } from './navbar.js';
+import { formatPrice, getActiveCurrency, EXPORT_CURRENCIES, updateAllDomPrices } from './navbar.js';
 
 class AumGroupShopApp {
   constructor() {
@@ -716,9 +716,9 @@ class AumGroupShopApp {
           <a href="#shop-catalog" class="shop-btn-primary" onclick="window.shopApp.closeCartDrawer();">Explore Catalog</a>
         </div>
       `;
-      this.dom.cartSubtotal.textContent = '$0';
+      this.dom.cartSubtotal.textContent = formatPrice(0);
       if (this.dom.cartShippingProgress) {
-        this.dom.cartShippingProgress.textContent = 'Complimentary Armored Courier on orders over $5,000';
+        this.dom.cartShippingProgress.textContent = `Complimentary Armored Courier on orders over ${formatPrice(5000)}`;
       }
       if (this.dom.cartShippingFill) {
         this.dom.cartShippingFill.style.width = '0%';
@@ -746,7 +746,7 @@ class AumGroupShopApp {
         this.dom.cartShippingProgress.innerHTML = `✓ Qualified for <strong>Complimentary Armored Courier</strong>`;
       } else {
         const remaining = threshold - subtotal;
-        this.dom.cartShippingProgress.innerHTML = `Add <strong>$${remaining.toLocaleString()}</strong> for Free Armored Courier`;
+        this.dom.cartShippingProgress.innerHTML = `Add <strong>${formatPrice(remaining)}</strong> for Free Armored Courier`;
       }
     }
 
@@ -1274,9 +1274,24 @@ class AumGroupShopApp {
       this.dom.priceSliderFill.style.left = '0%';
       this.dom.priceSliderFill.style.width = '100%';
     }
-    if (this.dom.priceDisplay) this.dom.priceDisplay.textContent = '$0 — $50,000';
+    this.updatePriceSliderDisplay();
 
     this.renderCatalog();
+  }
+
+  updatePriceSliderDisplay(code = null) {
+    const activeCode = code || getActiveCurrency();
+    const curr = EXPORT_CURRENCIES[activeCode] || EXPORT_CURRENCIES.USD;
+    const minVal = this.activeFilters.priceMin || 0;
+    const maxVal = this.activeFilters.priceMax || 50000;
+
+    if (this.dom.priceDisplay) {
+      this.dom.priceDisplay.textContent = `${formatPrice(minVal, activeCode)} — ${formatPrice(maxVal, activeCode)}`;
+    }
+
+    document.querySelectorAll('.price-box span:not(.price-box-separator), .currency-symbol').forEach((el) => {
+      el.textContent = curr.symbol.trim();
+    });
   }
 
   initPriceSlider() {
@@ -1310,8 +1325,7 @@ class AumGroupShopApp {
       }
 
       if (display) {
-        const fmt = (v) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(v);
-        display.textContent = `${fmt(minVal)} — ${fmt(maxVal)}`;
+        display.textContent = `${formatPrice(minVal)} — ${formatPrice(maxVal)}`;
       }
 
       this.activeFilters.priceMin = minVal;
@@ -1354,6 +1368,9 @@ class AumGroupShopApp {
         updateSlider(minVal, maxVal);
       });
     }
+
+    // Initialize display with active currency
+    this.updatePriceSliderDisplay();
   }
 
   bindSidebarFilters() {
@@ -1530,27 +1547,51 @@ class AumGroupShopApp {
     handleScroll();
   }
 
+  onCurrencyChanged(code = null) {
+    const activeCode = code || getActiveCurrency();
+    const curr = EXPORT_CURRENCIES[activeCode] || EXPORT_CURRENCIES.USD;
+
+    // 1. Update dropdown header UI
+    const label = document.getElementById('currency-current');
+    const flag = document.getElementById('currency-flag');
+    if (label) label.textContent = curr.label;
+    if (flag) flag.textContent = curr.flag;
+    const selector = document.getElementById('currency-selector');
+    if (selector) {
+      selector.querySelectorAll('.currency-option').forEach((opt) => {
+        opt.classList.toggle('active', opt.getAttribute('data-currency') === activeCode);
+      });
+    }
+
+    // 2. Re-render all product grids
+    this.renderCatalog();
+    this.renderNewArrivals();
+    this.renderBestsellers();
+
+    // 3. Re-render drawers
+    this.renderCartDrawer();
+    this.renderWishlistDrawer();
+
+    // 4. Update Quick View modal if open
+    if (this.currentQuickViewProduct && this.dom.modalPrice) {
+      this.dom.modalPrice.textContent = formatPrice(this.currentQuickViewProduct.price, activeCode);
+    }
+
+    // 5. Update price slider display & currency symbols
+    this.updatePriceSliderDisplay(activeCode);
+
+    // 6. Update any generic data-usd elements on page
+    if (typeof updateAllDomPrices === 'function') {
+      updateAllDomPrices(activeCode);
+    }
+  }
+
   initCurrencySelector() {
     const selector = document.getElementById('currency-selector');
     const btn = document.getElementById('currency-btn');
-    const label = document.getElementById('currency-current');
-    const flag = document.getElementById('currency-flag');
     if (!selector || !btn) return;
 
-    const updateUI = (code) => {
-      const data = EXPORT_CURRENCIES[code] || EXPORT_CURRENCIES.USD;
-      if (label) label.textContent = data.label;
-      if (flag) flag.textContent = data.flag;
-      selector.querySelectorAll('.currency-option').forEach((opt) => {
-        if (opt.getAttribute('data-currency') === code) {
-          opt.classList.add('active');
-        } else {
-          opt.classList.remove('active');
-        }
-      });
-    };
-
-    updateUI(getActiveCurrency());
+    this.onCurrencyChanged(getActiveCurrency());
 
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -1563,10 +1604,8 @@ class AumGroupShopApp {
         const code = opt.getAttribute('data-currency');
         if (code && EXPORT_CURRENCIES[code]) {
           localStorage.setItem('aum_selected_currency', code);
-          updateUI(code);
           selector.classList.remove('open');
-          this.renderCatalog();
-          this.renderCartDrawer();
+          this.onCurrencyChanged(code);
           window.dispatchEvent(new CustomEvent('currencyChanged', { detail: { currency: code } }));
         }
       });
@@ -1578,10 +1617,12 @@ class AumGroupShopApp {
       }
     });
 
-    window.addEventListener('currencyChanged', () => {
-      updateUI(getActiveCurrency());
-      this.renderCatalog();
-      this.renderCartDrawer();
+    window.addEventListener('currencyChanged', (e) => {
+      this.onCurrencyChanged(e.detail?.currency);
+    });
+
+    window.addEventListener('currencyRatesUpdated', () => {
+      this.onCurrencyChanged();
     });
   }
 
