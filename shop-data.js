@@ -1,5 +1,5 @@
 /**
- * ESCÉLI LUXURY JEWELLERY — MULTI-DEPARTMENT PRODUCT CATALOG DATA
+ * AUM GROUP INC. LUXURY JEWELLERY — MULTI-DEPARTMENT PRODUCT CATALOG DATA
  * Haute Joaillerie & Fine Jewellery Collections
  * Primary Departments: Silver | Gold | Diamond | Gems
  */
@@ -59,7 +59,7 @@ export const DEPARTMENTS_DATA = [
   }
 ];
 
-export const ESCELI_PRODUCTS = [
+export const AUM_GROUP_PRODUCTS = [
   // ==========================================
   // DEPARTMENT: DIAMOND (7 CREATIONS)
   // ==========================================
@@ -310,7 +310,7 @@ export const ESCELI_PRODUCTS = [
     price: 9400,
     carat: "0.95 ct",
     colorClarity: "F Color • VS1 Pavé",
-    certification: "ESCÉLI Atelier Hallmark",
+    certification: "AUM GROUP INC. Atelier Hallmark",
     primaryImage: "assets/images/shop/products/prod-5-a.jpg",
     hoverImage: "assets/images/shop/products/prod-5-b.jpg",
     gallery: [
@@ -376,7 +376,7 @@ export const ESCELI_PRODUCTS = [
     price: 19800,
     carat: "1.10 ct Accents",
     colorClarity: "F Color • VS1 Accents",
-    certification: "ESCÉLI Atelier Certificate",
+    certification: "AUM GROUP INC. Atelier Certificate",
     primaryImage: "assets/images/shop/products/prod-14-a.jpg",
     hoverImage: "assets/images/shop/products/prod-14-b.jpg",
     gallery: [
@@ -409,7 +409,7 @@ export const ESCELI_PRODUCTS = [
     price: 5200,
     carat: "1.90 ct",
     colorClarity: "Natural Black & F Color White Diamonds",
-    certification: "ESCÉLI Authenticity Seal",
+    certification: "AUM GROUP INC. Authenticity Seal",
     primaryImage: "assets/images/shop/products/prod-15-a.jpg",
     hoverImage: "assets/images/shop/products/prod-15-b.jpg",
     gallery: [
@@ -475,7 +475,7 @@ export const ESCELI_PRODUCTS = [
     price: 7600,
     carat: "0.45 ct",
     colorClarity: "F Color • VVS2",
-    certification: "ESCÉLI Atelier Seal",
+    certification: "AUM GROUP INC. Atelier Seal",
     primaryImage: "assets/images/shop/collection-gold.jpg",
     hoverImage: "assets/images/shop/cat-gold.jpg",
     gallery: [
@@ -507,7 +507,7 @@ export const ESCELI_PRODUCTS = [
     price: 11800,
     carat: "0.80 ct",
     colorClarity: "G Color • VS1",
-    certification: "ESCÉLI Atelier Hallmark",
+    certification: "AUM GROUP INC. Atelier Hallmark",
     primaryImage: "assets/images/shop/cat-bracelets.jpg",
     hoverImage: "assets/images/shop/products/prod-5-b.jpg",
     gallery: [
@@ -609,7 +609,7 @@ export const ESCELI_PRODUCTS = [
     price: 11200,
     carat: "1.20 ct Diamonds",
     colorClarity: "Champagne Gold Pearl • AAA Luster",
-    certification: "ESCÉLI Pearl Dossier",
+    certification: "AUM GROUP INC. Pearl Dossier",
     primaryImage: "assets/images/shop/products/prod-9-a.jpg",
     hoverImage: "assets/images/shop/products/prod-9-b.jpg",
     gallery: [
@@ -743,7 +743,7 @@ export const ESCELI_PRODUCTS = [
     price: 3200,
     carat: "2.00 ct Eq",
     colorClarity: "D Color • Flawless Luster",
-    certification: "ESCÉLI Silver Hallmark 925",
+    certification: "AUM GROUP INC. Silver Hallmark 925",
     primaryImage: "assets/images/shop/products/prod-1-a.jpg",
     hoverImage: "assets/images/shop/cat-luxury.jpg",
     gallery: [
@@ -775,7 +775,7 @@ export const ESCELI_PRODUCTS = [
     price: 2450,
     carat: "Pure Silver",
     colorClarity: "Mirror Bright Silver Luster",
-    certification: "ESCÉLI Silversmith Hallmark",
+    certification: "AUM GROUP INC. Silversmith Hallmark",
     primaryImage: "assets/images/shop/products/prod-5-a.jpg",
     hoverImage: "assets/images/shop/cat-bracelets.jpg",
     gallery: [
@@ -807,7 +807,7 @@ export const ESCELI_PRODUCTS = [
     price: 2850,
     carat: "5.00 ct Eq",
     colorClarity: "D Color White Stones",
-    certification: "ESCÉLI Fine Silver Assay",
+    certification: "AUM GROUP INC. Fine Silver Assay",
     primaryImage: "assets/images/shop/products/prod-12-a.jpg",
     hoverImage: "assets/images/shop/products/prod-12-b.jpg",
     gallery: [
@@ -871,7 +871,7 @@ export const ESCELI_PRODUCTS = [
     price: 2100,
     carat: "Pure Silver",
     colorClarity: "High Polish Rhodium White",
-    certification: "ESCÉLI Assay Certificate",
+    certification: "AUM GROUP INC. Assay Certificate",
     primaryImage: "assets/images/shop/products/prod-3-a.jpg",
     hoverImage: "assets/images/shop/cat-necklaces.jpg",
     gallery: [
@@ -903,7 +903,7 @@ export const ESCELI_PRODUCTS = [
     price: 2750,
     carat: "0.50 ct Eq Accents",
     colorClarity: "F Color Micro-Pavé",
-    certification: "ESCÉLI Silver Hallmark 925",
+    certification: "AUM GROUP INC. Silver Hallmark 925",
     primaryImage: "assets/images/shop/products/prod-10-a.jpg",
     hoverImage: "assets/images/shop/cat-rings.jpg",
     gallery: [
@@ -924,6 +924,8 @@ export const ESCELI_PRODUCTS = [
     badge: "Statement Dome"
   }
 ];
+
+export const ESCELI_PRODUCTS = AUM_GROUP_PRODUCTS;
 
 export const CATEGORIES_DATA = [
   { id: "Rings", name: "Rings", count: 11, image: "assets/images/shop/cat-rings.jpg", description: "Solitaires, eternity bands, and cocktail creations" },

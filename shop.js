@@ -1,18 +1,19 @@
 /**
- * ESCÉLI LUXURY JEWELLERY — SHOPPING MART CONTROLLER
+ * AUM GROUP INC. LUXURY JEWELLERY — SHOPPING MART CONTROLLER
  * Architecture: Modular ES6 Class Orchestrator
  */
 
-import { ESCELI_PRODUCTS, CATEGORIES_DATA } from './shop-data.js';
+import { AUM_GROUP_PRODUCTS, ESCELI_PRODUCTS, CATEGORIES_DATA } from './shop-data.js';
+import { formatPrice, getActiveCurrency, EXPORT_CURRENCIES } from './navbar.js';
 
-class EsceliShopApp {
+class AumGroupShopApp {
   constructor() {
-    this.products = ESCELI_PRODUCTS;
+    this.products = AUM_GROUP_PRODUCTS || ESCELI_PRODUCTS;
     this.categories = CATEGORIES_DATA;
 
     // State
-    this.cart = JSON.parse(localStorage.getItem('esceli_cart') || '[]');
-    this.wishlist = JSON.parse(localStorage.getItem('esceli_wishlist') || '[]');
+    this.cart = JSON.parse(localStorage.getItem('aum_group_cart') || localStorage.getItem('esceli_cart') || '[]');
+    this.wishlist = JSON.parse(localStorage.getItem('aum_group_wishlist') || localStorage.getItem('esceli_wishlist') || '[]');
     
     // Detect dedicated department page or query param
     const bodyDept = document.body?.dataset?.department;
@@ -141,6 +142,7 @@ class EsceliShopApp {
     this.bindEvents();
     this.bindScrollEffects();
     this.bindHideOnScroll();
+    this.initCurrencySelector();
     this.bindVideoPlayer();
     this.initScrollReveals();
     this.initHeroBackgroundLoop();
@@ -185,11 +187,7 @@ class EsceliShopApp {
 
   renderProductCardHTML(product) {
     const isWishlisted = this.wishlist.some((item) => item.id === product.id);
-    const formattedPrice = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      maximumFractionDigits: 0
-    }).format(product.price);
+    const formattedPrice = formatPrice(product.price);
 
     return `
       <article class="product-card group" data-id="${product.id}">
@@ -201,19 +199,6 @@ class EsceliShopApp {
             </svg>
           </button>
           <img src="${product.primaryImage}" alt="${product.name}" class="product-thumb-primary" loading="lazy">
-          <img src="${product.hoverImage}" alt="${product.name} detail" class="product-thumb-hover" loading="lazy">
-          
-          <div class="product-video-overlay">
-            <video class="card-video-loop" muted loop playsinline preload="none" poster="${product.primaryImage}">
-              <source src="${
-                product.department === 'diamond' ? 'assets/videos/diamond-solitaire.mp4' :
-                product.department === 'gold' ? 'assets/videos/gold-craft.mp4' :
-                product.department === 'silver' ? 'assets/videos/silver-atelier.mp4' :
-                'assets/videos/gemstones-archive.mp4'
-              }" type="video/mp4">
-            </video>
-          </div>
-          <div class="luxury-sparkle-fx"></div>
           
           <div class="product-quick-actions">
             <button type="button" class="btn-card-quickview" data-action="quickview" data-id="${product.id}">
@@ -221,7 +206,7 @@ class EsceliShopApp {
                 <circle cx="11" cy="11" r="8"></circle>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
               </svg>
-              Quick View
+              <span class="btn-text-full">Quick View</span><span class="btn-text-short">View</span>
             </button>
             <button type="button" class="btn-card-addbag" data-action="add-to-bag" data-id="${product.id}">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -229,7 +214,7 @@ class EsceliShopApp {
                 <line x1="3" y1="6" x2="21" y2="6"></line>
                 <path d="M16 10a4 4 0 0 1-8 0"></path>
               </svg>
-              Add to Bag
+              <span class="btn-text-full">Add to Bag</span><span class="btn-text-short">+ Bag</span>
             </button>
           </div>
         </div>
@@ -486,11 +471,7 @@ class EsceliShopApp {
     // Populate data
     this.dom.modalTag.textContent = product.collection;
     this.dom.modalTitle.textContent = product.name;
-    this.dom.modalPrice.textContent = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      maximumFractionDigits: 0
-    }).format(product.price);
+    this.dom.modalPrice.textContent = formatPrice(product.price);
     this.dom.modalCert.textContent = product.certification;
     this.dom.modalDesc.textContent = product.description;
     this.dom.modalMainImg.src = product.primaryImage;
@@ -594,6 +575,7 @@ class EsceliShopApp {
   }
 
   saveCart() {
+    localStorage.setItem('aum_group_cart', JSON.stringify(this.cart));
     localStorage.setItem('esceli_cart', JSON.stringify(this.cart));
   }
 
@@ -617,6 +599,7 @@ class EsceliShopApp {
       added = true;
     }
 
+    localStorage.setItem('aum_group_wishlist', JSON.stringify(this.wishlist));
     localStorage.setItem('esceli_wishlist', JSON.stringify(this.wishlist));
     this.updateBadges();
 
@@ -706,7 +689,7 @@ class EsceliShopApp {
           <h5 class="drawer-item-title">${item.name}</h5>
           <span class="drawer-item-meta">${item.metal} • ${item.category}</span>
           <div class="drawer-item-bottom">
-            <span class="drawer-item-price">$${item.price.toLocaleString()}</span>
+            <span class="drawer-item-price">${formatPrice(item.price)}</span>
             <button type="button" class="btn-card-addbag text-[0.65rem] py-1 px-3 ml-2" data-action="add-to-bag" data-id="${item.id}">Move to Bag</button>
             <button type="button" class="drawer-item-remove ml-auto" data-action="wishlist" data-id="${item.id}">Remove</button>
           </div>
@@ -747,11 +730,7 @@ class EsceliShopApp {
     }
 
     const subtotal = this.cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-    this.dom.cartSubtotal.textContent = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      maximumFractionDigits: 0
-    }).format(subtotal);
+    this.dom.cartSubtotal.textContent = formatPrice(subtotal);
 
     const threshold = 5000;
     const pct = Math.min(100, Math.round((subtotal / threshold) * 100));
@@ -780,7 +759,7 @@ class EsceliShopApp {
           <h5 class="drawer-item-title">${item.name}</h5>
           <span class="drawer-item-meta">${item.metal} • ${item.size}</span>
           <div class="drawer-item-bottom">
-            <span class="drawer-item-price">$${(item.price * item.qty).toLocaleString()}</span>
+            <span class="drawer-item-price">${formatPrice(item.price * item.qty)}</span>
             <div class="qty-stepper scale-90 origin-right">
               <button type="button" class="qty-btn" data-action="cart-minus" data-index="${index}">-</button>
               <span class="qty-val">${item.qty}</span>
@@ -1168,6 +1147,11 @@ class EsceliShopApp {
       this.dom.drawerBackdrop.addEventListener('click', () => {
         this.closeCartDrawer();
         this.closeWishlistDrawer();
+        if (this.dom.filterSidebar) {
+          this.dom.filterSidebar.classList.remove('mobile-open');
+        }
+        this.dom.drawerBackdrop.classList.remove('active');
+        document.body.style.overflow = '';
       });
     }
 
@@ -1465,12 +1449,20 @@ class EsceliShopApp {
     // Mobile filter toggle
     if (this.dom.mobileFilterToggle && this.dom.filterSidebar) {
       this.dom.mobileFilterToggle.addEventListener('click', () => {
-        this.dom.filterSidebar.classList.toggle('mobile-open');
+        const isOpen = this.dom.filterSidebar.classList.toggle('mobile-open');
+        if (this.dom.drawerBackdrop) {
+          this.dom.drawerBackdrop.classList.toggle('active', isOpen);
+        }
+        document.body.style.overflow = isOpen ? 'hidden' : '';
       });
     }
     if (this.dom.mobileFilterClose && this.dom.filterSidebar) {
       this.dom.mobileFilterClose.addEventListener('click', () => {
         this.dom.filterSidebar.classList.remove('mobile-open');
+        if (this.dom.drawerBackdrop) {
+          this.dom.drawerBackdrop.classList.remove('active');
+        }
+        document.body.style.overflow = '';
       });
     }
   }
@@ -1510,33 +1502,87 @@ class EsceliShopApp {
   bindHideOnScroll() {
     const nav = document.querySelector('.navbar');
     if (!nav) return;
-    let lastScrollY = window.scrollY;
-    let ticking = false;
 
-    window.addEventListener(
-      'scroll',
-      () => {
-        if (ticking) return;
-        ticking = true;
+    const updateNavHeight = () => {
+      const height = nav.offsetHeight || 136;
+      document.documentElement.style.setProperty('--nav-h', `${height}px`);
+    };
+    updateNavHeight();
+    window.addEventListener('resize', updateNavHeight, { passive: true });
 
-        requestAnimationFrame(() => {
-          const currentScrollY = window.scrollY;
-          const delta = currentScrollY - lastScrollY;
-          const drawerOpen = this.dom.mobileDrawer && this.dom.mobileDrawer.classList.contains('open');
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const drawerOpen = this.dom.mobileDrawer && this.dom.mobileDrawer.classList.contains('open');
 
-          if (!drawerOpen) {
-            if (delta > 6 && currentScrollY > 100) {
-              nav.classList.add('nav-hidden');
-            } else if (delta < -6) {
-              nav.classList.remove('nav-hidden');
-            }
-          }
-          lastScrollY = currentScrollY;
-          ticking = false;
-        });
-      },
-      { passive: true }
-    );
+      if (drawerOpen) {
+        nav.classList.remove('nav-hidden');
+        return;
+      }
+
+      if (currentScrollY <= 20) {
+        nav.classList.remove('nav-hidden');
+      } else {
+        nav.classList.add('nav-hidden');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+  }
+
+  initCurrencySelector() {
+    const selector = document.getElementById('currency-selector');
+    const btn = document.getElementById('currency-btn');
+    const label = document.getElementById('currency-current');
+    const flag = document.getElementById('currency-flag');
+    if (!selector || !btn) return;
+
+    const updateUI = (code) => {
+      const data = EXPORT_CURRENCIES[code] || EXPORT_CURRENCIES.USD;
+      if (label) label.textContent = data.label;
+      if (flag) flag.textContent = data.flag;
+      selector.querySelectorAll('.currency-option').forEach((opt) => {
+        if (opt.getAttribute('data-currency') === code) {
+          opt.classList.add('active');
+        } else {
+          opt.classList.remove('active');
+        }
+      });
+    };
+
+    updateUI(getActiveCurrency());
+
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      selector.classList.toggle('open');
+    });
+
+    selector.querySelectorAll('.currency-option').forEach((opt) => {
+      opt.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const code = opt.getAttribute('data-currency');
+        if (code && EXPORT_CURRENCIES[code]) {
+          localStorage.setItem('aum_selected_currency', code);
+          updateUI(code);
+          selector.classList.remove('open');
+          this.renderCatalog();
+          this.renderCartDrawer();
+          window.dispatchEvent(new CustomEvent('currencyChanged', { detail: { currency: code } }));
+        }
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!selector.contains(e.target)) {
+        selector.classList.remove('open');
+      }
+    });
+
+    window.addEventListener('currencyChanged', () => {
+      updateUI(getActiveCurrency());
+      this.renderCatalog();
+      this.renderCartDrawer();
+    });
   }
 
   initScrollReveals() {
@@ -1617,5 +1663,5 @@ class EsceliShopApp {
 
 // Instantiate on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
-  window.shopApp = new EsceliShopApp();
+  window.shopApp = window.aumGroupShopApp = new AumGroupShopApp();
 });
