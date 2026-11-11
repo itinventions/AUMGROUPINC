@@ -1,72 +1,103 @@
-# AUM GROUP INC — Fine Jewellery & Gems
+# AUM GROUP INC. — Fine Jewellery & Gems
 
-An ultra-luxury, pixel-perfect website for **AUM GROUP INC Fine Jewellery & Gems**. Built with modern web standards, modular architecture, Three.js WebGL particle effects, and continuous text background loop animations.
+An ultra-luxury, high-performance web experience for **AUM GROUP INC. Fine Jewellery & Gems** (Established 2011, Mumbai). Built with modern vanilla web technologies, modular CSS architecture, Three.js WebGL refractive particle environments, real-time multi-currency conversion, and an editorial high-jewelry visual design system.
 
 ---
 
 ## 💎 Project Structure
 
-The project strictly follows a clean, modular folder pattern:
+The codebase is organized into a clean, modular, and maintainable architecture designed for zero-build static hosting (Hostinger, Apache, cPanel, Nginx, or AWS S3/CloudFront):
 
 ```
 / (Root / public_html / wwwroot)
-├── index.html                           # Main entry homepage (AUM GROUP INC Fine Jewellery)
-├── about.html                           # About Us page (Aum Group Inc.)
-├── 404.html                             # Custom luxury 404 Error page
-├── 500.html                             # Custom luxury 500 Server Error page
-├── style.css                            # Luxury brand styling & layout
-├── animations.css                       # Micro-animations & keyframes
-├── main.js                              # Main application entry point
-├── navbar.js                            # Navigation bar logic
-├── scene.js                             # Three.js WebGL scene
-├── gemParticles.js                      # Three.js diamond particle system
-├── gemsMarquee.js                       # Infinite marquee carousel
-├── textAnimations.js                    # Ambient background & sparkles
-├── scrollAnimations.js                  # Scroll reveal animations
-├── testimonials.js                      # Testimonials slider
-├── helpers.js                           # Math & utility helpers
-├── about.js                             # About page interactions
-├── .htaccess                            # Apache server optimization & security
-├── robots.txt                           # Search engine crawling directives
-├── sitemap.xml                          # SEO sitemap
-└── assets/                              # Fonts, icons, images, models, textures
+├── index.html                           # Flagship Homepage (Hero, 3D WebGL, Marquee, Specialties, 5-col Footer)
+├── about.html                           # About Us — Heritage, Manufacturing, GIA/IGI, Global Presence & HQ
+├── contact.html                         # Contact Concierge — Showroom Locator, Inquiries & Consultation Form
+├── shop.html                            # Master Shop Catalogue — All Collections, Filters, Sorting & Cart Drawer
+├── shop-diamond.html                    # Curated Natural & Lab-Grown Diamond Jewellery Catalogue
+├── shop-gems.html                       # Curated Precious & Semi-Precious Gemstones Catalogue
+├── shop-gold.html                       # Curated 18K / 22K Hallmarked Gold Jewellery Catalogue
+├── shop-silver.html                     # Curated 925 Sterling Silver Couture Catalogue
+├── 404.html                             # Custom Luxury 404 Error Page
+├── 500.html                             # Custom Luxury 500 Server Error Page
+│
+├── style.css                            # Dedicated Homepage Stylesheet (Exclusively for index.html)
+├── about.css                            # Dedicated About Us Stylesheet (Exclusively for about.html)
+├── contact.css                          # Dedicated Contact Concierge Stylesheet (Exclusively for contact.html)
+├── shop.css                             # Unified Shop Stylesheet (Powers all 5 shopping/catalogue pages)
+├── animations.css                       # Shared Micro-animations, Keyframes & Scroll-Reveal Utilities
+│
+├── main.js                              # Application bootstrap, global state, currency sync & quickview
+├── navbar.js                            # 2-Tier luxury navbar, currency modal, search & slide-out drawer
+├── shop.js                              # Catalog engine: dynamic rendering, filtering, sorting, cart & wishlist
+├── shop-data.js                         # Master product catalogue database with luxury specifications
+├── about.js                             # Interactive timeline & milestone counters for about.html
+├── contact.js                           # Form validation, client concierge handlers & FAQ accordion
+├── scene.js                             # Three.js WebGL canvas setup & scene manager
+├── gemParticles.js                      # Three.js refractive gemstone dust particle simulation
+├── collectionsScene.js                  # Three.js 3D gemstone display showcase
+├── gemsMarquee.js                       # Seamless infinite gemstone carousel with touch drag / hover pause
+├── textAnimations.js                    # Ambient caustics halo & diamond glint flare spawner
+├── scrollAnimations.js                  # IntersectionObserver-driven scroll reveal animations
+├── testimonials.js                      # Luxury editorial client review slider
+├── helpers.js                           # Mathematics, currency exchange rates & string formatting helpers
+│
+├── .htaccess                            # Apache/Hostinger configuration (Gzip, Cache-Control, Security Headers)
+├── .gitignore                           # Production git exclusions (archives, OS, editor, secrets, temp)
+├── robots.txt                           # Search engine crawling directives & sitemap location
+├── sitemap.xml                          # Canonical XML sitemap for SEO indexing
+├── FONTS_GUIDE.md                       # Comprehensive luxury typography & font-loading reference
+├── AUM.tar.gz                           # Production deployment archive (excludes git/temp files)
+└── assets/                              # Brand assets, imagery, fonts, and certification badges
+    ├── fonts/                           # Cormorant Garamond, Montserrat, Inter, Jost web fonts
+    ├── icons/                           # Brand SVG icons, payment badges, GIA (gia.png) & IGI (igi.png)
+    ├── images/                          # Ultra-high-resolution gemstone & jewellery photography
+    └── textures/                        # WebGL particle textures & noise maps
 ```
 
 ---
 
-## ✨ Features & Technical Details
+## 🎨 Modular CSS Architecture
 
-1. **Pixel-Perfect Visual Replication**:
-   - **Typography**: Editorial serif heading (`Cormorant Garamond`) with Roman `"Timeless Gems."` and italicized serif `"Elegance."`, paired with clean tracking on subheadings and nav links (`Montserrat` and `Inter`).
-   - **Color Palette**: Curated luxury tones including champagne gold (`#dfc59e`), warm ivory (`#fcfbfa`), muted stone (`#cfc7be`), and deep obsidian black (`#090807`).
-   - **Navigation Bar**: Clean brand logo, centered navigation links with the golden active indicator line under `"Home"`, and right-aligned luxury action icons including the shopping bag with the golden circular `"0"` notification badge.
-   - **Call-to-Action**: Rectangular `"EXPLORE COLLECTION  →"` button in warm champagne gold with hover gloss sheen and arrow micro-animation.
+To ensure optimal page-load speed, high browser cache efficiency, and clean maintainability, styles are strictly decoupled:
 
-2. **Three.js & WebGL Interactive Environment**:
-   - Floating diamond & gemstone dust particles with varying refractive hues (champagne, pure diamond white, sapphire blue).
-   - Harmonic floating drift combined with smooth mouse-parallax depth tracking.
-   - Automatic fallback if WebGL is unavailable on older hardware.
-
-3. **Loop Animations in Text Background**:
-   - **Ambient Caustics Halo**: Radial gradient breathing softly behind the headline, echoing warm candlelight and royal sapphire gemstone undertones.
-   - **Gem Glints & Twinkles**: Four-point diamond star flares that shimmer in an infinite organic loop around the typography.
-   - **Dynamic Sparkle Spawner**: Subtle microscopic light bursts generated dynamically behind the text.
-
-4. **Phase 2: Gems Collection Infinite Carousel**:
-   - **Background**: High-resolution `02_Hompage_Background_Image.png` with cinematic golden light and obsidian bokeh.
-   - **Header**: Editorial `"Find Your Perfect Gem"` paired with `"Explore Our Collection"` and `"View All →"` hover micro-interaction.
-   - **Continuous Seamless Marquee**: Cards scroll automatically in a smooth, hardware-accelerated 36-second loop. As cards exit on the left edge, they seamlessly enter from the right without stutter or jumps.
-   - **Interactive Pause & Drag**: Marquee automatically pauses when hovered or focused, and supports touch swipe and mouse drag.
-   - **Cards**: Obsidian glassmorphism cards with fine borders, image zoom, title color change, and gold glow elevation on hover.
+| Stylesheet | File Size | Target Page(s) | Scope & Contents |
+|---|---|---|---|
+| **`style.css`** | ~144 KB | [`index.html`](file:///d:/AUM/index.html) | Exclusively homepage: Hero, Three.js overlays, gems marquee, signature specialties, testimonials slider, 5-column footer. |
+| **`about.css`** | ~77 KB | [`about.html`](file:///d:/AUM/about.html) | Exclusively About page: Brand heritage, manufacturing mastery, direct supply advantage, GIA/IGI section, global presence, corporate HQ, 5-column footer. |
+| **`contact.css`** | ~59 KB | [`contact.html`](file:///d:/AUM/contact.html) | Exclusively Contact page: Concierge intro, consultation booking, inquiry form, showroom locator, worldwide branches, FAQ accordion, 5-column footer. |
+| **`shop.css`** | ~185 KB | All 5 Shop Pages | Unified shopping system: Hero banners, multi-faceted filter sidebar, product grid, hover states, quickview modal, wishlist, cart drawer, 5-column footer. |
+| **`animations.css`** | ~9 KB | All Pages | Shared utility keyframes: caustics pulse, gem shimmer, marquee scroll, modal fades, spring scale badges. |
 
 ---
 
+## 🏛️ Footer 5-Column Luxury Architecture
+
+Every page features the standardized, responsive 5-column luxury footer grid:
+
+```
+┌─────────────────┬─────────────────┬─────────────────┬─────────────────┬─────────────────┐
+│ COLUMN 1        │ COLUMN 2        │ COLUMN 3        │ COLUMN 4        │ COLUMN 5        │
+│ Brand Identity  │ Customer Care   │ Information     │ CERTIFICATIONS  │ Get in Touch    │
+├─────────────────┼─────────────────┼─────────────────┼─────────────────┼─────────────────┤
+│ • Gold AUM Logo │ • About Us      │ • Diamond Cuts  │ • GIA Badge     │ • Email Address │
+│ • Heritage Bio  │ • Shipping Info │ • GIA & IGI     │   (Official)    │ • Phone Support │
+│ • Social Links  │ • Returns       │ • Manufacturing │ • IGI Badge     │ • Mumbai HQ     │
+│   (IG, FB, PI,  │ • FAQ           │ • Direct Supply │   (Official)    │   Address       │
+│    YT)          │ • Contact Us    │ • Corporate HQ  │                 │                 │
+└─────────────────┴─────────────────┴─────────────────┴─────────────────┴─────────────────┘
+```
+
+- **Desktop (>1024px)**: `grid-template-columns: 1.35fr 1fr 1fr 1fr 1fr;`
+- **Tablet (768px – 1024px)**: Responsive 3-column auto-wrap layout.
+- **Mobile (<768px)**: Single-column centered stack with optimized vertical rhythm.
+- **Certifications**: Houses official GIA and IGI laboratory badges without intrusive text overlays.
 
 ---
 
 ## 🎨 UI/UX Color Design System & Palette Guide (v2.0)
 
-> Based on the official luxury jewellery moodboard (**Escéli / Aum Group Inc v2.0**), this guide defines how and where each color is utilized according to international UI/UX and visual hierarchy standards.
+Built on the official luxury jewellery moodboard (**Escéli / Aum Group Inc v2.0**), adhering to the international **60-30-10 Rule** of visual hierarchy:
 
 ```
 ┌─────────────────┬─────────────────┬─────────────────┬─────────────────┐
@@ -77,118 +108,100 @@ The project strictly follows a clean, modular folder pattern:
 └─────────────────┴─────────────────┴─────────────────┴─────────────────┘
 ```
 
----
+### Core Palette Specification
 
-### 1. The Core Color Palette Swatches
-
-| Color Name | Hex Code | RGB | HSL | Semantic UI Role | Visual Psychology |
-|---|---|---|---|---|---|
-| **Imperial Emerald** | `#004438` | `rgb(0, 68, 56)` | `170°, 100%, 13%` | Primary Brand Anchor / Deep Canvas | Timeless heritage, rare gemstones, prestige, trust |
-| **Royal Burgundy** | `#402020` | `rgb(64, 32, 32)` | `0°, 33%, 19%` | High-Impact Accent / Micro-Conversion | Velvet gift boxes, royal distinction, passion, exclusivity |
-| **Alabaster Cream** | `#d6d1c4` | `rgb(214, 209, 196)` | `43°, 18%, 80%` | Primary High-Contrast Typography & Icons | Silk packaging, diamond radiance, warmth, legibility |
-| **Silver Slate** | `#8c8c8c` | `rgb(140, 140, 140)` | `0°, 0%, 55%` | Secondary Metadata, Dividers & Outlines | Platinum/white gold setting, balance, neutrality |
-
----
-
-### 2. UI/UX Design Principles: The 60-30-10 Golden Rule
-
-In luxury digital experiences, visual noise degrades the perception of premium value. We apply the **60-30-10 Rule** to structure user attention:
-
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                                                                        │
-│   60% DOMINANT CANVAS (Deep Emerald #004438 / #002821 / Obsidian Base) │
-│   Establishes the intimate, high-jewelry boutique atmosphere.          │
-│                                                                        │
-│   ┌────────────────────────────────────────────────────────────────┐   │
-│   │                                                                │   │
-│   │   30% STRUCTURAL HIERARCHY (#d6d1c4 Alabaster & #8c8c8c Slate) │   │
-│   │   Headings, navigation links, icons, divider lines.            │   │
-│   │                                                                │   │
-│   │   ┌───────────────────────────┐                                │   │
-│   │   │  10% ACCENT (#402020)     │                                │   │
-│   │   │  Badges, CTAs, Cart, Sale │                                │   │
-│   │   └───────────────────────────┘                                │   │
-│   └────────────────────────────────────────────────────────────────┘   │
-└────────────────────────────────────────────────────────────────────────┘
-```
-
-1. **60% Dominant Base (`#004438` & `#002821`)**:
-   - Covers full viewport backgrounds, fixed luxury navigation bars, slide-out drawer menus, and hero background vignette atmospheres.
-   - Keeps the digital environment dark, intimate, and focused, echoing high-end private gemstone salons.
-
-2. **30% Structural Typography & Hierarchy (`#d6d1c4` & `#8c8c8c`)**:
-   - `#d6d1c4` (Alabaster Cream): All primary headlines, editorial typography (`Cormorant Garamond`), centered navigation menu links, and primary brand logos.
-   - `#8c8c8c` (Silver Slate): Secondary metadata, shipping notices, timestamps, inactive states, and delicate 1px border dividers.
-
-3. **10% High-Impact Focal Accent (`#402020` Burgundy)**:
-   - Reserved strictly for conversion hotspots and interactive cues: shopping cart notification counters, wishlist heart active state, exclusive collection tags ("Best Seller", "Heirloom Edition"), and checkout/reservation buttons.
-   - Because it is used sparingly, it instantly draws the shopper's eye without overwhelming the refined emerald ambiance.
-
----
-
-### 3. Component-by-Component Color Application Matrix
-
-| Component | Element | Assigned Color | Hex Code | UI/UX Rationale |
+| Color Name | Hex Code | RGB | Semantic UI Role | Visual Psychology |
 |---|---|---|---|---|
-| **Navbar (Top Tier)** | Background | Deep Emerald Glass | `rgba(0, 36, 29, 0.98)` | Provides depth and luxury presence at the top of the viewport. |
-| **Navbar (Top Tier)** | Shipping Notice | Silver Slate + Alabaster Icon | `#8c8c8c` / `#d6d1c4` | Non-intrusive value proposition that reassures the customer. |
-| **Navbar (Top Tier)** | Brand Logo | Alabaster Gold Filter | `#d6d1c4` | Crisp, elevated brand presence with 56px height. |
-| **Navbar (Top Tier)** | Notification Badges | Royal Burgundy with Cream Text | `#402020` / `#d6d1c4` | High contrast badge that immediately communicates cart activity. |
-| **Navbar (Divider)** | Separator Line | Subtle Slate Border | `rgba(140, 140, 140, 0.22)` | Elegant, barely-there structural separation between tiers. |
-| **Navbar (Bottom Tier)**| Background | Darker Emerald Tone | `rgba(0, 32, 26, 0.94)` | Visually anchors the centered links. |
-| **Navbar (Bottom Tier)**| Menu Links (Default)| Alabaster Cream | `#d6d1c4` (opacity: 0.88) | Ultra-clean, peaceful typography with zero distracting active lines. |
-| **Navbar (Bottom Tier)**| Menu Links (Hover)  | Pure White + Glow + Underline | `#ffffff` + Alabaster Underline | **Hover-Only Effect**: Glow and expanding line appear solely when engaged. |
-| **Hero Section** | Eyebrow & Subtitles | Silver Slate & Signature Accent | `#8c8c8c` & `#d6d1c4` | Editorial posture that frames the main headline. |
-| **Hero Section** | Main Heading | Alabaster Cream | `#d6d1c4` / `#fcfbfa` | Maximum optical readability against dark background. |
-| **Call To Action** | Primary Button | Royal Burgundy or Emerald Glass| `#402020` | Signals immediate, high-confidence conversion. |
-| **Product Cards** | Card Surface | Emerald Glassmorphism | `rgba(0, 68, 56, 0.45)` | Lets card float seamlessly over the backdrop. |
-| **Product Cards** | Card Borders | Muted Silver Slate | `rgba(140, 140, 140, 0.25)` | Delineates cards cleanly on Retina and OLED screens. |
-| **Badges & Tags** | "Best Seller" / "New"| Royal Burgundy Ribbon | `#402020` | Echoes the satin gift ribbons from the brand packaging moodboard. |
-| **Mobile Drawer** | Canvas & Close Button | Deep Emerald & Alabaster | `#002821` / `#d6d1c4` | Consistent branded slide-out navigation on smartphones. |
+| **Imperial Emerald** | `#004438` | `rgb(0, 68, 56)` | Primary Brand Anchor / Canvas | Heritage, rare Colombian emeralds, prestige, high trust |
+| **Deep Emerald Tone**| `#002821` | `rgb(0, 40, 33)` | Tier-2 Navbars & Mobile Drawer | Intimacy, depth, high-jewelry private salon ambiance |
+| **Royal Burgundy**   | `#402020` | `rgb(64, 32, 32)` | Conversion Accent & Badges | Velvet ring boxes, royal distinction, exclusive editions |
+| **Alabaster Cream**  | `#d6d1c4` | `rgb(214, 209, 196)`| Editorial Typography & Headings | Silk packaging, diamond radiance, pristine clarity |
+| **Silver Slate**     | `#8c8c8c` | `rgb(140, 140, 140)`| Secondary Metadata & Dividers | Platinum / white gold setting neutrality |
+| **Warm Champagne**   | `#dfc59e` | `rgb(223, 197, 158)`| Star Shimmers & Gold Accents | Warm candlelight, yellow gold polish, refined luxury |
 
----
+### The 60-30-10 Golden Rule
 
-### 4. Accessibility & Contrast Verification (WCAG 2.1)
+1. **60% Dominant Base (`#004438` / `#002821`)**: Viewport backgrounds, luxury navigation bars, slide-out drawer menus, and hero backgrounds.
+2. **30% Structural Hierarchy (`#d6d1c4` / `#8c8c8c`)**: Editorial headings (`Cormorant Garamond`), centered menu links, product titles, and delicate 1px dividers.
+3. **10% High-Impact Accent (`#402020` Burgundy)**: Shopping cart badges, wishlist heart highlights, "Best Seller" ribbon tags, and primary CTAs.
 
-| Foreground Text | Background Surface | Contrast Ratio | WCAG Compliance Level | Result |
+### Accessibility & Contrast Compliance (WCAG 2.1)
+
+| Foreground Text | Background Surface | Contrast Ratio | WCAG Compliance | Status |
 |---|---|---|---|---|
-| `#d6d1c4` (Alabaster) | `#004438` (Emerald Primary) | **7.8:1** | **AAA** (Normal & Large Text) | Pass (Optimal) |
-| `#d6d1c4` (Alabaster) | `#002821` (Emerald Deep) | **10.2:1** | **AAA** (Enhanced Contrast) | Pass (Flawless) |
-| `#d6d1c4` (Alabaster) | `#402020` (Royal Burgundy) | **8.4:1** | **AAA** (Badges & Buttons) | Pass (Flawless) |
-| `#ffffff` (Pure White) | `#402020` (Royal Burgundy) | **11.1:1** | **AAA** (Hover States) | Pass (Flawless) |
-| `#8c8c8c` (Silver Slate) | `#002821` (Emerald Deep) | **4.6:1** | **AA** (Secondary Meta) | Pass (Standard) |
+| `#d6d1c4` (Alabaster) | `#004438` (Emerald Primary) | **7.8:1** | **AAA** (All Text) | Pass |
+| `#d6d1c4` (Alabaster) | `#002821` (Emerald Deep)    | **10.2:1** | **AAA** (Enhanced) | Pass |
+| `#d6d1c4` (Alabaster) | `#402020` (Royal Burgundy)  | **8.4:1** | **AAA** (Buttons)  | Pass |
+| `#ffffff` (Pure White) | `#402020` (Royal Burgundy)  | **11.1:1**| **AAA** (Hover)    | Pass |
+| `#8c8c8c` (Silver Slate)| `#002821` (Emerald Deep)  | **4.6:1** | **AA** (Metadata)  | Pass |
 
 ---
 
-### 5. Interactive State Design Principles
+## 🌍 Multi-Currency Conversion Engine
 
-To maintain an unhurried, royal shopping atmosphere:
-1. **Resting State (Clean Elegance)**: 
-   - No aggressive animated pulses or persistent underline bars cluttering the navigation bar. 
-   - Typography sits serenely in `#d6d1c4` with balanced letter spacing.
-2. **Hover State (Interactive Delight)**:
-   - Visual feedback happens **only on user intent**: text brightness rises to `#ffffff`, an ambient Alabaster glow expands (`0 0 12px rgba(214, 209, 196, 0.7)`), and a smooth 2px underline expands outward from the center.
-3. **Active / Click State (Tactile Confidence)**:
-   - Cart and wishlist buttons trigger a subtle spring bounce (`scale(1.15) -> scale(1)`) with Burgundy `#402020` badge feedback.
+Integrated real-time currency switcher supporting 11 global trading currencies:
+- **USD ($)** — United States Dollar (Base)
+- **EUR (€)** — Euro
+- **GBP (£)** — British Pound Sterling
+- **AED (AED)** — UAE Dirham
+- **INR (₹)** — Indian Rupee
+- **JPY (¥)** — Japanese Yen
+- **CAD (CA$)** — Canadian Dollar
+- **AUD (AU$)** — Australian Dollar
+- **SGD (SG$)** — Singapore Dollar
+- **HKD (HK$)** — Hong Kong Dollar
+- **CHF (CHF)** — Swiss Franc
 
-## 🚀 Running the Project
+All product prices, cart totals, quickview previews, and checkout estimates update instantly without page reloads via `localStorage` synchronization.
 
-To preview locally using Python:
+---
+
+## ✨ Interactive Features & Micro-Interactions
+
+1. **Three.js Gem Dust Particles**:
+   - Refractive, floating diamond dust with champagne, diamond-white, and sapphire-blue glints.
+   - Mouse-parallax tilt dynamics with fallback handling for low-power devices.
+2. **Infinite Gemstones Marquee**:
+   - Continuous 36-second seamless hardware-accelerated carousel.
+   - Auto-pause on hover/focus, with mobile touch swipe and drag support.
+3. **Product Catalog & Quickview**:
+   - Dynamic multi-criteria filter (Category, Metal, Gemstone, Price).
+   - Fast modal quickview with image zoom, carat/metal selector, and direct Add-to-Bag flow.
+4. **Slide-Out Luxury Navigation Drawer**:
+   - Smooth transform slide-in on mobile with backdrop blur.
+   - Guarded by `@media (min-width: 1025px) { display: none !important; }` to eliminate desktop overlap.
+
+---
+
+## 🚀 Local Development & Preview
+
+Run locally using Python:
 ```bash
 python -m http.server 5500
 ```
-Then navigate to: `http://localhost:5500/`
+Then open: [http://localhost:5500/](http://localhost:5500/)
 
-To preview using Node.js:
+Run locally using Node.js:
 ```bash
 npx serve .
 ```
 
 ---
 
-## 🎨 Logo Replacement
+## 📦 Production Deployment (Hostinger / cPanel)
 
-When you have your official logo asset ready:
-1. Place your logo file in `assets/icons/logo.svg` or `assets/images/logo.png`.
-2. Update the `.brand-logo-container` in [index.html](file:///c:/AUMGROUPINC-PROJECT/index.html) with your image or SVG tag.
+1. Use the pre-built archive [`AUM.tar.gz`](file:///d:/AUM/AUM.tar.gz).
+2. Upload `AUM.tar.gz` to your server's root web directory (e.g. `public_html/`).
+3. Extract via cPanel File Manager or SSH:
+   ```bash
+   tar -xzf AUM.tar.gz
+   ```
+4. Verify `.htaccess` is present to ensure Gzip compression and security headers are active.
+5. In your browser, perform a hard refresh (`Ctrl + Shift + R` or `Cmd + Shift + R`) to load the `v=5.0` assets.
+
+---
+
+## 📄 License & Attribution
+
+© 2011–2026 **AUM GROUP INC.** All Rights Reserved.  
+Proprietary luxury web application developed for AUM GROUP INC. Fine Jewellery & Gems, Mumbai, Maharashtra, India.

@@ -1,4 +1,876 @@
 /**
+ * AUM GROUP INC / GEMORÉ FINE JEWELLERY & GEMS
+ * Dedicated Stylesheet: Contact Us Page (contact.html)
+ */
+
+/* ==========================================================================
+   AURÉLIA FINE JEWELLERY & GEMS - Main Stylesheet
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Montserrat:wght@200;300;400;500;600;700&family=Inter:wght@300;400;500&display=swap');
+
+/* --------------------------------------------------------------------------
+   Custom Luxury Typography Imports (@font-face)
+   -------------------------------------------------------------------------- */
+/* 1. Brannboll Connect PERSONAL USE by Måns Grebäck (mawns) */
+@font-face {
+  font-family: 'Brannboll Connect';
+  src: url('assets/fonts/BrannbollConnect_PERSONAL_USE.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 2. Derathea by Hyperactype */
+@font-face {
+  font-family: 'Derathea';
+  src: url('assets/fonts/Derathea.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 3. Senjalara Demo by CalligraphyFonts.net */
+@font-face {
+  font-family: 'Senjalara Demo';
+  src: url('assets/fonts/Senjalara.ttf') format('truetype'),
+       url('assets/fonts/SenjalaraDemoRegular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 4. Romantyc Harmony by Damarletter Studio */
+@font-face {
+  font-family: 'Romantyc Harmony';
+  src: url('assets/fonts/Romantyc_Harmony.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Dynamic Navigation Bar Height */
+  --nav-h: 137px;
+
+  /* ========================================================================
+     NEW LUXURY BRAND PALETTE (Escéli / Aum Group Inc Version 2.0)
+     ======================================================================== */
+  --color-emerald-deep: #002821;        /* Darkest Surface / Nav Background */
+  --color-emerald-primary: #004438;     /* Core Brand Emerald / Card Base */
+  --color-emerald-light: #005f4e;       /* Hover / Emerald Tint */
+  --color-burgundy-deep: #2c1212;       /* Deep Wine / Dark Contrast */
+  --color-burgundy-primary: #402020;    /* Royal Burgundy / Badges / Buttons */
+  --color-burgundy-hover: #5a2c2c;      /* Burgundy Hover / Active */
+  --color-alabaster: #d6d1c4;           /* Primary Luxury Text / Accents / Cream */
+  --color-slate-grey: #8c8c8c;          /* Secondary Muted Meta / Borders */
+
+  /* Legacy / Compatible Aliases mapped to new luxury palette */
+  --color-gold-primary: #d6d1c4;
+  --color-gold-button: #d6d1c4;
+  --color-gold-hover: #f4f2ec;
+  --color-gold-deep: #004438;
+  --color-gold-accent: #d6d1c4;
+  --color-dark-bg: #001f19;
+  --color-dark-surface: #002821;
+  --color-text-white: #fcfbfa;
+  --color-text-muted: #8c8c8c;
+  --color-text-dark: #001f19;
+  --color-sapphire-glow: rgba(0, 68, 56, 0.55);
+  --color-gold-glow: rgba(214, 209, 196, 0.4);
+
+  /* Primary Typography */
+  --font-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Custom Luxury Script & Display Fonts */
+  --font-brannboll: 'Brannboll Connect', cursive, sans-serif;
+  --font-derathea: 'Derathea', cursive, sans-serif;
+  --font-senjalara: 'Senjalara Demo', cursive, serif;
+  --font-romantyc: 'Romantyc Harmony', cursive, serif;
+
+  /* Transitions */
+  --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: all 0.2s ease-out;
+}
+
+/* Typography Utility Classes */
+.font-brannboll { font-family: var(--font-brannboll); }
+.font-derathea { font-family: var(--font-derathea); }
+.font-senjalara { font-family: var(--font-senjalara); }
+.font-romantyc { font-family: var(--font-romantyc); }
+.font-serif-italic { font-family: var(--font-serif); font-style: italic; }
+
+/* Base Resets & Global Text Selection Lock */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+html {
+  scroll-padding-top: var(--nav-h, 85px);
+}
+
+html,
+body,
+.luxury-dark-body {
+  width: 100%;
+  min-height: 100%;
+  overflow-x: clip;
+  scroll-behavior: smooth;
+  background-color: var(--color-dark-bg);
+  color: var(--color-text-white);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+  scrollbar-width: thin;
+  scrollbar-color: #b89360 #090807;
+}
+
+/* ==========================================================================
+   Luxury Custom Side Scrollbar (Website & Section Scrollbars)
+   ========================================================================== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #090807;
+  border-left: 1px solid rgba(223, 199, 167, 0.08);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #dfc7a7 0%, #b89360 50%, #dfc7a7 100%);
+  border-radius: 0;
+  border: 1px solid rgba(223, 199, 167, 0.25);
+  box-shadow: 0 0 8px rgba(223, 199, 167, 0.2);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #f5e7d5 0%, #d8aa6f 50%, #f5e7d5 100%);
+  box-shadow: 0 0 14px rgba(223, 199, 167, 0.75);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #dfc59e;
+  box-shadow: 0 0 18px rgba(223, 199, 167, 0.95);
+}
+
+::-webkit-scrollbar-corner {
+  background: #090807;
+}
+
+/* ==========================================================================
+   POINTED / SHARP BORDERS (Zero Border Radius — No Curved Borders)
+   Applies to all buttons, pills, cards, badges, inputs and interactive elements
+   ========================================================================== */
+button,
+input,
+select,
+textarea,
+[role="button"],
+.hero-cta-btn,
+.gold-emerald-btn,
+.studded-emerald-btn,
+.gems-emerald-btn,
+.silver-emerald-btn,
+.diamond-emerald-btn,
+.diamond-pill,
+.video-sound-pill,
+.collection-card,
+.collection-card-img-wrap,
+.collection-hover-badge,
+.collection-card-badge,
+.card-circle-btn,
+.gold-thumb-card,
+.gold-thumb-img-wrap,
+.studded-thumb-card,
+.studded-thumb-img-wrap,
+.payment-badge,
+.newsletter-form,
+.newsletter-btn,
+.newsletter-input,
+.currency-btn,
+.currency-dropdown,
+[class*="-btn"],
+[class*="-pill"],
+[class*="-badge"],
+[class*="-card"] {
+  border-radius: 0 !important;
+}
+
+/* Interactive elements maintain standard pointer cursor */
+a,
+button,
+[role="button"],
+input,
+select,
+textarea {
+  cursor: pointer;
+}
+
+/* Selection Color disabled completely across the website */
+::selection {
+  background: transparent;
+  color: inherit;
+}
+
+::-moz-selection {
+  background: transparent;
+  color: inherit;
+}
+
+/* --------------------------------------------------------------------------
+   Background & Layout Architecture
+   Stacked sticky reveal: the hero stays pinned while the gems section
+   (higher z-index, opaque) scrolls up over it as the hero fades away.
+   -------------------------------------------------------------------------- */
+.scroll-stage {
+  position: relative;
+  width: 100%;
+  /* Ensures the 1st section begins cleanly directly after the fixed navbar */
+  padding-top: var(--nav-h, 136px);
+}
+
+.hero-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - var(--nav-h, 137px));
+  min-height: calc(100svh - var(--nav-h, 137px));
+  z-index: 1;
+  overflow: hidden;
+  background-color: #f5ebe1;
+}
+
+/* Photo Backdrop displaying the 100% full uncropped image */
+.hero-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('assets/images/Background%20Images/01_Hompage_Background_Image.png');
+  background-size:cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  z-index: 1;
+  pointer-events: none;
+  transform-origin: center center;
+  will-change: transform, opacity, filter;
+  transition: filter 0.12s ease-out;
+}
+
+.hero-body {
+  will-change: transform, opacity;
+  transform-origin: center top;
+}
+
+/* Soft cinematic gradient matching the reference image's warm creamy studio lighting */
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg,
+      rgba(244, 235, 226, 0.42) 0%,
+      rgba(244, 235, 226, 0.25) 28%,
+      transparent 65%);
+}
+
+/* Three.js / WebGL Canvas Layer - Constrained around text area only */
+#webgl-canvas {
+  position: absolute;
+  inset: -30px;
+  width: calc(100% + 60px);
+  height: calc(100% + 60px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Interactive & Ambient Content Container - Starts cleanly below the fixed navbar */
+.hero-content-container {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  min-height: calc(100vh - var(--nav-h, 136px));
+  min-height: calc(100svh - var(--nav-h, 136px));
+  display: flex;
+  flex-direction: column;
+}
+
+/* --------------------------------------------------------------------------
+   Navigation Bar (Fixed 2-Tier Luxury Header - Escéli / New Palette v2.0)
+   -------------------------------------------------------------------------- */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  background: linear-gradient(180deg, rgba(0, 36, 29, 0.98) 0%, rgba(0, 48, 39, 0.96) 100%);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border-bottom: 1px solid rgba(214, 209, 196, 0.16);
+  box-shadow: 0 6px 35px rgba(0, 20, 16, 0.75);
+  /* Snappy slide up/down on scroll */
+  transform: translateY(0);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              background 0.35s ease,
+              border-color 0.35s ease,
+              box-shadow 0.35s ease;
+}
+
+/* Class added by JS when scrolling DOWN — slides navbar off screen immediately */
+.navbar.nav-hidden {
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
+/* 1. Upper Tier: Shipping Notice | Center Large Logo | Utility Icons */
+.navbar-top {
+  position: relative;
+  height: 86px; /* Extra height to showcase large logo */
+  display: flex;
+  align-items: center;
+  justify-content: end  ;
+  padding: 0 4rem;
+}
+
+/* Top Left: Free Worldwide Shipping Notice with Faceted Gem Globe Icon */
+.navbar-shipping {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--color-slate-grey); /* #8c8c8c */
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.shipping-icon {
+  width: 19px;
+  height: 19px;
+  stroke: var(--color-alabaster); /* #d6d1c4 */
+  color: var(--color-alabaster);
+  filter: drop-shadow(0 0 6px rgba(214, 209, 196, 0.4));
+  flex-shrink: 0;
+}
+
+/* Top Center: Prominent Large Company Brand Logo */
+.navbar-brand-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  z-index: 5;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.navbar-brand-center:hover {
+  transform: translateX(-50%) scale(1.04);
+}
+
+/* Increased Logo Size in Navbar */
+.navbar-logo-img {
+  height: 72px; /* Large prominent logo */
+  width: auto;
+  max-width: 320px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 0 16px rgba(214, 209, 196, 0.32));
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.navbar-logo-img:hover {
+  filter: drop-shadow(0 0 18px rgba(214, 209, 196, 0.55));
+}
+
+/* Fallback Text Branding */
+.brand-gemore-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  line-height: 1.1;
+}
+
+.brand-gemore-emblem {
+  width: 24px;
+  height: 20px;
+  stroke: var(--color-alabaster);
+  margin-bottom: 2px;
+  filter: drop-shadow(0 0 8px rgba(214, 209, 196, 0.6));
+}
+
+.brand-gemore-title {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-alabaster);
+  text-shadow: 0 0 12px rgba(214, 209, 196, 0.45);
+}
+
+.brand-gemore-sub {
+  font-family: var(--font-sans);
+  font-size: 0.5rem;
+  font-weight: 400;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-slate-grey);
+  margin-top: 3px;
+}
+
+/* Top Right: Currency Dropdown & Action Icons */
+.navbar-top-right {
+  display: flex;
+  align-items: center;
+  gap: 1.65rem;
+}
+
+/* Currency Selector */
+.currency-selector {
+  position: relative;
+}
+
+.currency-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: transparent;
+  border: none;
+  color: var(--color-alabaster); /* #d6d1c4 */
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  padding: 0.35rem 0.6rem;
+  border-radius: 4px;
+  transition: color 0.25s ease, background 0.25s ease;
+}
+
+.currency-btn:hover {
+  color: #ffffff;
+  background: rgba(214, 209, 196, 0.08);
+}
+
+.chevron-down-icon {
+  width: 13px;
+  height: 13px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.currency-selector.open .chevron-down-icon {
+  transform: rotate(180deg);
+}
+
+.currency-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 175px;
+  max-width: 240px;
+  max-height: min(65vh, 320px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  background: rgba(0, 36, 29, 0.98);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(214, 209, 196, 0.22);
+  border-radius: 6px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.85);
+  list-style: none;
+  padding: 0.35rem 0;
+  margin: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px) scale(0.96);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+  z-index: 9999;
+}
+
+.currency-menu::-webkit-scrollbar {
+  width: 4px;
+}
+.currency-menu::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.25);
+}
+.currency-menu::-webkit-scrollbar-thumb {
+  background: rgba(214, 209, 196, 0.4);
+  border-radius: 4px;
+}
+
+.currency-selector.open .currency-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.currency-option {
+  padding: 0.5rem 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--color-alabaster);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.currency-option:hover {
+  background: var(--color-burgundy-primary); /* Royal Burgundy #402020 */
+  color: #ffffff;
+}
+
+.currency-option.active {
+  color: #ffffff;
+  font-weight: 600;
+  background: rgba(64, 32, 32, 0.85);
+}
+
+/* Action Icon Buttons */
+.nav-icon-btn {
+  background: none;
+  border: none;
+  color: var(--color-alabaster); /* #d6d1c4 */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem;
+  transition: transform 0.25s ease, color 0.25s ease, filter 0.25s ease;
+  position: relative;
+  text-decoration: none;
+}
+
+.nav-icon-btn:hover {
+  color: #ffffff;
+  transform: scale(1.12);
+  filter: drop-shadow(0 0 8px rgba(214, 209, 196, 0.7));
+}
+
+.nav-icon-btn svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+/* Badges for Wishlist and Cart - Royal Burgundy (#402020) Accent */
+.wishlist-badge,
+.cart-badge {
+  position: absolute;
+  top: -3px;
+  right: -6px;
+  width: 16px;
+  height: 16px;
+  background-color: var(--color-burgundy-primary); /* Royal Burgundy #402020 */
+  color: var(--color-alabaster);                  /* Alabaster Cream #d6d1c4 */
+  border: 1px solid rgba(214, 209, 196, 0.35);
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  box-shadow: 0 0 8px rgba(64, 32, 32, 0.85);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+
+/* 3. Lower Tier: Hamburger absolutely left | All Links Centered in the Middle */
+.navbar-bottom {
+  position: relative;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Links centered by default */
+  padding: 0 4rem;
+
+}
+
+/* Hamburger button (Three lines) — HIDDEN on desktop (>1024px), only shown on mobile & tablet preview */
+.hamburger-btn {
+  display: none !important;
+  background: none;
+  border: none;
+  color: var(--color-alabaster);
+  cursor: pointer;
+  padding: 0.4rem;
+  transition: color 0.25s ease, transform 0.25s ease;
+  z-index: 10;
+}
+
+.hamburger-btn:hover {
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.hamburger-icon {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+/* Center Container for Navigation Links */
+.navbar-nav-centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+/* The 5 Navigation Links (Home, Shooping, About Us, Contact Us, Best Sellers) */
+.nav-tier-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3.2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Clean Base State: NO underline or glow by default */
+.nav-tier-link {
+  position: relative;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-alabaster); /* #d6d1c4 */
+  opacity: 0.88;
+  text-decoration: none;
+  padding: 0.4rem 0.15rem;
+  white-space: nowrap;
+  transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+              opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              text-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Underline is completely hidden by default */
+.nav-tier-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-alabaster);
+  box-shadow: 0 0 10px rgba(214, 209, 196, 0.9), 0 0 18px rgba(214, 209, 196, 0.45);
+  border-radius: 1px;
+  opacity: 0;
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              left 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.35s ease;
+  pointer-events: none;
+}
+
+/* EFFECTS DISPLAY ONLY WHEN HOVERED */
+.nav-tier-link:hover {
+  color: #ffffff;
+  opacity: 1;
+  text-shadow: 0 0 10px rgba(214, 209, 196, 0.75), 0 0 20px rgba(214, 209, 196, 0.4);
+  transform: translateY(-1px);
+}
+
+.nav-tier-link:hover::after {
+  width: 100%;
+  left: 0;
+  opacity: 1;
+}
+
+/* Active Link State: Clean without persistent underline/glow to honor constraint */
+.nav-tier-link.active {
+  color: var(--color-alabaster);
+  opacity: 1;
+}
+
+.nav-tier-link.active:hover {
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(214, 209, 196, 0.75), 0 0 20px rgba(214, 209, 196, 0.4);
+  transform: translateY(-1px);
+}
+
+.nav-tier-link.active:hover::after {
+  width: 100%;
+  left: 0;
+  opacity: 1;
+}
+
+/* Right placeholder for visual symmetry */
+.navbar-bottom-right {
+  display: flex;
+  align-items: center;
+}
+
+/* 4. Slide-Out Luxury Drawer for Mobile & Side Menu */
+.navbar-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 16, 13, 0.8);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  z-index: 1050;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.35s ease, visibility 0.35s ease, backdrop-filter 0.35s ease;
+}
+
+.navbar-drawer-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.navbar-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 340px;
+  max-width: 85vw;
+  height: 100%;
+  background: #002821; /* Deep Emerald Canvas */
+  border-right: 1px solid rgba(214, 209, 196, 0.2);
+  box-shadow: none;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 1060;
+  display: flex;
+  flex-direction: column;
+  padding: 2.2rem 2rem;
+  transform: translateX(-100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s ease, box-shadow 0.4s ease;
+}
+
+.navbar-drawer.open {
+  transform: translateX(0);
+  visibility: visible;
+  pointer-events: auto;
+  box-shadow: 10px 0 45px rgba(0, 0, 0, 0.9);
+}
+
+/* Bulletproof Desktop Protection: drawer & overlay NEVER render on desktop (>1024px) */
+@media (min-width: 1025px) {
+  .navbar-drawer,
+  .navbar-drawer-overlay {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(214, 209, 196, 0.15);
+  margin-bottom: 2rem;
+}
+
+.drawer-close-btn {
+  background: none;
+  border: none;
+  color: var(--color-alabaster);
+  cursor: pointer;
+  padding: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.drawer-close-btn:hover {
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.drawer-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.drawer-nav-link {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-alabaster);
+  text-decoration: none;
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  transition: color 0.25s ease, transform 0.25s ease, background 0.25s ease;
+  display: block;
+}
+
+.drawer-nav-link:hover,
+.drawer-nav-link.active:hover {
+  background: var(--color-burgundy-primary); /* #402020 */
+  color: #ffffff;
+  transform: translateX(6px);
+}
+
+.drawer-footer {
+  margin-top: auto;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(214, 209, 196, 0.15);
+}
+
+.drawer-shipping {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.82rem;
+  color: var(--color-slate-grey);
+  margin-bottom: 1.2rem;
+}
+
+/* --------------------------------------------------------------------------
+
+
+/**
  * ==============================================================================
  * AUM GROUP INC — CONTACT US & CONCIERGE DESK STYLESHEET
  * Modular Stylesheet for contact.html
@@ -1297,6 +2169,158 @@ RESPONSIVE QUERIES FOR CONTACT US PAGE
   }
 }
 
+
+/* 5-Column responsive grid */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr 1fr 1fr 1fr;
+  gap: 2.2rem 2.2rem;
+  padding-bottom: 2.8rem;
+  border-bottom: 1px solid rgba(214, 209, 196, 0.12);
+}
+
+/* Brand column */
+.footer-col-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.footer-brand-link {
+  display: inline-block;
+  text-decoration: none;
+  transition: opacity 0.25s ease;
+}
+
+.footer-brand-link:hover {
+  opacity: 0.85;
+}
+
+.footer-brand-img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  /* Keep white on emerald background */
+  filter: brightness(0) invert(1) opacity(0.92);
+}
+
+.footer-brand-desc {
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: rgba(214, 209, 196, 0.72); /* slightly warm on emerald */
+  max-width: 220px;
+  margin: 0;
+}
+
+/* Social icons row */
+.footer-social-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.3rem;
+}
+
+.footer-social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  color: rgba(214, 209, 196, 0.6);
+  text-decoration: none;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.footer-social-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.footer-social-icon:hover {
+  color: #ffffff;
+  transform: translateY(-3px);
+}
+
+/* Column headings */
+.footer-heading {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #ffffff; /* crisp white heading on emerald */
+  margin: 0 0 1.25rem 0;
+}
+
+/* Links list */
+.footer-links-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.footer-nav-item {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;       /* Increased from 0.84rem */
+  font-weight: 400;
+  color: rgba(214, 209, 196, 0.72); /* warm alabaster on emerald */
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: color 0.22s ease, padding-left 0.22s ease;
+}
+
+.footer-nav-item:hover {
+  color: #ffffff;
+  padding-left: 5px;
+}
+
+/* Contact list */
+.footer-contact-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.footer-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+}
+
+.footer-contact-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: rgba(214, 209, 196, 0.8);
+  opacity: 1;
+}
+
+.footer-contact-link {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;       /* Increased */
+  color: rgba(214, 209, 196, 0.72);
+  text-decoration: none;
+  transition: color 0.22s ease;
+}
+
+.footer-contact-link:hover {
+  color: #ffffff;
+}
+
+.footer-contact-text {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;       /* Increased */
+  color: rgba(214, 209, 196, 0.72);
+}
+
 /* ==========================================================================
    FOOTER CERTIFICATIONS COLUMN — OFFICIAL ACCREDITATIONS (IMAGES ONLY)
    ========================================================================== */
@@ -1349,7 +2373,130 @@ RESPONSIVE QUERIES FOR CONTACT US PAGE
   opacity: 1;
 }
 
+/* Footer bottom bar: copyright + payment badges */
+.footer-bottom-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.3rem 0 1.8rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border-top: 1px solid rgba(214, 209, 196, 0.1);
+  margin-top: 0.4rem;
+}
+
+.footer-copyright {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: rgba(214, 209, 196, 0.45);
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+/* Payment badges */
+.footer-payment-methods {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.payment-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0;
+  overflow: hidden;
+  opacity: 0.75;
+  transition: opacity 0.2s ease;
+}
+
+.payment-badge:hover {
+  opacity: 1;
+}
+
+.payment-svg {
+  width: 42px;
+  height: 26px;
+  display: block;
+}
+
+
+
+
+/* ==========================================================================
+   FOOTER RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
+@media (max-width: 1439px) and (min-width: 1025px) {
+  .site-footer {
+    padding: 2.2rem 3.5rem 1.6rem;
+  }
+  .footer-container {
+    padding: 2.5rem 3.5rem 0;
+  }
+  .footer-grid {
+    grid-template-columns: 1.35fr 1fr 1fr 1fr 1fr;
+    gap: 2rem 1.8rem;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .site-footer {
+    padding: 2.5rem 2.5rem 1.8rem;
+  }
+  .footer-container {
+    padding: 0;
+  }
+  .footer-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.2rem 2.2rem;
+  }
+}
+
 @media (max-width: 768px) {
+  .site-footer {
+    padding: 2.5rem 1.5rem 1.5rem;
+  }
+  .footer-container {
+    padding: 0;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem 0;
+    padding-bottom: 2rem;
+  }
+  .footer-col-brand {
+    align-items: flex-start;
+  }
+  .footer-brand-img {
+    height: 50px;
+  }
+  .footer-brand-desc {
+    max-width: 100%;
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+  .footer-social-row {
+    gap: 0.75rem;
+  }
+  .footer-social-icon {
+    width: 38px;
+    height: 38px;
+  }
+  .footer-heading {
+    font-size: 0.74rem;
+    letter-spacing: 0.16em;
+    margin-bottom: 0.85rem;
+  }
+  .footer-links-list {
+    gap: 0.7rem;
+  }
+  .footer-nav-item,
+  .footer-contact-link,
+  .footer-contact-text {
+    font-size: 0.88rem;
+  }
   .footer-cert-col-badges {
     flex-direction: row;
     gap: 0.85rem;
@@ -1361,4 +2508,12 @@ RESPONSIVE QUERIES FOR CONTACT US PAGE
   .footer-cert-img {
     height: 30px;
   }
+  .footer-bottom-bar {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.2rem;
+    padding: 1.2rem 0 0.5rem;
+  }
 }
+
