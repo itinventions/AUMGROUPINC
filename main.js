@@ -524,9 +524,9 @@ class App {
             metal: product.eyebrow
           };
           if (this.navbar && typeof this.navbar.addToCart === 'function') {
-            this.navbar.addToCart(cartItem);
+            this.navbar.addToCart(cartItem, 'Standard', 1, btn);
           } else if (typeof window.addToBag === 'function') {
-            window.addToBag(cartItem);
+            window.addToBag(cartItem, 'Standard', 1, btn);
           }
         }
       });
@@ -560,9 +560,9 @@ class App {
             metal: product.eyebrow
           };
           if (this.navbar && typeof this.navbar.addToCart === 'function') {
-            this.navbar.addToCart(cartItem);
+            this.navbar.addToCart(cartItem, 'Standard', 1, modalAddBtn);
           } else if (typeof window.addToBag === 'function') {
-            window.addToBag(cartItem);
+            window.addToBag(cartItem, 'Standard', 1, modalAddBtn);
           }
           this.closeProductModal();
         }

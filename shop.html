@@ -50,7 +50,7 @@
   </script>
 
   <!-- Dedicated Shop Stylesheet -->
-  <link rel="stylesheet" href="shop.css?v=6.2">
+  <link rel="stylesheet" href="shop.css?v=6.6">
   <link rel="stylesheet" href="animations.css?v=6.2">
 </head>
 
@@ -76,7 +76,7 @@
       </button>
 
       <!-- Center: Company Brand Logo from assets folder -->
-      <a href="index.html#home" class="navbar-brand-center" aria-label="AUM GROUP INC Fine Jewellery &amp; Gems Homepage">
+      <a href="index.html" class="navbar-brand-center" aria-label="AUM GROUP INC Fine Jewellery &amp; Gems Homepage">
         <img src="assets/company_logo.png" alt="AUM GROUP INC Fine Jewellery &amp; Gems" class="navbar-logo-img">
       </a>
 
@@ -125,6 +125,18 @@
           <span class="wishlist-badge" id="wishlist-counter">0</span>
         </button>
 
+        <!-- Shopping Bag Action Button with Dynamic Badge -->
+        <button type="button" class="nav-icon-btn cart-btn" id="cart-btn" aria-label="Shopping Bag"
+          title="Shopping Bag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <path d="M16 10a4 4 0 0 1-8 0" />
+          </svg>
+          <span class="cart-badge" id="cart-counter">0</span>
+        </button>
+
       </div>
 
     </div>
@@ -138,7 +150,7 @@
       <!-- Navigation Links: perfectly centred -->
       <nav role="navigation" aria-label="Main Navigation" class="navbar-nav-centered">
         <ul class="nav-tier-links" id="main-nav-links">
-          <li><a href="index.html#home" class="nav-tier-link">Home</a></li>
+          <li><a href="index.html" class="nav-tier-link">Home</a></li>
           <li><a href="shop.html" class="nav-tier-link active">Shopping</a></li>
           <li><a href="about.html" class="nav-tier-link">About Us</a></li>
           <li><a href="contact.html" class="nav-tier-link">Contact Us</a></li>
@@ -154,7 +166,7 @@
   <div class="navbar-drawer-overlay" id="navbar-drawer-overlay" aria-hidden="true"></div>
   <aside class="navbar-drawer" id="navbar-drawer" aria-label="Mobile Navigation Menu">
     <div class="drawer-header">
-      <a href="index.html#home" class="drawer-brand" aria-label="Homepage">
+      <a href="index.html" class="drawer-brand" aria-label="Homepage">
         <img src="assets/company_logo.png" alt="AUM GROUP INC" style="height: 90px; width: auto;">
       </a>
       <button type="button" class="drawer-close-btn" id="drawer-close-btn" aria-label="Close Navigation Menu">
@@ -168,7 +180,7 @@
 
     <!-- The 5 Links inside Mobile Drawer -->
     <ul class="drawer-nav-list">
-      <li><a href="index.html#home" class="drawer-nav-link">Home</a></li>
+      <li><a href="index.html" class="drawer-nav-link">Home</a></li>
       <li><a href="shop.html" class="drawer-nav-link active">Shopping</a></li>
       <li><a href="about.html" class="drawer-nav-link">About Us</a></li>
       <li><a href="contact.html" class="drawer-nav-link">Contact Us</a></li>
@@ -819,7 +831,7 @@
 
         <!-- 1. Brand Identity & Social Channels -->
         <div class="footer-col footer-col-brand">
-          <a href="index.html#home" class="footer-brand-link" aria-label="AUM GROUP INC Homepage">
+          <a href="index.html" class="footer-brand-link" aria-label="AUM GROUP INC Homepage">
             <img src="assets/company_logo.png" alt="AUM GROUP INC Fine Jewellery &amp; Gems" class="footer-brand-img">
           </a>
           <p class="footer-brand-desc">
@@ -975,5 +987,81 @@
     </div>
   </footer>
 
-<script type="module" src="shop.js?v=6.2"></script>
+<script type="module" src="shop.js?v=6.6"></script>
+
+  <!-- =========================================================================
+       SLIDE-OUT SHOPPING BAG & WISHLIST DRAWERS (UNIVERSAL LUXURY SYSTEM)
+       ========================================================================= -->
+  <div class="shop-drawer-backdrop" id="drawer-backdrop"></div>
+
+  <aside class="shop-cart-drawer" id="cart-drawer" aria-label="Shopping Bag">
+    <div class="drawer-header">
+      <h3 class="drawer-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span>Shopping Bag</span>
+      </h3>
+      <button type="button" class="drawer-close-btn" id="cart-close-btn" aria-label="Close Bag">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+
+    <div class="cart-progress-box" id="cart-shipping-box">
+      <div class="cart-progress-box-header">
+        <span class="text-xs font-medium text-[#181715]" id="cart-shipping-tracker">Complimentary Armored Courier on orders over $5,000</span>
+        <span class="text-xs font-bold text-aum-emerald" id="cart-shipping-percent">0%</span>
+      </div>
+      <div class="cart-progress-bar-track">
+        <div class="cart-progress-bar-fill" id="cart-shipping-fill"></div>
+      </div>
+    </div>
+
+    <div class="drawer-items-list" id="cart-items-list"></div>
+
+    <div class="drawer-footer">
+      <div class="drawer-subtotal-row">
+        <span class="drawer-subtotal-lbl">Estimated Total</span>
+        <span class="drawer-subtotal-val" id="cart-subtotal">$0</span>
+      </div>
+      <p class="drawer-subtotal-note">Sales taxes &amp; armored insurance calculated at checkout.</p>
+      <button type="button" class="btn-drawer-checkout" id="cart-checkout-btn">
+        Proceed To Secure Checkout
+      </button>
+      <div class="drawer-trust-badges">
+        <span>GIA Verified</span>
+        <span>•</span>
+        <span>Armored Transit</span>
+        <span>•</span>
+        <span>30-Day Returns</span>
+      </div>
+    </div>
+  </aside>
+
+  <aside class="shop-cart-drawer" id="wishlist-drawer" aria-label="Curated Wishlist">
+    <div class="drawer-header">
+      <h3 class="drawer-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        <span>Curated Wishlist</span>
+      </h3>
+      <button type="button" class="drawer-close-btn" id="wishlist-close-btn" aria-label="Close Wishlist">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+
+    <div class="drawer-items-list" id="wishlist-items-list"></div>
+
+    <div class="drawer-footer">
+      <a href="shop.html" class="btn-drawer-checkout text-center block" id="wishlist-discover-btn">
+        Discover Collections
+      </a>
+    </div>
+  </aside>
+
+  <div class="shop-toast" id="shop-toast" role="status" aria-live="polite">
+    <div class="toast-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+    </div>
+    <span class="toast-message" id="toast-message">Creation added to bag</span>
+    <button type="button" class="toast-view-bag" id="toast-view-bag-btn">View Bag &rarr;</button>
+  </div>
+
 </body>

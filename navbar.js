@@ -165,6 +165,7 @@ export class Navbar {
   }
 
   init() {
+    this.ensureCartDrawerDOM();
     this.updateNavHeight();
     window.addEventListener('resize', () => this.updateNavHeight(), { passive: true });
 
@@ -178,6 +179,91 @@ export class Navbar {
 
     // Initial DOM price synchronization
     updateAllDomPrices();
+  }
+
+  ensureCartDrawerDOM() {
+    if (document.getElementById('cart-drawer')) return;
+
+    let root = document.getElementById('universal-cart-drawer-root');
+    if (!root) {
+      root = document.createElement('div');
+      root.id = 'universal-cart-drawer-root';
+      document.body.appendChild(root);
+    }
+
+    root.innerHTML = `
+      <div class="shop-drawer-backdrop" id="drawer-backdrop"></div>
+
+      <aside class="shop-cart-drawer" id="cart-drawer" aria-label="Shopping Bag">
+        <div class="drawer-header">
+          <h3 class="drawer-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <span>Shopping Bag</span>
+          </h3>
+          <button type="button" class="drawer-close-btn" id="cart-close-btn" aria-label="Close Bag">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+
+        <div class="cart-progress-box" id="cart-shipping-box">
+          <div class="cart-progress-box-header">
+            <span class="text-xs font-medium text-[#181715]" id="cart-shipping-tracker">Complimentary Armored Courier on orders over $5,000</span>
+            <span class="text-xs font-bold text-aum-emerald" id="cart-shipping-percent">0%</span>
+          </div>
+          <div class="cart-progress-bar-track">
+            <div class="cart-progress-bar-fill" id="cart-shipping-fill"></div>
+          </div>
+        </div>
+
+        <div class="drawer-items-list" id="cart-items-list"></div>
+
+        <div class="drawer-footer">
+          <div class="drawer-subtotal-row">
+            <span class="drawer-subtotal-lbl">Estimated Total</span>
+            <span class="drawer-subtotal-val" id="cart-subtotal">$0</span>
+          </div>
+          <p class="drawer-subtotal-note">Sales taxes &amp; armored insurance calculated at checkout.</p>
+          <button type="button" class="btn-drawer-checkout" id="cart-checkout-btn">
+            Proceed To Secure Checkout
+          </button>
+          <div class="drawer-trust-badges">
+            <span>GIA Verified</span>
+            <span>•</span>
+            <span>Armored Transit</span>
+            <span>•</span>
+            <span>30-Day Returns</span>
+          </div>
+        </div>
+      </aside>
+
+      <aside class="shop-cart-drawer" id="wishlist-drawer" aria-label="Curated Wishlist">
+        <div class="drawer-header">
+          <h3 class="drawer-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            <span>Curated Wishlist</span>
+          </h3>
+          <button type="button" class="drawer-close-btn" id="wishlist-close-btn" aria-label="Close Wishlist">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+
+        <div class="drawer-items-list" id="wishlist-items-list"></div>
+
+        <div class="drawer-footer">
+          <a href="shop.html" class="btn-drawer-checkout text-center block" id="wishlist-discover-btn">
+            Discover Collections
+          </a>
+        </div>
+      </aside>
+
+      <div class="shop-toast" id="shop-toast" role="status" aria-live="polite">
+        <div class="toast-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        </div>
+        <span class="toast-message" id="toast-message">Creation added to bag</span>
+        <button type="button" class="toast-view-bag" id="toast-view-bag-btn">View Bag &rarr;</button>
+      </div>
+    `;
   }
 
   updateNavHeight() {
@@ -410,11 +496,66 @@ export class Navbar {
       });
     }
 
+    // Checkout Action (WhatsApp Concierge Atelier Inquiry)
+    const checkoutBtn = document.getElementById('cart-checkout-btn');
+    if (checkoutBtn) {
+      checkoutBtn.onclick = (e) => {
+        e.preventDefault();
+        this.proceedToCheckout();
+      };
+    }
+
+    // Toast "View Bag" shortcut
+    const toastViewBag = document.getElementById('toast-view-bag-btn');
+    if (toastViewBag) {
+      toastViewBag.onclick = (e) => {
+        e.preventDefault();
+        if (window.shopApp?.openCartDrawer) {
+          window.shopApp.openCartDrawer();
+        } else {
+          this.openCartDrawer();
+        }
+      };
+    }
+
+    // Wishlist Discover Button
+    const wishlistDiscover = document.getElementById('wishlist-discover-btn');
+    if (wishlistDiscover) {
+      wishlistDiscover.onclick = () => {
+        this.closeWishlistDrawer();
+      };
+    }
+
     // Global helpers
-    window.addToBag = (product, size = 'Standard', qty = 1) => this.addToCart(product, size, qty);
+    window.addToBag = (product, size = 'Standard', qty = 1, triggerBtn = null) => this.addToCart(product, size, qty, triggerBtn);
     window.toggleWishlist = (product) => this.toggleWishlist(product);
     window.openCartDrawer = () => this.openCartDrawer();
+    window.closeCartDrawer = () => this.closeCartDrawer();
     window.openWishlistDrawer = () => this.openWishlistDrawer();
+    window.closeWishlistDrawer = () => this.closeWishlistDrawer();
+  }
+
+  proceedToCheckout() {
+    const cart = this.getCart();
+    if (!cart || cart.length === 0) {
+      this.showToast('Your Shopping Bag is empty');
+      return;
+    }
+    const curr = getActiveCurrency();
+    let subtotal = 0;
+    const itemLines = cart.map((item, idx) => {
+      const price = item.usdPrice || item.price || 0;
+      const qty = item.qty || 1;
+      const total = price * qty;
+      subtotal += total;
+      return `${idx + 1}. ${item.name || item.title} (Qty: ${qty}, Size: ${item.size || 'Standard'}) - ${formatPrice(total, curr.code)}`;
+    }).join('\n');
+
+    const totalText = formatPrice(subtotal, curr.code);
+    const message = `Hello AUM GROUP INC. Atelier,\n\nI would like to acquire the following bespoke creations from my Shopping Bag:\n\n${itemLines}\n\nEstimated Subtotal: ${totalText}\n\nPlease confirm gemstone availability, bespoke sizing, and insured armored courier transit.`;
+
+    const waUrl = `https://wa.me/918108070022?text=${encodeURIComponent(message)}`;
+    window.open(waUrl, '_blank', 'noopener,noreferrer');
   }
 
   getCart() {
@@ -472,6 +613,7 @@ export class Navbar {
   }
 
   openCartDrawer() {
+    this.ensureCartDrawerDOM();
     const drawer = document.getElementById('cart-drawer');
     const backdrop = document.getElementById('drawer-backdrop');
     if (!drawer) return;
@@ -492,6 +634,7 @@ export class Navbar {
   }
 
   openWishlistDrawer() {
+    this.ensureCartDrawerDOM();
     const drawer = document.getElementById('wishlist-drawer');
     const backdrop = document.getElementById('drawer-backdrop');
     if (!drawer) return;
@@ -640,8 +783,20 @@ export class Navbar {
     }).join('');
   }
 
-  addToCart(product, size = 'Standard', qty = 1) {
+  addToCart(product, size = 'Standard', qty = 1, triggerBtn = null) {
     if (!product) return;
+    this.ensureCartDrawerDOM();
+
+    if (triggerBtn && triggerBtn.classList) {
+      const origHtml = triggerBtn.innerHTML;
+      triggerBtn.classList.add('btn-added-feedback');
+      triggerBtn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" style="display:inline-block; vertical-align:middle; margin-right:4px;"><polyline points="20 6 9 17 4 12"></polyline></svg> Added to Bag!`;
+      setTimeout(() => {
+        triggerBtn.classList.remove('btn-added-feedback');
+        triggerBtn.innerHTML = origHtml;
+      }, 1800);
+    }
+
     const cart = this.getCart();
     const pid = product.id;
     const existing = cart.find(it => it.id === pid && it.size === size);
@@ -751,15 +906,16 @@ export class Navbar {
   }
 
   showToast(message) {
+    this.ensureCartDrawerDOM();
     const toast = document.getElementById('shop-toast');
     const msgEl = document.getElementById('toast-message');
     if (!toast) return;
 
     if (msgEl) msgEl.textContent = message;
-    toast.classList.add('show');
+    toast.classList.add('show', 'active');
     clearTimeout(this._toastTimer);
     this._toastTimer = setTimeout(() => {
-      toast.classList.remove('show');
+      toast.classList.remove('show', 'active');
     }, 3200);
   }
 
