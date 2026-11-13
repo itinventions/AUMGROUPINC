@@ -796,30 +796,31 @@ textarea {
   }
 }
 
-.drawer-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid rgba(214, 209, 196, 0.15);
-  margin-bottom: 2rem;
+.navbar-drawer .drawer-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0 0 1.5rem 0 !important;
+  border-bottom: 1px solid rgba(214, 209, 196, 0.15) !important;
+  margin-bottom: 2rem !important;
+  background: transparent !important;
 }
 
-.drawer-close-btn {
-  background: none;
-  border: none;
-  color: var(--color-alabaster);
-  cursor: pointer;
-  padding: 0.4rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: color 0.25s ease, transform 0.25s ease;
+.navbar-drawer .drawer-close-btn {
+  background: none !important;
+  border: none !important;
+  color: var(--color-alabaster, #d6d1c4) !important;
+  cursor: pointer !important;
+  padding: 0.4rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: color 0.25s ease, transform 0.25s ease !important;
 }
 
-.drawer-close-btn:hover {
-  color: #ffffff;
-  transform: scale(1.1);
+.navbar-drawer .drawer-close-btn:hover {
+  color: #ffffff !important;
+  transform: scale(1.1) !important;
 }
 
 .drawer-nav-list {
@@ -852,10 +853,11 @@ textarea {
   transform: translateX(6px);
 }
 
-.drawer-footer {
-  margin-top: auto;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(214, 209, 196, 0.15);
+.navbar-drawer .drawer-footer {
+  margin-top: auto !important;
+  padding: 2rem 0 0 0 !important;
+  border-top: 1px solid rgba(214, 209, 196, 0.15) !important;
+  background: transparent !important;
 }
 
 .drawer-shipping {
@@ -2551,7 +2553,7 @@ RESPONSIVE QUERIES FOR CONTACT US PAGE
   box-shadow: -12px 0 45px rgba(0, 0, 0, 0.28);
 }
 
-.drawer-header {
+.shop-cart-drawer .drawer-header {
   padding: 1.5rem 1.8rem;
   border-bottom: 1px solid #E8E3D9;
   display: flex;
@@ -2571,7 +2573,7 @@ RESPONSIVE QUERIES FOR CONTACT US PAGE
   margin: 0;
 }
 
-.drawer-close-btn {
+.shop-cart-drawer .drawer-close-btn {
   background: none;
   border: none;
   color: #7A756D;
@@ -2583,7 +2585,7 @@ RESPONSIVE QUERIES FOR CONTACT US PAGE
   transition: color 0.2s ease, transform 0.2s ease;
 }
 
-.drawer-close-btn:hover {
+.shop-cart-drawer .drawer-close-btn:hover {
   color: #402020;
   transform: scale(1.1);
 }
@@ -2715,7 +2717,7 @@ RESPONSIVE QUERIES FOR CONTACT US PAGE
   color: #402020;
 }
 
-.drawer-footer {
+.shop-cart-drawer .drawer-footer {
   padding: 1.6rem 1.8rem;
   border-top: 1px solid #E8E3D9;
   background: #FAF8F5;
