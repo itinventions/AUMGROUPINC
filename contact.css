@@ -737,6 +737,385 @@ textarea {
   align-items: center;
 }
 
+/* ==========================================================================
+   EXTENDED LUXURY NAVBAR MEGA MENU (SHOPPING HOVER EXTENSION)
+   ========================================================================== */
+.nav-item-has-mega {
+  position: static;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.nav-item-has-mega .nav-tier-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.nav-chevron-icon {
+  width: 12px;
+  height: 12px;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.navbar-mega-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(180deg, rgba(0, 32, 26, 0.99) 0%, rgba(0, 22, 18, 0.995) 100%);
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  border-top: 1px solid rgba(214, 209, 196, 0.18);
+  border-bottom: 1px solid rgba(214, 209, 196, 0.3);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.85);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-6px);
+  transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 999;
+}
+
+.nav-item-has-mega:hover .navbar-mega-menu,
+.navbar-mega-menu:hover,
+.navbar.mega-menu-active .navbar-mega-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* Page Dimmer Backdrop */
+.mega-menu-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 16, 13, 0.62);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 990;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.28s ease, visibility 0.28s ease;
+}
+
+.navbar.mega-menu-active ~ .mega-menu-backdrop,
+.mega-menu-backdrop.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.mega-menu-inner {
+  max-width: 1420px;
+  margin: 0 auto;
+  padding: 2.2rem clamp(1.5rem, 4vw, 3.8rem) 1.8rem;
+}
+
+.mega-menu-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-bottom: 1.35rem;
+  margin-bottom: 1.8rem;
+  border-bottom: 1px solid rgba(214, 209, 196, 0.14);
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.mega-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-alabaster, #d6d1c4);
+  opacity: 0.8;
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.mega-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: #FAF8F5;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.mega-view-all-btn {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-alabaster, #d6d1c4);
+  text-decoration: none;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid rgba(214, 209, 196, 0.4);
+  transition: all 0.22s ease;
+}
+
+.mega-view-all-btn:hover {
+  color: #FFFFFF;
+  border-color: #FFFFFF;
+}
+
+/* 5 Clean Category Columns (No boxed cards, pure luxury editorial presentation) */
+.mega-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 2rem);
+  margin-bottom: 1.8rem;
+}
+
+.mega-cat-item {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.28s ease;
+}
+
+.mega-cat-item:hover {
+  transform: translateY(-4px);
+}
+
+.mega-cat-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 2px;
+  background: #001a15;
+  border: 1px solid rgba(214, 209, 196, 0.14);
+  margin-bottom: 0.95rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mega-cat-item:hover .mega-cat-img-wrap {
+  border-color: rgba(214, 209, 196, 0.45);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.mega-cat-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mega-cat-item:hover .mega-cat-img {
+  transform: scale(1.06);
+}
+
+.mega-cat-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.mega-cat-number {
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-alabaster, #d6d1c4);
+  opacity: 0.65;
+  margin-bottom: 0.35rem;
+  display: block;
+}
+
+.mega-cat-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: #FAF8F5;
+  margin: 0 0 0.3rem 0;
+  letter-spacing: 0.02em;
+  transition: color 0.2s ease;
+}
+
+.mega-cat-item:hover .mega-cat-title {
+  color: var(--color-alabaster, #d6d1c4);
+}
+
+.mega-cat-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  color: rgba(214, 209, 196, 0.72);
+  line-height: 1.4;
+}
+
+.mega-menu-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(214, 209, 196, 0.14);
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  color: rgba(214, 209, 196, 0.7);
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.mega-footer-perk {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mega-footer-perk svg {
+  stroke: var(--color-alabaster, #d6d1c4);
+  flex-shrink: 0;
+}
+
+.mega-footer-link {
+  color: #FAF8F5;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.mega-footer-link:hover {
+  color: var(--color-alabaster, #d6d1c4);
+}
+
+/* Mobile Drawer Shopping Accordion (Clean & Minimal) */
+.drawer-shopping-toggle {
+  width: 100%;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--color-alabaster);
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.75rem 0;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(214, 209, 196, 0.15);
+  transition: color 0.25s ease;
+}
+
+.drawer-shopping-toggle:hover,
+.drawer-shopping-toggle[aria-expanded="true"] {
+  color: #ffffff;
+}
+
+.drawer-shopping-submenu {
+  display: none;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 0.85rem 0 1rem 0.5rem;
+  border-bottom: 1px solid rgba(214, 209, 196, 0.15);
+}
+
+.drawer-shopping-submenu.open {
+  display: flex;
+}
+
+.drawer-sub-all-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 68, 56, 0.45);
+  border: 1px solid rgba(214, 209, 196, 0.25);
+  padding: 0.65rem 0.85rem;
+  border-radius: 2px;
+  color: #FAF8F5;
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  margin-top: 0.35rem;
+  transition: all 0.2s ease;
+}
+
+.drawer-sub-all-link:hover,
+.drawer-sub-all-link:active {
+  background: #004438;
+  color: #FFFFFF;
+  border-color: #d6d1c4;
+}
+
+.drawer-sub-cat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(214, 209, 196, 0.1);
+  border-radius: 2px;
+  text-decoration: none;
+  color: #FAF8F5;
+  transition: all 0.2s ease;
+}
+
+.drawer-sub-cat-item:hover,
+.drawer-sub-cat-item:active {
+  background: rgba(214, 209, 196, 0.1);
+  border-color: rgba(214, 209, 196, 0.3);
+}
+
+.drawer-sub-cat-img {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: 2px;
+  flex-shrink: 0;
+  border: 1px solid rgba(214, 209, 196, 0.2);
+}
+
+.drawer-sub-cat-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.drawer-sub-cat-title {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  color: #FAF8F5;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.drawer-sub-cat-meta {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  color: rgba(214, 209, 196, 0.65);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 1024px) {
+  .navbar-mega-menu,
+  .mega-menu-backdrop {
+    display: none !important;
+  }
+}
+
 /* 4. Slide-Out Luxury Drawer for Mobile & Side Menu */
 .navbar-drawer-overlay {
   position: fixed;
@@ -2696,10 +3075,12 @@ RESPONSIVE QUERIES FOR CONTACT US PAGE
 }
 
 .drawer-item-price {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.15rem;
+  font-family: 'Montserrat', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.94rem;
   font-weight: 600;
   color: #004438;
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: 'tnum' 1, 'lnum' 1;
 }
 
 .drawer-item-remove {

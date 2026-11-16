@@ -4,7 +4,7 @@
  */
 
 import { AUM_GROUP_PRODUCTS, ESCELI_PRODUCTS, CATEGORIES_DATA } from './shop-data.js';
-import { formatPrice, getActiveCurrency, EXPORT_CURRENCIES, updateAllDomPrices } from './navbar.js';
+import { formatPrice, getActiveCurrency, EXPORT_CURRENCIES, updateAllDomPrices, initShoppingMegaMenu } from './navbar.js';
 
 class AumGroupShopApp {
   constructor() {
@@ -1321,6 +1321,9 @@ class AumGroupShopApp {
         document.body.style.overflow = '';
       });
     }
+
+    // Extended Haute Joaillerie Mega Menu & Mobile Drawer Accordion
+    initShoppingMegaMenu();
 
     // Bestseller Category Tabs
     document.querySelectorAll('.bestseller-tab-btn').forEach((btn) => {

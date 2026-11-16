@@ -174,6 +174,7 @@ export class Navbar {
     this.bindWishlist();
     this.bindCartInteraction();
     this.bindMobileMenu();
+    this.bindShoppingMegaMenu();
     this.bindLinkInteractions();
     this.bindScrollSpy();
 
@@ -1017,5 +1018,96 @@ export class Navbar {
         }
       });
     }, { passive: true });
+  }
+
+  bindShoppingMegaMenu() {
+    initShoppingMegaMenu();
+  }
+}
+
+/**
+ * Extended Haute Joaillerie Mega Menu & Mobile Drawer Accordion Controller
+ */
+export function initShoppingMegaMenu() {
+  const megaToggle = document.getElementById('shopping-mega-toggle');
+  const megaMenu = document.getElementById('shopping-mega-menu');
+  const megaBackdrop = document.getElementById('mega-menu-backdrop');
+  const navContainer = document.querySelector('.navbar, .shop-navbar');
+  const megaParent = document.querySelector('.nav-item-has-mega');
+  const drawerToggle = document.getElementById('drawer-shopping-toggle');
+  const drawerSubmenu = document.getElementById('drawer-shopping-submenu');
+
+  if (megaParent && megaMenu) {
+    let closeTimer = null;
+    let openTimer = null;
+
+    const openMegaMenu = () => {
+      clearTimeout(closeTimer);
+      clearTimeout(openTimer);
+      if (window.innerWidth <= 1024) return;
+      if (navContainer) navContainer.classList.add('mega-menu-active');
+      if (megaToggle) megaToggle.setAttribute('aria-expanded', 'true');
+      if (megaBackdrop) megaBackdrop.classList.add('active');
+    };
+
+    const scheduleClose = () => {
+      clearTimeout(openTimer);
+      clearTimeout(closeTimer);
+      closeTimer = setTimeout(() => {
+        if (navContainer) navContainer.classList.remove('mega-menu-active');
+        if (megaToggle) megaToggle.setAttribute('aria-expanded', 'false');
+        if (megaBackdrop) megaBackdrop.classList.remove('active');
+      }, 180);
+    };
+
+    const cancelClose = () => {
+      clearTimeout(closeTimer);
+    };
+
+    megaParent.addEventListener('mouseenter', openMegaMenu);
+    megaParent.addEventListener('mouseleave', scheduleClose);
+
+    megaMenu.addEventListener('mouseenter', cancelClose);
+    megaMenu.addEventListener('mouseleave', scheduleClose);
+
+    if (megaBackdrop) {
+      megaBackdrop.addEventListener('click', () => {
+        clearTimeout(closeTimer);
+        clearTimeout(openTimer);
+        if (navContainer) navContainer.classList.remove('mega-menu-active');
+        if (megaToggle) megaToggle.setAttribute('aria-expanded', 'false');
+        megaBackdrop.classList.remove('active');
+      });
+    }
+
+    // Escape Key support
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navContainer && navContainer.classList.contains('mega-menu-active')) {
+        if (navContainer) navContainer.classList.remove('mega-menu-active');
+        if (megaToggle) megaToggle.setAttribute('aria-expanded', 'false');
+        if (megaBackdrop) megaBackdrop.classList.remove('active');
+      }
+    });
+  }
+
+  // Mobile Drawer Shopping Accordion Handler
+  if (drawerToggle && drawerSubmenu) {
+    drawerToggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const isOpen = drawerSubmenu.classList.toggle('open');
+      drawerToggle.classList.toggle('expanded', isOpen);
+      drawerToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    drawerSubmenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        const drawer = document.getElementById('navbar-drawer');
+        const overlay = document.getElementById('navbar-drawer-overlay');
+        if (drawer) drawer.classList.remove('open');
+        if (overlay) overlay.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
   }
 }

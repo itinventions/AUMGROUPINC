@@ -10,7 +10,7 @@
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23004438' stroke-width='1.5'><polygon points='6,3 18,3 22,9 12,22 2,9'/></svg>">
+    href="assets/images/Tab Icon.png">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -151,7 +151,104 @@
       <nav role="navigation" aria-label="Main Navigation" class="navbar-nav-centered">
         <ul class="nav-tier-links" id="main-nav-links">
           <li><a href="index.html" class="nav-tier-link">Home</a></li>
-          <li><a href="shop.html" class="nav-tier-link active">Shopping</a></li>
+          <li class="nav-item-has-mega">
+            <a href="shop.html" class="nav-tier-link active" id="shopping-mega-toggle" aria-expanded="false" aria-haspopup="true">Shopping</a>
+
+            <!-- Extended Haute Joaillerie Mega Menu Dropdown -->
+            <div class="navbar-mega-menu" id="shopping-mega-menu" role="region" aria-label="Haute Joaillerie Departments">
+              <div class="mega-menu-inner">
+                <!-- Mega Menu Top Header -->
+                <div class="mega-menu-header">
+                  <div>
+                    <span class="mega-eyebrow">Haute Joaillerie</span>
+                    <h3 class="mega-title">Curated Ateliers &amp; Precious Gemstone Archives</h3>
+                  </div>
+                  <a href="shop.html" class="mega-view-all-btn">Browse All 32 Masterpieces</a>
+                </div>
+
+                <!-- 5 Clean Atelier Categories (Pure Luxury Showcase) -->
+                <div class="mega-categories-grid">
+
+                  <!-- 01: Simple Gold Atelier -->
+                  <a href="shop-gold.html" class="mega-cat-item" title="Simple Gold Atelier">
+                    <div class="mega-cat-img-wrap">
+                      <img src="assets/images/shop/collection-gold.jpg" alt="Simple Gold Atelier" class="mega-cat-img" loading="lazy">
+                    </div>
+                    <div class="mega-cat-meta">
+                      <span class="mega-cat-number">01 / Atelier</span>
+                      <h4 class="mega-cat-title">Simple Gold</h4>
+                      <span class="mega-cat-subtitle">18K &amp; 22K Solid Gold</span>
+                    </div>
+                  </a>
+
+                  <!-- 02: Studded Gold Atelier -->
+                  <a href="shop-gold.html#studded" class="mega-cat-item" title="Studded Gold Atelier">
+                    <div class="mega-cat-img-wrap">
+                      <img src="assets/images/shop/collection-etoile.jpg" alt="Studded Gold Atelier" class="mega-cat-img" loading="lazy">
+                    </div>
+                    <div class="mega-cat-meta">
+                      <span class="mega-cat-number">02 / Atelier</span>
+                      <h4 class="mega-cat-title">Studded Gold</h4>
+                      <span class="mega-cat-subtitle">Pav&eacute; Accents &amp; Solitaires</span>
+                    </div>
+                  </a>
+
+                  <!-- 03: Diamond Vault -->
+                  <a href="shop-diamond.html" class="mega-cat-item" title="Diamond Vault">
+                    <div class="mega-cat-img-wrap">
+                      <img src="assets/images/shop/hero-campaign.jpg" alt="Diamond Vault" class="mega-cat-img" loading="lazy">
+                    </div>
+                    <div class="mega-cat-meta">
+                      <span class="mega-cat-number">03 / Vault</span>
+                      <h4 class="mega-cat-title">Diamond Vault</h4>
+                      <span class="mega-cat-subtitle">GIA Certified D-F VVS</span>
+                    </div>
+                  </a>
+
+                  <!-- 04: Gemstone Archive -->
+                  <a href="shop-gems.html" class="mega-cat-item" title="Gemstone Archive">
+                    <div class="mega-cat-img-wrap">
+                      <img src="assets/images/shop/collection-emerald.jpg" alt="Gemstone Archive" class="mega-cat-img" loading="lazy">
+                    </div>
+                    <div class="mega-cat-meta">
+                      <span class="mega-cat-number">04 / Archive</span>
+                      <h4 class="mega-cat-title">Gemstones</h4>
+                      <span class="mega-cat-subtitle">Natural Emeralds, Sapphires &amp; Rubies</span>
+                    </div>
+                  </a>
+
+                  <!-- 05: Silver Atelier -->
+                  <a href="shop-silver.html" class="mega-cat-item" title="Silver Atelier">
+                    <div class="mega-cat-img-wrap">
+                      <img src="assets/images/shop/cat-luxury.jpg" alt="Silver Atelier" class="mega-cat-img" loading="lazy">
+                    </div>
+                    <div class="mega-cat-meta">
+                      <span class="mega-cat-number">05 / Atelier</span>
+                      <h4 class="mega-cat-title">Silver Atelier</h4>
+                      <span class="mega-cat-subtitle">Argentium 925 Fine Silver</span>
+                    </div>
+                  </a>
+
+                </div>
+
+                <!-- Mega Menu Footer Perks -->
+                <div class="mega-menu-footer">
+                  <div class="mega-footer-perk">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <span>100% Conflict-Free GIA Diamonds &amp; Certified Precious Gems</span>
+                  </div>
+                  <div class="mega-footer-perk">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                    <span>Complimentary Insured Courier on Global Exports</span>
+                  </div>
+                  <div class="mega-footer-perk">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                    <span>Bespoke Private Commissions: <a href="contact.html" class="mega-footer-link">Enquire With Atelier</a></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
           <li><a href="about.html" class="nav-tier-link">About Us</a></li>
         </ul>
       </nav>
@@ -159,6 +256,9 @@
     </div>
 
   </header>
+
+  <!-- Mega Menu Backdrop (Desktop Page Dimmer) -->
+  <div class="mega-menu-backdrop" id="mega-menu-backdrop" aria-hidden="true"></div>
 
   <!-- Slide-Out Luxury Navigation Drawer (Mobile & Side Access) -->
   <div class="navbar-drawer-overlay" id="navbar-drawer-overlay" aria-hidden="true"></div>
@@ -176,10 +276,55 @@
       </button>
     </div>
 
-    <!-- The 3 Links inside Mobile Drawer -->
+    <!-- The Navigation Links inside Mobile Drawer -->
     <ul class="drawer-nav-list">
       <li><a href="index.html" class="drawer-nav-link">Home</a></li>
-      <li><a href="shop.html" class="drawer-nav-link active">Shopping</a></li>
+      <li class="drawer-has-submenu">
+        <button type="button" class="drawer-shopping-toggle" id="drawer-shopping-toggle" aria-expanded="false" aria-controls="drawer-shopping-submenu">
+          <span>Shopping</span>
+          <svg class="drawer-toggle-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="drawer-shopping-submenu" id="drawer-shopping-submenu">
+          <a href="shop-gold.html" class="drawer-sub-cat-item">
+            <img src="assets/images/shop/collection-gold.jpg" alt="Simple Gold" class="drawer-sub-cat-img" loading="lazy">
+            <div class="drawer-sub-cat-info">
+              <span class="drawer-sub-cat-title">Simple Gold Atelier</span>
+              <span class="drawer-sub-cat-meta">18K &amp; 22K Solid Gold</span>
+            </div>
+          </a>
+          <a href="shop-gold.html#studded" class="drawer-sub-cat-item">
+            <img src="assets/images/shop/collection-etoile.jpg" alt="Studded Gold" class="drawer-sub-cat-img" loading="lazy">
+            <div class="drawer-sub-cat-info">
+              <span class="drawer-sub-cat-title">Studded Gold Atelier</span>
+              <span class="drawer-sub-cat-meta">Pav&eacute; Accents &amp; Solitaires</span>
+            </div>
+          </a>
+          <a href="shop-diamond.html" class="drawer-sub-cat-item">
+            <img src="assets/images/shop/hero-campaign.jpg" alt="Diamond Vault" class="drawer-sub-cat-img" loading="lazy">
+            <div class="drawer-sub-cat-info">
+              <span class="drawer-sub-cat-title">Diamond Vault</span>
+              <span class="drawer-sub-cat-meta">GIA Certified D-F VVS</span>
+            </div>
+          </a>
+          <a href="shop-gems.html" class="drawer-sub-cat-item">
+            <img src="assets/images/shop/collection-emerald.jpg" alt="Gemstone Archive" class="drawer-sub-cat-img" loading="lazy">
+            <div class="drawer-sub-cat-info">
+              <span class="drawer-sub-cat-title">Gemstone Archive</span>
+              <span class="drawer-sub-cat-meta">Natural Unheated Gems</span>
+            </div>
+          </a>
+          <a href="shop-silver.html" class="drawer-sub-cat-item">
+            <img src="assets/images/shop/cat-luxury.jpg" alt="Silver Atelier" class="drawer-sub-cat-img" loading="lazy">
+            <div class="drawer-sub-cat-info">
+              <span class="drawer-sub-cat-title">Silver Atelier</span>
+              <span class="drawer-sub-cat-meta">Argentium 925 Fine Silver</span>
+            </div>
+          </a>
+          <a href="shop.html" class="drawer-sub-all-link">
+            <span>Browse All 32 Masterpieces</span>
+          </a>
+        </div>
+      </li>
       <li><a href="about.html" class="drawer-nav-link">About Us</a></li>
     </ul>
 
