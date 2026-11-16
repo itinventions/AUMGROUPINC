@@ -9,7 +9,7 @@
  * - Automatically pauses when out of view (0% CPU/GPU overhead).
  */
 
-import { isWebGLAvailable, lerp } from './helpers.js';
+import { isWebGLAvailable } from './helpers.js';
 
 export class CollectionsScene {
   constructor(canvasId = 'collections-webgl-canvas') {
@@ -32,10 +32,7 @@ export class CollectionsScene {
     this.initialParticlePositions = [];
     this.particlePhases = [];
     this.particleSpeeds = [];
-    this.particleCount = 36; // Reduced count: soft and non-distracting
-
-    // Subdued mouse parallax
-    this.mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
+    this.particleCount = 36; // Soft and non-distracting stationary ambient motes
 
     this.init();
   }
@@ -143,17 +140,6 @@ export class CollectionsScene {
   }
 
   bindEvents() {
-    // Very gentle parallax tracking inside collections section
-    const targetElement = this.section || window;
-    targetElement.addEventListener('mousemove', (e) => {
-      const rect = this.section ? this.section.getBoundingClientRect() : { left: 0, top: 0, width: window.innerWidth, height: window.innerHeight };
-      const relX = (e.clientX - rect.left) / Math.max(rect.width, 1);
-      const relY = (e.clientY - rect.top) / Math.max(rect.height, 1);
-
-      this.mouse.targetX = (relX - 0.5) * 0.8;
-      this.mouse.targetY = -(relY - 0.5) * 0.5;
-    }, { passive: true });
-
     // Window resize
     window.addEventListener('resize', () => {
       if (!this.canvas || !this.renderer || !this.camera) return;
@@ -204,16 +190,12 @@ export class CollectionsScene {
 
     const elapsed = this.clock.getElapsedTime();
 
-    // Silky smooth, dampened parallax
-    this.mouse.x = lerp(this.mouse.x, this.mouse.targetX, 0.025);
-    this.mouse.y = lerp(this.mouse.y, this.mouse.targetY, 0.025);
-
+    // Stationary particle system - zero mouse or cursor movement
     if (this.particleSystem) {
-      this.particleSystem.position.x = this.mouse.x * 0.4;
-      this.particleSystem.position.y = this.mouse.y * 0.3;
+      this.particleSystem.position.set(0, 0, 0);
     }
 
-    // Animate Soft Ambient Motes: slow, peaceful vertical wave
+    // Animate Soft Ambient Motes: slow, peaceful vertical wave (stationary backdrop)
     if (this.particleSystem && this.particlePositions) {
       for (let i = 0; i < this.particleCount; i++) {
         const init = this.initialParticlePositions[i];
