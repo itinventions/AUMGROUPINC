@@ -38,50 +38,67 @@
     content="fine jewellery, gemstones, diamonds, luxury jewellery, Aum Group Inc, GIA diamonds, emeralds, sapphires, 18k gold">
   <meta name="theme-color" content="#FAF9F6">
 
-  <!-- Google Fonts: Cormorant Garamond, Montserrat, Inter -->
+  <!-- Google Fonts: Playfair Display, Cormorant Garamond, Plus Jakarta Sans, Montserrat, Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Montserrat:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
     rel="stylesheet">
 
-  <!-- External Stylesheets -->
-  <link rel="stylesheet" href="style.css?v=8.0">
-  <link rel="stylesheet" href="homepage.css?v=1.0">
-  <link rel="stylesheet" href="animations.css?v=6.2">
+  <!-- External Stylesheets: Dedicated for index.html -->
+  <link rel="stylesheet" href="style.css?v=7.7">
+  <link rel="stylesheet" href="animations.css?v=6.3">
 
   <!-- Three.js CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 
-<body class="homepage-light">
+<body class="havenly-layout bg-[#F6F0E7] text-[#1A1613] selection:bg-gold-champagne selection:text-dark-bg">
 
-  <!-- =========================================================================
-       REFINED 2-TIER LUXURY NAVIGATION BAR (LIGHT MODE CENTRED BRAND IDENTITY)
-       ========================================================================= -->
-  <header class="navbar" role="banner">
+  <!-- Guarantee Hero Section is Always Shown First on Page Refresh / Initial Load -->
+  <script>
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+  </script>
 
-    <!-- 1. Upper Tier: Hamburger | Centred Logo | Utility Controls (Currency, Wishlist, Cart) -->
-    <div class="navbar-top">
+  <!-- Top Fixed Navigation Bar (Image 2 Luxury Architecture with Client Visiting Card Palette) -->
+  <header class="navbar havenly-navbar" role="banner">
 
-      <!-- Mobile Hamburger Button -->
-      <button type="button" class="hamburger-btn" id="mobile-menu-toggle" aria-label="Open Navigation Menu"
-        aria-expanded="false" aria-controls="navbar-drawer">
-        <svg class="hamburger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" width="22" height="22"
-          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="3" y1="6" x2="21" y2="6" />
-          <line x1="3" y1="12" x2="21" y2="12" />
-          <line x1="3" y1="18" x2="21" y2="18" />
-        </svg>
-      </button>
+    <!-- Unified Luxury Header Row (Left Nav Links | Center Brand Logo | Right Utilities) -->
+    <div class="havenly-nav-inner">
 
-      <!-- Center: Company Brand Logo from assets folder -->
-      <a href="index.html" class="navbar-brand-center" aria-label="AUM GROUP INC Fine Jewellery &amp; Gems Homepage">
-        <img src="assets/company_logo.png" alt="AUM GROUP INC Fine Jewellery &amp; Gems" class="navbar-logo-img">
-      </a>
+      <!-- Left: Mobile Menu Toggle + Desktop Navigation Links -->
+      <div class="havenly-nav-left">
+        <!-- Hamburger Menu Button (Mobile/Tablet only) -->
+        <button type="button" class="hamburger-btn lg:hidden" id="mobile-menu-toggle" aria-label="Open Navigation Menu"
+          aria-expanded="false" aria-controls="navbar-drawer">
+          <svg class="hamburger-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
 
-      <!-- Right: Currency Selector (9 Export Countries) & Utility Icons -->
-      <div class="navbar-top-right">
+        <!-- Desktop Navigation Links -->
+        <nav class="havenly-nav-links hidden lg:flex" aria-label="Desktop Navigation">
+          <a href="index.html" class="havenly-nav-link active">Home</a>
+          <a href="shop.html" class="havenly-nav-link">Shopping</a>
+          <a href="about.html" class="havenly-nav-link">About Us</a>
+        </nav>
+      </div>
+
+      <!-- Center: Prominent Brand Identity Logo (At Center of Header) -->
+      <div class="havenly-nav-center">
+        <a href="index.html" class="havenly-logo-link" aria-label="AUM GROUP INC Fine Jewellery &amp; Gems Homepage">
+          <img src="assets/company_logo.png" alt="AUM GROUP INC." class="havenly-logo-img">
+        </a>
+      </div>
+
+      <!-- Right: Currency Selector & User Profile & Wishlist & Shopping Bag & Contact Us Pill -->
+      <div class="havenly-nav-right">
 
         <!-- Export Countries Currency Selector -->
         <div class="currency-selector" id="currency-selector">
@@ -116,7 +133,15 @@
           </ul>
         </div>
 
-        <!-- Wishlist / Favorites Heart Button with Dynamic Counter Badge -->
+        <!-- User Profile Account Button -->
+        <a href="contact.html" class="nav-icon-btn profile-btn" id="nav-profile-btn" aria-label="Customer Profile &amp; Concierge" title="Client Concierge / Account">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </a>
+
+        <!-- Wishlist / Favorites Heart Button -->
         <button type="button" class="nav-icon-btn wishlist-btn" id="wishlist-btn" aria-label="Wishlist"
           title="Wishlist">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
@@ -127,7 +152,7 @@
           <span class="wishlist-badge" id="wishlist-counter">0</span>
         </button>
 
-        <!-- Shopping Bag Action Button with Dynamic Badge -->
+        <!-- Shopping Bag Action Button -->
         <button type="button" class="nav-icon-btn cart-btn" id="cart-btn" aria-label="Shopping Bag"
           title="Shopping Bag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
@@ -139,145 +164,18 @@
           <span class="cart-badge" id="cart-counter">0</span>
         </button>
 
+        <!-- Contact Us Pill Button -->
+        <a href="contact.html" class="havenly-btn-contact hidden lg:inline-flex">
+          <span>Contact Us</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+
       </div>
 
     </div>
 
-    <!-- 2. Middle Divider Line -->
-    <div class="navbar-divider" aria-hidden="true"></div>
-
-    <!-- 3. Lower Tier: Centred Navigation Row -->
-    <div class="navbar-bottom">
-      <nav role="navigation" aria-label="Main Navigation">
-        <ul class="nav-tier-links" id="main-nav-links">
-          <li><a href="index.html" class="nav-tier-link active">Home</a></li>
-
-          <!-- Shopping with Extended Mega Menu -->
-          <li class="nav-item-has-mega">
-            <a href="shop.html" class="nav-tier-link" id="shopping-mega-toggle" aria-expanded="false"
-              aria-haspopup="true">Shopping</a>
-
-            <!-- Extended Haute Joaillerie Mega Menu Dropdown -->
-            <div class="navbar-mega-menu" id="shopping-mega-menu" role="region"
-              aria-label="Haute Joaillerie Departments">
-              <div class="mega-menu-inner">
-                <!-- Mega Menu Top Header -->
-                <div class="mega-menu-header">
-                  <div>
-                    <span class="mega-eyebrow">Haute Joaillerie</span>
-                    <h3 class="mega-title">Curated Ateliers &amp; Precious Gemstone Archives</h3>
-                  </div>
-                  <a href="shop.html" class="mega-view-all-btn">Browse All 32 Masterpieces</a>
-                </div>
-
-                <!-- 5 Clean Atelier Categories (Pure Luxury Showcase) -->
-                <div class="mega-categories-grid">
-
-                  <!-- 01: Simple Gold Atelier -->
-                  <a href="shop-gold.html" class="mega-cat-item" title="Simple Gold Atelier">
-                    <div class="mega-cat-img-wrap">
-                      <img src="assets/images/shop/collection-gold.jpg" alt="Simple Gold Atelier" class="mega-cat-img"
-                        loading="lazy">
-                    </div>
-                    <div class="mega-cat-meta">
-                      <span class="mega-cat-number">01 / Atelier</span>
-                      <h4 class="mega-cat-title">Simple Gold</h4>
-                      <span class="mega-cat-subtitle">18K &amp; 22K Solid Gold</span>
-                    </div>
-                  </a>
-
-                  <!-- 02: Studded Gold Atelier -->
-                  <a href="shop-gold.html#studded" class="mega-cat-item" title="Studded Gold Atelier">
-                    <div class="mega-cat-img-wrap">
-                      <img src="assets/images/shop/collection-etoile.jpg" alt="Studded Gold Atelier"
-                        class="mega-cat-img" loading="lazy">
-                    </div>
-                    <div class="mega-cat-meta">
-                      <span class="mega-cat-number">02 / Atelier</span>
-                      <h4 class="mega-cat-title">Studded Gold</h4>
-                      <span class="mega-cat-subtitle">Pav&eacute; Accents &amp; Solitaires</span>
-                    </div>
-                  </a>
-
-                  <!-- 03: Diamond Vault -->
-                  <a href="shop-diamond.html" class="mega-cat-item" title="Diamond Vault">
-                    <div class="mega-cat-img-wrap">
-                      <img src="assets/images/shop/hero-campaign.jpg" alt="Diamond Vault" class="mega-cat-img"
-                        loading="lazy">
-                    </div>
-                    <div class="mega-cat-meta">
-                      <span class="mega-cat-number">03 / Vault</span>
-                      <h4 class="mega-cat-title">Diamond Vault</h4>
-                      <span class="mega-cat-subtitle">GIA Certified D-F VVS</span>
-                    </div>
-                  </a>
-
-                  <!-- 04: Gemstone Archive -->
-                  <a href="shop-gems.html" class="mega-cat-item" title="Gemstone Archive">
-                    <div class="mega-cat-img-wrap">
-                      <img src="assets/images/shop/collection-emerald.jpg" alt="Gemstone Archive" class="mega-cat-img"
-                        loading="lazy">
-                    </div>
-                    <div class="mega-cat-meta">
-                      <span class="mega-cat-number">04 / Archive</span>
-                      <h4 class="mega-cat-title">Gemstones</h4>
-                      <span class="mega-cat-subtitle">Natural Emeralds, Sapphires &amp; Rubies</span>
-                    </div>
-                  </a>
-
-                  <!-- 05: Silver Atelier -->
-                  <a href="shop-silver.html" class="mega-cat-item" title="Silver Atelier">
-                    <div class="mega-cat-img-wrap">
-                      <img src="assets/images/shop/cat-luxury.jpg" alt="Silver Atelier" class="mega-cat-img"
-                        loading="lazy">
-                    </div>
-                    <div class="mega-cat-meta">
-                      <span class="mega-cat-number">05 / Atelier</span>
-                      <h4 class="mega-cat-title">Silver Atelier</h4>
-                      <span class="mega-cat-subtitle">Argentium 925 Fine Silver</span>
-                    </div>
-                  </a>
-
-                </div>
-
-                <!-- Mega Menu Footer Perks -->
-                <div class="mega-menu-footer">
-                  <div class="mega-footer-perk">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                    </svg>
-                    <span>100% Conflict-Free GIA Diamonds &amp; Certified Precious Gems</span>
-                  </div>
-                  <div class="mega-footer-perk">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <rect x="1" y="3" width="15" height="13"></rect>
-                      <polygon points="16 8 20 8 23 11 23 16 16 16 8"></polygon>
-                      <circle cx="5.5" cy="18.5" r="2.5"></circle>
-                      <circle cx="18.5" cy="18.5" r="2.5"></circle>
-                    </svg>
-                    <span>Complimentary Insured Courier on Global Exports</span>
-                  </div>
-                  <div class="mega-footer-perk">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path
-                        d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-                    </svg>
-                    <span>Bespoke Private Commissions: <a href="contact.html" class="mega-footer-link">Enquire With
-                        Atelier</a></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </li>
-
-          <li><a href="#specialities" class="nav-tier-link">Specialities</a></li>
-          <li><a href="#new-arrivals" class="nav-tier-link">New Arrivals</a></li>
-          <li><a href="about.html" class="nav-tier-link">About Us</a></li>
-          <li><a href="contact.html" class="nav-tier-link">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-
+    <!-- Reading Scroll Progress Bar -->
+    <div class="scroll-progress-line" id="scroll-progress-bar" aria-hidden="true"></div>
   </header>
 
   <!-- Mega Menu Backdrop (Desktop Page Dimmer) -->
@@ -359,7 +257,7 @@
       <li><a href="#specialities" class="drawer-nav-link">Specialities</a></li>
       <li><a href="#new-arrivals" class="drawer-nav-link">New Arrivals</a></li>
       <li><a href="about.html" class="drawer-nav-link">About Us</a></li>
-      <li><a href="contact.html" class="drawer-nav-link">Contact</a></li>
+      <li><a href="contact.html" class="drawer-nav-link">Contact Us</a></li>
     </ul>
 
     <div class="drawer-footer">
@@ -379,16 +277,52 @@
   </aside>
 
   <!-- =========================================================================
-       HERO SECTION (ONE STRONG VISUAL IDEA — LIGHT EDITORIAL ART DIRECTION)
+       HAVENLY-INSPIRED LUXURY MAIN STAGE (AUM GROUP INC. FINE JEWELLERY & GEMS)
        ========================================================================= -->
-  <section class="hero-light-section" id="hero" aria-label="Haute Joaillerie Hero">
-    <div class="hero-light-container">
+  <main class="havenly-main" id="home">
 
-      <!-- Left Column: Editorial Headline & Actions -->
-      <div class="hero-editorial-content">
-        <div class="hero-pill-badge">
-          <span class="hero-pill-dot"></span>
-          <span>Haute Joaillerie &bull; Natural Rarities</span>
+    <!-- 1. HERO SECTION -->
+    <section class="havenly-hero-section">
+      <div class="havenly-hero-container">
+
+        <!-- Left: Editorial Headline & Actions -->
+        <div class="havenly-hero-left reveal-fade-left">
+          <div class="havenly-pill-badge">
+            <span class="havenly-pill-dot" aria-hidden="true"></span>
+            <span>Haute Joaillerie &bull; Mumbai 2005</span>
+          </div>
+
+          <h1 class="havenly-hero-title">
+            Discover Your<br>
+            <span class="havenly-serif-italic">Timeless Creation</span>
+          </h1>
+
+          <p class="havenly-hero-desc">
+            Rare certified diamonds, untreated natural gemstones, and bespoke master craftsmanship sculpted into enduring living heirlooms since 2011.
+          </p>
+
+          <div class="havenly-hero-btn-row">
+            <a href="shop.html" class="havenly-btn-dark">
+              <span>Explore Shopping</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <a href="#cinematic-showcase" class="havenly-btn-outline">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="6 4 20 12 6 20 6 4"></polygon>
+              </svg>
+              <span>Watch Film</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Large Soft-Rounded Visual Frame -->
+        <div class="havenly-hero-right reveal-fade-right">
+          <div class="havenly-hero-img-wrap">
+            <img src="assets/images/Background Images/01_Hompage_Background_Image.png" alt="AUM GROUP INC. Fine Jewellery Masterpiece" class="havenly-hero-img">
+          </div>
         </div>
 
         <h1 class="hero-editorial-title">
@@ -396,70 +330,626 @@
           <span class="serif-accent">Naturally Conceived.</span>
         </h1>
 
-        <p class="hero-editorial-desc">
-          Rare GIA-certified diamonds, unheated royal gemstones, and masterfully forged 18K solid gold and fine silver
-          creations—handcrafted with generational precision for discerning collectors.
-        </p>
+      <!-- Floating Concierge Filter Pill Bar -->
+      <div class="havenly-filter-bar-wrap reveal-scale-up">
+        <div class="havenly-filter-bar" role="search" aria-label="Haute Joaillerie Search">
+          <!-- Filter 1: Gemstone Selection -->
+          <div class="havenly-filter-col">
+            <span class="havenly-filter-icon" aria-hidden="true">💎</span>
+            <div>
+              <span class="havenly-filter-label">Gemstone</span>
+              <span class="havenly-filter-val">All Diamonds &amp; Gems ▾</span>
+            </div>
+          </div>
 
-        <div class="hero-cta-group">
-          <a href="shop.html" class="btn-primary-green">
-            <span>Explore Collections</span>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-              stroke-linecap="round" stroke-linejoin="round">
+          <div class="havenly-filter-divider" aria-hidden="true"></div>
+
+          <!-- Filter 2: Precious Metal -->
+          <div class="havenly-filter-col">
+            <span class="havenly-filter-icon" aria-hidden="true">👑</span>
+            <div>
+              <span class="havenly-filter-label">Precious Metal</span>
+              <span class="havenly-filter-val">18K Solid Gold &amp; Platinum ▾</span>
+            </div>
+          </div>
+
+          <div class="havenly-filter-divider" aria-hidden="true"></div>
+
+          <!-- Filter 3: Category -->
+          <div class="havenly-filter-col">
+            <span class="havenly-filter-icon" aria-hidden="true">✨</span>
+            <div>
+              <span class="havenly-filter-label">Category</span>
+              <span class="havenly-filter-val">Rings, Bangles, Bands ▾</span>
+            </div>
+          </div>
+
+          <!-- Filter Action CTA -->
+          <a href="shop.html" class="havenly-filter-btn" aria-label="Explore Full Collection">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <span>Explore All</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. BRAND HERITAGE SECTION -->
+    <section class="havenly-about-section" id="heritage" aria-label="About AUM GROUP INC.">
+      <div class="havenly-about-grid">
+
+        <!-- Left: Arched Organic Photo Frame -->
+        <div class="havenly-arch-card reveal-fade-left">
+          <img src="assets/images/shop/brand-craft.jpg" alt="Master Craftsman Handcrafting Jewellery at Bench" class="havenly-arch-img" loading="lazy">
+        </div>
+
+        <!-- Center: Editorial Brand Story -->
+        <div class="havenly-about-center reveal-on-scroll">
+          <div class="havenly-pill-badge">
+            <span class="havenly-pill-dot" aria-hidden="true"></span>
+            <span>Our Company Story &bull; Mumbai 2005</span>
+          </div>
+
+          <h2 class="havenly-section-title">
+            Over Two Decades of<br>
+            <span class="havenly-serif-italic">Mastery &amp; Trust</span>
+          </h2>
+
+          <p class="havenly-about-desc">
+            Established in 2005 in Mumbai (India) &mdash; the world's epicentre of diamond cutting and polishing. For over 21 years, AUM GROUP INC. has supplied world-class natural diamonds and fine heirlooms directly from our master benches, eliminating middlemen to provide direct factory pricing to fine jewelry brands and private connoisseurs globally.
+          </p>
+
+          <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+            <a href="about.html" class="havenly-btn-dark">
+              <span>Read Our Full Story</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <a href="shop.html" class="havenly-btn-outline">
+              <span>Explore Vault</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: 3 Trust Pillars with Circular Icons (Matching Havenly Icons) -->
+        <div class="havenly-about-pillars reveal-fade-right">
+          <div class="havenly-pillar-card reveal-on-scroll">
+            <div class="havenly-pillar-icon-box" aria-hidden="true">💎</div>
+            <div>
+              <h4 class="havenly-pillar-title">GIA &amp; IGI Certified</h4>
+              <p class="havenly-pillar-desc">Every diamond individually graded with 100% conflict-free laser-inscribed provenance.</p>
+            </div>
+          </div>
+
+          <div class="havenly-pillar-card reveal-on-scroll">
+            <div class="havenly-pillar-icon-box" aria-hidden="true">🛡️</div>
+            <div>
+              <h4 class="havenly-pillar-title">Direct Mine-to-Market</h4>
+              <p class="havenly-pillar-desc">Direct factory supply eliminating intermediaries, brokers, and retail trading markups.</p>
+            </div>
+          </div>
+
+          <div class="havenly-pillar-card reveal-on-scroll">
+            <div class="havenly-pillar-icon-box" aria-hidden="true">🚚</div>
+            <div>
+              <h4 class="havenly-pillar-title">Armored Global Transit</h4>
+              <p class="havenly-pillar-desc">Discreet, fully insured secure courier transit to USA, Canada, Europe &amp; 40+ countries.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Provenance & Scale Metrics Strip -->
+      <div class="havenly-metrics-strip reveal-scale-up">
+        <div class="havenly-metric-card">
+          <span class="havenly-metric-num">2005</span>
+          <span class="havenly-metric-label">Founded in Mumbai</span>
+          <p class="havenly-metric-desc">Established at the global diamond cutting capital with generational master polishers.</p>
+        </div>
+        <div class="havenly-metric-card">
+          <span class="havenly-metric-num">21+</span>
+          <span class="havenly-metric-label">Years of Mastery</span>
+          <p class="havenly-metric-desc">Over two decades of precision faceting, goldsmithing, and direct factory supply.</p>
+        </div>
+        <div class="havenly-metric-card">
+          <span class="havenly-metric-num">15+</span>
+          <span class="havenly-metric-label">Nations Served</span>
+          <p class="havenly-metric-desc">Direct export partners across USA, Canada, Europe, Bangkok &amp; Indonesia.</p>
+        </div>
+        <div class="havenly-metric-card">
+          <span class="havenly-metric-num">100%</span>
+          <span class="havenly-metric-label">Certified &amp; Ethical</span>
+          <p class="havenly-metric-desc">Kimberley Process compliant natural diamonds with GIA &amp; IGI laser dossiers.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. THE FIVE CURATED ATELIERS (SHOWCASING THE ENTIRE COMPANY & WEBSITE) -->
+    <section class="havenly-ateliers-section" id="departments" aria-label="The Five Curated Ateliers &amp; Archives">
+      <div class="havenly-ateliers-inner">
+        <div class="havenly-ateliers-header reveal-on-scroll">
+          <div class="havenly-pill-badge havenly-pill-gold">
+            <span class="havenly-pill-dot" aria-hidden="true"></span>
+            <span>Our Website Story &bull; Five Curated Ateliers</span>
+          </div>
+          <h2 class="havenly-ateliers-title">
+            Curated Ateliers &amp; <span class="havenly-serif-italic-gold">Vault Archives</span>
+          </h2>
+          <p class="havenly-ateliers-subtitle">
+            Why our website is organized into five specialized ateliers: Each division represents a distinct pinnacle of high jewelry art &mdash; from sculptural 18K solid gold to GIA certified diamond solitaires, untreated rare gemstones, and Argentium silver heirlooms.
+          </p>
+        </div>
+
+        <!-- 5 Atelier Showcase Cards Grid -->
+        <div class="havenly-ateliers-grid reveal-scale-up">
+          <!-- 01: Simple Gold Atelier -->
+          <a href="shop-gold.html" class="havenly-atelier-card reveal-on-scroll" title="Explore Simple Gold Atelier">
+            <div class="havenly-atelier-media">
+              <img src="assets/images/Background%20Images/Home%20Page%20Gold%20Section.png" alt="Simple Gold Atelier" class="havenly-atelier-img" loading="lazy">
+              <div class="havenly-atelier-overlay"></div>
+              <span class="havenly-atelier-number">01 / Atelier</span>
+            </div>
+            <div class="havenly-atelier-content">
+              <h3 class="havenly-atelier-name">Simple Gold</h3>
+              <p class="havenly-atelier-meta">18K &amp; 22K Solid Gold Artistry</p>
+              <span class="havenly-atelier-btn"><span>Explore Atelier</span> &rarr;</span>
+            </div>
+          </a>
+
+          <!-- 02: Studded Gold Atelier -->
+          <a href="shop-gold.html#studded" class="havenly-atelier-card reveal-on-scroll" title="Explore Studded Gold Atelier">
+            <div class="havenly-atelier-media">
+              <img src="assets/images/Background%20Images/Home%20Page%20Studed%20Gold%20Section.png" alt="Studded Gold Atelier" class="havenly-atelier-img" loading="lazy">
+              <div class="havenly-atelier-overlay"></div>
+              <span class="havenly-atelier-number">02 / Atelier</span>
+            </div>
+            <div class="havenly-atelier-content">
+              <h3 class="havenly-atelier-name">Studded Gold</h3>
+              <p class="havenly-atelier-meta">Solitaires, Pav&eacute; &amp; Micro-Pave</p>
+              <span class="havenly-atelier-btn"><span>Explore Atelier</span> &rarr;</span>
+            </div>
+          </a>
+
+          <!-- 03: Diamond Vault -->
+          <a href="shop-diamond.html" class="havenly-atelier-card reveal-on-scroll" title="Explore Certified Diamond Vault">
+            <div class="havenly-atelier-media">
+              <img src="assets/images/Background%20Images/Home%20Page%20Diamond%20Section.png" alt="Certified Diamond Vault" class="havenly-atelier-img" loading="lazy">
+              <div class="havenly-atelier-overlay"></div>
+              <span class="havenly-atelier-number">03 / Vault</span>
+            </div>
+            <div class="havenly-atelier-content">
+              <h3 class="havenly-atelier-name">Diamond Vault</h3>
+              <p class="havenly-atelier-meta">GIA Certified D-F Flawless &amp; VVS</p>
+              <span class="havenly-atelier-btn"><span>Explore Vault</span> &rarr;</span>
+            </div>
+          </a>
+
+          <!-- 04: Gemstone Archive -->
+          <a href="shop-gems.html" class="havenly-atelier-card reveal-on-scroll" title="Explore Precious Gemstone Archive">
+            <div class="havenly-atelier-media">
+              <img src="assets/images/Background%20Images/Gems%20Image.png" alt="Precious Gemstone Archive" class="havenly-atelier-img" loading="lazy">
+              <div class="havenly-atelier-overlay"></div>
+              <span class="havenly-atelier-number">04 / Archive</span>
+            </div>
+            <div class="havenly-atelier-content">
+              <h3 class="havenly-atelier-name">Gemstones</h3>
+              <p class="havenly-atelier-meta">Burma Rubies, Sapphires &amp; Emeralds</p>
+              <span class="havenly-atelier-btn"><span>Explore Archive</span> &rarr;</span>
+            </div>
+          </a>
+
+          <!-- 05: Silver Atelier -->
+          <a href="shop-silver.html" class="havenly-atelier-card reveal-on-scroll" title="Explore Fine Silver Atelier">
+            <div class="havenly-atelier-media">
+              <img src="assets/images/Background%20Images/Elegant%20Silver%20Jewelry%20on%20Gray%20Stone.png" alt="Fine Silver Atelier" class="havenly-atelier-img" loading="lazy">
+              <div class="havenly-atelier-overlay"></div>
+              <span class="havenly-atelier-number">05 / Atelier</span>
+            </div>
+            <div class="havenly-atelier-content">
+              <h3 class="havenly-atelier-name">Silver Atelier</h3>
+              <p class="havenly-atelier-meta">Argentium 925 Fine Heirlooms</p>
+              <span class="havenly-atelier-btn"><span>Explore Atelier</span> &rarr;</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. CRAFTSMANSHIP JOURNEY: FROM MINE TO LIVING HEIRLOOM -->
+    <section class="havenly-journey-section" id="craftsmanship" aria-label="Our Craftsmanship Journey">
+      <div class="havenly-journey-inner">
+        <div class="havenly-journey-header reveal-on-scroll">
+          <div class="havenly-pill-badge">
+            <span class="havenly-pill-dot" aria-hidden="true"></span>
+            <span>Our Craftsmanship Story</span>
+          </div>
+          <h2 class="havenly-section-title">
+            From Ethical Mine to <span class="havenly-serif-italic">Living Heirloom</span>
+          </h2>
+          <p class="havenly-section-subtitle">
+            Every creation is born from a rigorous four-stage journey of ethical sourcing, master faceting, and bench goldsmithing.
+          </p>
+        </div>
+
+        <div class="havenly-journey-grid reveal-scale-up">
+          <!-- Step 1: Ethical Sourcing -->
+          <div class="havenly-journey-card reveal-on-scroll">
+            <span class="havenly-journey-step-badge">01 &bull; Direct Sourcing</span>
+            <span class="havenly-journey-icon" aria-hidden="true">💎</span>
+            <h3 class="havenly-journey-title">Ethical Mine-to-Market</h3>
+            <p class="havenly-journey-desc">
+              Direct sourcing of conflict-free rough diamonds and untreated colored gemstones straight from certified mines, eliminating trading markups.
+            </p>
+          </div>
+
+          <!-- Step 2: Mumbai Faceting -->
+          <div class="havenly-journey-card reveal-on-scroll">
+            <span class="havenly-journey-step-badge">02 &bull; Precision Cut</span>
+            <span class="havenly-journey-icon" aria-hidden="true">✨</span>
+            <h3 class="havenly-journey-title">57/58-Facet Symmetry</h3>
+            <p class="havenly-journey-desc">
+              Our generational master polishers in Mumbai apply exact mathematical angles to unleash maximum optical fire, brilliance, and scintillation.
+            </p>
+          </div>
+
+          <!-- Step 3: Bench Goldsmithing -->
+          <div class="havenly-journey-card reveal-on-scroll">
+            <span class="havenly-journey-step-badge">03 &bull; Bench Artistry</span>
+            <span class="havenly-journey-icon" aria-hidden="true">🔥</span>
+            <h3 class="havenly-journey-title">Master Goldsmithing</h3>
+            <p class="havenly-journey-desc">
+              Solid 18K/22K gold casting, micro-pavé hand setting under high magnification, and Italian Florentine hand-engraved texturing.
+            </p>
+          </div>
+
+          <!-- Step 4: Armored Global Delivery -->
+          <div class="havenly-journey-card reveal-on-scroll">
+            <span class="havenly-journey-step-badge">04 &bull; Provenance</span>
+            <span class="havenly-journey-icon" aria-hidden="true">🛡️</span>
+            <h3 class="havenly-journey-title">GIA / IGI Certification</h3>
+            <p class="havenly-journey-desc">
+              Each jewel receives individual laboratory certification with laser inscribed provenance, sealed for armored global delivery to 40+ nations.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. FEATURED MASTERPIECES (Matching Havenly 'Featured Properties') -->
+    <section class="havenly-featured-section" id="featured" aria-label="Featured Fine Jewellery Masterpieces">
+      <div class="havenly-section-header-row reveal-on-scroll">
+        <div>
+          <div class="havenly-pill-badge">
+            <span class="havenly-pill-dot" aria-hidden="true"></span>
+            <span>Curated Vault</span>
+          </div>
+          <h2 class="havenly-section-title">Featured Masterpieces</h2>
+          <p class="havenly-section-subtitle">Explore our handpicked selection of exceptional fine jewellery creations.</p>
+        </div>
+
+        <!-- Circular Carousel Controls -->
+        <div class="havenly-carousel-controls">
+          <button type="button" class="havenly-circle-nav-btn" aria-label="Previous Creation">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button type="button" class="havenly-circle-nav-btn" aria-label="Next Creation">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- 3-Card Luxury Showcase Grid -->
+      <div class="havenly-cards-grid reveal-scale-up">
+        <!-- Masterpiece 1: Constellation Solitaire Diamond Ring -->
+        <article class="havenly-product-card reveal-on-scroll" data-id="na-dia-3">
+          <div class="havenly-card-media">
+            <span class="havenly-card-badge">GIA Certified</span>
+            <img src="assets/images/shop/products/prod-1-a.jpg" alt="Constellation Solitaire Diamond Ring" class="havenly-card-img" loading="lazy">
+          </div>
+          <div class="havenly-card-body">
+            <h3 class="havenly-card-title">Constellation Solitaire Diamond Ring</h3>
+            <div class="havenly-card-specs">
+              <span>18K White Gold</span>
+              <span>&bull;</span>
+              <span>2.05 ct D-F VVS</span>
+              <span>&bull;</span>
+              <span>Solitaire Cut</span>
+            </div>
+            <div class="havenly-card-footer">
+              <span class="havenly-card-price" data-usd="6800">$6,800</span>
+              <button type="button" class="havenly-card-arrow-btn na-quick-view-btn" data-id="na-dia-3" aria-label="View Details for Constellation Solitaire Diamond Ring">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Masterpiece 2: Aura Royale Sculpted Gold Bangle -->
+        <article class="havenly-product-card reveal-on-scroll" data-id="na-gold-3">
+          <div class="havenly-card-media">
+            <span class="havenly-card-badge">Solid 18K Gold</span>
+            <img src="assets/images/shop/collection-gold.jpg" alt="Aura Royale Sculpted Gold Bangle" class="havenly-card-img" loading="lazy">
+          </div>
+          <div class="havenly-card-body">
+            <h3 class="havenly-card-title">Aura Royale Sculpted Gold Bangle</h3>
+            <div class="havenly-card-specs">
+              <span>Solid 18K Gold</span>
+              <span>&bull;</span>
+              <span>Hand-Sculpted</span>
+              <span>&bull;</span>
+              <span>Satin Fluted</span>
+            </div>
+            <div class="havenly-card-footer">
+              <span class="havenly-card-price" data-usd="4200">$4,200</span>
+              <button type="button" class="havenly-card-arrow-btn na-quick-view-btn" data-id="na-gold-3" aria-label="View Details for Aura Royale Sculpted Gold Bangle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Masterpiece 3: Sovereign Colombian Emerald Ring -->
+        <article class="havenly-product-card reveal-on-scroll" data-id="na-stud-3">
+          <div class="havenly-card-media">
+            <span class="havenly-card-badge">Rare Muzo Gem</span>
+            <img src="assets/images/shop/collection-emerald.jpg" alt="Sovereign Colombian Emerald Ring" class="havenly-card-img" loading="lazy">
+          </div>
+          <div class="havenly-card-body">
+            <h3 class="havenly-card-title">Sovereign Colombian Emerald Ring</h3>
+            <div class="havenly-card-specs">
+              <span>Colombian Emerald</span>
+              <span>&bull;</span>
+              <span>2.40 ct Untreated</span>
+              <span>&bull;</span>
+              <span>Trapezoid Dia</span>
+            </div>
+            <div class="havenly-card-footer">
+              <span class="havenly-card-price" data-usd="18500">$18,500</span>
+              <button type="button" class="havenly-card-arrow-btn na-quick-view-btn" data-id="na-stud-3" aria-label="View Details for Sovereign Colombian Emerald Ring">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 4. CINEMATIC ATELIER FILM SHOWCASE -->
+    <section class="cinematic-video-section" id="cinematic-showcase" aria-label="Atelier Craftsmanship Film">
+      <div class="video-horizon-line video-horizon-top" aria-hidden="true"></div>
+      <div class="video-viewport">
+        <video id="atelier-video" class="cinematic-video-player" autoplay muted loop playsinline preload="auto"
+          poster="assets/images/Background%20Images/02_Hompage_Background_Image.png">
+          <source src="assets/Video%20For%20Home%20Page.mp4" type="video/mp4">
+          <source src="assets/Video For Home Page.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div class="video-overlay-vignette" aria-hidden="true"></div>
+        <div class="video-content-overlay">
+          <div class="video-editorial-card reveal-on-scroll">
+            <div class="video-eyebrow-wrap">
+              <span class="video-eyebrow-line" aria-hidden="true"></span>
+              <span class="video-eyebrow">HERITAGE &bull; MASTER BENCH ARTISTRY</span>
+              <span class="video-eyebrow-line" aria-hidden="true"></span>
+            </div>
+            <h2 class="video-heading">
+              Where <span class="heading-artistry font-serif-italic">Artistry</span> Meets <span class="video-heading-gold">Eternity</span>
+            </h2>
+            <p class="video-subtitle">Every facet cut with reverence, every heirloom crafted to endure across generations.</p>
+          </div>
+        </div>
+        <button id="video-sound-toggle" class="video-sound-pill" type="button" aria-label="Toggle video sound">
+          <span class="sound-icon-wrap" aria-hidden="true">
+            <svg class="sound-icon sound-icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <line x1="23" y1="9" x2="17" y2="15"></line>
+              <line x1="17" y1="9" x2="23" y2="15"></line>
+            </svg>
+            <svg class="sound-icon sound-icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+            </svg>
+          </span>
+          <span class="sound-label" id="sound-label-text">Unmute</span>
+        </button>
+      </div>
+      <div class="video-horizon-line video-horizon-bottom" aria-hidden="true"></div>
+    </section>
+
+    <!-- 7. OUR GLOBAL STORY: DIRECT EXPORT TO 15+ NATIONS -->
+    <section class="havenly-presence-section" id="presence" aria-label="Our Global Presence &amp; Export Footprint">
+      <div class="havenly-presence-inner">
+        <div class="havenly-presence-header reveal-on-scroll">
+          <div class="havenly-pill-badge havenly-pill-gold">
+            <span class="havenly-pill-dot" aria-hidden="true"></span>
+            <span>Worldwide Export Network</span>
+          </div>
+          <h2 class="havenly-presence-title">
+            Trusted in <span class="havenly-serif-italic-gold">15+ Nations Worldwide</span>
+          </h2>
+          <p class="havenly-presence-subtitle">
+            Direct factory supply from our Mumbai manufacturing facilities to leading fine jewelers, bespoke designers, and private collectors across five continents.
+          </p>
+        </div>
+
+        <div class="havenly-presence-grid reveal-scale-up">
+          <!-- Hub 1: USA -->
+          <div class="havenly-presence-card reveal-on-scroll">
+            <img src="assets/images/presence/usa.jpg" alt="USA - New York &amp; Los Angeles Luxury Partners" class="havenly-presence-bg" loading="lazy">
+            <div class="havenly-presence-overlay"></div>
+            <div class="havenly-presence-content">
+              <h3 class="havenly-presence-country">United States</h3>
+              <p class="havenly-presence-hub">New York &amp; Los Angeles Jewelry Houses</p>
+            </div>
+          </div>
+
+          <!-- Hub 2: Canada -->
+          <div class="havenly-presence-card reveal-on-scroll">
+            <img src="assets/images/presence/canada.jpg" alt="Canada - Toronto &amp; Montreal Fine Artisans" class="havenly-presence-bg" loading="lazy">
+            <div class="havenly-presence-overlay"></div>
+            <div class="havenly-presence-content">
+              <h3 class="havenly-presence-country">Canada</h3>
+              <p class="havenly-presence-hub">Toronto &amp; Montreal Fine Artisans</p>
+            </div>
+          </div>
+
+          <!-- Hub 3: Europe -->
+          <div class="havenly-presence-card reveal-on-scroll">
+            <img src="assets/images/presence/europe.jpg" alt="European Countries - Antwerp, London, Milan &amp; Paris" class="havenly-presence-bg" loading="lazy">
+            <div class="havenly-presence-overlay"></div>
+            <div class="havenly-presence-content">
+              <h3 class="havenly-presence-country">European Union</h3>
+              <p class="havenly-presence-hub">Antwerp, London, Milan &amp; Paris</p>
+            </div>
+          </div>
+
+          <!-- Hub 4: Bangkok -->
+          <div class="havenly-presence-card reveal-on-scroll">
+            <img src="assets/images/presence/thailand.jpg" alt="Bangkok, Thailand - Southeast Asia Gemstone Hub" class="havenly-presence-bg" loading="lazy">
+            <div class="havenly-presence-overlay"></div>
+            <div class="havenly-presence-content">
+              <h3 class="havenly-presence-country">Thailand</h3>
+              <p class="havenly-presence-hub">Bangkok Southeast Asia Gem Hub</p>
+            </div>
+          </div>
+
+          <!-- Hub 5: Indonesia -->
+          <div class="havenly-presence-card reveal-on-scroll">
+            <img src="assets/images/presence/indonesia.jpg" alt="Indonesia - Luxury Retail &amp; Bespoke Designers" class="havenly-presence-bg" loading="lazy">
+            <div class="havenly-presence-overlay"></div>
+            <div class="havenly-presence-content">
+              <h3 class="havenly-presence-country">Indonesia</h3>
+              <p class="havenly-presence-hub">Jakarta &amp; Bali Luxury Designers</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. CLIENT PERSPECTIVES (Matching Havenly 'What Our Clients Say') -->
+    <section class="havenly-testimonials-section" id="testimonials" aria-label="Client Perspectives &amp; Reviews">
+      <div class="havenly-testimonials-layout">
+        <!-- Left: Editorial Headline & Review CTA -->
+        <div class="havenly-testimonials-left reveal-fade-left">
+          <div class="havenly-pill-badge">
+            <span class="havenly-pill-dot" aria-hidden="true"></span>
+            <span>Collector Perspectives</span>
+          </div>
+          <h2 class="havenly-section-title">
+            What Our<br>
+            <span class="havenly-serif-italic">Clients Say</span>
+          </h2>
+          <p class="havenly-section-subtitle" style="margin-bottom: 2rem;">
+            Real reflections from discerning international collectors, bespoke commissioners, and diamond connoisseurs.
+          </p>
+          <a href="contact.html" class="havenly-btn-dark">
+            <span>Read More Reviews</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>
             </svg>
           </a>
-          <a href="#brand-story" class="btn-secondary-outline">
-            <span>Discover Our Story</span>
+        </div>
+
+        <!-- Right: 3 Testimonial Cards (Matching Havenly Review Cards) -->
+        <div class="havenly-reviews-grid reveal-fade-right">
+          <!-- Review 1 -->
+          <article class="havenly-review-card reveal-on-scroll">
+            <div>
+              <span class="havenly-quote-mark" aria-hidden="true">&ldquo;</span>
+              <p class="havenly-review-text">&ldquo;The bespoke emerald ring exceeded all expectations. Exceptional craftsmanship, flawless fire, and authentic GIA provenance.&rdquo;</p>
+            </div>
+            <div class="havenly-reviewer-box">
+              <div class="havenly-avatar" aria-hidden="true">SE</div>
+              <div>
+                <h4 class="havenly-reviewer-name">Sarah El Mansouri</h4>
+                <span class="havenly-reviewer-city">Geneva, Switzerland</span>
+                <div class="havenly-stars" aria-label="5 stars">★★★★★</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Review 2 -->
+          <article class="havenly-review-card reveal-on-scroll">
+            <div>
+              <span class="havenly-quote-mark" aria-hidden="true">&ldquo;</span>
+              <p class="havenly-review-text">&ldquo;Professional, responsive and truly dedicated. The diamond fire and cut precision from Mumbai to New York are unmatched.&rdquo;</p>
+            </div>
+            <div class="havenly-reviewer-box">
+              <div class="havenly-avatar" aria-hidden="true">KB</div>
+              <div>
+                <h4 class="havenly-reviewer-name">Karim Benali</h4>
+                <span class="havenly-reviewer-city">New York, USA</span>
+                <div class="havenly-stars" aria-label="5 stars">★★★★★</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Review 3 -->
+          <article class="havenly-review-card reveal-on-scroll">
+            <div>
+              <span class="havenly-quote-mark" aria-hidden="true">&ldquo;</span>
+              <p class="havenly-review-text">&ldquo;An exceptional experience from start to finish. Armored delivery was completely seamless, discreet, and prompt.&rdquo;</p>
+            </div>
+            <div class="havenly-reviewer-box">
+              <div class="havenly-avatar" aria-hidden="true">FZ</div>
+              <div>
+                <h4 class="havenly-reviewer-name">Fatima Zahra</h4>
+                <span class="havenly-reviewer-city">London, UK</span>
+                <div class="havenly-stars" aria-label="5 stars">★★★★★</div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. BESPOKE PRIVATE COMMISSIONS (CONNECTING COLLECTORS TO MUMBAI ATELIER) -->
+    <section class="havenly-bespoke-section" id="bespoke" aria-label="Bespoke Private Commissions">
+      <div class="havenly-bespoke-inner reveal-scale-up">
+        <div>
+          <div class="havenly-pill-badge havenly-pill-gold">
+            <span class="havenly-pill-dot" aria-hidden="true"></span>
+            <span>Bespoke Private Commissions</span>
+          </div>
+          <h2 class="havenly-bespoke-title">
+            Tailored in Our <span class="havenly-serif-italic-gold">Mumbai Atelier</span>
+          </h2>
+          <p class="havenly-bespoke-desc">
+            Direct access to master diamond cutters, untreated natural gem archives, and bespoke hand-fabricated fine jewellery heirlooms crafted to your exact legacy since 2011.
+          </p>
+        </div>
+        <div>
+          <a href="contact.html" class="havenly-btn-bespoke">
+            <span>Enquire With Atelier</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
           </a>
         </div>
-
-        <!-- Micro Trust Row -->
-        <div class="hero-trust-row">
-          <div class="hero-trust-item">
-            <svg class="hero-trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-            </svg>
-            <span>GIA &amp; IGI Authenticated</span>
-          </div>
-          <div class="hero-trust-item">
-            <svg class="hero-trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polygon
-                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-            </svg>
-            <span>18K &amp; 22K Noble Solid Gold</span>
-          </div>
-          <div class="hero-trust-item">
-            <svg class="hero-trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="1" y="3" width="15" height="13"></rect>
-              <polygon points="16 8 20 8 23 11 23 16 16 16 8"></polygon>
-              <circle cx="5.5" cy="18.5" r="2.5"></circle>
-              <circle cx="18.5" cy="18.5" r="2.5"></circle>
-            </svg>
-            <span>Global Insured Courier</span>
-          </div>
-        </div>
       </div>
+    </section>
 
-      <!-- Right Column: Art-Directed Campaign Visual -->
-      <div class="hero-visual-frame">
-        <img src="assets/images/shop/hero-campaign.jpg" alt="AUM GROUP INC Haute Joaillerie Diamond Campaign"
-          class="hero-main-img" fetchpriority="high">
-        <div class="hero-floating-pill">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-            <circle cx="12" cy="12" r="10"></circle>
-            <polyline points="12 6 12 12 14 14"></polyline>
-          </svg>
-          <span>100% Conflict-Free &bull; Handcrafted Atelier</span>
-        </div>
-      </div>
-
-    </div>
-  </section>
+  </main>
 
   <!-- =========================================================================
-       CATEGORY SHOWCASE SECTION ("EXPLORE OUR COLLECTIONS" — 5 CURATED ATELIERS)
+       VIEW PRODUCT OPTIONS MODAL (Matching Image 4 - Gemma Minimal Luxury Template)
        ========================================================================= -->
   <section class="categories-light-section" id="categories" aria-label="Jewellery Categories Showcase">
     <div class="section-editorial-header">
@@ -912,66 +1402,293 @@
   <div class="na-modal-backdrop" id="na-modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true"
     aria-labelledby="na-modal-title">
     <div class="na-modal-overlay" id="na-modal-overlay"></div>
-    <div class="na-modal-card">
-      <button type="button" class="na-modal-close-btn" id="na-modal-close-btn" aria-label="Close Preview Modal">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round">
+    <div class="na-modal-card gemma-modal-card">
+      <button type="button" class="na-modal-close-btn" id="na-modal-close-btn" aria-label="Close Product View">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="18" y1="6" x2="6" y2="18"></line>
           <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg>
       </button>
 
-      <div class="na-modal-grid">
-        <div class="na-modal-media">
-          <img src="assets/images/shop/products/prod-16-a.jpg" alt="Gemological Creation" id="na-modal-img"
-            class="na-modal-img">
-          <span class="na-modal-cert-pill" id="na-modal-cert-text">GIA Verified</span>
+      <div class="gemma-modal-grid">
+        <!-- Left: Image Gallery & 3 Thumbnails -->
+        <div class="gemma-gallery-col">
+          <div class="gemma-main-media-wrap">
+            <span class="na-modal-cert-pill" id="na-modal-cert-text">GIA Verified</span>
+            <button type="button" class="gemma-nav-arrow gemma-arrow-prev" id="gemma-arrow-prev" aria-label="Previous Image">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </button>
+            <button type="button" class="gemma-nav-arrow gemma-arrow-next" id="gemma-arrow-next" aria-label="Next Image">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+            <img src="assets/images/shop/products/prod-7-a.jpg" alt="Fine Jewellery Creation" id="na-modal-img" class="gemma-main-img">
+          </div>
+
+          <!-- 3 Gallery Thumbnails Strip (Matching Image 4) -->
+          <div class="gemma-thumbs-row" id="gemma-thumbs-row">
+            <button type="button" class="gemma-thumb-btn active" data-img-index="0" aria-label="View Main Angle">
+              <img src="assets/images/shop/products/prod-7-a.jpg" alt="Angle 1" class="gemma-thumb-img" id="gemma-thumb-0">
+            </button>
+            <button type="button" class="gemma-thumb-btn" data-img-index="1" aria-label="View Alternate Angle">
+              <img src="assets/images/shop/products/prod-7-b.jpg" alt="Angle 2" class="gemma-thumb-img" id="gemma-thumb-1">
+            </button>
+            <button type="button" class="gemma-thumb-btn" data-img-index="2" aria-label="View Craft Detail">
+              <img src="assets/images/shop/brand-craft.jpg" alt="Atelier Detail" class="gemma-thumb-img" id="gemma-thumb-2">
+            </button>
+          </div>
         </div>
 
-        <div class="na-modal-details">
-          <span class="na-modal-eyebrow" id="na-modal-eyebrow">18K Solid Gold</span>
-          <h2 class="na-modal-title" id="na-modal-title">Creation Name</h2>
-
-          <div class="na-modal-price-bar">
-            <span class="na-modal-price" id="na-modal-price">$0</span>
-            <span class="na-modal-sku" id="na-modal-sku">SKU: AUM-000</span>
-          </div>
-
-          <p class="na-modal-desc" id="na-modal-desc"></p>
-
-          <div class="na-modal-specs-container">
-            <h4 class="na-modal-specs-title">Gemological Specifications</h4>
-            <div class="na-modal-specs-grid" id="na-modal-specs-grid"></div>
-          </div>
-
-          <div class="na-modal-actions">
-            <button type="button" class="btn-luxury-primary na-modal-cta" id="na-modal-add-btn">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                <polyline points="22,6 12,13 2,6"></polyline>
+        <!-- Right: Product Information, Size Selector, Specs, Price & Add to Cart -->
+        <div class="gemma-details-col">
+          <div class="gemma-header-bar">
+            <nav class="gemma-breadcrumbs" aria-label="Breadcrumb">
+              <span>Collections</span>
+              <span class="bc-sep">&rsaquo;</span>
+              <span id="gemma-bc-cat">Fine Jewellery</span>
+              <span class="bc-sep">&rsaquo;</span>
+              <span id="gemma-bc-title" class="bc-active">Rings</span>
+            </nav>
+            <button type="button" class="gemma-wishlist-btn" id="gemma-wishlist-btn" aria-label="Add to Wishlist">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
               </svg>
-              <span>Add to Bag</span>
             </button>
-            <a href="https://wa.me/918108070022" target="_blank" rel="noopener noreferrer" class="btn-luxury-outline"
-              id="na-modal-wa-link">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path
-                  d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z">
-                </path>
-              </svg>
-              <span>WhatsApp Atelier</span>
-            </a>
           </div>
 
-          <div class="na-modal-perks">
-            <span>🛡️ Insured Global Transit</span>
-            <span>💎 Conflict-Free Ethical Origin</span>
-            <span>✨ Lifetime Atelier Warranty</span>
+          <h2 class="gemma-product-title" id="na-modal-title">Constellation Pavé Diamond Eternity Band</h2>
+
+          <p class="gemma-product-desc" id="na-modal-desc">
+            A continuous unbroken circle of hand-selected round brilliant diamonds set into solid 950 platinum, engineered for fluid daily wear and timeless brilliance.
+          </p>
+
+          <!-- Size Selector Module (Matching Image 4) -->
+          <div class="gemma-size-module">
+            <div class="gemma-size-header">
+              <span class="gemma-size-title">Size</span>
+              <a href="contact.html?inquiry=Sizing" class="gemma-size-guide-link" id="gemma-size-guide-btn">What's my size</a>
+            </div>
+            <div class="gemma-size-pills-row" id="gemma-size-pills">
+              <button type="button" class="gemma-size-pill" data-size="15.5 mm">15.5 mm</button>
+              <button type="button" class="gemma-size-pill active" data-size="16 mm">16 mm</button>
+              <button type="button" class="gemma-size-pill" data-size="16.5 mm">16.5 mm</button>
+              <button type="button" class="gemma-size-pill" data-size="17 mm">17 mm</button>
+            </div>
           </div>
+
+          <!-- Structured Specifications Table (Matching Image 4) -->
+          <div class="gemma-specs-table" id="na-modal-specs-grid">
+            <div class="gemma-spec-row">
+              <span class="gemma-spec-key">Material</span>
+              <span class="gemma-spec-value">Solid 950 Platinum</span>
+            </div>
+            <div class="gemma-spec-row">
+              <span class="gemma-spec-key">Finish</span>
+              <span class="gemma-spec-value">High-Gloss Mirror Polish</span>
+            </div>
+            <div class="gemma-spec-row">
+              <span class="gemma-spec-key">Plating</span>
+              <span class="gemma-spec-value">Rhodium (Tarnish-Resistant)</span>
+            </div>
+            <div class="gemma-spec-row">
+              <span class="gemma-spec-key">Silhouette</span>
+              <span class="gemma-spec-value">Continuous Shared-Prong</span>
+            </div>
+            <div class="gemma-spec-row">
+              <span class="gemma-spec-key">Certification</span>
+              <span class="gemma-spec-value">GIA &amp; IGI Laser Inscribed</span>
+            </div>
+            <div class="gemma-spec-row">
+              <span class="gemma-spec-key">Style</span>
+              <span class="gemma-spec-value">Contemporary Minimalist</span>
+            </div>
+          </div>
+
+          <!-- Bottom Purchase Row: Price + Solid Black Pill Add to Cart -->
+          <div class="gemma-purchase-bar">
+            <div class="gemma-price-wrap">
+              <span class="gemma-price-val" id="na-modal-price">$6,800.00</span>
+            </div>
+            <div class="gemma-cta-wrap">
+              <button type="button" class="gemma-add-cart-btn" id="na-modal-add-btn">
+                <span>Add to Cart</span>
+              </button>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
   </div>
+
+  <!-- ==========================================================================
+       SITE FOOTER (5-COLUMN LUXURY EMERALD ARCHITECTURE)
+       ========================================================================== -->
+  <footer class="site-footer" id="contact" role="contentinfo">
+    <div class="footer-container">
+
+      <!-- 5-Column Footer Grid (Brand, CUSTOMER CARE, INFORMATION, CERTIFICATIONS, GET IN TOUCH) -->
+      <div class="footer-grid">
+
+        <!-- 1. Brand Identity & Social Channels -->
+        <div class="footer-col footer-col-brand">
+          <a href="index.html" class="footer-brand-link" aria-label="AUM GROUP INC Homepage">
+            <img src="assets/company_logo.png" alt="AUM GROUP INC Fine Jewellery &amp; Gems" class="footer-brand-img">
+          </a>
+          <p class="footer-brand-desc">
+            Connecting you with the world's most extraordinary gemstones and fine jewelry.
+          </p>
+          <div class="footer-social-row" aria-label="Social media channels">
+            <!-- Instagram -->
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <!-- Facebook -->
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+              </svg>
+            </a>
+            <!-- Pinterest -->
+            <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="Pinterest">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.69 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z" />
+              </svg>
+            </a>
+            <!-- YouTube -->
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor"></polygon>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 2. CUSTOMER CARE Column -->
+        <div class="footer-col">
+          <h4 class="footer-heading">CUSTOMER CARE</h4>
+          <ul class="footer-links-list">
+            <li><a href="about.html" class="footer-nav-item">About Us</a></li>
+            <li><a href="index.html#shipping" class="footer-nav-item">Shipping &amp; Delivery</a></li>
+            <li><a href="index.html#returns" class="footer-nav-item">Returns &amp; Exchanges</a></li>
+            <li><a href="index.html#faq" class="footer-nav-item">FAQ</a></li>
+            <li><a href="contact.html" class="footer-nav-item">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- 3. INFORMATION Column -->
+        <div class="footer-col">
+          <h4 class="footer-heading">INFORMATION</h4>
+          <ul class="footer-links-list">
+            <li><a href="index.html#expertise" class="footer-nav-item">Diamond Shapes &amp; Cuts</a></li>
+            <li><a href="about.html#certifications" class="footer-nav-item">GIA &amp; IGI Certification</a></li>
+            <li><a href="about.html#our-manufacturing" class="footer-nav-item">Mumbai Manufacturing</a></li>
+            <li><a href="about.html#our-approach" class="footer-nav-item">Direct Supply Advantage</a></li>
+            <li><a href="about.html#corporate-hq" class="footer-nav-item">Corporate Headquarters</a></li>
+          </ul>
+        </div>
+
+        <!-- 4. CERTIFICATIONS Column -->
+        <div class="footer-col footer-col-certs">
+          <h4 class="footer-heading">CERTIFICATIONS</h4>
+          <div class="footer-cert-col-badges">
+            <span class="footer-cert-badge" title="GIA - Gemological Institute of America">
+              <img src="assets/icons/gia.png" alt="GIA - Gemological Institute of America" class="footer-cert-img" loading="lazy">
+            </span>
+            <span class="footer-cert-badge" title="IGI - International Gemological Institute">
+              <img src="assets/icons/igi.png" alt="IGI - International Gemological Institute" class="footer-cert-img" loading="lazy">
+            </span>
+          </div>
+        </div>
+
+        <!-- 5. GET IN TOUCH Column -->
+        <div class="footer-col">
+          <h4 class="footer-heading">GET IN TOUCH</h4>
+          <ul class="footer-contact-list">
+            <li class="footer-contact-item">
+              <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              <a href="mailto:info@aumgroupinc.com" class="footer-contact-link">info@aumgroupinc.com</a>
+            </li>
+            <li class="footer-contact-item">
+              <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+              <a href="tel:+918108070022" class="footer-contact-link">+91 810 807 0022</a>
+            </li>
+            <li class="footer-contact-item">
+              <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span class="footer-contact-text">Mumbai, Maharashtra, India</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom Bar: Copyright & Payment Badges -->
+      <div class="footer-bottom-bar">
+        <p class="footer-copyright">&copy; 2026 AUM GROUP INC. All Rights Reserved.</p>
+        <div class="footer-payment-methods" aria-label="Accepted payment methods">
+          <!-- Visa -->
+          <span class="payment-badge" title="Visa">
+            <svg viewBox="0 0 38 24" fill="none" class="payment-svg">
+              <rect width="38" height="24" rx="3" fill="#141414" />
+              <path d="M15.2 16.5L17.2 7.5H19.7L17.7 16.5H15.2ZM24.6 7.7C24.1 7.5 23.3 7.3 22.3 7.3C19.9 7.3 18.2 8.6 18.2 10.4C18.2 11.8 19.4 12.5 20.4 13C21.4 13.5 21.7 13.8 21.7 14.3C21.7 15 20.9 15.4 20.1 15.4C19.1 15.4 18.5 15.2 17.7 14.8L17.3 14.6L16.9 16.6C17.6 16.9 18.8 17.2 20 17.2C22.6 17.2 24.3 15.9 24.3 14C24.3 12.3 23.2 11.5 21.9 10.9C21.1 10.5 20.6 10.2 20.6 9.7C20.6 9.2 21.2 8.8 22.1 8.8C22.9 8.8 23.6 9 24.2 9.3L24.6 7.7ZM29.2 7.5H27.3C26.7 7.5 26.2 7.7 26 8.2L22.2 16.5H24.8L25.3 15.1H28.5L28.8 16.5H31.1L29.2 7.5ZM26 13.3L27.3 9.7L28.1 13.3H26ZM13.8 7.5L11.4 13.8L11.1 12.4C10.7 10.9 9.2 9.3 7.6 8.5L9.8 16.5H12.4L16.4 7.5H13.8Z" fill="#d6d1c4" />
+            </svg>
+          </span>
+          <!-- Visa Electron -->
+          <span class="payment-badge" title="Visa Electron">
+            <svg viewBox="0 0 38 24" fill="none" class="payment-svg">
+              <rect width="38" height="24" rx="3" fill="#141414" />
+              <text x="19" y="15" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="8" fill="#d6d1c4" letter-spacing="1">ELECTRON</text>
+            </svg>
+          </span>
+          <!-- Mastercard -->
+          <span class="payment-badge" title="Mastercard">
+            <svg viewBox="0 0 38 24" fill="none" class="payment-svg">
+              <rect width="38" height="24" rx="3" fill="#141414" />
+              <circle cx="15" cy="12" r="6" fill="#402020" fill-opacity="0.85" />
+              <circle cx="23" cy="12" r="6" fill="#d6d1c4" fill-opacity="0.75" />
+            </svg>
+          </span>
+          <!-- Amex -->
+          <span class="payment-badge" title="American Express">
+            <svg viewBox="0 0 38 24" fill="none" class="payment-svg">
+              <rect width="38" height="24" rx="3" fill="#141414" />
+              <text x="19" y="15" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="8" fill="#d6d1c4" letter-spacing="1">AMEX</text>
+            </svg>
+          </span>
+          <!-- Apple Pay -->
+          <span class="payment-badge" title="Apple Pay">
+            <svg viewBox="0 0 38 24" fill="none" class="payment-svg">
+              <rect width="38" height="24" rx="3" fill="#141414" />
+              <path d="M12.8 11.2c-.3.4-.8.7-1.3.7-.1-.6.2-1.1.5-1.4.3-.3.8-.6 1.3-.6.1.5-.2 1-.5 1.3zm.5 1.6c-.3 0-.6-.1-.9-.1-.3 0-.6.1-.9.1-.6 0-1-.3-1.3-.8-.7-1.2-.2-3.1 1-3.1.5 0 .8.3 1.1.3.3 0 .7-.3 1.2-.3.4 0 .9.2 1.2.6-.4.2-.6.6-.6 1.1 0 .7.5 1.2 1.2 1.4-.3.9-.9 1.9-1.9 1.9zm4.2-.2v-3.7h1.4c.9 0 1.5.6 1.5 1.4s-.6 1.4-1.5 1.4h-.6v.9h-.8zm.8-1.5h.5c.5 0 .8-.3.8-.7s-.3-.7-.8-.7h-.5v1.4zm4.8 1.5h-.7l-.3-.7c-.4.5-.9.8-1.5.8-.8 0-1.4-.5-1.4-1.2 0-.8.6-1.2 1.8-1.3l.6-.1v-.2c0-.4-.3-.6-.8-.6-.4 0-.7.2-.8.5l-.6-.3c.2-.5.8-.8 1.5-.8 1 0 1.5.5 1.5 1.4v2.5zm-.7-1.6l-.5.1c-.7.1-1.1.3-1.1.7 0 .4.3.6.7.6.5 0 .9-.4.9-.9v-.5zm4.8 1.6l-1-2.6-1 2.6h-.9l1.4-3.5-.1-.4c-.1-.3-.3-.4-.6-.4h-.3l.1-.6c.2 0 .5-.1.7-.1.5 0 .9.2 1.1.8l1.6 4.2h-1z" fill="#d6d1c4" />
+            </svg>
+          </span>
+          <!-- Google Pay -->
+          <span class="payment-badge" title="Google Pay">
+            <svg viewBox="0 0 38 24" fill="none" class="payment-svg">
+              <rect width="38" height="24" rx="3" fill="#141414" />
+              <text x="19" y="15" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="700" font-size="8" fill="#d6d1c4" letter-spacing="0.5">GPay</text>
+            </svg>
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+<!-- Modular Application Entry Point -->
+  <script type="module" src="main.js?v=7.7"></script>
 
   <!-- =========================================================================
        SLIDE-OUT SHOPPING BAG & WISHLIST DRAWERS (UNIVERSAL LUXURY SYSTEM)
@@ -1067,8 +1784,10 @@
     <button type="button" class="toast-view-bag" id="toast-view-bag-btn">View Bag &rarr;</button>
   </div>
 
-  <!-- Modular Application Entry Point -->
-  <script type="module" src="main.js?v=8.0"></script>
+  <script>
+    // Guarantee window scroll is reset to (0, 0) upon unload/refresh
+    window.addEventListener('beforeunload', function() {
+      window.scrollTo(0, 0);
+    });
+  </script>
 </body>
-
-</html>

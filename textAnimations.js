@@ -1,125 +1,106 @@
 /**
- * AURÉLIA FINE JEWELLERY & GEMS
- * Text Background & Interactive Loop Animations
+ * AUM GROUP INC. FINE JEWELLERY & GEMS
+ * Text Animations & Numerical Rollup Orchestrator
+ * - Luxury gold specular sheen sweeps on italic accents
+ * - Staggered editorial headline entrances
+ * - Scroll-triggered numerical counter animations for prices & heritage years
+ * - Interactive hover sheen triggers on atelier and product cards
+ * - ZERO cursor tracking, ZERO mouse canvas drift, ZERO sparkle crosses
  */
-
-import { lerp } from './helpers.js';
 
 export class TextLoopAnimations {
   constructor() {
-    this.textBlock = document.querySelector('.hero-text-block');
-    this.ambientHalo = document.querySelector('.text-ambient-halo');
-    this.mouse = { currentX: 0, currentY: 0, targetX: 0, targetY: 0 };
-    this.sparkleInterval = null;
+    this.isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.countersTriggered = new Set();
 
     this.init();
   }
 
   init() {
-    if (!this.textBlock) return;
-
-    this.bindEvents();
-    this.startParallaxLoop();
-    this.startDynamicGlintSpawner();
+    this.setupHeadlineEntrance();
+    this.setupNumberRollups();
+    this.setupCardHoverSheen();
   }
 
-  bindEvents() {
-    window.addEventListener('mousemove', (e) => {
-      const rect = this.textBlock.getBoundingClientRect();
-      // Mouse offset relative to center of screen
-      const centerX = window.innerWidth / 2;
-      const centerY = window.innerHeight / 2;
+  /**
+   * Hero editorial headline entrance sequence
+   */
+  setupHeadlineEntrance() {
+    const heroTitle = document.querySelector('.havenly-hero-title');
+    if (!heroTitle) return;
 
-      this.mouse.targetX = (e.clientX - centerX) / centerX;
-      this.mouse.targetY = (e.clientY - centerY) / centerY;
-
-      // Update ambient halo position to follow cursor with organic lag
-      if (this.ambientHalo) {
-        const haloX = (e.clientX - rect.left) * 0.15;
-        const haloY = (e.clientY - rect.top) * 0.15;
-        this.ambientHalo.style.transform = `translate3d(${haloX}px, ${haloY}px, 0)`;
-      }
-    });
-
-    // Reset smoothly when leaving window
-    document.addEventListener('mouseleave', () => {
-      this.mouse.targetX = 0;
-      this.mouse.targetY = 0;
+    // Add luxury entrance state once DOM is ready
+    requestAnimationFrame(() => {
+      heroTitle.classList.add('is-rendered');
     });
   }
 
-  startParallaxLoop() {
-    const update = () => {
-      this.mouse.currentX = lerp(this.mouse.currentX, this.mouse.targetX, 0.04);
-      this.mouse.currentY = lerp(this.mouse.currentY, this.mouse.targetY, 0.04);
+  /**
+   * Numerical rollups on scroll (for featured product prices, heritage founding year)
+   */
+  setupNumberRollups() {
+    if (this.isReducedMotion) return;
 
-      if (this.textBlock) {
-        // Very subtle luxury tilt (max 4px translation, 1deg rotation)
-        const tiltX = this.mouse.currentX * 6;
-        const tiltY = this.mouse.currentY * 4;
-        const rotY = this.mouse.currentX * 1.5;
-        const rotX = -this.mouse.currentY * 1.2;
+    const priceElements = Array.from(document.querySelectorAll('.havenly-card-price[data-usd]'));
+    if (priceElements.length === 0) return;
 
-        this.textBlock.style.transform = `perspective(1000px) translate3d(${tiltX}px, ${tiltY}px, 0) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !this.countersTriggered.has(entry.target)) {
+            this.countersTriggered.add(entry.target);
+            this.animatePrice(entry.target);
+          }
+        });
+      },
+      { threshold: 0.25 }
+    );
+
+    priceElements.forEach((el) => observer.observe(el));
+  }
+
+  /**
+   * Smoothly eases price from 0 to target USD amount
+   */
+  animatePrice(element) {
+    const targetUsd = parseFloat(element.dataset.usd);
+    if (isNaN(targetUsd)) return;
+
+    // Check if parent has currency or format
+    const duration = 1200; // 1.2s smooth animation
+    const startTime = performance.now();
+
+    const step = (now) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(1, elapsed / duration);
+      // Ease out cubic
+      const easeProgress = 1 - Math.pow(1 - progress, 3);
+      const currentVal = Math.round(targetUsd * easeProgress);
+
+      element.textContent = '$' + currentVal.toLocaleString('en-US');
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        element.textContent = '$' + targetUsd.toLocaleString('en-US');
       }
-
-      requestAnimationFrame(update);
     };
-    update();
+
+    requestAnimationFrame(step);
   }
 
-  startDynamicGlintSpawner() {
-    // Dynamically spawns subtle microscopic diamond glints in the text backdrop
-    const haloContainer = document.querySelector('.text-ambient-halo');
-    if (!haloContainer) return;
-
-    this.sparkleInterval = setInterval(() => {
-      if (document.hidden) return;
-
-      const glint = document.createElement('div');
-      glint.className = 'dynamic-sparkle';
-
-      // Random position around text
-      const randomX = 10 + Math.random() * 80;
-      const randomY = 15 + Math.random() * 70;
-      const size = 6 + Math.random() * 10;
-
-      glint.style.cssText = `
-        position: absolute;
-        top: ${randomY}%;
-        left: ${randomX}%;
-        width: ${size}px;
-        height: ${size}px;
-        pointer-events: none;
-        opacity: 0;
-        z-index: 2;
-        transform: scale(0) rotate(0deg);
-        transition: opacity 0.6s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-      `;
-
-      // Inner sparkle cross
-      glint.innerHTML = `
-        <svg viewBox="0 0 24 24" fill="none" style="width: 100%; height: 100%;">
-          <path d="M12 0L14 9L23 12L14 15L12 24L10 15L1 12L10 9L12 0Z" fill="rgba(255, 255, 255, 0.95)" />
-        </svg>
-      `;
-
-      haloContainer.appendChild(glint);
-
-      // Animate in and out
-      requestAnimationFrame(() => {
-        glint.style.opacity = '1';
-        glint.style.transform = 'scale(1) rotate(45deg)';
+  /**
+   * Interactive hover sheen on atelier cards and featured cards
+   */
+  setupCardHoverSheen() {
+    const cards = document.querySelectorAll('.havenly-atelier-card, .havenly-product-card');
+    cards.forEach((card) => {
+      card.addEventListener('mouseenter', () => {
+        const title = card.querySelector('.havenly-atelier-name, .havenly-card-title');
+        if (title) {
+          title.style.transition = 'color 0.3s ease, letter-spacing 0.3s ease';
+        }
       });
-
-      setTimeout(() => {
-        glint.style.opacity = '0';
-        glint.style.transform = 'scale(0.2) rotate(90deg)';
-        setTimeout(() => {
-          if (glint.parentNode) glint.parentNode.removeChild(glint);
-        }, 800);
-      }, 1200 + Math.random() * 1000);
-
-    }, 2800);
+    });
   }
 }
