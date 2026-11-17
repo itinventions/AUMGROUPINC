@@ -3,6 +3,20 @@
  * Main Application Orchestrator
  */
 
+// Guarantee hero section is displayed first upon refresh or visit
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
+
+window.addEventListener('beforeunload', () => {
+  window.scrollTo(0, 0);
+});
+
+window.addEventListener('load', () => {
+  window.scrollTo(0, 0);
+});
+
 import { Navbar, formatPrice, getActiveCurrency } from './navbar.js';
 import { WebGLSceneManager } from './scene.js';
 import { GemParticles } from './gemParticles.js';
@@ -216,9 +230,9 @@ const NEW_ARRIVALS_DATA = {
     category: 'simple-gold',
     eyebrow: 'Simple Gold Atelier',
     title: 'Aura Royale Sculpted Gold Bangle',
-    usdPrice: 9400,
+    usdPrice: 4200,
     sku: 'AUM-SG-303',
-    image: 'assets/images/shop/products/prod-5-a.jpg',
+    image: 'assets/images/shop/collection-gold.jpg',
     cert: 'Assay Office 18K Certified Hallmark',
     desc: 'An architectural expression of gold purity. Cast in dense 18K solid yellow gold with a knife-edge sculpted contour and seamless hinge clasp.',
     specs: [
@@ -252,7 +266,7 @@ const NEW_ARRIVALS_DATA = {
     category: 'gold-studded',
     eyebrow: 'Studded Gold Atelier',
     title: 'Sovereign Colombian Emerald Ring',
-    usdPrice: 24200,
+    usdPrice: 18500,
     sku: 'AUM-GS-203',
     image: 'assets/images/shop/collection-emerald.jpg',
     cert: 'SSEF Swiss Gemmological Report #118492',
@@ -355,17 +369,17 @@ const NEW_ARRIVALS_DATA = {
     id: 'na-dia-3',
     category: 'diamonds',
     eyebrow: 'Diamond Collection',
-    title: 'Constellation Pavé Diamond Eternity Band',
+    title: 'Constellation Solitaire Diamond Ring',
     usdPrice: 6800,
     sku: 'AUM-DIA-403',
-    image: 'assets/images/shop/products/prod-7-a.jpg',
-    cert: 'IGI Certified Natural Diamond Suite',
-    desc: 'A continuous unbroken circle of 32 micro-pavé round brilliant diamonds (1.20 ct, E Color, VVS1) set into solid 950 platinum.',
+    image: 'assets/images/shop/products/prod-1-a.jpg',
+    cert: 'GIA Certified Natural Diamond Suite',
+    desc: 'An exquisite 2.05-carat round brilliant natural diamond possessing exceptional fire and D-F colorless brilliance, set into a sculpted 18K white gold cathedral band.',
     specs: [
-      { label: 'Metal Purity', val: 'Solid 950 Platinum (Pt950 Hallmarked)' },
-      { label: 'Diamond Content', val: '32 Round Brilliant Diamonds (1.20 ct total)' },
-      { label: 'Color & Clarity', val: 'Colorless E / Clarity VVS1' },
-      { label: 'Band Width', val: '2.8 mm Continuous Shared-Prong' }
+      { label: 'Metal Purity', val: 'Solid 18K White Gold (750 Swiss Hallmarked)' },
+      { label: 'Primary Diamond', val: '2.05 Carat Round Brilliant (D-F Color, VVS)' },
+      { label: 'Cut Benchmark', val: 'Triple Excellent (Cut, Polish, Symmetry)' },
+      { label: 'Certification', val: 'GIA Laser Inscribed Dossier' }
     ]
   },
   'na-dia-4': {
@@ -402,6 +416,15 @@ class App {
   }
 
   init() {
+    // 0. Ensure top / hero section is displayed first
+    window.scrollTo(0, 0);
+    if (window.location.hash) {
+      try {
+        history.replaceState(null, null, window.location.pathname);
+      } catch (e) {}
+      window.scrollTo(0, 0);
+    }
+
     // 1. Initialize Navbar & UI Components
     this.navbar = new Navbar();
 
@@ -544,25 +567,28 @@ class App {
       });
     });
 
-    // 2d. Modal Add to Bag Button
+    // 2d. Modal Add to Bag Button (Supporting Image 4 Gemma Template)
     const modalAddBtn = document.getElementById('na-modal-add-btn');
     if (modalAddBtn) {
       modalAddBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         if (this.activeModalProductId && NEW_ARRIVALS_DATA[this.activeModalProductId]) {
           const product = NEW_ARRIVALS_DATA[this.activeModalProductId];
+          const selectedImage = (this.activeModalGallery && this.activeModalGallery[this.activeGalleryIndex]) || product.image;
+          const chosenSize = this.selectedSize || '16 mm';
           const cartItem = {
             id: product.id,
             name: product.title || product.name,
             price: product.usdPrice,
-            image: product.image,
+            image: selectedImage,
             category: product.category,
-            metal: product.eyebrow
+            metal: product.eyebrow,
+            size: chosenSize
           };
           if (this.navbar && typeof this.navbar.addToCart === 'function') {
-            this.navbar.addToCart(cartItem, 'Standard', 1, modalAddBtn);
+            this.navbar.addToCart(cartItem, chosenSize, 1, modalAddBtn);
           } else if (typeof window.addToBag === 'function') {
-            window.addToBag(cartItem, 'Standard', 1, modalAddBtn);
+            window.addToBag(cartItem, chosenSize, 1, modalAddBtn);
           }
           this.closeProductModal();
         }
@@ -600,51 +626,132 @@ class App {
 
   openProductModal(product) {
     this.activeModalProductId = product.id;
+    this.selectedSize = '16 mm'; // Default active size matching Image 4
     const modal = document.getElementById('na-modal-backdrop');
     if (!modal) return;
 
-    // Elements
+    // Prepare 3 rich gallery views matching Image 4
+    let imgB = product.image ? product.image.replace('-a.jpg', '-b.jpg') : 'assets/images/shop/brand-craft.jpg';
+    let imgC = 'assets/images/shop/brand-craft.jpg';
+    if (product.image && product.image.includes('prod-1-')) {
+      imgB = 'assets/images/shop/products/prod-1-b.jpg';
+      imgC = 'assets/images/shop/cat-rings.jpg';
+    } else if (product.image && product.image.includes('prod-7-')) {
+      imgB = 'assets/images/shop/products/prod-7-b.jpg';
+      imgC = 'assets/images/shop/cat-diamonds.jpg';
+    } else if (product.image && product.image.includes('prod-11-')) {
+      imgB = 'assets/images/shop/products/prod-11-b.jpg';
+      imgC = 'assets/images/shop/collection-emerald.jpg';
+    } else if (product.image && product.image.includes('prod-14-')) {
+      imgB = 'assets/images/shop/products/prod-14-b.jpg';
+      imgC = 'assets/images/products/Gold Section Image2.png';
+    }
+    this.activeModalGallery = [product.image || 'assets/images/shop/products/prod-7-a.jpg', imgB, imgC];
+    this.activeGalleryIndex = 0;
+
+    // DOM Elements
     const imgEl = document.getElementById('na-modal-img');
-    const eyebrowEl = document.getElementById('na-modal-eyebrow');
     const titleEl = document.getElementById('na-modal-title');
     const priceEl = document.getElementById('na-modal-price');
-    const skuEl = document.getElementById('na-modal-sku');
     const certEl = document.getElementById('na-modal-cert-text');
     const descEl = document.getElementById('na-modal-desc');
     const specsGrid = document.getElementById('na-modal-specs-grid');
-    const inquireLink = document.getElementById('na-modal-inquire-link');
-    const waLink = document.getElementById('na-modal-wa-link');
+    const bcCat = document.getElementById('gemma-bc-cat');
+    const bcTitle = document.getElementById('gemma-bc-title');
+    const wishlistBtn = document.getElementById('gemma-wishlist-btn');
 
+    // 1. Main Media
     if (imgEl) {
-      imgEl.src = product.image || 'assets/images/shop/products/prod-16-a.jpg';
-      imgEl.alt = product.title || 'Gemological Creation';
+      imgEl.src = this.activeModalGallery[0];
+      imgEl.alt = product.title || 'Fine Jewellery Creation';
       imgEl.onerror = () => {
-        imgEl.src = 'assets/images/products/Gold Section Image1.png';
+        imgEl.src = 'assets/images/shop/brand-craft.jpg';
       };
     }
-    if (eyebrowEl) eyebrowEl.textContent = product.eyebrow;
+
+    // 2. Thumbnails Strip
+    const thumb0 = document.getElementById('gemma-thumb-0');
+    const thumb1 = document.getElementById('gemma-thumb-1');
+    const thumb2 = document.getElementById('gemma-thumb-2');
+    if (thumb0) thumb0.src = this.activeModalGallery[0];
+    if (thumb1) thumb1.src = this.activeModalGallery[1];
+    if (thumb2) thumb2.src = this.activeModalGallery[2];
+
+    const thumbBtns = document.querySelectorAll('.gemma-thumb-btn');
+    thumbBtns.forEach((btn, idx) => {
+      btn.classList.toggle('active', idx === 0);
+      btn.onclick = (e) => {
+        e.stopPropagation();
+        this.activeGalleryIndex = idx;
+        if (imgEl) imgEl.src = this.activeModalGallery[idx];
+        thumbBtns.forEach((b, i) => b.classList.toggle('active', i === idx));
+      };
+    });
+
+    // 3. Arrow Chevrons Navigation
+    const prevArrow = document.getElementById('gemma-arrow-prev');
+    const nextArrow = document.getElementById('gemma-arrow-next');
+    if (prevArrow) {
+      prevArrow.onclick = (e) => {
+        e.stopPropagation();
+        this.activeGalleryIndex = (this.activeGalleryIndex - 1 + this.activeModalGallery.length) % this.activeModalGallery.length;
+        if (imgEl) imgEl.src = this.activeModalGallery[this.activeGalleryIndex];
+        thumbBtns.forEach((b, i) => b.classList.toggle('active', i === this.activeGalleryIndex));
+      };
+    }
+    if (nextArrow) {
+      nextArrow.onclick = (e) => {
+        e.stopPropagation();
+        this.activeGalleryIndex = (this.activeGalleryIndex + 1) % this.activeModalGallery.length;
+        if (imgEl) imgEl.src = this.activeModalGallery[this.activeGalleryIndex];
+        thumbBtns.forEach((b, i) => b.classList.toggle('active', i === this.activeGalleryIndex));
+      };
+    }
+
+    // 4. Breadcrumbs
+    if (bcCat) bcCat.textContent = product.eyebrow || 'Fine Jewellery';
+    if (bcTitle) bcTitle.textContent = product.title || 'Creation';
+
+    // 5. Title, description, cert
     if (titleEl) titleEl.textContent = product.title;
     if (priceEl) priceEl.textContent = formatPrice(product.usdPrice);
-    if (skuEl) skuEl.textContent = `SKU: ${product.sku}`;
-    if (certEl) certEl.textContent = product.cert;
+    if (certEl) certEl.textContent = product.cert || 'GIA Verified';
     if (descEl) descEl.textContent = product.desc;
 
-    // Build specs table
-    if (specsGrid && Array.isArray(product.specs)) {
-      specsGrid.innerHTML = product.specs.map((item) => `
-        <div class="na-spec-row">
-          <span class="na-spec-label">${item.label}</span>
-          <span class="na-spec-val">${item.val}</span>
-        </div>
-      `).join('');
+    // 6. Size Selector Pills
+    const sizePills = document.querySelectorAll('.gemma-size-pill');
+    sizePills.forEach((pill) => {
+      const isDefault = (pill.getAttribute('data-size') === '16 mm');
+      pill.classList.toggle('active', isDefault);
+      pill.onclick = (e) => {
+        e.stopPropagation();
+        sizePills.forEach((p) => p.classList.remove('active'));
+        pill.classList.add('active');
+        this.selectedSize = pill.getAttribute('data-size') || '16 mm';
+      };
+    });
+
+    // 7. Wishlist Heart Button
+    if (wishlistBtn) {
+      const isWishlisted = window.isProductInWishlist ? window.isProductInWishlist(product.id) : false;
+      wishlistBtn.classList.toggle('active', isWishlisted);
+      wishlistBtn.onclick = (e) => {
+        e.stopPropagation();
+        if (window.toggleWishlist) {
+          const added = window.toggleWishlist(product);
+          wishlistBtn.classList.toggle('active', added);
+        }
+      };
     }
 
-    // Inquire links with prefilled subject
-    if (inquireLink) {
-      inquireLink.href = `contact.html?inquiry=${encodeURIComponent(product.title)}&sku=${product.sku}`;
-    }
-    if (waLink) {
-      waLink.href = `https://wa.me/918108070022?text=${encodeURIComponent(`Hello AUM GROUP INC Atelier, I would like to inquire about ${product.title} (SKU: ${product.sku}).`)}`;
+    // 8. Build Specifications Table
+    if (specsGrid && Array.isArray(product.specs)) {
+      specsGrid.innerHTML = product.specs.map((item) => `
+        <div class="gemma-spec-row">
+          <span class="gemma-spec-key">${item.label}</span>
+          <span class="gemma-spec-value">${item.val}</span>
+        </div>
+      `).join('');
     }
 
     modal.classList.add('active');

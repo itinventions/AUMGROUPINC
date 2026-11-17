@@ -74,11 +74,11 @@
   --color-sapphire-glow: rgba(0, 68, 56, 0.55);
   --color-gold-glow: rgba(214, 209, 196, 0.4);
 
-  /* Primary Typography */
-  --font-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
-  --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-price: 'Montserrat', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  /* Primary Typography: Playfair Display + Plus Jakarta Sans + Cormorant Garamond */
+  --font-serif: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-price: 'Plus Jakarta Sans', 'Montserrat', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
   /* Custom Luxury Script & Display Fonts */
   --font-brannboll: 'Brannboll Connect', cursive, sans-serif;
@@ -383,11 +383,11 @@ textarea {
   justify-content: center;
   text-decoration: none;
   z-index: 5;
-  transition: transform 0.3s ease, filter 0.3s ease;
+  transition: filter 0.3s ease;
 }
 
 .navbar-brand-center:hover {
-  transform: translateX(-50%) scale(1.04);
+  transform: translateX(-50%);
 }
 
 /* Increased Logo Size in Navbar */
@@ -1261,17 +1261,11 @@ textarea {
   z-index: 10;
 }
 
-/* Background Loop Animation Halo Layer behind the Text */
+/* Background Loop Animation Halo Layer behind the Text - Disabled for pristine minimal aesthetic */
 .text-ambient-halo {
-  position: absolute;
-  top: -15%;
-  left: -10%;
-  width: 120%;
-  height: 130%;
-  pointer-events: none;
-  z-index: -1;
-  overflow: hidden;
-  opacity: 0.6;
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
 
 /* Eyebrow Subheading: "AUM GROUP INC." in clean spaced uppercase */
@@ -1565,14 +1559,14 @@ textarea {
 }
 
 .heading-collections {
-  font-style: italic;
-  font-weight: 400;
-  background: linear-gradient(110deg, #d6d1c4 0%, #dfc7a7 28%, #ffffff 50%, #dfc7a7 72%, #d6d1c4 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shineTextSweep 6s ease-in-out infinite;
-  display: inline-block;
+  font-style: italic !important;
+  font-weight: 400 !important;
+  color: #DFC7A7 !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  -webkit-text-fill-color: #DFC7A7 !important;
+  display: inline-block !important;
 }
 
 .collections-subtitle {
@@ -1811,16 +1805,13 @@ textarea {
   font-size: clamp(1.22rem, 1.4vw, 1.45rem);
   line-height: 1.15;
   margin: 0 0 0.18rem 0;
-  background: linear-gradient(110deg, #fcfbfa 0%, #dfc7a7 35%, #ffffff 50%, #dfc7a7 65%, #d6d1c4 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  transition: filter 0.35s ease;
+  color: #ffffff;
+  transition: color 0.3s ease, filter 0.35s ease;
 }
 
 .collection-card:hover .category-name,
 .collection-card:focus-visible .category-name {
-  animation: shineTextSweep 2s ease-in-out infinite;
+  color: #dfc7a7;
   filter: drop-shadow(0 0 8px rgba(223, 199, 167, 0.65));
 }
 
@@ -2102,13 +2093,13 @@ textarea {
 }
 
 .video-heading-gold {
-  font-style: italic;
-  background: linear-gradient(110deg, #d6d1c4 0%, #dfc7a7 28%, #ffffff 50%, #dfc7a7 72%, #d6d1c4 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shineTextSweep 6s ease-in-out infinite;
-  display: inline-block;
+  font-style: italic !important;
+  color: #DFC7A7 !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  -webkit-text-fill-color: #DFC7A7 !important;
+  display: inline-block !important;
 }
 
 .video-subtitle {
@@ -6574,16 +6565,18 @@ a.btn-luxury-primary:active {
   position: relative;
   z-index: 40;
   width: 100%;
+  background: #002821 !important;
   background: linear-gradient(180deg, #002820 0%, #001a14 100%) !important;
-  border-top: 1px solid rgba(0, 68, 56, 0.55);
+  border-top: none !important;
   color: #d6d1c4;
   flex-shrink: 0;
+  margin-top: 0 !important;
 }
 
 .footer-container {
   max-width: 1300px;
   margin: 0 auto;
-  padding: 3.5rem 4rem 1.8rem;
+  padding: 2.8rem clamp(1.5rem, 4vw, 3.5rem) 1.5rem !important;
 }
 
 /* 5-Column unified luxury grid in one row (Brand, Customer Care, Information, Certifications, Get In Touch) */
@@ -6591,7 +6584,7 @@ a.btn-luxury-primary:active {
   display: grid !important;
   grid-template-columns: 1.35fr 1fr 1fr 1fr 1.15fr !important;
   gap: 2rem 1.8rem !important;
-  padding-bottom: 2.5rem !important;
+  padding-bottom: 2rem !important;
   border-bottom: 1px solid rgba(214, 209, 196, 0.12) !important;
 }
 
@@ -7631,3 +7624,2101 @@ a.btn-luxury-primary:active {
     height: 21px !important;
   }
 }
+
+/* ==========================================================================
+   MINIMAL LUXURY REFRESH (CLEAN, MINIMAL, SOFT ROUNDED EDGES, GENEROUS WHITE SPACE)
+   ========================================================================== */
+
+/* 1. Global Soft Rounded Luxury Pill Buttons */
+.hero-cta-btn,
+.hero-secondary-cta-btn,
+a.hero-secondary-cta-btn,
+.btn-luxury-primary,
+.btn-luxury-outline,
+.na-add-bag-btn,
+.na-action-text-btn,
+.na-quick-view-btn,
+.video-sound-pill,
+.product-badge-pill,
+.collection-hover-badge,
+.na-modal-cert-pill,
+.card-circle-btn,
+.gold-emerald-btn {
+  border-radius: 9999px !important;
+}
+
+/* 2. Category Cards: Soft Rounded Edges & Elegant Shadow */
+.collections-section {
+  padding: 7rem 0 7.5rem 0 !important;
+}
+
+.collections-header {
+  margin-bottom: 3.5rem !important;
+}
+
+.collections-grid {
+  gap: 1.6rem !important;
+}
+
+.collection-card {
+  border-radius: 24px !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(214, 209, 196, 0.4) !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.22) !important;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s ease, border-color 0.45s ease !important;
+}
+
+.collection-card:hover {
+  transform: translateY(-6px) !important;
+  border-color: rgba(223, 199, 167, 0.85) !important;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.35) !important;
+}
+
+.collection-card-img-wrap {
+  border-radius: 24px !important;
+  overflow: hidden !important;
+}
+
+.collection-card-badge {
+  border-radius: 16px !important;
+  margin: 0.6rem !important;
+  padding: 0.75rem 1rem !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+}
+
+/* 3. Curated Best Sellers Product Cards: Generous Whitespace & Soft Edges */
+.bestsellers-section {
+  padding: 7.5rem clamp(1.5rem, 4vw, 4rem) !important;
+  background: #ffffff !important;
+}
+
+.bestsellers-section .shelf-header {
+  margin-bottom: 3.5rem !important;
+  text-align: center !important;
+}
+
+.bestsellers-section .shelf-products-grid {
+  gap: clamp(1.5rem, 2.4vw, 2.5rem) !important;
+  max-width: 1440px !important;
+}
+
+.bestsellers-section .product-card {
+  border-radius: 22px !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(214, 209, 196, 0.5) !important;
+  background: #ffffff !important;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.04) !important;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease !important;
+}
+
+.bestsellers-section .product-card:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 18px 44px rgba(0, 68, 56, 0.12) !important;
+  border-color: rgba(0, 68, 56, 0.4) !important;
+}
+
+.bestsellers-section .product-card-media {
+  border-radius: 18px !important;
+  margin: 10px 10px 0 10px !important;
+  overflow: hidden !important;
+  background: #faf8f5 !important;
+}
+
+.bestsellers-section .product-card-body {
+  padding: 1.5rem 1.35rem 1.35rem !important;
+}
+
+.bestsellers-section .na-card-wishlist-btn {
+  border-radius: 50% !important;
+}
+
+/* 4. Cinematic Craftsmanship Showcase Floating Luxury Frame */
+.cinematic-video-section {
+  position: relative !important;
+  width: 100% !important;
+  left: auto !important;
+  right: auto !important;
+  margin: 3.5rem auto !important;
+  padding: 0 clamp(1.5rem, 4vw, 4rem) !important;
+  max-width: 1480px !important;
+  background: transparent !important;
+  border-top: none !important;
+}
+
+.cinematic-video-section .video-viewport {
+  border-radius: 28px !important;
+  overflow: hidden !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28) !important;
+  border: 1px solid rgba(223, 199, 167, 0.35) !important;
+}
+
+/* 5. Brand Story & Atelier Heritage Section */
+.brand-story-section {
+  padding: 7.5rem clamp(1.5rem, 5vw, 5rem) !important;
+  background: #F8F6F2 !important;
+  border-top: 1px solid rgba(214, 209, 196, 0.4) !important;
+  border-bottom: 1px solid rgba(214, 209, 196, 0.4) !important;
+}
+
+.brand-story-img-frame {
+  border-radius: 24px !important;
+  overflow: hidden !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.14) !important;
+  border: 1px solid rgba(214, 209, 196, 0.7) !important;
+}
+
+.brand-story-badge {
+  border-radius: 18px !important;
+  padding: 1.2rem 1.6rem !important;
+  box-shadow: 0 12px 32px rgba(0, 36, 29, 0.3) !important;
+}
+
+/* 6. Specialities & Trust Standards Section */
+.specialities-section {
+  padding: 7.5rem clamp(1.5rem, 5vw, 5rem) !important;
+  background: #00241d !important;
+}
+
+.specialities-grid {
+  gap: 2.2rem !important;
+}
+
+.speciality-card {
+  border-radius: 22px !important;
+  padding: 2.6rem 2.2rem !important;
+  border: 1px solid rgba(214, 209, 196, 0.22) !important;
+  backdrop-filter: blur(14px) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* 7. Collector Testimonials */
+.testimonials-section {
+  padding: 7.5rem clamp(1.5rem, 5vw, 5rem) !important;
+  background: #ffffff !important;
+}
+
+.testimonial-card {
+  border-radius: 22px !important;
+  padding: 2.8rem 2.4rem !important;
+  border: 1px solid rgba(214, 209, 196, 0.45) !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* 8. Quick View Modal Card */
+.na-modal-card {
+  border-radius: 24px !important;
+  overflow: hidden !important;
+}
+
+.na-modal-media {
+  border-radius: 20px !important;
+  overflow: hidden !important;
+}
+
+/* 9. Mobile Responsive Refinements */
+@media (max-width: 768px) {
+  .cinematic-video-section {
+    padding: 0 1rem !important;
+    margin: 3.5rem auto !important;
+  }
+  .cinematic-video-section .video-viewport {
+    border-radius: 18px !important;
+  }
+  .collection-card {
+    border-radius: 18px !important;
+  }
+  .bestsellers-section .product-card {
+    border-radius: 18px !important;
+  }
+  .brand-story-img-frame {
+    border-radius: 18px !important;
+  }
+  .brand-story-badge {
+    border-radius: 14px !important;
+  }
+  .speciality-card {
+    border-radius: 18px !important;
+  }
+  .testimonial-card {
+    border-radius: 18px !important;
+  }
+  .na-modal-card {
+    border-radius: 20px 20px 0 0 !important;
+  }
+}
+
+/* ==========================================================================
+   IMAGE 4 VIEW PRODUCT OPTIONS MODAL (EXACT SPEC MATCH TO GEMMA TEMPLATE)
+   ========================================================================== */
+.gemma-modal-card {
+  position: relative;
+  z-index: 2;
+  background: #FAF8F5 !important;
+  color: #12100e !important;
+  width: 100% !important;
+  max-width: 980px !important;
+  max-height: 92vh !important;
+  overflow-y: auto !important;
+  border-radius: 28px !important;
+  border: 1px solid rgba(214, 209, 196, 0.6) !important;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.28) !important;
+  padding: 2.2rem clamp(1.5rem, 3vw, 2.6rem) !important;
+  transform: scale(0.96) translateY(12px);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.na-modal-backdrop.active .gemma-modal-card {
+  transform: scale(1) translateY(0);
+}
+
+/* Modal Grid: 2 Balanced Columns */
+.gemma-modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.08fr;
+  gap: clamp(1.8rem, 3.5vw, 3rem);
+  align-items: start;
+}
+
+/* Left Gallery Column */
+.gemma-gallery-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.gemma-main-media-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1.06;
+  border-radius: 20px !important;
+  overflow: hidden !important;
+  background: #f4f0e8;
+  border: 1px solid rgba(214, 209, 196, 0.45);
+}
+
+.gemma-main-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: opacity 0.3s ease, transform 0.4s ease;
+}
+
+.gemma-nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(214, 209, 196, 0.6);
+  color: #12100e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  z-index: 5;
+}
+
+.gemma-nav-arrow:hover {
+  background: #ffffff;
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.gemma-arrow-prev {
+  left: 12px;
+}
+
+.gemma-arrow-next {
+  right: 12px;
+}
+
+/* 3 Thumbnails Strip below main photo */
+.gemma-thumbs-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.85rem;
+  margin-top: 1rem;
+}
+
+.gemma-thumb-btn {
+  aspect-ratio: 1 / 1;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  border: 2px solid transparent !important;
+  background: #f4f0e8;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.gemma-thumb-btn:hover {
+  border-color: rgba(18, 16, 14, 0.45) !important;
+  transform: translateY(-2px);
+}
+
+.gemma-thumb-btn.active {
+  border-color: #12100e !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.gemma-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Right Details Column */
+.gemma-details-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.gemma-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.65rem;
+}
+
+.gemma-breadcrumbs {
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  color: #8c867e;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.gemma-breadcrumbs .bc-sep {
+  color: #bbb4a8;
+}
+
+.gemma-breadcrumbs .bc-active {
+  color: #12100e;
+  font-weight: 500;
+}
+
+.gemma-wishlist-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50% !important;
+  background: #ffffff;
+  border: 1px solid rgba(214, 209, 196, 0.6);
+  color: #5a5550;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.gemma-wishlist-btn:hover,
+.gemma-wishlist-btn.active {
+  color: #dc2626 !important;
+  border-color: #dc2626 !important;
+  transform: scale(1.08);
+}
+
+.gemma-wishlist-btn.active svg {
+  fill: #dc2626 !important;
+}
+
+.gemma-product-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.85rem, 2.6vw, 2.3rem);
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.15;
+  color: #12100e;
+  margin: 0 0 0.85rem 0;
+}
+
+.gemma-product-desc {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: #5a5550;
+  margin-bottom: 1.4rem;
+}
+
+/* Size Module */
+.gemma-size-module {
+  margin-bottom: 1.5rem;
+}
+
+.gemma-size-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.65rem;
+}
+
+.gemma-size-title {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #12100e;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.gemma-size-guide-link {
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  color: #6a645d;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.gemma-size-guide-link:hover {
+  color: #12100e;
+}
+
+.gemma-size-pills-row {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+}
+
+.gemma-size-pill {
+  padding: 0.45rem 1.15rem;
+  border-radius: 9999px !important;
+  border: 1px solid rgba(214, 209, 196, 0.75);
+  background: #ffffff;
+  color: #2b2724;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.gemma-size-pill:hover {
+  border-color: #12100e;
+  transform: translateY(-1px);
+}
+
+.gemma-size-pill.active {
+  background: #12100e !important;
+  color: #ffffff !important;
+  border-color: #12100e !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+}
+
+/* Specifications Table matching Image 4 */
+.gemma-specs-table {
+  border-top: 1px solid rgba(214, 209, 196, 0.5);
+  margin-bottom: 1.6rem;
+}
+
+.gemma-spec-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid rgba(214, 209, 196, 0.35);
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+}
+
+.gemma-spec-key {
+  color: #7a746c;
+  font-weight: 400;
+}
+
+.gemma-spec-value {
+  color: #1a1614;
+  font-weight: 500;
+  text-align: right;
+}
+
+/* Purchase Bar: Big Price + Solid Black Pill Add to Cart */
+.gemma-purchase-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: auto;
+  padding-top: 0.85rem;
+}
+
+.gemma-price-val {
+  font-family: var(--font-sans);
+  font-size: clamp(1.6rem, 2.2vw, 1.95rem);
+  font-weight: 700;
+  color: #12100e;
+  letter-spacing: -0.02em;
+}
+
+.gemma-add-cart-btn {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border: 1px solid #000000 !important;
+  border-radius: 9999px !important;
+  padding: 0.95rem 2.8rem !important;
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.24);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gemma-add-cart-btn:hover {
+  background: #2b2724 !important;
+  border-color: #2b2724 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
+}
+
+.gemma-add-cart-btn:active {
+  transform: translateY(0);
+}
+
+/* Mobile & Tablet Modal Responsiveness */
+@media (max-width: 768px) {
+  .gemma-modal-card {
+    padding: 1.8rem 1.4rem !important;
+    border-radius: 22px !important;
+    max-height: 94vh !important;
+  }
+  .gemma-modal-grid {
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
+  }
+  .gemma-main-media-wrap {
+    aspect-ratio: 1 / 1;
+  }
+  .gemma-purchase-bar {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+  .gemma-add-cart-btn {
+    padding: 0.85rem 1.8rem !important;
+    font-size: 0.85rem;
+    flex: 1;
+  }
+}
+
+/* ==========================================================================
+   HAVENLY-INSPIRED EDITORIAL LUXURY THEME FOR AUM GROUP INC.
+   Palette: Warm Ivory (#FAF7F2), Pure White (#FFFFFF), Golden Logo Accents (#DFC7A7, #C5A880),
+            Deep Forest Emerald & Obsidian (#0C2B24, #00382E, #14110E).
+   Typography: Playfair Display + Plus Jakarta Sans + Cormorant Garamond.
+   ========================================================================== */
+
+body.havenly-layout {
+  background-color: #F8F4EC !important;
+  color: #1A1613 !important;
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif) !important;
+}
+
+/* 1. Refined Havenly + Image 2 Luxury Navbar with Client Visiting Card Palette */
+.havenly-navbar {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  z-index: 1000 !important;
+  background: #0E3528 !important; /* Exact Client Visiting Card Imperial Emerald Green */
+  background: linear-gradient(180deg, #0A261D 0%, #0E3528 60%, #0B2C21 100%) !important;
+  backdrop-filter: blur(24px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(140%) !important;
+  border-bottom: 1px solid rgba(223, 199, 167, 0.28) !important; /* Foil Gold Accent Line */
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.28) !important;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s ease !important;
+}
+
+.havenly-navbar.nav-hidden {
+  transform: translateY(-100%) !important;
+  pointer-events: none !important;
+}
+
+.havenly-navbar .navbar-bottom,
+.havenly-navbar .navbar-divider {
+  display: none !important;
+}
+
+.havenly-nav-inner {
+  max-width: 1720px !important;
+  margin: 0 auto !important;
+  height: 96px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0 clamp(1.25rem, 3.5vw, 3.5rem) !important;
+  position: relative !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Left: Equal Flex Width (Guarantees Center Logo stays at true 50% midpoint) */
+.havenly-nav-left {
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: clamp(1rem, 2vw, 2.5rem) !important;
+}
+
+.havenly-nav-links {
+  display: flex !important;
+  align-items: center !important;
+  gap: clamp(1.4rem, 2.4vw, 3rem) !important;
+}
+
+.havenly-nav-link {
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif) !important;
+  font-size: 0.92rem !important;
+  font-weight: 500 !important;
+  color: #FAF7F2 !important; /* Luxury Alabaster White */
+  text-decoration: none !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  transition: color 0.25s ease !important;
+  position: relative !important;
+  padding: 0.5rem 0 !important;
+  white-space: nowrap !important;
+}
+
+.havenly-nav-link:hover {
+  color: #DFC7A7 !important; /* Embossed Warm Gold */
+}
+
+.havenly-nav-link.active {
+  color: #DFC7A7 !important;
+  font-weight: 600 !important;
+}
+
+.havenly-nav-link.active::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 2px !important;
+  background: #DFC7A7 !important;
+  border-radius: 2px !important;
+  box-shadow: 0 0 8px rgba(223, 199, 167, 0.7) !important;
+}
+
+/* Center: Prominent Brand Logo at Exact Center of Header */
+.havenly-nav-center {
+  flex: 0 0 auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 1.25rem !important;
+  text-align: center !important;
+  position: static !important;
+  transform: none !important;
+  z-index: 10 !important;
+}
+
+.havenly-logo-link {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-decoration: none !important;
+  transform: none !important;
+  transition: none !important;
+  position: static !important;
+}
+
+.havenly-logo-link:hover {
+  transform: none !important;
+}
+
+.havenly-logo-img {
+  height: 66px !important;
+  max-height: 66px !important;
+  width: auto !important;
+  object-fit: contain !important;
+  display: block !important;
+  transform: none !important;
+  transition: none !important;
+  filter: drop-shadow(0 2px 14px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 8px rgba(223, 199, 167, 0.32)) !important;
+}
+
+.havenly-logo-img:hover {
+  transform: none !important;
+}
+
+/* Right: Equal Flex Width (Matching Left side) */
+.havenly-nav-right {
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: clamp(0.45rem, 0.8vw, 1rem) !important;
+}
+
+.havenly-nav-right .currency-btn {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(223, 199, 167, 0.35) !important;
+  color: #FAF7F2 !important;
+  border-radius: 9999px !important;
+  padding: 0.48rem 0.9rem !important;
+  font-size: 0.85rem !important;
+  font-weight: 500 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.45rem !important;
+  transition: all 0.25s ease !important;
+}
+
+.havenly-nav-right .currency-btn:hover {
+  background: rgba(255, 255, 255, 0.14) !important;
+  border-color: #DFC7A7 !important;
+  color: #DFC7A7 !important;
+}
+
+.havenly-nav-right .currency-menu {
+  background: #0A261D !important;
+  border: 1px solid rgba(223, 199, 167, 0.35) !important;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5) !important;
+}
+
+.havenly-nav-right .currency-option {
+  color: #FAF7F2 !important;
+}
+
+.havenly-nav-right .currency-option:hover,
+.havenly-nav-right .currency-option.active {
+  background: rgba(223, 199, 167, 0.16) !important;
+  color: #DFC7A7 !important;
+}
+
+.havenly-nav-right .nav-icon-btn {
+  color: #FAF7F2 !important;
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(223, 199, 167, 0.3) !important;
+  border-radius: 50% !important;
+  width: 42px !important;
+  height: 42px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-decoration: none !important;
+  position: relative !important;
+  transition: all 0.25s ease !important;
+}
+
+.havenly-nav-right .nav-icon-btn:hover {
+  background: rgba(223, 199, 167, 0.22) !important;
+  color: #DFC7A7 !important;
+  border-color: #DFC7A7 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3) !important;
+}
+
+.havenly-nav-right .wishlist-badge,
+.havenly-nav-right .cart-badge {
+  background: #DFC7A7 !important;
+  color: #0E3528 !important;
+  font-weight: 700 !important;
+  font-size: 0.68rem !important;
+  border: 1.5px solid #0E3528 !important;
+}
+
+.havenly-btn-contact {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.55rem !important;
+  background: #DFC7A7 !important; /* Gold Foil Pill */
+  color: #0E3528 !important; /* Visiting Card Green */
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif) !important;
+  font-size: 0.88rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+  padding: 0.65rem 1.45rem !important;
+  border-radius: 9999px !important;
+  text-decoration: none !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+.havenly-btn-contact:hover {
+  background: #f0deca !important;
+  color: #08241b !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 22px rgba(223, 199, 167, 0.45) !important;
+}
+
+.havenly-navbar .hamburger-btn {
+  color: #FAF7F2 !important;
+  border-color: rgba(223, 199, 167, 0.3) !important;
+}
+
+/* 2. Havenly Pill Badge */
+.havenly-pill-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.55rem !important;
+  background: rgba(14, 53, 40, 0.08) !important;
+  border: 1px solid rgba(14, 53, 40, 0.22) !important;
+  color: #0E3528 !important;
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif) !important;
+  font-size: 0.76rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  padding: 0.38rem 1rem !important;
+  border-radius: 9999px !important;
+  margin-bottom: 1.25rem !important;
+  box-shadow: 0 2px 8px rgba(14, 53, 40, 0.06) !important;
+}
+
+.havenly-pill-dot {
+  display: inline-block !important;
+  width: 7px !important;
+  height: 7px !important;
+  min-width: 7px !important;
+  min-height: 7px !important;
+  border-radius: 50% !important;
+  background: #0E3528 !important;
+  flex-shrink: 0 !important;
+  box-shadow: 0 0 6px rgba(14, 53, 40, 0.35) !important;
+}
+
+/* 3. Section Titles with Italic 3rd / Accent Letter Word */
+.havenly-hero-title {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: clamp(2.8rem, 4.8vw, 4.8rem);
+  font-weight: 400;
+  line-height: 1.12;
+  color: #15120F;
+  margin: 0 0 1.25rem 0;
+  letter-spacing: -0.015em;
+}
+
+.havenly-serif-italic {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif) !important;
+  font-style: italic !important;
+  font-weight: 500 !important;
+  color: #7E571E !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  -webkit-text-fill-color: #7E571E !important;
+  display: inline-block !important;
+  animation: none !important;
+  letter-spacing: normal !important;
+}
+
+.contact-serif-italic {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif) !important;
+  font-style: italic !important;
+  font-weight: 500 !important;
+  color: #7E571E !important;
+  display: inline-block !important;
+}
+
+.havenly-section-title {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: clamp(2.2rem, 3.2vw, 3.2rem);
+  font-weight: 400;
+  line-height: 1.18;
+  color: #15120F;
+  margin: 0 0 0.85rem 0;
+  letter-spacing: -0.01em;
+}
+
+.havenly-section-subtitle {
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.95rem;
+  color: #4A423A;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* 4. Havenly Hero Section - Warm Champagne & Ambient Gold Glow */
+.havenly-hero-section {
+  position: relative;
+  width: 100%;
+  padding-top: calc(96px + 2rem);
+  padding-bottom: 2.8rem;
+  background: radial-gradient(ellipse at 88% 22%, rgba(14, 53, 40, 0.12) 0%, transparent 60%),
+              radial-gradient(circle at 12% 78%, rgba(223, 199, 167, 0.35) 0%, transparent 55%),
+              linear-gradient(180deg, #F8F4EC 0%, #EDE4D4 65%, #E5D7C3 100%) !important;
+  overflow: visible;
+}
+
+.havenly-hero-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 3.5vw, 3.5rem);
+  display: grid;
+  grid-template-columns: 1.05fr 1.15fr;
+  gap: clamp(2rem, 4vw, 4.5rem);
+  align-items: center;
+}
+
+.havenly-hero-desc {
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: clamp(0.95rem, 1.1vw, 1.12rem);
+  line-height: 1.68;
+  color: #3A332C;
+  margin-bottom: 1.6rem;
+  max-width: 520px;
+}
+
+.havenly-hero-btn-row {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  flex-wrap: wrap;
+}
+
+.havenly-btn-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: #0C2B24;
+  color: #ffffff !important;
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.88rem 1.9rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 6px 20px rgba(12, 43, 36, 0.22);
+}
+
+.havenly-btn-dark:hover {
+  background: #174238;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(12, 43, 36, 0.32);
+}
+
+.havenly-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: transparent;
+  color: #1A1613;
+  border: 1.5px solid rgba(214, 209, 196, 0.9);
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.88rem 1.9rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.havenly-btn-outline:hover {
+  background: #ffffff;
+  border-color: #0C2B24;
+  color: #0C2B24;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+}
+
+.havenly-hero-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.25 / 1;
+  border-radius: 36px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(214, 209, 196, 0.6);
+}
+
+.havenly-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 5. Floating Concierge Filter Bar */
+.havenly-filter-bar-wrap {
+  max-width: 1140px;
+  margin: 2rem auto 0;
+  position: relative;
+  z-index: 20;
+  padding: 0 clamp(1rem, 3vw, 2rem);
+}
+
+.havenly-filter-bar {
+  background: rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter: blur(16px) saturate(120%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(120%) !important;
+  border-radius: 9999px;
+  box-shadow: 0 16px 45px rgba(14, 53, 40, 0.08);
+  border: 1px solid rgba(197, 168, 128, 0.45);
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 0.95rem 0.75rem 2rem;
+  gap: 1.2rem;
+}
+
+.havenly-filter-col {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.havenly-filter-icon {
+  font-size: 1.2rem;
+}
+
+.havenly-filter-label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #8C847A;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.havenly-filter-val {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #1A1613;
+}
+
+.havenly-filter-divider {
+  width: 1px;
+  height: 38px;
+  background: rgba(214, 209, 196, 0.6);
+}
+
+.havenly-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #0C2B24;
+  color: #ffffff !important;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 500;
+  padding: 0.95rem 1.85rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.havenly-filter-btn:hover {
+  background: #174238;
+  transform: scale(1.02);
+}
+
+/* 6. Havenly About Section ("Heritage & Artistry") - Warm Sandstone Background */
+.havenly-about-section {
+  padding: 5.2rem clamp(1.5rem, 3.5vw, 3.5rem);
+  width: 100%;
+  max-width: 100% !important;
+  background: linear-gradient(180deg, #E5D7C3 0%, #D8C7AF 50%, #DFD0BA 100%) !important;
+  border-top: 1px solid rgba(184, 147, 96, 0.4);
+  border-bottom: 1px solid rgba(184, 147, 96, 0.4);
+}
+
+.havenly-about-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.15fr 0.95fr;
+  gap: clamp(2rem, 3.5vw, 3.5rem);
+  align-items: center;
+}
+
+.havenly-arch-card {
+  width: 100%;
+  aspect-ratio: 1 / 1.15;
+  border-radius: 100px 100px 24px 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(214, 209, 196, 0.5);
+}
+
+.havenly-arch-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.havenly-about-desc {
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  line-height: 1.72;
+  color: #3A332C;
+  margin: 1.2rem 0 2rem 0;
+}
+
+.havenly-about-pillars {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.havenly-pillar-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.1rem;
+}
+
+.havenly-pillar-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #FAF7F2;
+  border: 1px solid rgba(197, 168, 128, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(14, 53, 40, 0.08);
+}
+
+.havenly-pillar-title {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1A1613;
+  margin: 0 0 0.25rem 0;
+}
+
+.havenly-pillar-desc {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: #4A423A;
+  margin: 0;
+}
+
+/* 7. Featured Masterpieces Section - Soft Champagne Satin */
+/* 7. Featured Masterpieces Section - Warm Silk Alabaster */
+.havenly-featured-section {
+  padding: 5.5rem clamp(1.5rem, 3.5vw, 3.5rem);
+  width: 100%;
+  max-width: 100% !important;
+  background: linear-gradient(180deg, #EFE6D8 0%, #E4D5BF 50%, #EDE1CE 100%) !important;
+  border-bottom: 1px solid rgba(184, 147, 96, 0.4);
+}
+
+.havenly-section-header-row {
+  max-width: 1400px;
+  margin: 0 auto 2.2rem auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1.5rem;
+}
+
+.havenly-carousel-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.havenly-circle-nav-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid rgba(214, 209, 196, 0.7);
+  color: #1A1613;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.havenly-circle-nav-btn:hover {
+  background: #0C2B24;
+  color: #ffffff;
+  border-color: #0C2B24;
+}
+
+.havenly-cards-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.havenly-product-card {
+  background: #FFFFFF;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(184, 147, 96, 0.45);
+  box-shadow: 0 12px 32px rgba(14, 53, 40, 0.08);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.havenly-product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(14, 53, 40, 0.12);
+  border-color: rgba(184, 147, 96, 0.85);
+}
+
+.havenly-card-media {
+  position: relative;
+  width: 100%;
+  height: 270px;
+  min-height: 270px;
+  max-height: 270px;
+  background: #F4EFE6;
+  overflow: hidden;
+}
+
+.havenly-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.havenly-product-card:hover .havenly-card-img {
+  transform: scale(1.06);
+}
+
+.havenly-card-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  color: #0C2B24;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 0.32rem 0.8rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(214, 209, 196, 0.8);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.havenly-card-body {
+  padding: 1.35rem 1.4rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.havenly-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.22rem;
+  font-weight: 500;
+  color: #1A1613;
+  margin: 0 0 0.45rem 0;
+  line-height: 1.3;
+}
+
+.havenly-card-specs {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  color: #5A524A;
+  margin: 0 0 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.havenly-card-footer {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(214, 209, 196, 0.45);
+}
+
+.havenly-card-price {
+  font-family: var(--font-sans);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1A1613;
+}
+
+.havenly-card-arrow-btn,
+button.havenly-card-arrow-btn,
+button.havenly-card-arrow-btn.na-quick-view-btn {
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  min-height: 40px !important;
+  max-width: 40px !important;
+  max-height: 40px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 50% !important;
+  background: #0C2B24 !important;
+  color: #ffffff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: none !important;
+  outline: none !important;
+  cursor: pointer !important;
+  flex-shrink: 0 !important;
+  box-shadow: 0 4px 12px rgba(12, 43, 36, 0.25) !important;
+  transform: none !important;
+  transition: transform 0.25s ease, background 0.2s ease, box-shadow 0.25s ease !important;
+}
+
+.havenly-card-arrow-btn:hover,
+button.havenly-card-arrow-btn.na-quick-view-btn:hover {
+  background: #174238 !important;
+  color: #ffffff !important;
+  transform: scale(1.1) !important;
+  box-shadow: 0 6px 18px rgba(12, 43, 36, 0.35) !important;
+}
+
+.havenly-card-arrow-btn svg,
+button.havenly-card-arrow-btn.na-quick-view-btn svg {
+  width: 18px !important;
+  height: 18px !important;
+  stroke: #ffffff !important;
+  stroke-width: 2.5 !important;
+  color: #ffffff !important;
+  fill: none !important;
+  display: block !important;
+  pointer-events: none !important;
+}
+
+/* 8. Havenly Testimonials Section */
+.havenly-testimonials-section {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 5.5rem clamp(1.5rem, 3.5vw, 3.5rem) 4.5rem !important;
+  background: linear-gradient(180deg, #ECE2D2 0%, #DFCEB8 50%, #E7DBC7 100%) !important;
+  border-top: 1px solid rgba(184, 147, 96, 0.4);
+  border-bottom: 1px solid rgba(184, 147, 96, 0.4);
+}
+
+.havenly-testimonials-layout {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: start;
+}
+
+.havenly-reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.havenly-review-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 1.8rem 1.6rem 1.6rem;
+  border: 1px solid rgba(184, 147, 96, 0.4);
+  box-shadow: 0 10px 28px rgba(14, 53, 40, 0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.havenly-quote-mark {
+  font-family: var(--font-serif);
+  font-size: 2.8rem;
+  line-height: 0.8;
+  color: #C5A880;
+  margin-bottom: 0.6rem;
+  display: block;
+}
+
+.havenly-review-text {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: #4D453E;
+  margin: 0 0 1.4rem 0;
+}
+
+.havenly-reviewer-box {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.havenly-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #EFE8DD;
+  color: #0C2B24;
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(214, 209, 196, 0.6);
+}
+
+.havenly-reviewer-name {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #1A1613;
+  margin: 0;
+}
+
+.havenly-reviewer-city {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  color: #8C847A;
+}
+
+.havenly-stars {
+  color: #D4AF37;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  margin-top: 0.2rem;
+}
+
+/* 9. The 5 Curated Ateliers & Vault Archives (Deep Visiting Card Emerald Band) */
+.havenly-ateliers-section {
+  width: 100% !important;
+  background: #0E3528 !important; /* Exact Client Visiting Card Green */
+  background: linear-gradient(180deg, #0A261D 0%, #0E3528 50%, #082219 100%) !important;
+  padding: 5.5rem clamp(1.5rem, 4vw, 4.5rem) !important;
+  border-top: 1px solid rgba(223, 199, 167, 0.28) !important;
+  border-bottom: 1px solid rgba(223, 199, 167, 0.28) !important;
+  color: #FAF7F2 !important;
+  position: relative;
+  z-index: 10;
+}
+
+.havenly-ateliers-inner {
+  max-width: 1520px;
+  margin: 0 auto;
+}
+
+.havenly-ateliers-header {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 3.5rem auto;
+}
+
+.havenly-pill-gold {
+  background: rgba(223, 199, 167, 0.15) !important;
+  border: 1px solid rgba(223, 199, 167, 0.45) !important;
+  color: #DFC7A7 !important;
+}
+
+.havenly-ateliers-title {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: clamp(2.4rem, 3.8vw, 3.8rem);
+  font-weight: 400;
+  color: #FAF7F2;
+  margin: 0 0 1rem 0;
+  line-height: 1.15;
+}
+
+.havenly-serif-italic-gold {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif) !important;
+  font-style: italic !important;
+  font-weight: 400 !important;
+  color: #DFC7A7 !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  -webkit-text-fill-color: #DFC7A7 !important;
+  display: inline-block !important;
+  animation: none !important;
+  letter-spacing: normal !important;
+}
+
+.havenly-ateliers-subtitle {
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 1rem;
+  line-height: 1.68;
+  color: rgba(250, 247, 242, 0.78);
+  margin: 0;
+}
+
+.havenly-ateliers-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.5rem;
+}
+
+.havenly-atelier-card {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(223, 199, 167, 0.22);
+  border-radius: 24px;
+  overflow: hidden;
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+}
+
+.havenly-atelier-card:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(223, 199, 167, 0.65);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+}
+
+.havenly-atelier-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1.15;
+  overflow: hidden;
+  background: #082219;
+}
+
+.havenly-atelier-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.havenly-atelier-card:hover .havenly-atelier-img {
+  transform: scale(1.08);
+}
+
+.havenly-atelier-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(10, 38, 29, 0.85) 100%);
+  pointer-events: none;
+}
+
+.havenly-atelier-number {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #0E3528;
+  background: #DFC7A7;
+  padding: 0.28rem 0.7rem;
+  border-radius: 9999px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.havenly-atelier-content {
+  padding: 1.4rem 1.25rem 1.3rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.havenly-atelier-name {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #FAF7F2;
+  margin: 0 0 0.35rem 0;
+  line-height: 1.2;
+}
+
+.havenly-atelier-meta {
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.8rem;
+  color: rgba(250, 247, 242, 0.65);
+  margin: 0 0 1.2rem 0;
+  line-height: 1.45;
+  flex: 1;
+}
+
+.havenly-atelier-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #DFC7A7;
+  letter-spacing: 0.04em;
+  transition: gap 0.25s ease, color 0.25s ease;
+}
+
+.havenly-atelier-card:hover .havenly-atelier-btn {
+  gap: 0.75rem;
+  color: #ffffff;
+}
+
+/* 10. Bespoke Private Commissions Call-out Banner */
+.havenly-bespoke-section {
+  width: 100% !important;
+  background: #0E3528 !important;
+  background: linear-gradient(135deg, #0A261D 0%, #0E3528 50%, #082219 100%) !important;
+  padding: 4.8rem clamp(1.5rem, 4vw, 4rem) !important;
+  color: #FAF7F2 !important;
+  border-top: 1px solid rgba(223, 199, 167, 0.28) !important;
+}
+
+.havenly-bespoke-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.havenly-bespoke-title {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: clamp(2rem, 3.2vw, 3.2rem);
+  color: #FAF7F2;
+  margin: 0 0 0.8rem 0;
+  line-height: 1.18;
+}
+
+.havenly-bespoke-desc {
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: rgba(250, 247, 242, 0.78);
+  max-width: 640px;
+  margin: 0;
+}
+
+.havenly-btn-bespoke {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: #DFC7A7 !important;
+  color: #0E3528 !important;
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 0.95rem 2.2rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
+}
+
+.havenly-btn-bespoke:hover {
+  background: #ffffff !important;
+  color: #082219 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(223, 199, 167, 0.4);
+}
+
+/* 10. Storytelling Metrics Strip (Inside Brand Heritage) */
+.havenly-metrics-strip {
+  max-width: 1400px;
+  margin: 3.5rem auto 0 auto;
+  padding-top: 2.8rem;
+  border-top: 1px solid rgba(197, 168, 128, 0.45);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.8rem;
+}
+
+.havenly-metric-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.6rem 1.6rem;
+  background: #FFFFFF;
+  border-radius: 20px;
+  border: 1px solid rgba(184, 147, 96, 0.4);
+  border-top: 3px solid #0E3528;
+  box-shadow: 0 8px 24px rgba(14, 53, 40, 0.06);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.havenly-metric-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(14, 53, 40, 0.09);
+  border-color: rgba(197, 168, 128, 0.75);
+}
+
+.havenly-metric-num {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: clamp(2.2rem, 3.2vw, 3.2rem);
+  font-weight: 500;
+  color: #0E3528;
+  line-height: 1.1;
+  margin-bottom: 0.35rem;
+}
+
+.havenly-metric-label {
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #7E571E;
+  margin-bottom: 0.35rem;
+}
+
+.havenly-metric-desc {
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.85rem;
+  color: #4A423A;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* 11. Craftsmanship Journey Section ("From Mine to Living Heirloom") */
+.havenly-journey-section {
+  width: 100%;
+  padding: 5.5rem clamp(1.5rem, 3.5vw, 3.5rem);
+  background: linear-gradient(180deg, #ECE2D2 0%, #DFCEB8 50%, #E8DCC9 100%) !important;
+  border-top: 1px solid rgba(184, 147, 96, 0.4);
+  border-bottom: 1px solid rgba(184, 147, 96, 0.4);
+}
+
+.havenly-journey-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.havenly-journey-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 3.5rem auto;
+}
+
+.havenly-journey-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.6rem;
+}
+
+.havenly-journey-card {
+  background: #FFFFFF;
+  border-radius: 22px;
+  padding: 2.2rem 1.8rem 2rem;
+  border: 1px solid rgba(184, 147, 96, 0.45);
+  box-shadow: 0 10px 28px rgba(14, 53, 40, 0.07);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.havenly-journey-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 42px rgba(14, 53, 40, 0.12);
+  border-color: rgba(184, 147, 96, 0.85);
+}
+
+.havenly-journey-step-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #DFC7A7;
+  background: #0E3528;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  margin-bottom: 1.25rem;
+  width: fit-content;
+  border: 1px solid rgba(223, 199, 167, 0.4);
+}
+
+.havenly-journey-icon {
+  font-size: 1.8rem;
+  margin-bottom: 0.9rem;
+  display: block;
+}
+
+.havenly-journey-title {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #15120F;
+  margin: 0 0 0.65rem 0;
+  line-height: 1.3;
+}
+
+.havenly-journey-desc {
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: #4A423A;
+  margin: 0;
+}
+
+/* 12. Global Presence Section ("Worldwide Export Footprint") */
+.havenly-presence-section {
+  width: 100%;
+  background: linear-gradient(180deg, #0A261D 0%, #0E3528 50%, #082219 100%);
+  padding: 5.5rem clamp(1.5rem, 3.5vw, 3.5rem);
+  border-top: 1px solid rgba(223, 199, 167, 0.28);
+  border-bottom: 1px solid rgba(223, 199, 167, 0.28);
+  color: #FAF7F2;
+  position: relative;
+}
+
+.havenly-presence-inner {
+  max-width: 1460px;
+  margin: 0 auto;
+}
+
+.havenly-presence-header {
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto 3.5rem auto;
+}
+
+.havenly-presence-title {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: clamp(2.4rem, 3.8vw, 3.8rem);
+  font-weight: 400;
+  color: #FAF7F2;
+  margin: 0 0 1rem 0;
+  line-height: 1.15;
+}
+
+.havenly-presence-subtitle {
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 1rem;
+  line-height: 1.68;
+  color: rgba(250, 247, 242, 0.78);
+  margin: 0;
+}
+
+.havenly-presence-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.5rem;
+}
+
+.havenly-presence-card {
+  position: relative;
+  height: 320px;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(223, 199, 167, 0.25);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.6rem 1.4rem;
+  text-decoration: none;
+}
+
+.havenly-presence-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(223, 199, 167, 0.75);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.55);
+}
+
+.havenly-presence-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+
+.havenly-presence-card:hover .havenly-presence-bg {
+  transform: scale(1.08);
+}
+
+.havenly-presence-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 34, 25, 0.15) 0%, rgba(8, 34, 25, 0.88) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.havenly-presence-content {
+  position: relative;
+  z-index: 3;
+}
+
+.havenly-presence-country {
+  font-family: var(--font-serif, 'Playfair Display', Georgia, serif);
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: #DFC7A7;
+  margin: 0 0 0.35rem 0;
+  line-height: 1.2;
+}
+
+.havenly-presence-hub {
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.8rem;
+  color: rgba(250, 247, 242, 0.8);
+  margin: 0;
+  line-height: 1.45;
+}
+
+/* 13. Responsive Media Queries */
+@media (max-width: 1200px) {
+  .havenly-ateliers-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+  .havenly-presence-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .havenly-metrics-strip {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .havenly-journey-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .havenly-presence-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+  .havenly-nav-inner {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    height: 84px !important;
+    padding: 0 1.25rem !important;
+  }
+  .havenly-nav-links,
+  .havenly-nav-right .havenly-btn-contact,
+  .havenly-nav-right #nav-profile-btn {
+    display: none !important;
+  }
+  .havenly-nav-left {
+    flex: 0 0 auto !important;
+  }
+  .havenly-nav-center {
+    flex: 1 1 auto !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+  .havenly-nav-right {
+    flex: 0 0 auto !important;
+    gap: 0.75rem !important;
+  }
+  .havenly-logo-img {
+    height: 52px !important;
+    max-height: 52px !important;
+  }
+  .havenly-hero-section {
+    padding-top: calc(84px + 1.8rem) !important;
+  }
+  .havenly-hero-container {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .havenly-about-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .havenly-arch-card {
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .havenly-ateliers-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .havenly-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .havenly-testimonials-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .havenly-reviews-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .havenly-nav-inner {
+    height: 74px !important;
+    padding: 0 0.85rem !important;
+  }
+  .havenly-logo-img {
+    height: 44px !important;
+    max-height: 44px !important;
+  }
+  .havenly-nav-right {
+    gap: 0.45rem !important;
+  }
+  .havenly-nav-right .currency-btn {
+    padding: 0.35rem 0.6rem !important;
+  }
+  .havenly-nav-right .currency-btn span.currency-code {
+    display: none !important;
+  }
+  .havenly-hero-section {
+    padding-top: calc(76px + 1.5rem) !important;
+  }
+  .havenly-filter-bar {
+    flex-direction: column;
+    border-radius: 24px;
+    padding: 1.5rem;
+    gap: 1rem;
+    align-items: stretch;
+  }
+  .havenly-filter-divider {
+    display: none;
+  }
+  .havenly-ateliers-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .havenly-metrics-strip {
+    grid-template-columns: 1fr !important;
+    gap: 1.2rem !important;
+  }
+  .havenly-journey-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .havenly-presence-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .havenly-bespoke-inner {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1.8rem !important;
+  }
+  .havenly-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
