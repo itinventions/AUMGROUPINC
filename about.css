@@ -2533,22 +2533,12 @@ textarea {
   z-index: 2;
 }
 
-.expertise-glint-1 {
-  top: 22%;
-  left: 18%;
-  animation: glintTwinkle 5s ease-in-out 0.5s infinite;
-}
-
-.expertise-glint-2 {
-  top: 65%;
-  right: 15%;
-  animation: glintTwinkle 6.5s ease-in-out 2s infinite;
-}
-
+.expertise-glint-1,
+.expertise-glint-2,
 .expertise-glint-3 {
-  bottom: 18%;
-  left: 28%;
-  animation: glintTwinkle 5.8s ease-in-out 3.2s infinite;
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
 
 /* Divider Gleam Animation */
@@ -4504,3 +4494,100 @@ textarea {
     height: 21px !important;
   }
 }
+
+/* ==========================================================================
+   MINIMAL LUXURY REFRESH — ABOUT US (SOFT ROUNDED EDGES & PILL BUTTONS)
+   ========================================================================== */
+.about-story-btn,
+.about-btn-secondary,
+.about-hero-buttons a,
+.about-cta-btn,
+.about-cert-pill,
+.about-metric-badge {
+  border-radius: 9999px !important;
+}
+
+.about-crest-card,
+.about-metric-row,
+.about-pillar-card,
+.about-cert-card,
+.about-timeline-card,
+.about-quote-card,
+.about-team-card,
+.about-presence-card {
+  border-radius: 24px !important;
+  overflow: hidden !important;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.06) !important;
+}
+
+.about-hero-buttons {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1rem !important;
+  flex-wrap: wrap !important;
+}
+
+.about-story-btn {
+  background: #dfc7a7 !important;
+  color: #0b0908 !important;
+  padding: 0.95rem 2.2rem !important;
+  font-weight: 600 !important;
+  box-shadow: 0 8px 24px rgba(223, 199, 167, 0.35) !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.about-story-btn:hover {
+  background: #f0deca !important;
+  transform: translateY(-2px) !important;
+}
+
+.about-btn-secondary {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.65rem !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1.5px solid rgba(223, 199, 167, 0.6) !important;
+  color: #dfc7a7 !important;
+  padding: 0.95rem 2.2rem !important;
+  font-family: var(--font-sans) !important;
+  font-size: 0.82rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.08em !important;
+  text-decoration: none !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.about-btn-secondary:hover {
+  background: rgba(223, 199, 167, 0.15) !important;
+  color: #ffffff !important;
+  border-color: #dfc7a7 !important;
+  transform: translateY(-2px) !important;
+}
+
+.about-story-section {
+  padding: 7.5rem 0 8rem !important;
+  background-color: #F8F6F2 !important;
+}
+
+.about-philosophy-quote {
+  font-family: var(--font-serif) !important;
+  font-style: italic !important;
+  font-size: clamp(1.6rem, 2.8vw, 2.3rem) !important;
+  line-height: 1.45 !important;
+  color: #1a1714 !important;
+  max-width: 900px !important;
+  margin: 0 auto !important;
+}
+
+@media (max-width: 768px) {
+  .about-crest-card,
+  .about-metric-row,
+  .about-pillar-card,
+  .about-cert-card,
+  .about-timeline-card {
+    border-radius: 18px !important;
+  }
+}
+
