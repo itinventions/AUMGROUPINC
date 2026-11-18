@@ -3,8 +3,6 @@
  * Three.js Luxury Diamond & Gemstone Dust Particle System (Hero Text Backdrop)
  */
 
-import { lerp, getNormalizedMousePos } from './helpers.js';
-
 export class GemParticles {
   constructor(scene, camera) {
     this.scene = scene;
@@ -17,8 +15,6 @@ export class GemParticles {
     this.initialPositions = [];
     this.phases = [];
     this.speeds = [];
-
-    this.mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
 
     this.init();
     this.bindEvents();
@@ -103,19 +99,11 @@ export class GemParticles {
   }
 
   bindEvents() {
-    window.addEventListener('mousemove', (e) => {
-      const norm = getNormalizedMousePos(e);
-      this.mouse.targetX = norm.x * 0.8;
-      this.mouse.targetY = norm.y * 0.5;
-    }, { passive: true });
+    // Mouse tracking disabled - particles and background remain stationary
   }
 
   update(delta, time) {
     if (!this.particles || !this.geometry) return;
-
-    // Smooth mouse lerp
-    this.mouse.x = lerp(this.mouse.x, this.mouse.targetX, 0.05);
-    this.mouse.y = lerp(this.mouse.y, this.mouse.targetY, 0.05);
 
     const positions = this.geometry.attributes.position.array;
 
@@ -128,9 +116,9 @@ export class GemParticles {
       const yOffset = Math.sin(time * speed + phase) * 0.85;
       const xOffset = Math.cos(time * (speed * 0.8) + phase) * 0.65;
 
-      // Mouse parallax shift
-      positions[i * 3] = init.x + xOffset + this.mouse.x * (0.8 + (init.z + 8) * 0.04);
-      positions[i * 3 + 1] = init.y + yOffset + this.mouse.y * (0.8 + (init.z + 8) * 0.04);
+      // Pure stationary harmonic ambient drift (zero mouse parallax)
+      positions[i * 3] = init.x + xOffset;
+      positions[i * 3 + 1] = init.y + yOffset;
       positions[i * 3 + 2] = init.z;
     }
 

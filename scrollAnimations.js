@@ -1,185 +1,209 @@
 /**
- * AURÉLIA FINE JEWELLERY & GEMS
+ * AUM GROUP INC. FINE JEWELLERY & GEMS
  * Scroll Animations Orchestrator
- * - Bidirectional scroll animations: elements appear on scroll down and disappear on scroll up
- * - Purely element-and-text focused animation (clean, zero background/side distortions)
+ * - Smooth scroll-triggered editorial reveals with staggered child entrances
+ * - Precision reading scroll progress bar
+ * - Header glass enhancement on scroll
+ * - Gentle optical scroll depth (parallax) on editorial visuals
+ * - 100% stationary clean aesthetic: ZERO cursor tracking, ZERO canvas drift, ZERO sparkle crosses
  */
 
 export class ScrollAnimations {
   constructor() {
     this.revealElements = [];
     this.isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.progressBar = null;
+    this.navbar = null;
+    this.heroImgWrap = null;
+    this.archCard = null;
+    this.isTicking = false;
 
     this.init();
   }
 
   init() {
-    this.setupRevealObserver();
-    this.setupShowcaseScrollTransitions();
+    window.scrollTo(0, 0);
+    this.navbar = document.querySelector('.havenly-navbar') || document.querySelector('.navbar');
+    this.heroImgWrap = document.querySelector('.havenly-hero-img-wrap');
+    this.archCard = document.querySelector('.havenly-arch-card');
 
-    // Trigger initial hero text & elements on page load
-    requestAnimationFrame(() => {
+    this.setupScrollProgressBar();
+    this.setupRevealObserver();
+    this.setupHeaderScrollState();
+    this.setupParallaxDepth();
+
+    // Trigger initial hero and above-the-fold elements on load
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
       this.revealInitialElements();
-    });
+    } else {
+      window.addEventListener('DOMContentLoaded', () => this.revealInitialElements(), { once: true });
+    }
   }
 
   /**
-   * Continuous Scroll Transitions for Simple Gold, Studded Gold, and Diamond Showcase Sections.
-   * As scrolling progresses:
-   * - Upper section smoothly glides upward and fades out.
-   * - Below section emerges gliding upward from down into position, fading in.
-   * - Applies ONLY to: #gold-collection, #studded-gold, #diamond-collection.
+   * Sets up smooth reading progress line anchored to header
    */
-  setupShowcaseScrollTransitions() {
-    const sectionIds = ['gold-collection', 'studded-gold', 'gems-collection', 'silver-collection', 'diamond-collection'];
-    const sections = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter(Boolean);
+  setupScrollProgressBar() {
+    let bar = document.getElementById('scroll-progress-bar');
+    if (!bar && this.navbar) {
+      bar = document.createElement('div');
+      bar.id = 'scroll-progress-bar';
+      bar.className = 'scroll-progress-line';
+      bar.setAttribute('aria-hidden', 'true');
+      this.navbar.appendChild(bar);
+    }
+    this.progressBar = bar;
 
-    if (sections.length === 0 || this.isReducedMotion) return;
-
-    let isTicking = false;
-
-    const onScrollUpdate = () => {
-      const vh = window.innerHeight;
-      const isMobile = window.innerWidth <= 768;
-      const maxTranslate = isMobile ? 38 : 65;
-
-      sections.forEach((sec, idx) => {
-        const rect = sec.getBoundingClientRect();
-        const content = sec.querySelector(
-          '.gold-banner-container, .studded-banner-container, .gems-banner-container, .silver-banner-container, .diamond-banner-container'
-        );
-        const backdrop = sec.querySelector(
-          '.gold-showcase-backdrop, .studded-showcase-backdrop, .gems-showcase-backdrop, .silver-showcase-backdrop, .diamond-showcase-backdrop'
-        );
-
-        if (!content) return;
-
-        const top = rect.top;
-        const height = rect.height || (isMobile ? 600 : 700);
-        const bottom = rect.bottom;
-
-        let contentOpacity = 1;
-        let contentTranslateY = 0;
-        let bgTranslateY = 0;
-        let bgOpacity = 1;
-
-        // 1. Entering from the bottom (fade up from down as it appears)
-        if (top > 0 && top < vh) {
-          const enterProgress = Math.min(1, Math.max(0, (vh - top) / (vh * 0.75)));
-          contentOpacity = Math.min(1, enterProgress * 1.15);
-          contentTranslateY = (1 - enterProgress) * maxTranslate; // glides up from +maxTranslate
-          bgTranslateY = (1 - enterProgress) * 30;
-          bgOpacity = 0.35 + 0.65 * enterProgress;
-        }
-        // 2. Exiting through the top (upper section fades up as below section appears)
-        else if (top <= 0 && bottom > 0) {
-          const nextSec = sections[idx + 1] || document.getElementById('contact');
-          let exitProgress = 0;
-
-          if (nextSec) {
-            const nextRect = nextSec.getBoundingClientRect();
-            if (nextRect.top < vh) {
-              exitProgress = Math.min(1, Math.max(0, (vh - nextRect.top) / (vh * 0.85)));
-            }
-          } else {
-            exitProgress = Math.min(1, Math.max(0, -top / (height * 0.75)));
-          }
-
-          contentOpacity = Math.max(0, 1 - (exitProgress * 1.15));
-          contentTranslateY = -exitProgress * maxTranslate; // glides upward to -maxTranslate
-          bgTranslateY = -exitProgress * 30;
-          bgOpacity = Math.max(0.3, 1 - (exitProgress * 0.7));
-        }
-        // 3. Completely above viewport
-        else if (bottom <= 0) {
-          contentOpacity = 0;
-          contentTranslateY = -maxTranslate;
-          bgTranslateY = -30;
-          bgOpacity = 0.3;
-        }
-        // 4. Completely below viewport
-        else if (top >= vh) {
-          contentOpacity = 0;
-          contentTranslateY = maxTranslate;
-          bgTranslateY = 30;
-          bgOpacity = 0.3;
-        }
-
-        if (
-          sec.id === 'gold-collection' ||
-          sec.id === 'studded-gold' ||
-          sec.id === 'gems-collection' ||
-          sec.id === 'silver-collection' ||
-          sec.id === 'diamond-collection'
-        ) {
-          bgTranslateY = 0;
-        }
-
-        content.style.opacity = contentOpacity.toFixed(3);
-        content.style.transform = `translate3d(0, ${contentTranslateY.toFixed(1)}px, 0)`;
-
-        if (backdrop) {
-          backdrop.style.opacity = bgOpacity.toFixed(3);
-          backdrop.style.transform = `translate3d(0, ${bgTranslateY.toFixed(1)}px, 0)`;
-        }
-      });
-
-      isTicking = false;
+    const updateProgress = () => {
+      if (!this.progressBar) return;
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+      const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      this.progressBar.style.width = Math.min(100, Math.max(0, scrollPercent)).toFixed(1) + '%';
     };
 
-    const requestTick = () => {
-      if (!isTicking) {
-        requestAnimationFrame(onScrollUpdate);
-        isTicking = true;
-      }
-    };
-
-    window.addEventListener('scroll', requestTick, { passive: true });
-    window.addEventListener('resize', requestTick, { passive: true });
-
-    // Initial pass
-    requestAnimationFrame(onScrollUpdate);
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress, { passive: true });
+    updateProgress();
   }
 
+  /**
+   * IntersectionObserver for all reveal containers, cards, and editorial headers
+   */
   setupRevealObserver() {
-    this.revealElements = Array.from(
-      document.querySelectorAll('.reveal-on-scroll, .reveal-fade-left, .reveal-fade-right, .reveal-scale-up')
-    );
+    const selector = [
+      '.reveal-on-scroll',
+      '.reveal-fade-left',
+      '.reveal-fade-right',
+      '.reveal-scale-up',
+      '.havenly-atelier-card',
+      '.havenly-product-card',
+      '.havenly-pillar-card',
+      '.havenly-review-card',
+      '.havenly-journey-card',
+      '.havenly-presence-card',
+      '.havenly-filter-bar-wrap',
+      '.video-editorial-card',
+      '.havenly-bespoke-inner'
+    ].join(', ');
+
+    const elements = Array.from(document.querySelectorAll(selector));
+    this.revealElements = elements;
 
     if (this.isReducedMotion) {
-      this.revealElements.forEach((el) => el.classList.add('is-revealed'));
+      elements.forEach((el) => el.classList.add('is-revealed'));
       return;
     }
 
     const observerOptions = {
       root: null,
-      rootMargin: '0px 0px 50px 0px', // Trigger slightly before it hits viewport so no blank screen is seen
-      threshold: 0.01
+      rootMargin: '0px 0px -30px 0px',
+      threshold: 0.04
     };
 
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-revealed');
+        } else {
+          // If element scrolls substantially far below or above, allow subtle soft re-entry
+          const rect = entry.target.getBoundingClientRect();
+          const vh = window.innerHeight;
+          if (rect.top > vh * 1.35 || rect.bottom < -vh * 0.35) {
+            entry.target.classList.remove('is-revealed');
+          }
         }
       });
     }, observerOptions);
 
-    this.revealElements.forEach((el) => {
+    elements.forEach((el) => {
       revealObserver.observe(el);
     });
   }
 
+  /**
+   * Navbar subtle elevation on scroll
+   */
+  setupHeaderScrollState() {
+    if (!this.navbar) return;
+
+    const onScrollHeader = () => {
+      const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+      if (scrollY > 35) {
+        this.navbar.classList.add('is-scrolled');
+      } else {
+        this.navbar.classList.remove('is-scrolled');
+      }
+    };
+
+    window.addEventListener('scroll', onScrollHeader, { passive: true });
+    onScrollHeader();
+  }
+
+  /**
+   * Gentle optical depth displacement on scroll (laptop/desktop only)
+   * Strictly NO cursor tracking, pure scroll-linked displacement
+   */
+  setupParallaxDepth() {
+    if (this.isReducedMotion) return;
+
+    const onScrollDepth = () => {
+      if (window.innerWidth <= 768) return; // Disabled on mobile for buttery smooth performance
+
+      const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+
+      // Hero frame subtle drift (max 26px)
+      if (this.heroImgWrap && scrollY < 900) {
+        const heroOffset = Math.min(26, scrollY * 0.06);
+        this.heroImgWrap.style.transform = `translate3d(0, ${heroOffset.toFixed(1)}px, 0)`;
+      }
+
+      // Arch card subtle perspective shift when entering view
+      if (this.archCard) {
+        const rect = this.archCard.getBoundingClientRect();
+        const vh = window.innerHeight;
+        if (rect.top < vh && rect.bottom > 0) {
+          const progress = (vh - rect.top) / (vh + rect.height);
+          const archOffset = (progress - 0.5) * 16;
+          const img = this.archCard.querySelector('.havenly-arch-img');
+          if (img) {
+            img.style.transform = `translate3d(0, ${archOffset.toFixed(1)}px, 0) scale(1.02)`;
+          }
+        }
+      }
+
+      this.isTicking = false;
+    };
+
+    const requestTick = () => {
+      if (!this.isTicking) {
+        requestAnimationFrame(onScrollDepth);
+        this.isTicking = true;
+      }
+    };
+
+    window.addEventListener('scroll', requestTick, { passive: true });
+    window.addEventListener('resize', requestTick, { passive: true });
+  }
+
+  /**
+   * Reveal all above-the-fold elements immediately so initial view is crisp
+   */
   revealInitialElements() {
-    // Reveal all elements in initial viewport immediately
     const vh = window.innerHeight;
-    this.revealElements.forEach((el, index) => {
+    this.revealElements.forEach((el) => {
       const rect = el.getBoundingClientRect();
-      if (rect.top < vh * 1.1) {
+      if (rect.top < vh * 0.95 && rect.bottom > 0) {
         el.classList.add('is-revealed');
       }
     });
+
+    // Also ensure hero left & right have is-revealed
+    const heroLeft = document.querySelector('.havenly-hero-left');
+    const heroRight = document.querySelector('.havenly-hero-right');
+    const filterBar = document.querySelector('.havenly-filter-bar-wrap');
+    if (heroLeft) heroLeft.classList.add('is-revealed');
+    if (heroRight) heroRight.classList.add('is-revealed');
+    if (filterBar) filterBar.classList.add('is-revealed');
   }
 }

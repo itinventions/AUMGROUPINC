@@ -1,18 +1,19 @@
 /**
- * ESCÉLI LUXURY JEWELLERY — SHOPPING MART CONTROLLER
+ * AUM GROUP INC. LUXURY JEWELLERY — SHOPPING MART CONTROLLER
  * Architecture: Modular ES6 Class Orchestrator
  */
 
-import { ESCELI_PRODUCTS, CATEGORIES_DATA } from './shop-data.js';
+import { AUM_GROUP_PRODUCTS, CATEGORIES_DATA } from './shop-data.js';
+import { formatPrice, getActiveCurrency, EXPORT_CURRENCIES, updateAllDomPrices, initShoppingMegaMenu } from './navbar.js';
 
-class EsceliShopApp {
+class AumGroupShopApp {
   constructor() {
-    this.products = ESCELI_PRODUCTS;
+    this.products = AUM_GROUP_PRODUCTS;
     this.categories = CATEGORIES_DATA;
 
     // State
-    this.cart = JSON.parse(localStorage.getItem('esceli_cart') || '[]');
-    this.wishlist = JSON.parse(localStorage.getItem('esceli_wishlist') || '[]');
+    this.cart = JSON.parse(localStorage.getItem('aum_group_cart') || '[]');
+    this.wishlist = JSON.parse(localStorage.getItem('aum_group_wishlist') || '[]');
     
     // Detect dedicated department page or query param
     const bodyDept = document.body?.dataset?.department;
@@ -35,6 +36,8 @@ class EsceliShopApp {
     this.currentQuickViewProduct = null;
     this.selectedSize = null;
     this.selectedQty = 1;
+
+    this.ensureCartDrawerDOM();
 
     // DOM Elements Cache
     this.dom = {
@@ -141,6 +144,7 @@ class EsceliShopApp {
     this.bindEvents();
     this.bindScrollEffects();
     this.bindHideOnScroll();
+    this.initCurrencySelector();
     this.bindVideoPlayer();
     this.initScrollReveals();
     this.initHeroBackgroundLoop();
@@ -185,11 +189,7 @@ class EsceliShopApp {
 
   renderProductCardHTML(product) {
     const isWishlisted = this.wishlist.some((item) => item.id === product.id);
-    const formattedPrice = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      maximumFractionDigits: 0
-    }).format(product.price);
+    const formattedPrice = formatPrice(product.price);
 
     return `
       <article class="product-card group" data-id="${product.id}">
@@ -201,19 +201,6 @@ class EsceliShopApp {
             </svg>
           </button>
           <img src="${product.primaryImage}" alt="${product.name}" class="product-thumb-primary" loading="lazy">
-          <img src="${product.hoverImage}" alt="${product.name} detail" class="product-thumb-hover" loading="lazy">
-          
-          <div class="product-video-overlay">
-            <video class="card-video-loop" muted loop playsinline preload="none" poster="${product.primaryImage}">
-              <source src="${
-                product.department === 'diamond' ? 'assets/videos/diamond-solitaire.mp4' :
-                product.department === 'gold' ? 'assets/videos/gold-craft.mp4' :
-                product.department === 'silver' ? 'assets/videos/silver-atelier.mp4' :
-                'assets/videos/gemstones-archive.mp4'
-              }" type="video/mp4">
-            </video>
-          </div>
-          <div class="luxury-sparkle-fx"></div>
           
           <div class="product-quick-actions">
             <button type="button" class="btn-card-quickview" data-action="quickview" data-id="${product.id}">
@@ -225,9 +212,8 @@ class EsceliShopApp {
             </button>
             <button type="button" class="btn-card-addbag" data-action="add-to-bag" data-id="${product.id}">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                <line x1="3" y1="6" x2="21" y2="6"></line>
-                <path d="M16 10a4 4 0 0 1-8 0"></path>
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
               </svg>
               <span class="btn-text-full">Add to Bag</span><span class="btn-text-short">+ Bag</span>
             </button>
@@ -483,48 +469,56 @@ class EsceliShopApp {
     this.selectedSize = product.sizes ? product.sizes[0] : null;
     this.selectedQty = 1;
 
-    // Populate data
-    this.dom.modalTag.textContent = product.collection;
-    this.dom.modalTitle.textContent = product.name;
-    this.dom.modalPrice.textContent = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      maximumFractionDigits: 0
-    }).format(product.price);
-    this.dom.modalCert.textContent = product.certification;
-    this.dom.modalDesc.textContent = product.description;
-    this.dom.modalMainImg.src = product.primaryImage;
-    this.dom.modalMainImg.alt = product.name;
-    this.dom.modalQtyVal.textContent = '1';
+    // Populate data safely
+    if (this.dom.modalTag) this.dom.modalTag.textContent = product.collection || product.category || 'Fine Jewelry';
+    if (this.dom.modalTitle) this.dom.modalTitle.textContent = product.name;
+    if (this.dom.modalPrice) this.dom.modalPrice.textContent = formatPrice(product.price);
+    if (this.dom.modalCert) this.dom.modalCert.textContent = product.certification || 'GIA Verified';
+    if (this.dom.modalDesc) this.dom.modalDesc.textContent = product.description || '';
+    if (this.dom.modalMainImg) {
+      this.dom.modalMainImg.src = product.primaryImage;
+      this.dom.modalMainImg.alt = product.name;
+      this.dom.modalMainImg.onerror = () => {
+        this.dom.modalMainImg.src = 'assets/images/products/Gold Section Image1.png';
+      };
+    }
+    if (this.dom.modalQtyVal) this.dom.modalQtyVal.textContent = '1';
 
     // Thumbnails
-    const gallery = product.gallery || [product.primaryImage, product.hoverImage];
-    this.dom.modalThumbs.innerHTML = gallery
-      .map(
-        (img, i) => `
-      <div class="modal-thumb ${i === 0 ? 'active' : ''}" data-img="${img}">
-        <img src="${img}" alt="${product.name} view ${i + 1}">
-      </div>
-    `
-      )
-      .join('');
-
-    // Sizes
-    if (product.sizes && product.sizes.length > 0) {
-      this.dom.modalSizes.innerHTML = product.sizes
+    if (this.dom.modalThumbs) {
+      const gallery = product.gallery || [product.primaryImage, product.hoverImage].filter(Boolean);
+      this.dom.modalThumbs.innerHTML = gallery
         .map(
-          (sz, i) => `
-        <button type="button" class="size-pill ${i === 0 ? 'active' : ''}" data-size="${sz}">${sz}</button>
+          (img, i) => `
+        <div class="modal-thumb ${i === 0 ? 'active' : ''}" data-img="${img}">
+          <img src="${img}" alt="${product.name} view ${i + 1}">
+        </div>
       `
         )
         .join('');
-    } else {
-      this.dom.modalSizes.innerHTML = '<span class="text-xs text-[#7A756D]">Standard Size</span>';
+    }
+
+    // Sizes
+    if (this.dom.modalSizes) {
+      if (product.sizes && product.sizes.length > 0) {
+        this.dom.modalSizes.innerHTML = product.sizes
+          .map(
+            (sz, i) => `
+          <button type="button" class="size-pill ${i === 0 ? 'active' : ''}" data-size="${sz}">${sz}</button>
+        `
+          )
+          .join('');
+      } else {
+        this.dom.modalSizes.innerHTML = '<span class="text-xs text-[#7A756D]">Standard Size</span>';
+      }
     }
 
     // Specifications
     if (this.dom.modalSpecDetails) {
-      this.dom.modalSpecDetails.innerHTML = product.details.map((d) => `<li>${d}</li>`).join('');
+      const details = Array.isArray(product.details) && product.details.length > 0
+        ? product.details
+        : ['18K Solid Gold Atelier Craftsmanship', 'Conflict-Free Ethical Origin', 'Certified Natural Gemstones'];
+      this.dom.modalSpecDetails.innerHTML = details.map((d) => `<li>${d}</li>`).join('');
     }
 
     // Show
@@ -545,7 +539,126 @@ class EsceliShopApp {
   // CART & WISHLIST LOGIC
   // =========================================================================
 
-  addToCart(productId, size = null, qty = 1) {
+  ensureCartDrawerDOM() {
+    if (document.getElementById('cart-drawer')) {
+      this.refreshCartDOMRefs();
+      return;
+    }
+
+    let root = document.getElementById('universal-cart-drawer-root');
+    if (!root) {
+      root = document.createElement('div');
+      root.id = 'universal-cart-drawer-root';
+      document.body.appendChild(root);
+    }
+
+    root.innerHTML = `
+      <div class="shop-drawer-backdrop" id="drawer-backdrop"></div>
+
+      <aside class="shop-cart-drawer" id="cart-drawer" aria-label="Shopping Bag">
+        <div class="drawer-header">
+          <h3 class="drawer-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <span>Shopping Bag</span>
+          </h3>
+          <button type="button" class="drawer-close-btn" id="cart-close-btn" aria-label="Close Bag">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+
+        <div class="cart-progress-box" id="cart-shipping-box">
+          <div class="cart-progress-box-header">
+            <span class="text-xs font-medium text-[#181715]" id="cart-shipping-tracker">Complimentary Armored Courier on orders over $5,000</span>
+            <span class="text-xs font-bold text-aum-emerald" id="cart-shipping-percent">0%</span>
+          </div>
+          <div class="cart-progress-bar-track">
+            <div class="cart-progress-bar-fill" id="cart-shipping-fill"></div>
+          </div>
+        </div>
+
+        <div class="drawer-items-list" id="cart-items-list"></div>
+
+        <div class="drawer-footer">
+          <div class="drawer-subtotal-row">
+            <span class="drawer-subtotal-lbl">Estimated Total</span>
+            <span class="drawer-subtotal-val" id="cart-subtotal">$0</span>
+          </div>
+          <p class="drawer-subtotal-note">Sales taxes &amp; armored insurance calculated at checkout.</p>
+          <button type="button" class="btn-drawer-checkout" id="cart-checkout-btn">
+            Proceed To Secure Checkout
+          </button>
+          <div class="drawer-trust-badges">
+            <span>GIA Verified</span>
+            <span>•</span>
+            <span>Armored Transit</span>
+            <span>•</span>
+            <span>30-Day Returns</span>
+          </div>
+        </div>
+      </aside>
+
+      <aside class="shop-cart-drawer" id="wishlist-drawer" aria-label="Curated Wishlist">
+        <div class="drawer-header">
+          <h3 class="drawer-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            <span>Curated Wishlist</span>
+          </h3>
+          <button type="button" class="drawer-close-btn" id="wishlist-close-btn" aria-label="Close Wishlist">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+
+        <div class="drawer-items-list" id="wishlist-items-list"></div>
+
+        <div class="drawer-footer">
+          <a href="shop.html" class="btn-drawer-checkout text-center block" id="wishlist-discover-btn">
+            Discover Collections
+          </a>
+        </div>
+      </aside>
+
+      <div class="shop-toast" id="shop-toast" role="status" aria-live="polite">
+        <div class="toast-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        </div>
+        <span class="toast-message" id="toast-message">Creation added to bag</span>
+        <button type="button" class="toast-view-bag" id="toast-view-bag-btn">View Bag &rarr;</button>
+      </div>
+    `;
+
+    this.refreshCartDOMRefs();
+  }
+
+  refreshCartDOMRefs() {
+    if (!this.dom) return;
+    this.dom.cartDrawer = document.getElementById('cart-drawer');
+    this.dom.drawerBackdrop = document.getElementById('drawer-backdrop');
+    this.dom.cartCloseBtn = document.getElementById('cart-close-btn');
+    this.dom.cartItemsList = document.getElementById('cart-items-list');
+    this.dom.cartSubtotal = document.getElementById('cart-subtotal');
+    this.dom.cartShippingProgress = document.getElementById('cart-shipping-tracker');
+    this.dom.cartShippingFill = document.getElementById('cart-shipping-fill');
+    this.dom.cartShippingPercent = document.getElementById('cart-shipping-percent');
+    this.dom.wishlistDrawer = document.getElementById('wishlist-drawer');
+    this.dom.wishlistCloseBtn = document.getElementById('wishlist-close-btn');
+    this.dom.wishlistItemsList = document.getElementById('wishlist-items-list');
+    this.dom.toast = document.getElementById('shop-toast') || document.getElementById('toast-notification');
+    this.dom.toastMessage = document.getElementById('toast-message');
+  }
+
+  addToCart(productId, size = null, qty = 1, triggerBtn = null) {
+    this.ensureCartDrawerDOM();
+
+    if (triggerBtn && triggerBtn.classList) {
+      const origHtml = triggerBtn.innerHTML;
+      triggerBtn.classList.add('btn-added-feedback');
+      triggerBtn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" style="display:inline-block; vertical-align:middle; margin-right:4px;"><polyline points="20 6 9 17 4 12"></polyline></svg> Added to Bag!`;
+      setTimeout(() => {
+        triggerBtn.classList.remove('btn-added-feedback');
+        triggerBtn.innerHTML = origHtml;
+      }, 1800);
+    }
+
     const product = this.products.find((p) => p.id === productId);
     if (!product) return;
 
@@ -594,7 +707,7 @@ class EsceliShopApp {
   }
 
   saveCart() {
-    localStorage.setItem('esceli_cart', JSON.stringify(this.cart));
+    localStorage.setItem('aum_group_cart', JSON.stringify(this.cart));
   }
 
   toggleWishlist(productId) {
@@ -617,7 +730,7 @@ class EsceliShopApp {
       added = true;
     }
 
-    localStorage.setItem('esceli_wishlist', JSON.stringify(this.wishlist));
+    localStorage.setItem('aum_group_wishlist', JSON.stringify(this.wishlist));
     this.updateBadges();
 
     // Update wishlist buttons across all visible cards
@@ -645,6 +758,7 @@ class EsceliShopApp {
   }
 
   openCartDrawer() {
+    this.ensureCartDrawerDOM();
     this.closeWishlistDrawer();
     this.renderCartDrawer();
     if (this.dom.cartDrawer && this.dom.drawerBackdrop) {
@@ -706,8 +820,8 @@ class EsceliShopApp {
           <h5 class="drawer-item-title">${item.name}</h5>
           <span class="drawer-item-meta">${item.metal} • ${item.category}</span>
           <div class="drawer-item-bottom">
-            <span class="drawer-item-price">$${item.price.toLocaleString()}</span>
-            <button type="button" class="btn-card-addbag text-[0.65rem] py-1 px-3 ml-2" data-action="add-to-bag" data-id="${item.id}">Move to Bag</button>
+            <span class="drawer-item-price">${formatPrice(item.price)}</span>
+            <button type="button" class="btn-card-addbag text-[0.65rem] py-1 px-3 ml-2" data-action="add-to-bag" data-id="${item.id}">Add to Bag</button>
             <button type="button" class="drawer-item-remove ml-auto" data-action="wishlist" data-id="${item.id}">Remove</button>
           </div>
         </div>
@@ -733,9 +847,9 @@ class EsceliShopApp {
           <a href="#shop-catalog" class="shop-btn-primary" onclick="window.shopApp.closeCartDrawer();">Explore Catalog</a>
         </div>
       `;
-      this.dom.cartSubtotal.textContent = '$0';
+      this.dom.cartSubtotal.textContent = formatPrice(0);
       if (this.dom.cartShippingProgress) {
-        this.dom.cartShippingProgress.textContent = 'Complimentary Armored Courier on orders over $5,000';
+        this.dom.cartShippingProgress.textContent = `Complimentary Armored Courier on orders over ${formatPrice(5000)}`;
       }
       if (this.dom.cartShippingFill) {
         this.dom.cartShippingFill.style.width = '0%';
@@ -747,11 +861,7 @@ class EsceliShopApp {
     }
 
     const subtotal = this.cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-    this.dom.cartSubtotal.textContent = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      maximumFractionDigits: 0
-    }).format(subtotal);
+    this.dom.cartSubtotal.textContent = formatPrice(subtotal);
 
     const threshold = 5000;
     const pct = Math.min(100, Math.round((subtotal / threshold) * 100));
@@ -767,7 +877,7 @@ class EsceliShopApp {
         this.dom.cartShippingProgress.innerHTML = `✓ Qualified for <strong>Complimentary Armored Courier</strong>`;
       } else {
         const remaining = threshold - subtotal;
-        this.dom.cartShippingProgress.innerHTML = `Add <strong>$${remaining.toLocaleString()}</strong> for Free Armored Courier`;
+        this.dom.cartShippingProgress.innerHTML = `Add <strong>${formatPrice(remaining)}</strong> for Free Armored Courier`;
       }
     }
 
@@ -780,7 +890,7 @@ class EsceliShopApp {
           <h5 class="drawer-item-title">${item.name}</h5>
           <span class="drawer-item-meta">${item.metal} • ${item.size}</span>
           <div class="drawer-item-bottom">
-            <span class="drawer-item-price">$${(item.price * item.qty).toLocaleString()}</span>
+            <span class="drawer-item-price">${formatPrice(item.price * item.qty)}</span>
             <div class="qty-stepper scale-90 origin-right">
               <button type="button" class="qty-btn" data-action="cart-minus" data-index="${index}">-</button>
               <span class="qty-val">${item.qty}</span>
@@ -796,12 +906,13 @@ class EsceliShopApp {
   }
 
   showToast(message) {
+    this.ensureCartDrawerDOM();
     if (!this.dom.toast || !this.dom.toastMessage) return;
     this.dom.toastMessage.textContent = message;
-    this.dom.toast.classList.add('active');
+    this.dom.toast.classList.add('active', 'show');
     clearTimeout(this.toastTimeout);
     this.toastTimeout = setTimeout(() => {
-      this.dom.toast.classList.remove('active');
+      this.dom.toast.classList.remove('active', 'show');
     }, 3200);
   }
 
@@ -962,7 +1073,14 @@ class EsceliShopApp {
         this.openQuickView(id);
       } else if (action === 'add-to-bag') {
         e.preventDefault();
-        this.addToCart(id);
+        const btn = target.closest('button') || target;
+        this.addToCart(id, null, 1, btn);
+      } else if (action === 'inquire') {
+        e.preventDefault();
+        const prod = this.products.find(p => p.id === id);
+        if (prod) {
+          window.location.href = `contact.html?inquiry=${encodeURIComponent(prod.name)}`;
+        }
       } else if (action === 'wishlist') {
         e.preventDefault();
         this.toggleWishlist(id);
@@ -1132,7 +1250,7 @@ class EsceliShopApp {
     if (this.dom.modalAddBtn) {
       this.dom.modalAddBtn.addEventListener('click', () => {
         if (this.currentQuickViewProduct) {
-          this.addToCart(this.currentQuickViewProduct.id, this.selectedSize, this.selectedQty);
+          this.addToCart(this.currentQuickViewProduct.id, this.selectedSize, this.selectedQty, this.dom.modalAddBtn);
           this.closeQuickView();
         }
       });
@@ -1202,6 +1320,9 @@ class EsceliShopApp {
       });
     }
 
+    // Extended Haute Joaillerie Mega Menu & Mobile Drawer Accordion
+    initShoppingMegaMenu();
+
     // Bestseller Category Tabs
     document.querySelectorAll('.bestseller-tab-btn').forEach((btn) => {
       btn.addEventListener('click', () => {
@@ -1220,15 +1341,24 @@ class EsceliShopApp {
       });
     });
 
-    // Checkout Action
+    // Toast "View Bag" shortcut
+    const toastViewBag = document.getElementById('toast-view-bag-btn');
+    if (toastViewBag) {
+      toastViewBag.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.openCartDrawer();
+      });
+    }
+
+    // Checkout Action (WhatsApp Concierge Atelier Inquiry)
     const checkoutBtn = document.getElementById('cart-checkout-btn');
     if (checkoutBtn) {
       checkoutBtn.addEventListener('click', () => {
         if (this.cart.length === 0) {
-          alert('Your Shopping Bag is empty.');
+          this.showToast('Your Shopping Bag is empty.');
           return;
         }
-        alert('Proceeding to Encrypted Luxury Checkout. Integrating with your secure merchant gateway...');
+        this.proceedToCheckout();
       });
     }
 
@@ -1243,6 +1373,27 @@ class EsceliShopApp {
         document.body.style.overflow = '';
       }
     });
+  }
+
+  proceedToCheckout() {
+    if (!this.cart || this.cart.length === 0) {
+      this.showToast('Your Shopping Bag is empty.');
+      return;
+    }
+    let subtotal = 0;
+    const itemLines = this.cart.map((item, idx) => {
+      const price = item.price || 0;
+      const qty = item.qty || 1;
+      const total = price * qty;
+      subtotal += total;
+      return `${idx + 1}. ${item.name} (Qty: ${qty}, Size: ${item.size || 'Standard'}) - ${formatPrice(total)}`;
+    }).join('\n');
+
+    const totalText = formatPrice(subtotal);
+    const message = `Hello AUM GROUP INC. Atelier,\n\nI would like to acquire the following bespoke creations from my Shopping Bag:\n\n${itemLines}\n\nEstimated Subtotal: ${totalText}\n\nPlease confirm gemstone availability, bespoke sizing, and insured armored courier transit.`;
+
+    const waUrl = `https://wa.me/918108070022?text=${encodeURIComponent(message)}`;
+    window.open(waUrl, '_blank', 'noopener,noreferrer');
   }
 
   resetFilters() {
@@ -1295,9 +1446,24 @@ class EsceliShopApp {
       this.dom.priceSliderFill.style.left = '0%';
       this.dom.priceSliderFill.style.width = '100%';
     }
-    if (this.dom.priceDisplay) this.dom.priceDisplay.textContent = '$0 — $50,000';
+    this.updatePriceSliderDisplay();
 
     this.renderCatalog();
+  }
+
+  updatePriceSliderDisplay(code = null) {
+    const activeCode = code || getActiveCurrency();
+    const curr = EXPORT_CURRENCIES[activeCode] || EXPORT_CURRENCIES.USD;
+    const minVal = this.activeFilters.priceMin || 0;
+    const maxVal = this.activeFilters.priceMax || 50000;
+
+    if (this.dom.priceDisplay) {
+      this.dom.priceDisplay.textContent = `${formatPrice(minVal, activeCode)} — ${formatPrice(maxVal, activeCode)}`;
+    }
+
+    document.querySelectorAll('.price-box span:not(.price-box-separator), .currency-symbol').forEach((el) => {
+      el.textContent = curr.symbol.trim();
+    });
   }
 
   initPriceSlider() {
@@ -1331,8 +1497,7 @@ class EsceliShopApp {
       }
 
       if (display) {
-        const fmt = (v) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(v);
-        display.textContent = `${fmt(minVal)} — ${fmt(maxVal)}`;
+        display.textContent = `${formatPrice(minVal)} — ${formatPrice(maxVal)}`;
       }
 
       this.activeFilters.priceMin = minVal;
@@ -1375,6 +1540,9 @@ class EsceliShopApp {
         updateSlider(minVal, maxVal);
       });
     }
+
+    // Initialize display with active currency
+    this.updatePriceSliderDisplay();
   }
 
   bindSidebarFilters() {
@@ -1531,6 +1699,7 @@ class EsceliShopApp {
     updateNavHeight();
     window.addEventListener('resize', updateNavHeight, { passive: true });
 
+    let lastScrollY = window.scrollY;
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       const drawerOpen = this.dom.mobileDrawer && this.dom.mobileDrawer.classList.contains('open');
@@ -1540,15 +1709,97 @@ class EsceliShopApp {
         return;
       }
 
-      if (currentScrollY <= 20) {
+      if (currentScrollY <= 30) {
         nav.classList.remove('nav-hidden');
-      } else {
+      } else if (currentScrollY > lastScrollY + 8 && currentScrollY > 120) {
         nav.classList.add('nav-hidden');
+      } else if (currentScrollY < lastScrollY - 6) {
+        nav.classList.remove('nav-hidden');
       }
+      lastScrollY = currentScrollY;
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
+  }
+
+  onCurrencyChanged(code = null) {
+    const activeCode = code || getActiveCurrency();
+    const curr = EXPORT_CURRENCIES[activeCode] || EXPORT_CURRENCIES.USD;
+
+    // 1. Update dropdown header UI
+    const label = document.getElementById('currency-current');
+    const flag = document.getElementById('currency-flag');
+    if (label) label.textContent = curr.label;
+    if (flag) flag.textContent = curr.flag;
+    const selector = document.getElementById('currency-selector');
+    if (selector) {
+      selector.querySelectorAll('.currency-option').forEach((opt) => {
+        opt.classList.toggle('active', opt.getAttribute('data-currency') === activeCode);
+      });
+    }
+
+    // 2. Re-render all product grids
+    this.renderCatalog();
+    this.renderNewArrivals();
+    this.renderBestsellers();
+
+    // 3. Re-render drawers
+    this.renderCartDrawer();
+    this.renderWishlistDrawer();
+
+    // 4. Update Quick View modal if open
+    if (this.currentQuickViewProduct && this.dom.modalPrice) {
+      this.dom.modalPrice.textContent = formatPrice(this.currentQuickViewProduct.price, activeCode);
+    }
+
+    // 5. Update price slider display & currency symbols
+    this.updatePriceSliderDisplay(activeCode);
+
+    // 6. Update any generic data-usd elements on page
+    if (typeof updateAllDomPrices === 'function') {
+      updateAllDomPrices(activeCode);
+    }
+  }
+
+  initCurrencySelector() {
+    const selector = document.getElementById('currency-selector');
+    const btn = document.getElementById('currency-btn');
+    if (!selector || !btn) return;
+
+    this.onCurrencyChanged(getActiveCurrency());
+
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      selector.classList.toggle('open');
+    });
+
+    selector.querySelectorAll('.currency-option').forEach((opt) => {
+      opt.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const code = opt.getAttribute('data-currency');
+        if (code && EXPORT_CURRENCIES[code]) {
+          localStorage.setItem('aum_selected_currency', code);
+          selector.classList.remove('open');
+          this.onCurrencyChanged(code);
+          window.dispatchEvent(new CustomEvent('currencyChanged', { detail: { currency: code } }));
+        }
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!selector.contains(e.target)) {
+        selector.classList.remove('open');
+      }
+    });
+
+    window.addEventListener('currencyChanged', (e) => {
+      this.onCurrencyChanged(e.detail?.currency);
+    });
+
+    window.addEventListener('currencyRatesUpdated', () => {
+      this.onCurrencyChanged();
+    });
   }
 
   initScrollReveals() {
@@ -1629,5 +1880,5 @@ class EsceliShopApp {
 
 // Instantiate on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
-  window.shopApp = new EsceliShopApp();
+  window.shopApp = window.aumGroupShopApp = new AumGroupShopApp();
 });
