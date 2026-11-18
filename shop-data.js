@@ -925,7 +925,6 @@ export const AUM_GROUP_PRODUCTS = [
   }
 ];
 
-export const ESCELI_PRODUCTS = AUM_GROUP_PRODUCTS;
 
 export const CATEGORIES_DATA = [
   { id: "Rings", name: "Rings", count: 11, image: "assets/images/shop/cat-rings.jpg", description: "Solitaires, eternity bands, and cocktail creations" },

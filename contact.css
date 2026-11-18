@@ -54,7 +54,7 @@
   --nav-h: 137px;
 
   /* ========================================================================
-     NEW LUXURY BRAND PALETTE (Escéli / Aum Group Inc Version 2.0)
+     NEW LUXURY BRAND PALETTE (AUM GROUP INC. Version 2.0)
      ======================================================================== */
   --color-emerald-deep: #002821;        /* Darkest Surface / Nav Background */
   --color-emerald-primary: #004438;     /* Core Brand Emerald / Card Base */
@@ -315,7 +315,7 @@ textarea {
 }
 
 /* --------------------------------------------------------------------------
-   Navigation Bar (Fixed 2-Tier Luxury Header - Escéli / New Palette v2.0)
+   Navigation Bar (Fixed 2-Tier Luxury Header - AUM GROUP INC. / New Palette v2.0)
    -------------------------------------------------------------------------- */
 .navbar {
   position: fixed;

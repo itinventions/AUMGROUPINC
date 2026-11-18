@@ -3,17 +3,17 @@
  * Architecture: Modular ES6 Class Orchestrator
  */
 
-import { AUM_GROUP_PRODUCTS, ESCELI_PRODUCTS, CATEGORIES_DATA } from './shop-data.js';
+import { AUM_GROUP_PRODUCTS, CATEGORIES_DATA } from './shop-data.js';
 import { formatPrice, getActiveCurrency, EXPORT_CURRENCIES, updateAllDomPrices, initShoppingMegaMenu } from './navbar.js';
 
 class AumGroupShopApp {
   constructor() {
-    this.products = AUM_GROUP_PRODUCTS || ESCELI_PRODUCTS;
+    this.products = AUM_GROUP_PRODUCTS;
     this.categories = CATEGORIES_DATA;
 
     // State
-    this.cart = JSON.parse(localStorage.getItem('aum_group_cart') || localStorage.getItem('esceli_cart') || '[]');
-    this.wishlist = JSON.parse(localStorage.getItem('aum_group_wishlist') || localStorage.getItem('esceli_wishlist') || '[]');
+    this.cart = JSON.parse(localStorage.getItem('aum_group_cart') || '[]');
+    this.wishlist = JSON.parse(localStorage.getItem('aum_group_wishlist') || '[]');
     
     // Detect dedicated department page or query param
     const bodyDept = document.body?.dataset?.department;
@@ -708,7 +708,6 @@ class AumGroupShopApp {
 
   saveCart() {
     localStorage.setItem('aum_group_cart', JSON.stringify(this.cart));
-    localStorage.setItem('esceli_cart', JSON.stringify(this.cart));
   }
 
   toggleWishlist(productId) {
@@ -732,7 +731,6 @@ class AumGroupShopApp {
     }
 
     localStorage.setItem('aum_group_wishlist', JSON.stringify(this.wishlist));
-    localStorage.setItem('esceli_wishlist', JSON.stringify(this.wishlist));
     this.updateBadges();
 
     // Update wishlist buttons across all visible cards

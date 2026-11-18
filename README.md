@@ -97,7 +97,7 @@ Every page features the standardized, responsive 5-column luxury footer grid:
 
 ## 🎨 UI/UX Color Design System & Palette Guide (v2.0)
 
-Built on the official luxury jewellery moodboard (**Escéli / Aum Group Inc v2.0**), adhering to the international **60-30-10 Rule** of visual hierarchy:
+Built on the official luxury jewellery moodboard (**AUM GROUP INC. v2.0**), adhering to the international **60-30-10 Rule** of visual hierarchy:
 
 ```
 ┌─────────────────┬─────────────────┬─────────────────┬─────────────────┐

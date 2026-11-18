@@ -4,15 +4,15 @@
  */
 
 export const EXPORT_CURRENCIES = {
-  USD: { symbol: '$', rate: 1.0, flag: '🇺🇸', label: 'USD ($)', country: 'USA' },
-  EUR: { symbol: '€', rate: 0.90, flag: '🇪🇺', label: 'EUR (€)', country: 'Europe' },
-  GBP: { symbol: '£', rate: 0.75, flag: '🇬🇧', label: 'GBP (£)', country: 'UK' },
-  CAD: { symbol: 'CA$', rate: 1.42, flag: '🇨🇦', label: 'CAD (C$)', country: 'Canada' },
-  AED: { symbol: 'AED ', rate: 3.67, flag: '🇦🇪', label: 'AED (د.إ)', country: 'UAE' },
-  CHF: { symbol: 'CHF ', rate: 0.82, flag: '🇨🇭', label: 'CHF (Fr)', country: 'Switzerland' },
-  THB: { symbol: '฿', rate: 33.6, flag: '🇹🇭', label: 'THB (฿)', country: 'Thailand' },
-  IDR: { symbol: 'Rp ', rate: 18100, flag: '🇮🇩', label: 'IDR (Rp)', country: 'Indonesia' },
-  INR: { symbol: '₹', rate: 93.9, flag: '🇮🇳', label: 'INR (₹)', country: 'India' }
+  USD: { symbol: '$', rate: 1.0, flag: '', label: 'USD ($)', country: 'USA' },
+  EUR: { symbol: '€', rate: 0.90, flag: '', label: 'EUR (€)', country: 'Europe' },
+  GBP: { symbol: '£', rate: 0.75, flag: '', label: 'GBP (£)', country: 'UK' },
+  CAD: { symbol: 'CA$', rate: 1.42, flag: '', label: 'CAD (C$)', country: 'Canada' },
+  AED: { symbol: 'AED ', rate: 3.67, flag: '', label: 'AED (د.إ)', country: 'UAE' },
+  CHF: { symbol: 'CHF ', rate: 0.82, flag: '', label: 'CHF (Fr)', country: 'Switzerland' },
+  THB: { symbol: '฿', rate: 33.6, flag: '', label: 'THB (฿)', country: 'Thailand' },
+  IDR: { symbol: 'Rp ', rate: 18100, flag: '', label: 'IDR (Rp)', country: 'Indonesia' },
+  INR: { symbol: '₹', rate: 93.9, flag: '', label: 'INR (₹)', country: 'India' }
 };
 
 export function getActiveCurrency() {
@@ -67,7 +67,7 @@ export function updateAllDomPrices(currencyCode = null) {
   const trackerEl = document.getElementById('cart-shipping-tracker');
   if (trackerEl) {
     try {
-      const cart = JSON.parse(localStorage.getItem('aum_group_cart') || localStorage.getItem('esceli_cart') || '[]');
+      const cart = JSON.parse(localStorage.getItem('aum_group_cart') || '[]');
       const subtotal = cart.reduce((sum, item) => sum + (item.price || item.usdPrice || 0) * (item.qty || 1), 0);
       const threshold = 5000;
       if (subtotal >= threshold) {
@@ -177,6 +177,7 @@ export class Navbar {
     this.bindShoppingMegaMenu();
     this.bindLinkInteractions();
     this.bindScrollSpy();
+    this.bindSearchDrawer();
 
     // Initial DOM price synchronization
     updateAllDomPrices();
@@ -370,7 +371,11 @@ export class Navbar {
   updateCurrencyUI(code) {
     const data = EXPORT_CURRENCIES[code] || EXPORT_CURRENCIES.USD;
     if (this.currencyLabel) {
-      this.currencyLabel.textContent = data.label;
+      if (this.currencyLabel.getAttribute('data-mode') === 'country') {
+        this.currencyLabel.textContent = (data.country || code).toUpperCase();
+      } else {
+        this.currencyLabel.textContent = data.label;
+      }
     }
     if (this.currencyFlag) {
       this.currencyFlag.textContent = data.flag;
@@ -561,7 +566,7 @@ export class Navbar {
 
   getCart() {
     try {
-      return JSON.parse(localStorage.getItem('aum_group_cart') || localStorage.getItem('esceli_cart') || '[]');
+      return JSON.parse(localStorage.getItem('aum_group_cart') || '[]');
     } catch {
       return [];
     }
@@ -569,13 +574,12 @@ export class Navbar {
 
   saveCart(cart) {
     localStorage.setItem('aum_group_cart', JSON.stringify(cart));
-    localStorage.setItem('esceli_cart', JSON.stringify(cart));
     this.updateBadges();
   }
 
   getWishlist() {
     try {
-      return JSON.parse(localStorage.getItem('aum_group_wishlist') || localStorage.getItem('esceli_wishlist') || '[]');
+      return JSON.parse(localStorage.getItem('aum_group_wishlist') || '[]');
     } catch {
       return [];
     }
@@ -583,7 +587,6 @@ export class Navbar {
 
   saveWishlist(list) {
     localStorage.setItem('aum_group_wishlist', JSON.stringify(list));
-    localStorage.setItem('esceli_wishlist', JSON.stringify(list));
     this.updateBadges();
   }
 
@@ -940,6 +943,15 @@ export class Navbar {
       });
     }
 
+    // Close drawer when any mobile navigation link is clicked
+    if (this.drawer) {
+      this.drawer.querySelectorAll('.drawer-nav-link, .drawer-subnav-link').forEach((link) => {
+        link.addEventListener('click', () => {
+          this.toggleDrawer(false);
+        });
+      });
+    }
+
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && this.drawer && this.drawer.classList.contains('open')) {
         this.toggleDrawer(false);
@@ -1018,6 +1030,93 @@ export class Navbar {
         }
       });
     }, { passive: true });
+  }
+
+  bindSearchDrawer() {
+    const searchBtn = document.getElementById('nav-search-btn');
+    const searchDrawer = document.getElementById('aum-search-drawer') || document.getElementById('search-drawer');
+    const searchClose = document.getElementById('aum-search-close') || document.getElementById('search-close');
+    const searchInput = document.getElementById('aum-search-input') || document.getElementById('search-input');
+    const drawerSearch = document.getElementById('drawer-search-input');
+
+    if (searchBtn && searchDrawer) {
+      searchBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = searchDrawer.classList.toggle('open');
+        searchDrawer.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+        if (isOpen && searchInput) {
+          setTimeout(() => searchInput.focus(), 150);
+        }
+      });
+    }
+
+    if (searchClose && searchDrawer) {
+      searchClose.addEventListener('click', () => {
+        searchDrawer.classList.remove('open');
+        searchDrawer.setAttribute('aria-hidden', 'true');
+      });
+    }
+
+    document.addEventListener('click', (e) => {
+      if (searchDrawer && searchDrawer.classList.contains('open')) {
+        if (!searchDrawer.contains(e.target) && !searchBtn?.contains(e.target)) {
+          searchDrawer.classList.remove('open');
+          searchDrawer.setAttribute('aria-hidden', 'true');
+        }
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && searchDrawer && searchDrawer.classList.contains('open')) {
+        searchDrawer.classList.remove('open');
+        searchDrawer.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    const handleSearchSubmit = (inputEl) => {
+      if (!inputEl) return;
+      inputEl.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          const query = inputEl.value.trim();
+          if (query) {
+            window.location.href = `shop.html?search=${encodeURIComponent(query)}`;
+          }
+        }
+      });
+    };
+
+    handleSearchSubmit(searchInput);
+    handleSearchSubmit(drawerSearch);
+
+    // Bind backdrop for mega menu hover extension
+    const backdrop = document.getElementById('mega-menu-backdrop');
+    const megaItems = document.querySelectorAll('.nav-item-has-mega');
+    if (backdrop && megaItems.length > 0) {
+      megaItems.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+          backdrop.classList.add('active');
+        });
+        item.addEventListener('mouseleave', () => {
+          backdrop.classList.remove('active');
+        });
+      });
+
+      backdrop.addEventListener('click', () => {
+        backdrop.classList.remove('active');
+      });
+    }
+
+    // Interactive subtabs switching inside mega menus
+    document.querySelectorAll('.mega-subtab').forEach(tab => {
+      tab.addEventListener('click', (e) => {
+        const parent = tab.closest('.mega-subtabs-row');
+        if (parent) {
+          parent.querySelectorAll('.mega-subtab').forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+        }
+      });
+    });
   }
 
   bindShoppingMegaMenu() {
@@ -1109,5 +1208,19 @@ export function initShoppingMegaMenu() {
         document.body.style.overflow = '';
       });
     });
+  }
+}
+
+// Auto-initialize Navbar across all pages
+if (typeof window !== 'undefined') {
+  const autoInit = () => {
+    if (!window.__aum_navbar_instance && document.querySelector('.navbar')) {
+      window.__aum_navbar_instance = new Navbar();
+    }
+  };
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', autoInit);
+  } else {
+    autoInit();
   }
 }
